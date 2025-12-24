@@ -17,7 +17,13 @@ const INTRO_DATA = {
   cta: 'CASABLANCA, MA',
 }
 
-export function QuiSommesNous() {
+export interface QuiSommesNousProps {
+  title?: string
+  description?: string
+  locationLabel?: string
+}
+
+export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNousProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -84,7 +90,7 @@ export function QuiSommesNous() {
                   className="font-heading text-7xl md:text-8xl lg:text-[11rem] font-black text-transparent leading-[0.85] tracking-tighter uppercase relative left-1 md:left-4 z-10 transition-colors duration-500"
                   style={{ WebkitTextStroke: '2px #FFB800' }}
                 >
-                  {INTRO_DATA.headingPart2}
+                  {title ? title.split(' ').slice(1).join(' ') : INTRO_DATA.headingPart2}
                 </h2>
 
                 {/* The "Filling" Version (clip-path animation could go here, but let's do a glow) */}

@@ -30,7 +30,13 @@ export async function Footer() {
             <div className="md:col-span-4 flex flex-col gap-8">
                {/* Logo */}
                <div className="mb-2">
-                 <img src="/logo.svg" alt="SMATCH Digital" className="h-8 w-auto" />
+                 <Image 
+                   src="/logo.svg" 
+                   alt="SMATCH Digital" 
+                   width={140} 
+                   height={32} 
+                   className="h-8 w-auto" 
+                 />
                </div>
 
                {/* Tagline & Bio */}
