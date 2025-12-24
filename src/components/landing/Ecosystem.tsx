@@ -203,7 +203,7 @@ export function Ecosystem() {
                     region: <span className="text-[#98C379]">&apos;ma-cas-1&apos;</span>
                   </div>
                   <div className="text-white">{'}'});</div>
-                  <div className="mt-4 text-white/40 italic">// initialize sync</div>
+                  <div className="mt-4 text-white/40 italic">{'//'} initialize sync</div>
                 </div>
               </div>
 

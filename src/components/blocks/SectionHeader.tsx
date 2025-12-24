@@ -27,10 +27,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       <div className="flex items-center gap-3">
 
         <span className="font-mono text-smatch-gold text-xs font-bold tracking-[0.2em] uppercase">
-          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-          //{tag}
+          {'//'}{tag}
         </span>
-        
+
       </div>
 
       {/* 2. The Main Title */}
