@@ -172,7 +172,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-[#FFB800] blur-[120px] opacity-10 pointer-events-none" />
                 <div className="absolute left-20 top-1/4 opacity-70 bottom-0 bg-smatch-gold w-40 h-20 rounded-full blur-3xl " />
                 <div className="absolute left-40 top-1/4 mix-blend-overlay opacity-100 bottom-0 bg-smatch-gold w-80 h-20 rounded-full blur-3xl" />
-                
+
                 <Image
                   className="relative w-1/2 h-full mx-auto z-[1]"
                   src={'/assets/domains/core-inteligence.svg'}
