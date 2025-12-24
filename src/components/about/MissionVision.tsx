@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useMotionTemplate } from 'framer-motion'
+import React from 'react'
+import { motion, useMotionValue, useMotionTemplate } from 'framer-motion'
 import { Target, Eye, Cube, ShieldCheck, Bank, ChartLineUp, Cpu } from '@phosphor-icons/react/dist/ssr'
 
 export interface CardData {
@@ -56,19 +56,19 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
 export function MissionVision({ mission, vision }: MissionVisionProps) {
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden">
-      
+
       {/* Background Tech Grid */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none" 
-           style={{ 
-             backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', 
+      <div className="absolute inset-0 opacity-10 pointer-events-none"
+           style={{
+             backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
              backgroundSize: '40px 40px',
              maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)'
-           }} 
+           }}
       />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          
+
           {/* Left Column: Cards */}
           <div className="flex flex-col gap-6">
             <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-8">
@@ -118,7 +118,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
 
           {/* Right Column: Animated Diagram */}
           <div className="relative h-[600px] w-full flex items-center justify-center">
-             
+
              {/* Central Core */}
              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -131,7 +131,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                 <div className="absolute inset-0 bg-[#FFB800]/5 rounded-full blur-2xl animate-pulse" />
                 <div className="absolute inset-0 border border-[#FFB800]/30 rounded-full" />
                 <div className="absolute inset-4 border border-[#FFB800]/10 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
-                
+
                 <div className="relative z-10">
                    <div className="text-[#FFB800] mb-3 flex justify-center drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
                      <Cube size={48} weight="fill" />
@@ -144,14 +144,14 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
 
              {/* Orbiting Nodes Container */}
              {/* We rotate the whole container to orbit the nodes */}
-             <motion.div 
+             <motion.div
                className="absolute inset-0"
                animate={{ rotate: 360 }}
                transition={{ duration: 60, ease: "linear", repeat: Infinity }}
              >
                 {/* Node 1: Top */}
                 <div className="absolute top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] transform -rotate-0"> 
+                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] transform -rotate-0">
                       {/* Counter-rotate content if you want text to stay upright, or keep it rotating for "satellite" feel */}
                       <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">01.0 // PROCESS</span>
                       <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">

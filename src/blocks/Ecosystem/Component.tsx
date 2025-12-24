@@ -202,7 +202,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                     <span className="text-[#C792EA]">import</span>
                     <span className="text-white">{'{ WMS }'}</span>
                     <span className="text-[#C792EA]">from</span>
-                    <span className="text-[#98C379]">'@smatch/core'</span>;
+                    <span className="text-[#98C379]">&apos;@smatch/core&apos;</span>;
                   </div>
                   <div className="mt-4">
                     <span className="text-[#C792EA]">const</span>
@@ -219,7 +219,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                     region: <span className="text-[#98C379]">&apos;ma-cas-1&apos;</span>
                   </div>
                   <div className="text-white">{"}"});</div>
-                  <div className="mt-4 text-white/40 italic">// initialize sync</div>
+                  <div className="mt-4 text-white/40 italic">{'//'} initialize sync</div>
                 </div>
               </div>
 

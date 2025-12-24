@@ -3,7 +3,6 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { ArrowRight, Circle } from '@phosphor-icons/react/dist/ssr'
 
 const JOURNAL_DATA = {
   header: {

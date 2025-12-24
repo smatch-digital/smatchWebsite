@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const TRUSTED_BY_DATA = {
   title: "TRUSTED BY",
@@ -20,13 +21,13 @@ export function TrustedBy() {
             {TRUSTED_BY_DATA.title}
           </span>
         </div>
-        
+
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {TRUSTED_BY_DATA.logos.map((logo, index) => (
             <div key={index} className="relative h-4 md:h-6 w-24 md:w-32 flex items-center justify-center">
-               <Image 
-                 src={logo.src} 
-                 alt={logo.name} 
+               <Image
+                 src={logo.src}
+                 alt={logo.name}
                  fill
                  className="object-contain"
                />
