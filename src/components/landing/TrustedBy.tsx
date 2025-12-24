@@ -23,8 +23,13 @@ export function TrustedBy() {
         
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {TRUSTED_BY_DATA.logos.map((logo, index) => (
-            <div key={index} className="h-4 md:h-6 w-auto flex items-center">
-               <img src={logo.src} alt={logo.name} className="h-full w-auto object-contain" />
+            <div key={index} className="relative h-4 md:h-6 w-24 md:w-32 flex items-center justify-center">
+               <Image 
+                 src={logo.src} 
+                 alt={logo.name} 
+                 fill
+                 className="object-contain"
+               />
             </div>
           ))}
         </div>

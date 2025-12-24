@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import * as motion from 'framer-motion/client'
-import { ArrowRight, Cpu, Globe, Database, ShieldCheck, Factory, Lightning } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight, Cpu, Globe, ShieldCheck, Factory, Lightning } from '@phosphor-icons/react/dist/ssr'
 
 // Types
 type BentoItemSize = '1x1' | '2x1' | '2x2'
