@@ -59,7 +59,7 @@ export function TeamSection({
               <div className="flex-1 flex flex-col justify-center">
                 <div className="mb-2">
                    <span className="inline-block px-3 py-1 bg-smatch-gold/10 text-smatch-gold text-xs font-mono uppercase tracking-widest rounded-full mb-4">
-                     /// SPOTLIGHT
+                     {"/// SPOTLIGHT"}
                    </span>
                 </div>
                 <h3 className="font-heading text-4xl md:text-5xl text-white font-bold uppercase leading-none mb-2">
