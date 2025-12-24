@@ -199,26 +199,26 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 {/* Code Content */}
                 <div className="font-mono text-[14px] leading-relaxed">
                   <div>
-                    <span className="text-[#C792EA]">import</span>{' '}
-                    <span className="text-white">{'{ WMS }'}</span>{' '}
-                    <span className="text-[#C792EA]">from</span>{' '}
+                    <span className="text-[#C792EA]">import</span>
+                    <span className="text-white">{'{ WMS }'}</span>
+                    <span className="text-[#C792EA]">from</span>
                     <span className="text-[#98C379]">'@smatch/core'</span>;
                   </div>
                   <div className="mt-4">
-                    <span className="text-[#C792EA]">const</span>{' '}
-                    <span className="text-[#61AFEF]">client</span>{' '}
-                    <span className="text-white">=</span>{' '}
-                    <span className="text-[#E5C07B]">new</span>{' '}
+                    <span className="text-[#C792EA]">const</span>
+                    <span className="text-[#61AFEF]">client</span>
+                    <span className="text-white">=</span>
+                    <span className="text-[#E5C07B]">new</span>
                     <span className="text-[#E5C07B]">WMS</span>
-                    <span className="text-white">({'{'}</span>
+                    <span className="text-white">({"{"}</span>
                   </div>
                   <div className="pl-4 text-white/80">
-                    apiKey: <span className="text-[#98C379]">'sk_live...'</span>,
+                    apiKey: <span className="text-[#98C379]">&apos;sk_live...&apos;</span>,
                   </div>
                   <div className="pl-4 text-white/80">
-                    region: <span className="text-[#98C379]">'ma-cas-1'</span>
+                    region: <span className="text-[#98C379]">&apos;ma-cas-1&apos;</span>
                   </div>
-                  <div className="text-white">{'}'});</div>
+                  <div className="text-white">{"}"});</div>
                   <div className="mt-4 text-white/40 italic">// initialize sync</div>
                 </div>
               </div>
