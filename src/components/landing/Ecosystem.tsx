@@ -186,7 +186,7 @@ export function Ecosystem() {
                     <span className="text-[#C792EA]">import</span>{' '}
                     <span className="text-white">{'{ WMS }'}</span>{' '}
                     <span className="text-[#C792EA]">from</span>{' '}
-                    <span className="text-[#98C379]">'@smatch/core'</span>;
+                    <span className="text-[#98C379]">&apos;@smatch/core&apos;</span>;
                   </div>
                   <div className="mt-4">
                     <span className="text-[#C792EA]">const</span>{' '}
@@ -197,10 +197,10 @@ export function Ecosystem() {
                     <span className="text-white">({'{'}</span>
                   </div>
                   <div className="pl-4 text-white/80">
-                    apiKey: <span className="text-[#98C379]">'sk_live...'</span>,
+                    apiKey: <span className="text-[#98C379]">&apos;sk_live...&apos;</span>,
                   </div>
                   <div className="pl-4 text-white/80">
-                    region: <span className="text-[#98C379]">'ma-cas-1'</span>
+                    region: <span className="text-[#98C379]">&apos;ma-cas-1&apos;</span>
                   </div>
                   <div className="text-white">{'}'});</div>
                   <div className="mt-4 text-white/40 italic">// initialize sync</div>

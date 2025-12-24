@@ -21,7 +21,7 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
   const mouseY = useMotionValue(0)
 
   function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    let { left, top } = currentTarget.getBoundingClientRect()
+    const { left, top } = currentTarget.getBoundingClientRect()
     mouseX.set(clientX - left)
     mouseY.set(clientY - top)
   }

@@ -71,13 +71,13 @@ export function QuiSommesNous({
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
             >
-              {/* Tag / Decoration */}
-              <div className="mb-8 flex items-center gap-3">
-                <span className="w-1 h-8 bg-smatch-gold" />
-                <span className="font-mono text-sm text-smatch-gold tracking-[0.2em] uppercase">
-                  /// ABOUT_US
-                </span>
-              </div>
+                {/* Tag / Decoration */}
+                <div className="mb-8 flex items-center gap-3">
+                  <span className="w-1 h-8 bg-smatch-gold" />
+                  <span className="font-mono text-sm text-smatch-gold tracking-[0.2em] uppercase">
+                    /// ABOUT_US
+                  </span>
+                </div>
 
               {/* Description */}
               <p className="font-sans text-smatch-text-secondary text-base md:text-lg leading-relaxed text-justify mb-12 border-l border-white/10 pl-6">

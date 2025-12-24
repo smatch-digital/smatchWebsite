@@ -71,7 +71,7 @@ export function TeamSection({
 
                 <blockquote className="border-l-2 border-smatch-gold pl-6 py-2 mb-8">
                   <p className="font-sans text-white text-lg italic leading-relaxed">
-                    "{spotlight.quote}"
+                    &quot;{spotlight.quote}&quot;
                   </p>
                 </blockquote>
 

@@ -148,7 +148,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                     <div className="w-[34px] h-[34px] rounded-full bg-white/10 flex-shrink-0" />
                     <div className="ml-[17px] bg-[#ffffff0a] rounded-r-[20px] rounded-bl-[4px] rounded-tl-[20px] px-[20px] py-[12px] border border-white/5">
                       <p className="text-[14px] text-[#ffffff80] leading-snug">
-                        Alerte: Le serveur de production WMS nécessite une mise à jour.
+                        Alert: The WMS production server requires an update.
                       </p>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                   <div className="flex items-center justify-end">
                     <div className="mr-[17px] bg-[#FFB800] rounded-l-[20px] rounded-br-[4px] rounded-tr-[20px] px-[20px] py-[12px] shadow-[0_4px_20px_rgba(255,184,0,0.2)]">
                       <p className="text-[14px] text-black font-bold leading-snug">
-                        Reçu. Déploiement du patch correctif v2.4.1 en cours...
+                        Received. Deploying patch v2.4.1 in progress...
                       </p>
                     </div>
                     <div className="w-[34px] h-[34px] rounded-full bg-[#FFB800] flex-shrink-0" />
