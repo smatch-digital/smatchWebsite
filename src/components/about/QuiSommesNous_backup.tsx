@@ -75,7 +75,7 @@ export function QuiSommesNous({
                 <div className="mb-8 flex items-center gap-3">
                   <span className="w-1 h-8 bg-smatch-gold" />
                   <span className="font-mono text-sm text-smatch-gold tracking-[0.2em] uppercase">
-                    /// ABOUT_US
+                    {"///"} ABOUT_US
                   </span>
                 </div>
 
