@@ -125,7 +125,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
 
               {/* Description */}
               <p className="font-sans text-[#A0A0A0] text-sm md:text-[15px] leading-relaxed text-justify mb-12 max-w-lg border-l border-white/10 pl-6">
-                {INTRO_DATA.description}
+                {description || INTRO_DATA.description}
               </p>
 
               {/* CTA Button */}
@@ -136,7 +136,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
 
                   {/* Text Content */}
                   <span className="relative flex items-center gap-4 text-gray-500 text-xs font-bold tracking-[0.2em] uppercase group-hover:text-black transition-colors duration-300">
-                    {INTRO_DATA.cta}
+                    {locationLabel || INTRO_DATA.cta}
                     {/* Tiny animated arrow */}
                     <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                       &rarr;

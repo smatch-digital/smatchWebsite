@@ -44,7 +44,7 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
           <div className="flex items-center justify-center w-[48px] h-[48px] rounded-[12px] border border-[#FFB800]/30 bg-[#FFB800]/5 text-[#FFB800] group-hover:bg-[#FFB800] group-hover:text-black transition-all duration-300">
              {/* Clone element to force size if it's a Phosphor icon */}
              {React.isValidElement(icon)
-              ? React.cloneElement(icon as React.ReactElement, { size: 24, weight: 'fill' })
+              ? React.cloneElement(icon as React.ReactElement<{ size?: number | string; weight?: string }>, { size: 24, weight: 'fill' })
               : icon}
           </div>
 

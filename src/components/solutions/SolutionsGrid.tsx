@@ -52,7 +52,7 @@ const InteractiveCard = ({
           <div className="w-20 h-20 rounded-[16px] bg-[#1A1A1A]/80 backdrop-blur-md border border-[#FFB800]/30 flex items-center justify-center group-hover:bg-[#FFB800]/10 group-hover:border-[#FFB800] transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             {/* Clone icon to style it */}
             <div className="text-[#FFB800]">
-              {React.cloneElement(icon as React.ReactElement, { size: 40, weight: 'duotone' })}
+              {React.cloneElement(icon as React.ReactElement<{ size?: number | string; weight?: string }>, { size: 40, weight: 'duotone' })}
             </div>
           </div>
         </div>

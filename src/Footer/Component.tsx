@@ -1,10 +1,11 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
+import Image from 'next/image'
 import React from 'react'
 
 import type { Footer } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
-import { FacebookLogo, InstagramLogo, LinkedinLogo, YoutubeLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
+import { LinkedinLogo, YoutubeLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
@@ -30,12 +31,12 @@ export async function Footer() {
             <div className="md:col-span-4 flex flex-col gap-8">
                {/* Logo */}
                <div className="mb-2">
-                 <Image 
-                   src="/logo.svg" 
-                   alt="SMATCH Digital" 
-                   width={140} 
-                   height={32} 
-                   className="h-8 w-auto" 
+                 <Image
+                   src="/logo.svg"
+                   alt="SMATCH Digital"
+                   width={140}
+                   height={32}
+                   className="h-8 w-auto"
                  />
                </div>
 
