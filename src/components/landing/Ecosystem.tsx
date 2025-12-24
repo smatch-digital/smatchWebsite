@@ -223,7 +223,7 @@ export function Ecosystem() {
             <div className="md:w-[749px] md:h-[232px] w-full bg-[#0A0A0A] border border-white/5 rounded-[20px] p-[32px] relative overflow-hidden group hover:border-[#FFB800]/20 transition-colors duration-500">
               <div className="relative z-20 mt-[20px] ml-[10px]">
                 <h3 className="font-sans text-[24px] font-bold mb-[15px] text-white">
-                  Optimization par l&apos;IA
+                  Optimisation par l&apos;IA
                 </h3>
                 <p className="text-[16px] text-[#ffffff7a] font-medium max-w-[340px] leading-[24px]">
                   Anticipez vos besoins et optimisez vos flux grâce à l&apos;analyse prédictive.
