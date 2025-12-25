@@ -256,6 +256,8 @@ export interface Page {
     | AboutBlock
     | EcosystemBlock
     | DomainsBlock
+    | MissionVisionBlock
+    | HistoryTimelineBlock
   )[];
   meta?: {
     title?: string | null;
@@ -862,6 +864,59 @@ export interface DomainsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionBlock".
+ */
+export interface MissionVisionBlock {
+  sectionHeader?: {
+    subtitle?: string | null;
+    title?: string | null;
+  };
+  mission?: {
+    subtitle?: string | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  vision?: {
+    subtitle?: string | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  core?: {
+    text?: string | null;
+  };
+  nodes?:
+    | {
+        label: string;
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'missionVision';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HistoryTimelineBlock".
+ */
+export interface HistoryTimelineBlock {
+  title?: string | null;
+  events?:
+    | {
+        year: string;
+        title: string;
+        description?: string | null;
+        version?: string | null;
+        isCurrent?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'historyTimeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "solutions".
  */
 export interface Solution {
@@ -1240,6 +1295,8 @@ export interface PagesSelect<T extends boolean = true> {
         about?: T | AboutBlockSelect<T>;
         ecosystem?: T | EcosystemBlockSelect<T>;
         domains?: T | DomainsBlockSelect<T>;
+        missionVision?: T | MissionVisionBlockSelect<T>;
+        historyTimeline?: T | HistoryTimelineBlockSelect<T>;
       };
   meta?:
     | T
@@ -1389,6 +1446,65 @@ export interface DomainsBlockSelect<T extends boolean = true> {
         description?: T;
         hardware?: T;
         image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MissionVisionBlock_select".
+ */
+export interface MissionVisionBlockSelect<T extends boolean = true> {
+  sectionHeader?:
+    | T
+    | {
+        subtitle?: T;
+        title?: T;
+      };
+  mission?:
+    | T
+    | {
+        subtitle?: T;
+        title?: T;
+        description?: T;
+      };
+  vision?:
+    | T
+    | {
+        subtitle?: T;
+        title?: T;
+        description?: T;
+      };
+  core?:
+    | T
+    | {
+        text?: T;
+      };
+  nodes?:
+    | T
+    | {
+        label?: T;
+        text?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HistoryTimelineBlock_select".
+ */
+export interface HistoryTimelineBlockSelect<T extends boolean = true> {
+  title?: T;
+  events?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        description?: T;
+        version?: T;
+        isCurrent?: T;
         id?: T;
       };
   id?: T;

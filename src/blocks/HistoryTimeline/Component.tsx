@@ -2,24 +2,14 @@
 
 import React from 'react'
 import { motion, Variants } from 'framer-motion'
+import type { HistoryTimelineBlock } from '@/payload-types'
 
-export interface TimelineEvent {
-  year: string
-  title: string
-  description?: string
-  version?: string // Optional version tag (e.g., V1.0 // 2013)
-  isCurrent?: boolean // To highlight the current state
-}
-
-export interface HistoryTimelineProps {
-  title?: string
-  events: TimelineEvent[]
-}
-
-export function HistoryTimeline({
+export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
   title = "Historique de l'entreprise",
   events
-}: HistoryTimelineProps) {
+}) => {
+  const safeEvents = events || []
+
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden">
        {/* Background Radial Glow (Left Side) */}
@@ -47,7 +37,7 @@ export function HistoryTimeline({
           />
 
           <div className="flex flex-col gap-24">
-            {events.map((event, index) => {
+            {safeEvents.map((event, index) => {
               const isEven = index % 2 === 0
 
               // Define variants inside to use isEven logic easily
@@ -91,7 +81,7 @@ export function HistoryTimeline({
 
               return (
                 <motion.div
-                  key={index}
+                  key={event.id || index}
                   variants={rowVariants}
                   initial="hidden"
                   whileInView="visible"

@@ -10,6 +10,8 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { AboutBlock } from './About/Component'
 import { EcosystemBlock } from './Ecosystem/Component'
 import { DomainsBlock } from './Domains/Component'
+import { MissionVisionBlockComponent } from '@/blocks/MissionVision/Component'
+import { HistoryTimelineBlockComponent } from '@/blocks/HistoryTimeline/Component'
 
 const blockComponents = {
   about: AboutBlock,
@@ -20,6 +22,8 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  missionVision: MissionVisionBlockComponent,
+  historyTimeline: HistoryTimelineBlockComponent,
 }
 
 export const RenderBlocks: React.FC<{

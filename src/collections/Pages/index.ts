@@ -9,6 +9,8 @@ import { Content } from '../../blocks/Content/config'
 import { Ecosystem } from '../../blocks/Ecosystem/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { Domains } from '@/blocks/Domains/config'
+import { MissionVision } from '../../blocks/MissionVision/config'
+import { HistoryTimeline } from '../../blocks/HistoryTimeline/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
@@ -84,6 +86,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 About,
                 Ecosystem,
                 Domains,
+                MissionVision,
+                HistoryTimeline,
               ],
               required: true,
               admin: {
