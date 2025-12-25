@@ -15,7 +15,7 @@ export interface MissionVisionProps {
   vision: CardData
 }
 
-// Helper for the mouse-tracking glow card
+// --- 1. Helper: Mouse-Tracking Glow Card ---
 function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -53,6 +53,24 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
   )
 }
 
+// --- 2. Helper: Terminal Tag Component (The Requested Block) ---
+const TerminalTag = ({ text }: { text: string }) => {
+  return (
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#050505] border border-white/10 rounded-[6px] mb-4 group-hover:border-[#FFB800]/30 transition-colors duration-300 shadow-sm">
+      {/* Prompt Symbol */}
+      <span className="font-mono text-[#FFB800] text-xs font-bold select-none">{'>_'}</span>
+      
+      {/* Text */}
+      <span className="font-mono text-gray-400 text-[10px] uppercase tracking-wider group-hover:text-white transition-colors">
+        {text}
+      </span>
+      
+      {/* Blinking Cursor */}
+      <span className="w-1.5 h-3 bg-[#FFB800] opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
+    </div>
+  )
+}
+
 export function MissionVision({ mission, vision }: MissionVisionProps) {
   return (
     <section className="py-32 bg-[#050505] relative overflow-hidden">
@@ -70,135 +88,170 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 
           {/* Left Column: Cards */}
-          <div className="flex flex-col gap-6">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-8">
-              Notre <span className="text-[#FFB800]">ADN</span>
-            </h2>
+          <div className="flex flex-col gap-8">
+            {/* Section Heading */}
+            <div className="mb-2">
+              <span className="text-[#FFB800] font-mono text-xs font-bold tracking-[0.2em] uppercase mb-4 block pl-1">
+                Corporate Identity
+              </span>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none">
+                Notre <span className="text-[#FFB800]">ADN</span>
+              </h2>
+            </div>
 
             {/* Mission Card */}
             <GlowCard>
-              <div className="flex items-start gap-6">
-                 <div className="p-4 bg-[#FFB800]/10 rounded-xl text-[#FFB800] border border-[#FFB800]/20 shadow-[0_0_15px_rgba(255,184,0,0.1)] group-hover:bg-[#FFB800] group-hover:text-black transition-colors duration-300">
+              <div className="flex flex-col sm:flex-row items-start gap-8">
+                {/* Icon Box */}
+                <div className="shrink-0 relative group">
+                  <div className="w-16 h-16 rounded-[14px] bg-[#111] border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
                     <Target size={32} weight="duotone" />
-                 </div>
-                 <div>
-                    <span className="inline-block px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-[#FFB800] uppercase tracking-widest mb-3 border border-white/5">
-                      {mission.subtitle || 'PHASE 1: FOUNDATION'}
-                    </span>
-                    <h3 className="font-heading text-3xl font-bold text-white mb-3 tracking-wide">
-                      {mission.title}
-                    </h3>
-                    <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-md">
-                      {mission.description}
-                    </p>
-                 </div>
+                  </div>
+                  {/* Connector Line */}
+                  <div className="hidden sm:block absolute top-16 left-1/2 w-px h-[140%] bg-gradient-to-b from-[#FFB800]/20 to-transparent -z-10" />
+                </div>
+
+                <div className="pt-1">
+                  {/* TERMINAL TAG */}
+                  <TerminalTag text={mission.subtitle || 'PHASE 1: FOUNDATION'} />
+
+                  {/* Title */}
+                  <h3 className="font-heading text-3xl font-bold text-white mb-4 uppercase leading-none">
+                    {mission.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
+                    {mission.description}
+                  </p>
+                </div>
               </div>
             </GlowCard>
 
             {/* Vision Card */}
             <GlowCard delay={0.2}>
-              <div className="flex items-start gap-6">
-                 <div className="p-4 bg-[#FFB800]/10 rounded-xl text-[#FFB800] border border-[#FFB800]/20 shadow-[0_0_15px_rgba(255,184,0,0.1)] group-hover:bg-[#FFB800] group-hover:text-black transition-colors duration-300">
+              <div className="flex flex-col sm:flex-row items-start gap-8">
+                {/* Icon Box */}
+                <div className="shrink-0 relative group">
+                  <div className="w-16 h-16 rounded-[14px] bg-[#111] border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
                     <Eye size={32} weight="duotone" />
-                 </div>
-                 <div>
-                    <span className="inline-block px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-[#FFB800] uppercase tracking-widest mb-3 border border-white/5">
-                      {vision.subtitle || 'PHASE 2: EXPANSION'}
-                    </span>
-                    <h3 className="font-heading text-3xl font-bold text-white mb-3 tracking-wide">
-                      {vision.title}
-                    </h3>
-                    <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-md">
-                      {vision.description}
-                    </p>
-                 </div>
+                  </div>
+                </div>
+
+                <div className="pt-1">
+                  {/* TERMINAL TAG */}
+                  <TerminalTag text={vision.subtitle || 'PHASE 2: EXPANSION'} />
+
+                  {/* Title */}
+                  <h3 className="font-heading text-3xl font-bold text-white mb-4 uppercase leading-none">
+                    {vision.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
+                    {vision.description}
+                  </p>
+                </div>
               </div>
             </GlowCard>
           </div>
 
           {/* Right Column: Animated Diagram */}
-          <div className="relative h-[600px] w-full flex items-center justify-center">
+          <div className="relative h-[600px] -rotate-45 w-full flex items-center justify-center">
 
-             {/* Central Core */}
-             <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative z-20 w-48 h-48 rounded-full flex flex-col items-center justify-center text-center p-6"
-             >
-                {/* Core Glows */}
-                <div className="absolute inset-0 bg-[#FFB800]/5 rounded-full blur-2xl animate-pulse" />
-                <div className="absolute inset-0 border border-[#FFB800]/30 rounded-full" />
-                <div className="absolute inset-4 border border-[#FFB800]/10 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
+            {/* Central Core */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative z-20 w-48 h-48 rounded-full flex flex-col items-center justify-center text-center p-6"
+            >
+              {/* Core Glows */}
+              <div className="absolute inset-0 bg-[#FFB800]/5 rounded-full blur-2xl animate-pulse" />
+              <div className="absolute inset-0 border border-[#FFB800]/30 rounded-full" />
+              <div className="absolute inset-4 border border-[#FFB800]/10 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
 
-                <div className="relative z-10">
-                   <div className="text-[#FFB800] mb-3 flex justify-center drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
-                     <Cube size={48} weight="fill" />
-                   </div>
-                   <span className="font-heading text-white font-bold text-lg uppercase leading-tight tracking-wider">
-                     Innovation<br/>Continue
-                   </span>
+              <div className="relative z-10 rotate-45">
+                <div className="text-[#FFB800] mb-3 flex justify-center drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
+                  <Cube size={48} weight="fill" />
                 </div>
-             </motion.div>
+                <span className="font-heading text-white font-bold text-lg uppercase leading-tight tracking-wider">
+                  Innovation<br />Continue
+                </span>
+              </div>
+            </motion.div>
 
-             {/* Orbiting Nodes Container */}
-             {/* We rotate the whole container to orbit the nodes */}
-             <motion.div
-               className="absolute inset-0"
-               animate={{ rotate: 360 }}
-               transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-             >
-                {/* Node 1: Top */}
-                <div className="absolute top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] transform -rotate-0">
-                      {/* Counter-rotate content if you want text to stay upright, or keep it rotating for "satellite" feel */}
-                      <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">01.0 // PROCESS</span>
-                      <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
-                        <ChartLineUp size={16} className="text-[#FFB800]" />
-                        Modéliser
-                      </div>
-                   </div>
-                   {/* Connection Line */}
-                   <div className="absolute top-full left-1/2 w-px h-[140px] bg-gradient-to-b from-[#FFB800]/50 to-transparent" />
-                </div>
+            {/* Orbiting Nodes Container */}
+            <motion.div
+              className="absolute inset-0"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+            >
+              {/* Node 1: Top */}
+              <div className="absolute z-10 top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                >
+                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">01.0 // PROCESS</span>
+                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                    <ChartLineUp size={16} className="text-[#FFB800]" />
+                    Modéliser
+                  </div>
+                </motion.div>
+                <div className="absolute z-0 top-full left-1/2 w-px h-[140px] bg-gradient-to-b from-[#FFB800]/50 to-transparent" />
+              </div>
 
-                {/* Node 2: Right */}
-                <div className="absolute top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2">
-                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-                      <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">02.0 // ETHICS</span>
-                      <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
-                        <ShieldCheck size={16} className="text-[#FFB800]" />
-                        Responsabilité
-                      </div>
-                   </div>
-                   <div className="absolute right-full top-1/2 h-px w-[100px] bg-gradient-to-r from-[#FFB800]/50 to-transparent" />
-                </div>
+              {/* Node 2: Right */}
+              <div className="absolute z-10 top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+                  className="w-40 relative z-10 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                >
+                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">02.0 // ETHICS</span>
+                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                    <ShieldCheck size={16} className="text-[#FFB800]" />
+                    Responsabilité
+                  </div>
+                </motion.div>
+                <div className="absolute right-full top-1/2 h-px w-[100px] bg-gradient-to-r from-[#FFB800]/50 to-transparent" />
+              </div>
 
-                {/* Node 3: Bottom */}
-                <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2">
-                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-                      <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">03.0 // TECH</span>
-                      <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
-                        <Cpu size={16} className="text-[#FFB800]" />
-                        Sécurité
-                      </div>
-                   </div>
-                   <div className="absolute bottom-full left-1/2 w-px h-[140px] bg-gradient-to-t from-[#FFB800]/50 to-transparent" />
-                </div>
+              {/* Node 3: Bottom */}
+              <div className="absolute z-10 bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2">
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                >
+                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">03.0 // TECH</span>
+                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                    <Cpu size={16} className="text-[#FFB800]" />
+                    Sécurité
+                  </div>
+                </motion.div>
+                <div className="absolute bottom-full left-1/2 w-px h-[140px] bg-gradient-to-t from-[#FFB800]/50 to-transparent" />
+              </div>
 
-                {/* Node 4: Left */}
-                <div className="absolute top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2">
-                   <div className="w-40 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-                      <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">04.0 // VALUE</span>
-                      <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
-                        <Bank size={16} className="text-[#FFB800]" />
-                        Valorisation
-                      </div>
-                   </div>
-                   <div className="absolute left-full top-1/2 h-px w-[100px] bg-gradient-to-l from-[#FFB800]/50 to-transparent" />
-                </div>
-             </motion.div>
+              {/* Node 4: Left */}
+              <div className="absolute z-10 top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 60, ease: "linear", repeat: Infinity }}
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                >
+                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">04.0 // VALUE</span>
+                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                    <Bank size={16} className="text-[#FFB800]" />
+                    Valorisation
+                  </div>
+                </motion.div>
+                <div className="absolute left-full top-1/2 h-px w-[100px] bg-gradient-to-l from-[#FFB800]/50 to-transparent" />
+              </div>
+            </motion.div>
 
           </div>
         </div>

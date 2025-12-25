@@ -1,12 +1,14 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 
 export interface TimelineEvent {
   year: string
   title: string
   description?: string
+  version?: string // Optional version tag (e.g., V1.0 // 2013)
+  isCurrent?: boolean // To highlight the current state
 }
 
 export interface HistoryTimelineProps {
@@ -15,53 +17,134 @@ export interface HistoryTimelineProps {
 }
 
 export function HistoryTimeline({
-  title = 'Historique de l\'entreprise',
+  title = "Historique de l'entreprise",
   events
 }: HistoryTimelineProps) {
   return (
-    <section className="py-24 bg-smatch-black relative overflow-hidden">
-       {/* Background Grid */}
-       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20 pointer-events-none" />
+    <section className="py-32 bg-[#050505] relative overflow-hidden">
+       {/* Background Radial Glow (Left Side) */}
+       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#FFB800]/10 to-transparent blur-[120px] pointer-events-none opacity-40" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="font-heading text-4xl text-white font-bold text-center mb-16 uppercase tracking-wide">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="font-heading text-3xl md:text-4xl text-white font-bold text-center mb-24 uppercase tracking-wide"
+        >
           {title}
-        </h2>
+        </motion.h2>
 
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Vertical Line */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-smatch-gold to-transparent md:-translate-x-1/2" />
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            whileInView={{ scaleY: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-white/5 via-smatch-gold to-white/5 md:-translate-x-1/2 origin-top"
+          />
 
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-24">
             {events.map((event, index) => {
               const isEven = index % 2 === 0
+
+              // Define variants inside to use isEven logic easily
+              const rowVariants: Variants = {
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    when: "beforeChildren",
+                    staggerChildren: 0.15
+                  }
+                }
+              }
+
+              const contentVariants: Variants = {
+                hidden: { opacity: 0, x: isEven ? -50 : 50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.7, ease: "easeOut" }
+                }
+              }
+
+              const nodeVariants: Variants = {
+                hidden: { scale: 0, opacity: 0 },
+                visible: {
+                  scale: 1,
+                  opacity: 1,
+                  transition: { type: "spring", stiffness: 200, damping: 20 }
+                }
+              }
+
+              const versionVariants: Variants = {
+                hidden: { opacity: 0, x: isEven ? 50 : -50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.7, ease: "easeOut" }
+                }
+              }
+
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ delay: index * 0.1 }}
+                  variants={rowVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-100px" }}
                   className={`relative flex items-center md:justify-between ${
                     isEven ? 'flex-row' : 'flex-row md:flex-row-reverse'
                   }`}
                 >
-                  {/* Content Side */}
-                  <div className={`pl-16 md:pl-0 w-full md:w-[45%] ${isEven ? 'md:text-right' : 'md:text-left'}`}>
+                  {/* Content Side (Title & Desc) */}
+                  <motion.div
+                    variants={contentVariants}
+                    className={`pl-16 md:pl-0 w-full md:w-[45%] ${isEven ? 'md:text-right' : 'md:text-left'}`}
+                  >
                     <div className="group">
-                        <span className="font-mono text-smatch-gold text-lg font-bold mb-1 block group-hover:text-white transition-colors">{event.year}</span>
-                        <h3 className="font-heading text-2xl md:text-3xl text-white font-bold uppercase tracking-tight group-hover:text-smatch-gold transition-colors">{event.title}</h3>
+                        <h3 className={`font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2 transition-colors duration-300 ${event.isCurrent ? 'text-smatch-gold' : 'text-white group-hover:text-smatch-gold'}`}>
+                            {event.title}
+                        </h3>
                         {event.description && (
-                            <p className="mt-2 text-smatch-text-secondary text-sm">{event.description}</p>
+                            <p className="font-mono text-gray-500 text-sm md:text-base leading-relaxed uppercase tracking-wide">
+                                {event.description}
+                            </p>
                         )}
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Node on Line */}
-                  <div className="absolute left-[16px] md:left-1/2 w-[9px] h-[9px] bg-smatch-black border-2 border-smatch-gold rounded-full z-10 md:-translate-x-1/2 shadow-[0_0_10px_#FFC800]" />
+                  <motion.div
+                    variants={nodeVariants}
+                    className="absolute left-[20px] md:left-1/2 -translate-x-1/2 flex items-center justify-center z-10"
+                  >
+                      {/* Glow Effect for Current Node */}
+                      {event.isCurrent && (
+                          <div className="absolute w-8 h-8 bg-smatch-gold/30 rounded-full blur-md animate-pulse" />
+                      )}
 
-                  {/* Empty Side for spacing */}
-                  <div className="hidden md:block w-[45%]" />
+                      <div className={`w-3 h-3 rounded-full transition-colors duration-300 ${event.isCurrent ? 'bg-smatch-gold shadow-[0_0_15px_#FFC800]' : 'bg-[#333] border border-white/20'}`} />
+                  </motion.div>
+
+                  {/* Version Tag Side */}
+                  <motion.div
+                    variants={versionVariants}
+                    className={`hidden md:flex w-[45%] items-center ${isEven ? 'justify-start' : 'justify-end'}`}
+                  >
+                      {event.isCurrent ? (
+                          <div className="px-3 py-1 border border-smatch-gold text-smatch-gold text-[10px] font-mono font-bold tracking-widest uppercase rounded-[2px] bg-smatch-gold/5">
+                              {event.version || 'CURRENT'}
+                          </div>
+                      ) : (
+                          <span className="font-mono text-gray-600 text-[10px] tracking-widest uppercase">
+                              {event.version}
+                          </span>
+                      )}
+                  </motion.div>
                 </motion.div>
               )
             })}

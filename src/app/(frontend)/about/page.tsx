@@ -49,34 +49,44 @@ export default function AboutPage() {
   }
 
   const historyEvents = [
-    { year: '2007', title: 'ELSMATCH', description: 'Genese Supply Chain & Consulting.' },
-    { year: '2008', title: 'WMS PROLOG', description: 'Lancement Pole Digitalisation.' },
-    { year: '2017', title: 'VARLEO', description: 'Acquisition & Deploiement Industrie 4.0.' },
-    { year: '2021', title: 'SOFTLOG', description: 'Centre de R&D IoT & Prototypage.' },
+    {
+      year: '2007',
+      title: 'ELSMATCH',
+      description: 'Genese Supply Chain & Consulting.',
+      version: 'V1.0 // 2007'
+    },
+    {
+      year: '2008',
+      title: 'WMS PROLOG',
+      description: 'Lancement Pole Digitalisation.',
+      version: 'V1.2 // 2008'
+    },
+    {
+      year: '2017',
+      title: 'VARLEO',
+      description: 'Acquisition & Deploiement Industrie 4.0.',
+      version: 'V2.0 // 2017'
+    },
+    {
+      year: '2021',
+      title: 'SOFTLOG',
+      description: 'Centre de R&D IoT & Prototypage.',
+      version: 'V3.0 // 2021'
+    },
     {
       year: '2023',
       title: 'SMATCH DIGITAL',
       description: "Creation de l'entite complete & Synergies.",
+      version: 'V4.0 // 2023',
+      isCurrent: true
     },
-    { year: '2024', title: 'SC ADVISORY', description: 'Fusion, Transformation du savoi.' },
+    {
+      year: '2024',
+      title: 'SC ADVISORY',
+      description: 'Fusion, Transformation du savoir.',
+      version: 'V4.1 // 2024'
+    },
   ]
-
-  const teamData = {
-    spotlight: {
-      name: 'TARIK ZAGHLOUL',
-      role: 'CEO / FOUNDER / DSI',
-      quote:
-        "L'innovation n'est pas qu'une brique technologique, c'est un état d'esprit qui transforme la complexité en opportunité.",
-      imageSrc: '/assets/team/tarik.jpg', // Placeholder path
-    },
-    links: [
-      { label: "VOIR L'EQUIPE", href: '#' },
-      { label: 'NOUVEAUX TALENTS', href: '#' },
-      { label: 'NOTRE CULTURE', href: '#' },
-      { label: 'NOS POSTES', href: '#' },
-      { label: 'REJOINDRE SMATCH', href: '#' },
-    ],
-  }
 
   const orgItems = [
     {
@@ -123,7 +133,7 @@ export default function AboutPage() {
       <QuiSommesNous {...quiSommesNousData} />
       <MissionVision {...missionVisionData} />
       <HistoryTimeline events={historyEvents} />
-      <TeamSection {...teamData} />
+      <TeamSection />
       <OrganizationGrid items={orgItems} />
       <CTA />
     </main>
