@@ -331,7 +331,7 @@ export function TeamSection() {
                          <div>
                              <span className="text-[#FFB800] font-mono text-xs font-bold tracking-widest uppercase mb-2 block">Our People</span>
                              <h2 className="font-heading text-4xl md:text-5xl text-white font-bold uppercase tracking-tight leading-none">
-                                 L'Équipe <span className="text-[#333]">/</span> Leadership
+                                 L&apos;Équipe <span className="text-[#333]">/</span> Leadership
                              </h2>
                          </div>
                          <div className="hidden md:block text-right">
