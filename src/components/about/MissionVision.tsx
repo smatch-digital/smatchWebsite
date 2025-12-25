@@ -33,11 +33,11 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.6 }}
       onMouseMove={handleMouseMove}
-      className="group relative bg-[#0F0F0F] border border-white/5 p-8 rounded-[24px] overflow-hidden hover:border-[#FFB800]/50 transition-colors duration-500"
+      className="group relative bg-[#0F0F0F] border border-white/5 p-8 rounded-md overflow-hidden hover:border-[#FFB800]/50 transition-colors duration-500"
     >
       {/* Glow Effect */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[24px] opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-md opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
             radial-gradient(
@@ -56,15 +56,15 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
 // --- 2. Helper: Terminal Tag Component (The Requested Block) ---
 const TerminalTag = ({ text }: { text: string }) => {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#050505] border border-white/10 rounded-[6px] mb-4 group-hover:border-[#FFB800]/30 transition-colors duration-300 shadow-sm">
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#050505] border border-white/10 rounded-md mb-4 group-hover:border-[#FFB800]/30 transition-colors duration-300 shadow-sm">
       {/* Prompt Symbol */}
       <span className="font-mono text-[#FFB800] text-xs font-bold select-none">{'>_'}</span>
-      
+
       {/* Text */}
       <span className="font-mono text-gray-400 text-[10px] uppercase tracking-wider group-hover:text-white transition-colors">
         {text}
       </span>
-      
+
       {/* Blinking Cursor */}
       <span className="w-1.5 h-3 bg-[#FFB800] opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
     </div>
@@ -104,8 +104,8 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               <div className="flex flex-col sm:flex-row items-start gap-8">
                 {/* Icon Box */}
                 <div className="shrink-0 relative group">
-                  <div className="w-16 h-16 rounded-[14px] bg-[#111] border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
-                    <Target size={32} weight="duotone" />
+                  <div className="w-[60px] h-[60px] rounded-md bg-smatch-gold/5 border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
+                    <Target size={32} weight="duotone" className='text-smatch-gold'/>
                   </div>
                   {/* Connector Line */}
                   <div className="hidden sm:block absolute top-16 left-1/2 w-px h-[140%] bg-gradient-to-b from-[#FFB800]/20 to-transparent -z-10" />
@@ -121,9 +121,15 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                   </h3>
 
                   {/* Description */}
-                  <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
+                  {/* <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
                     {mission.description}
-                  </p>
+                  </p> */}
+                  <div className="bg-smatch-surface/20 border border-white/5 group-hover:border-[#FFB800]/50">
+                    <p className="font-mono text-sm text-white/40 px-4 py-1.5">
+                      <span className="font-mono text-[#FFB800] text-xs font-bold select-none">{'> '}</span>
+                      {mission.description || 'PHASE 1: FOUNDATION'}
+                    </p>
+                  </div>
                 </div>
               </div>
             </GlowCard>
@@ -133,9 +139,11 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               <div className="flex flex-col sm:flex-row items-start gap-8">
                 {/* Icon Box */}
                 <div className="shrink-0 relative group">
-                  <div className="w-16 h-16 rounded-[14px] bg-[#111] border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
-                    <Eye size={32} weight="duotone" />
+                  <div className="w-[60px] h-[60px] rounded-md bg-smatch-gold/5  border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
+                    <Eye size={32} weight="duotone" className='text-smatch-gold' />
                   </div>
+                  <div className="hidden sm:block absolute top-16 left-1/2 w-px h-[140%] bg-gradient-to-b from-[#FFB800]/20 to-transparent -z-10" />
+
                 </div>
 
                 <div className="pt-1">
@@ -157,7 +165,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
           </div>
 
           {/* Right Column: Animated Diagram */}
-          <div className="relative h-[600px] -rotate-45 w-full flex items-center justify-center">
+          <div className="relative h-[600px]  w-full flex items-center justify-center">
 
             {/* Central Core */}
             <motion.div
@@ -172,7 +180,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               <div className="absolute inset-0 border border-[#FFB800]/30 rounded-full" />
               <div className="absolute inset-4 border border-[#FFB800]/10 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
 
-              <div className="relative z-10 rotate-45">
+              <div className="relative z-10 ">
                 <div className="text-[#FFB800] mb-3 flex justify-center drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
                   <Cube size={48} weight="fill" />
                 </div>
@@ -184,7 +192,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
 
             {/* Orbiting Nodes Container */}
             <motion.div
-              className="absolute inset-0"
+              className="absolute inset-0 "
               animate={{ rotate: 360 }}
               transition={{ duration: 60, ease: "linear", repeat: Infinity }}
             >
@@ -193,7 +201,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
                   <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">01.0 // PROCESS</span>
                   <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
@@ -209,7 +217,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 relative z-10 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="w-40 relative z-10 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
                   <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">02.0 // ETHICS</span>
                   <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
@@ -225,7 +233,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
                   <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">03.0 // TECH</span>
                   <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
@@ -241,7 +249,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-xl text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
                   <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">04.0 // VALUE</span>
                   <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
