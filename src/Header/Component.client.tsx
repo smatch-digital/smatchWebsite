@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/resizable-navbar'
 
 interface HeaderClientProps {
-  data: Header
+  data: Header | null
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {

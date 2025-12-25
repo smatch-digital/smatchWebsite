@@ -8,7 +8,7 @@ import { CMSLink } from '@/components/Link'
 import { LinkedinLogo, YoutubeLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
 
 export async function Footer() {
-  const footerData: Footer = await getCachedGlobal('footer', 1)()
+  const footerData: Footer | null = await getCachedGlobal('footer', 1)()
   const navItems = footerData?.navItems || []
 
   return (
