@@ -15,6 +15,7 @@ import { Team } from '../../blocks/Team/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { SmartGrid } from '@/blocks/SmartGrid/config'
 import { TrustedBy } from '@/blocks/TrustedBy/config'
+import { ActivityTimeline } from '@/blocks/ActivityTimeline/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -94,6 +95,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Team,
                 SmartGrid,
                 TrustedBy,
+                ActivityTimeline,
               ],
               required: true,
               admin: {

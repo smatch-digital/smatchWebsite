@@ -57,19 +57,12 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   // Extract data with type safety
   const {
     title,
-    // @ts-expect-error
     heroSubtitle,
-    // @ts-expect-error
     heroImage,
-    // @ts-expect-error
     problemTitle,
-    // @ts-expect-error
     problemDescription,
-    // @ts-expect-error
     terminalContent,
-    // @ts-expect-error
     dashboardImage,
-    // @ts-expect-error
     modules
   } = solution
 
@@ -103,6 +96,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         title={title}
         subtitle={heroSubtitle || undefined}
         image={heroImgUrl}
+        fullBleed={!!heroImgUrl}
       />
 
       {(problemTitle || problemDescription || terminalLines.length > 0) && (

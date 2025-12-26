@@ -281,6 +281,23 @@ export interface Page {
         blockName?: string | null;
         blockType: 'trustedBy';
       }
+    | {
+        title?: string | null;
+        populateBy?: ('latest' | 'selection') | null;
+        /**
+         * Nombre maximum d'éléments à afficher
+         */
+        limit?: number | null;
+        filterByType?: ('all' | 'project' | 'event') | null;
+        /**
+         * Choisissez les projets/événements à afficher
+         */
+        selectedItems?: (number | Project)[] | null;
+        showFilters?: boolean | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'activityTimeline';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -1012,6 +1029,90 @@ export interface SmartGridBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  /**
+   * URL-friendly identifier (e.g., "tech-summit-2024")
+   */
+  slug: string;
+  type: 'project' | 'event';
+  status: 'upcoming' | 'completed' | 'archived';
+  date: string;
+  /**
+   * Description courte affichée sur la carte
+   */
+  description?: string | null;
+  /**
+   * Image principale de la carte
+   */
+  image?: (number | null) | Media;
+  /**
+   * Ex: "Paris, France"
+   */
+  location?: string | null;
+  /**
+   * Identifiant unique. Ex: "SUMMIT_34", "AGRI_TECH"
+   */
+  code?: string | null;
+  /**
+   * Ajoutez des informations comme "ACCESS: PUBLIC", "PARTICIPANTS: 1200+", "RELEASE: STABLE"
+   */
+  metadata?:
+    | {
+        /**
+         * Phosphor icon name
+         */
+        icon?: string | null;
+        label: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Ex: "S'INSCRIRE", "VOIR LE RÉCAP", "Voir le changelog"
+   */
+  linkLabel?: string | null;
+  /**
+   * Cochez si le bouton doit rediriger vers une URL externe
+   */
+  externalLink?: boolean | null;
+  /**
+   * URL complète (ex: https://example.com)
+   */
+  linkUrl?: string | null;
+  /**
+   * Contenu affiché sur la page de détail
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "solutions".
  */
 export interface Solution {
@@ -1049,17 +1150,6 @@ export interface Solution {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
- */
-export interface Project {
-  id: number;
-  title: string;
-  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1438,6 +1528,18 @@ export interface PagesSelect<T extends boolean = true> {
                     textLogo?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        activityTimeline?:
+          | T
+          | {
+              title?: T;
+              populateBy?: T;
+              limit?: T;
+              filterByType?: T;
+              selectedItems?: T;
+              showFilters?: T;
               id?: T;
               blockName?: T;
             };
@@ -1880,6 +1982,32 @@ export interface SolutionsSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  type?: T;
+  status?: T;
+  date?: T;
+  description?: T;
+  image?: T;
+  location?: T;
+  code?: T;
+  metadata?:
+    | T
+    | {
+        icon?: T;
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  linkLabel?: T;
+  externalLink?: T;
+  linkUrl?: T;
+  fullDescription?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
