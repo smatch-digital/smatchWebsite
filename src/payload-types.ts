@@ -258,6 +258,8 @@ export interface Page {
     | DomainsBlock
     | MissionVisionBlock
     | HistoryTimelineBlock
+    | TeamBlock
+    | SmartGridBlock
   )[];
   meta?: {
     title?: string | null;
@@ -917,12 +919,115 @@ export interface HistoryTimelineBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock".
+ */
+export interface TeamBlock {
+  header?: {
+    tag?: string | null;
+    title?: string | null;
+    description?: string | null;
+  };
+  leaders?:
+    | {
+        name: string;
+        role: string;
+        tag?: string | null;
+        description?: string | null;
+        footerId?: string | null;
+        image?: (number | null) | Media;
+        linkedin?: string | null;
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  members?:
+    | {
+        name: string;
+        role: string;
+        tag?: string | null;
+        description?: string | null;
+        footerId?: string | null;
+        image?: (number | null) | Media;
+        linkedin?: string | null;
+        email?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'team';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SmartGridBlock".
+ */
+export interface SmartGridBlock {
+  columns?: ('2' | '3' | '4') | null;
+  cards?:
+    | {
+        title: string;
+        subtitle?: string | null;
+        description: string;
+        /**
+         * Upload an SVG icon.
+         */
+        icon: number | Media;
+        badge?: string | null;
+        ctaText?: string | null;
+        href?: string | null;
+        stats?:
+          | {
+              value: string;
+              label: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'smart-grid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "solutions".
  */
 export interface Solution {
   id: number;
   title: string;
-  slug?: string | null;
+  slug: string;
+  /**
+   * Shown on the solution card in the grid
+   */
+  description?: string | null;
+  /**
+   * Phosphor Icon name (e.g., Barcode, Truck, Warehouse)
+   */
+  icon?: string | null;
+  heroSubtitle?: string | null;
+  heroImage?: (number | null) | Media;
+  problemTitle?: string | null;
+  problemDescription?: string | null;
+  terminalContent?:
+    | {
+        line?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  dashboardImage?: (number | null) | Media;
+  modules?:
+    | {
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Icon name or class
+         */
+        icon?: string | null;
+        badge?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1297,6 +1402,8 @@ export interface PagesSelect<T extends boolean = true> {
         domains?: T | DomainsBlockSelect<T>;
         missionVision?: T | MissionVisionBlockSelect<T>;
         historyTimeline?: T | HistoryTimelineBlockSelect<T>;
+        team?: T | TeamBlockSelect<T>;
+        'smart-grid'?: T | SmartGridBlockSelect<T>;
       };
   meta?:
     | T
@@ -1512,6 +1619,75 @@ export interface HistoryTimelineBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TeamBlock_select".
+ */
+export interface TeamBlockSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        tag?: T;
+        title?: T;
+        description?: T;
+      };
+  leaders?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        tag?: T;
+        description?: T;
+        footerId?: T;
+        image?: T;
+        linkedin?: T;
+        email?: T;
+        id?: T;
+      };
+  members?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        tag?: T;
+        description?: T;
+        footerId?: T;
+        image?: T;
+        linkedin?: T;
+        email?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SmartGridBlock_select".
+ */
+export interface SmartGridBlockSelect<T extends boolean = true> {
+  columns?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        icon?: T;
+        badge?: T;
+        ctaText?: T;
+        href?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1635,6 +1811,28 @@ export interface UsersSelect<T extends boolean = true> {
 export interface SolutionsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  description?: T;
+  icon?: T;
+  heroSubtitle?: T;
+  heroImage?: T;
+  problemTitle?: T;
+  problemDescription?: T;
+  terminalContent?:
+    | T
+    | {
+        line?: T;
+        id?: T;
+      };
+  dashboardImage?: T;
+  modules?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        badge?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

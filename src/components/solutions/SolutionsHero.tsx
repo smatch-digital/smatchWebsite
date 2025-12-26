@@ -17,12 +17,17 @@ interface SolutionsHeroProps {
    * Defaults to "Logistique. Mobilité. Industrie X.0. Le moteur de votre transformation commence ici."
    */
   subtitle?: string
+  /**
+   * Optional override for the hero image.
+   */
+  image?: string | null
   className?: string
 }
 
 export function SolutionsHero({
   title = "L'ARSENAL DIGITAL.",
   subtitle = 'Logistique. Mobilité. Industrie X.0. Le moteur de votre transformation commence ici.',
+  image,
   className,
 }: SolutionsHeroProps) {
   return (
@@ -63,10 +68,10 @@ export function SolutionsHero({
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-smatch-brand/10 blur-[80px] rounded-full pointer-events-none" />
 
             <Image
-              src="/assets/domains/solutions-iso.png"
+              src={image || "/assets/hero/solutions-iso.png"}
               alt="Industrial Digital Transformation Gears"
               fill
-              className="object-contain drop-shadow-2xl"
+              className="relative z-0 object-contain drop-shadow-2xl w-full mix-blend-screen"
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
             />

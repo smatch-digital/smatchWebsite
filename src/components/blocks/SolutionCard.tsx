@@ -2,6 +2,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { Media } from '@/payload-types'
+import { Media as MediaComponent } from '@/components/Media'
 
 // Define the exact props we need for strict typing
 export interface SolutionStat {
@@ -14,7 +16,7 @@ export interface SolutionCardProps {
   title: string
   subtitle?: string
   description: string
-  icon: React.ReactNode
+  icon: Media | string | React.ReactNode
   stats?: SolutionStat[]
   href?: string
   badge?: string
@@ -42,10 +44,17 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
 
           {/* Icon Box - Gold border, dark fill */}
           <div className="flex items-center justify-center w-[48px] h-[48px] rounded-[12px] border border-[#FFB800]/30 bg-[#FFB800]/5 text-[#FFB800] group-hover:bg-[#FFB800] group-hover:text-black transition-all duration-300">
-             {/* Clone element to force size if it's a Phosphor icon */}
-             {React.isValidElement(icon)
-              ? React.cloneElement(icon as React.ReactElement<{ size?: number | string; weight?: string }>, { size: 24, weight: 'fill' })
-              : icon}
+            {/* Clone element to force size if it's a Phosphor icon */}
+            {React.isValidElement(icon) ? (
+              React.cloneElement(icon as React.ReactElement<{ size?: number | string; weight?: string }>, {
+                size: 24,
+                weight: 'fill',
+              })
+            ) : typeof icon === 'object' && icon !== null && 'url' in icon ? (
+              <MediaComponent resource={icon as any} className="w-6 h-6 text-[#FFB800]" />
+            ) : (
+              icon as any
+            )}
           </div>
 
           {/* Badge - Terminal Style */}

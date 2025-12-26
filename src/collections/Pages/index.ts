@@ -11,7 +11,9 @@ import { FormBlock } from '../../blocks/Form/config'
 import { Domains } from '@/blocks/Domains/config'
 import { MissionVision } from '../../blocks/MissionVision/config'
 import { HistoryTimeline } from '../../blocks/HistoryTimeline/config'
+import { Team } from '../../blocks/Team/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { SmartGrid } from '@/blocks/SmartGrid/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -88,6 +90,8 @@ export const Pages: CollectionConfig<'pages'> = {
                 Domains,
                 MissionVision,
                 HistoryTimeline,
+                Team,
+                SmartGrid,
               ],
               required: true,
               admin: {

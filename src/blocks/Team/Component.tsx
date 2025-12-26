@@ -3,85 +3,36 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowUpRight, LinkedinLogo, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
 import { cn } from '@/utilities/ui'
+import type { TeamBlock, Media } from '@/payload-types'
 
-// --- Data Structure ---
-const TEAM_MEMBERS = [
-  {
-    id: 'tarik',
-    tag: '[ ARCHITECT_01 ]',
-    name: 'TARIK ZAGHLOUL',
-    role: 'CEO & FOUNDER | EPFL ALUMNI',
-    description: '"Consultant manager polyvalent alliant expertise technique et vision entrepreneuriale. Mon code source : transformer la complexité en opportunité."',
-    footerId: 'ID: TZ_001 // LEAD',
-    image: '/assets/team/tarik.jpg',
-    linkedin: '#',
-    email: 'mailto:tarik@smatch.ma',
-  },
-  {
-    id: 'mostafa',
-    tag: 'SYS ADMIN',
-    name: 'MOSTAFA T.',
-    role: 'PROJECT MANAGER',
-    description: "Ingénieur d’État en mécanique et titulaire d’un Executive MBA en Supply Chain. 25 ans d’expérience.",
-    footerId: 'ID: MT_002 // LEAD',
-    image: '/assets/team/mostafa.jpg',
-    linkedin: '#',
-    email: 'mailto:mostafa@smatch.ma',
-  },
-  {
-    id: 'mohammed',
-    tag: 'TEAM_LEADER',
-    name: 'Mohammed B.',
-    role: 'HEAD OF ENGINEERING',
-    description: "Pilotage de l'architecture technique et supervision des équipes de développement Full Stack.",
-    footerId: 'ID: MB_003 // ENG',
-    image: '/assets/team/mohammed.jpg',
-    linkedin: '#',
-    email: 'mailto:mohammed@smatch.ma',
-  },
-  {
-    id: 'fatima',
-    tag: 'DATA_SCI',
-    name: 'Fatima B.',
-    role: 'TEAM LEAD',
-    description: "Expertise en modélisation prédictive et algorithmes d'IA appliqués à la logistique.",
-    footerId: 'ID: FB_004 // DATA',
-    image: '/assets/team/fatima.jpg',
-    linkedin: '#',
-    email: 'mailto:fatima@smatch.ma',
-  },
-  {
-    id: 'adil',
-    tag: 'LOGISTICS',
-    name: 'Adil F.',
-    role: 'EXPERT EN LOGISTIQUE',
-    description: "Optimisation des flux WMS et intégration des processus terrain.",
-    footerId: 'ID: AF_005 // LOG',
-    image: '/assets/team/adil.jpg',
-    linkedin: '#',
-    email: 'mailto:adil@smatch.ma',
-  },
-]
+// --- Helper: Type Guard for Image ---
+const isMedia = (media: any): media is Media => {
+  return media && typeof media === 'object' && 'url' in media
+}
 
-// --- Helper Components ---
-
-const SocialButton = ({ icon: Icon, href, className }: { icon: any, href: string, className?: string }) => (
-  <Link
-    href={href}
-    className={cn(
-      "w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 transition-all duration-300 bg-[#111]",
-      className
-    )}
-  >
-    <Icon size={18} />
-  </Link>
-)
+const SocialButton = ({ icon: Icon, href, className }: { icon: any, href?: string | null, className?: string }) => {
+  if (!href) return null
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 transition-all duration-300 bg-[#111]",
+        className
+      )}
+    >
+      <Icon size={18} />
+    </Link>
+  )
+}
 
 // --- 1. Main Leader Card (Tarik) ---
-const LeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; className?: string }) => {
+const LeaderCard = ({ member, className }: { member: NonNullable<TeamBlock['leaders']>[number]; className?: string }) => {
+  const imageUrl = isMedia(member.image) ? member.image.url : null
+  const imageAlt = isMedia(member.image) ? member.image.alt : member.name
+
   return (
     <div className={cn("relative group rounded-[24px] border border-white/5 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between p-6 md:p-12 transition-all duration-500 hover:border-[#FFB800]/30", className)}>
 
@@ -96,10 +47,10 @@ const LeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; cla
         {/* PFP Container */}
         <div className="relative shrink-0 w-full md:w-auto flex justify-center md:block">
            <div className="w-32 h-32 md:w-56 md:h-64 rounded-[20px] overflow-hidden bg-[#151515] border border-white/10 group-hover:border-[#FFB800]/50 transition-colors duration-500 relative shadow-2xl">
-               {member.image ? (
+               {imageUrl ? (
                  <Image
-                   src={member.image}
-                   alt={member.name}
+                   src={imageUrl}
+                   alt={imageAlt || ''}
                    fill
                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
                  />
@@ -135,7 +86,7 @@ const LeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; cla
             {/* Social Icons */}
             <div className="flex gap-3 mt-8 justify-center md:justify-start">
                 <SocialButton icon={LinkedinLogo} href={member.linkedin} />
-                <SocialButton icon={EnvelopeSimple} href={member.email} />
+                <SocialButton icon={EnvelopeSimple} href={member.email ? `mailto:${member.email}` : null} />
             </div>
         </div>
       </div>
@@ -154,7 +105,10 @@ const LeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; cla
 }
 
 // --- 2. Secondary Leader Card (Mostafa) ---
-const SecondaryLeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; className?: string }) => {
+const SecondaryLeaderCard = ({ member, className }: { member: NonNullable<TeamBlock['leaders']>[number]; className?: string }) => {
+    const imageUrl = isMedia(member.image) ? member.image.url : null
+    const imageAlt = isMedia(member.image) ? member.image.alt : member.name
+
     return (
       <div className={cn("relative group rounded-[24px] border border-white/5 bg-[#0A0A0A] overflow-hidden flex flex-col p-6 md:p-10 transition-all duration-500 hover:border-[#FFB800]/30", className)}>
 
@@ -165,10 +119,10 @@ const SecondaryLeaderCard = ({ member, className }: { member: typeof TEAM_MEMBER
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
              {/* PFP Circle */}
              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#FFB800]/50 transition-colors duration-500 relative">
-                 {member.image && (
+                 {imageUrl && (
                      <Image
-                        src={member.image}
-                        alt={member.name}
+                        src={imageUrl}
+                        alt={imageAlt || ''}
                         fill
                         className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                      />
@@ -204,7 +158,7 @@ const SecondaryLeaderCard = ({ member, className }: { member: typeof TEAM_MEMBER
 
             <div className="flex gap-2">
                  <SocialButton icon={LinkedinLogo} href={member.linkedin} className="w-8 h-8" />
-                 <SocialButton icon={EnvelopeSimple} href={member.email} className="w-8 h-8" />
+                 <SocialButton icon={EnvelopeSimple} href={member.email ? `mailto:${member.email}` : null} className="w-8 h-8" />
             </div>
         </div>
       </div>
@@ -218,13 +172,13 @@ const TeamMemberCard = ({
     onHover,
     onLeave
 }: {
-    member: typeof TEAM_MEMBERS[0];
+    member: NonNullable<TeamBlock['members']>[number];
     isHovered: boolean;
     onHover: () => void;
     onLeave: () => void;
 }) => {
-    // Only apply expansion logic on desktop. On mobile, we rely on standard layout.
-    // In Framer Motion, we can condition the 'animate' prop.
+    const imageUrl = isMedia(member.image) ? member.image.url : null
+    const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
     return (
         <motion.div
@@ -244,10 +198,10 @@ const TeamMemberCard = ({
                <div className="absolute inset-0 bg-[#0A0A0A] z-10 transition-opacity duration-500 opacity-100 group-hover:opacity-0" />
 
                {/* Image */}
-               {member.image && (
+               {imageUrl && (
                  <Image
-                   src={member.image}
-                   alt={member.name}
+                   src={imageUrl}
+                   alt={imageAlt || ''}
                    fill
                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                  />
@@ -297,7 +251,7 @@ const TeamMemberCard = ({
                     <div className="pt-4 border-t border-white/10 flex justify-between items-center">
                          <div className="flex gap-2">
                             <SocialButton icon={LinkedinLogo} href={member.linkedin} className="w-8 h-8" />
-                            <SocialButton icon={EnvelopeSimple} href={member.email} className="w-8 h-8" />
+                            <SocialButton icon={EnvelopeSimple} href={member.email ? `mailto:${member.email}` : null} className="w-8 h-8" />
                          </div>
                          <ArrowUpRight size={16} className="text-[#FFB800]" />
                     </div>
@@ -311,12 +265,20 @@ const TeamMemberCard = ({
 }
 
 
-export function TeamSection() {
+export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-    const tarik = TEAM_MEMBERS[0];
-    const mostafa = TEAM_MEMBERS[1];
-    const team = TEAM_MEMBERS.slice(2);
+    const { header, leaders, members } = props
+
+    const title = header?.title || "L'Équipe / Leadership"
+    const tag = header?.tag || "Our People"
+    const description = header?.description || "Experts en ingénierie, logistique et transformation digitale."
+
+    const safeLeaders = leaders || []
+    const safeMembers = members || []
+
+    const tarik = safeLeaders[0]
+    const mostafa = safeLeaders[1]
 
     return (
         <section className="py-24 md:py-32 bg-[#050505] relative overflow-hidden">
@@ -328,45 +290,53 @@ export function TeamSection() {
 
                     {/* Header */}
                     <div className="flex flex-col md:flex-row justify-between items-end border-b border-white/5 pb-6 gap-4">
-                        <div>
-                            <span className="text-[#FFB800] font-mono text-xs font-bold tracking-widest uppercase mb-2 block">Our People</span>
-                            <h2 className="font-heading text-4xl md:text-5xl text-white font-bold uppercase tracking-tight leading-none">
-                                L&apos;Équipe <span className="text-[#333]">/</span> Leadership
+                         <div>
+                             <span className="text-[#FFB800] font-mono text-xs font-bold tracking-widest uppercase mb-2 block">{tag}</span>
+                             <h2 className="font-heading text-4xl md:text-5xl text-white font-bold uppercase tracking-tight leading-none">
+                                 {title}
                              </h2>
                          </div>
                          <div className="hidden md:block text-right">
                              <p className="font-mono text-white/40 text-xs uppercase tracking-widest max-w-xs">
-                                 Experts en ingénierie, logistique et transformation digitale.
+                                 {description}
                              </p>
                          </div>
                     </div>
 
                     {/* ROW 1: Leaders */}
                     {/* Stacks vertically on mobile, side-by-side on desktop */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:h-[600px]">
-                        {/* Tarik (Larger) */}
-                        <div className="lg:col-span-7 h-full">
-                            <LeaderCard member={tarik} className="h-full" />
+                    {safeLeaders.length > 0 && (
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:h-[600px]">
+                            {/* Tarik (Larger) */}
+                            {tarik && (
+                                <div className={`${mostafa ? 'lg:col-span-7' : 'lg:col-span-12'} h-full`}>
+                                    <LeaderCard member={tarik} className="h-full" />
+                                </div>
+                            )}
+                            {/* Mostafa (Smaller) */}
+                            {mostafa && (
+                                <div className="lg:col-span-5 h-full">
+                                    <SecondaryLeaderCard member={mostafa} className="h-full" />
+                                </div>
+                            )}
                         </div>
-                        {/* Mostafa (Smaller) */}
-                        <div className="lg:col-span-5 h-full">
-                            <SecondaryLeaderCard member={mostafa} className="h-full" />
-                        </div>
-                    </div>
+                    )}
 
                     {/* ROW 2: Team Members */}
                     {/* Flex row on desktop (for expansion effect), Flex col on mobile (for stability) */}
-                    <div className="flex flex-col md:flex-row ghttps://i.pinimg.com/1200x/83/bc/8b/83bc8b88cf6bc4b4e04d153a418cde62.jpgap-6 w-full h-auto md:h-[500px]">
-                        {team.map((member, i) => (
-                            <TeamMemberCard
-                                key={member.id}
-                                member={member}
-                                isHovered={hoveredIndex === i}
-                                onHover={() => setHoveredIndex(i)}
-                                onLeave={() => setHoveredIndex(null)}
-                            />
-                        ))}
-                    </div>
+                    {safeMembers.length > 0 && (
+                        <div className="flex flex-col md:flex-row gap-6 w-full h-auto md:h-[500px]">
+                            {safeMembers.map((member, i) => (
+                                <TeamMemberCard
+                                    key={member.id || i}
+                                    member={member}
+                                    isHovered={hoveredIndex === i}
+                                    onHover={() => setHoveredIndex(i)}
+                                    onLeave={() => setHoveredIndex(null)}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

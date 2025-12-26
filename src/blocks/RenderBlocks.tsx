@@ -12,6 +12,8 @@ import { EcosystemBlock } from './Ecosystem/Component'
 import { DomainsBlock } from './Domains/Component'
 import { MissionVisionBlockComponent } from '@/blocks/MissionVision/Component'
 import { HistoryTimelineBlockComponent } from '@/blocks/HistoryTimeline/Component'
+import { TeamBlockComponent } from '@/blocks/Team/Component'
+import { SmartGrid } from '@/components/blocks/SmartGrid'
 
 const blockComponents = {
   about: AboutBlock,
@@ -24,6 +26,8 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   missionVision: MissionVisionBlockComponent,
   historyTimeline: HistoryTimelineBlockComponent,
+  team: TeamBlockComponent,
+  'smart-grid': SmartGrid,
 }
 
 export const RenderBlocks: React.FC<{

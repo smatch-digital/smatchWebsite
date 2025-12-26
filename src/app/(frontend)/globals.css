@@ -16,7 +16,9 @@
 html {
   scroll-behavior: smooth;
 }
-
+body{
+  background-color: #0A0A0A;
+}
 /* Specific styling for the Nav items that Payload renders */
 /* nav a {
   position: relative;

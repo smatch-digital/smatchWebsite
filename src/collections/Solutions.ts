@@ -14,9 +14,114 @@ export const Solutions: CollectionConfig = {
     {
       name: 'slug',
       type: 'text',
+      required: true,
+      unique: true,
       admin: {
         position: 'sidebar',
       },
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Card Settings',
+          fields: [
+            {
+              name: 'description',
+              type: 'textarea',
+              label: 'Short Description',
+              admin: {
+                description: 'Shown on the solution card in the grid',
+              },
+            },
+            {
+              name: 'icon',
+              type: 'text',
+              label: 'Icon Name',
+              admin: {
+                description: 'Phosphor Icon name (e.g., Barcode, Truck, Warehouse)',
+              },
+            },
+          ],
+        },
+        {
+          label: 'Hero Section',
+          fields: [
+            {
+              name: 'heroSubtitle',
+              type: 'text',
+            },
+            {
+              name: 'heroImage',
+              type: 'upload',
+              relationTo: 'media',
+            },
+          ],
+        },
+        {
+          label: 'Problem Statement',
+          fields: [
+            {
+              name: 'problemTitle',
+              type: 'text',
+            },
+            {
+              name: 'problemDescription',
+              type: 'textarea',
+            },
+            {
+              name: 'terminalContent',
+              type: 'array',
+              fields: [
+                {
+                  name: 'line',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'UI Reveal',
+          fields: [
+            {
+              name: 'dashboardImage',
+              type: 'upload',
+              relationTo: 'media',
+            },
+          ],
+        },
+        {
+          label: 'Specifications / Modules',
+          fields: [
+            {
+              name: 'modules',
+              type: 'array',
+              fields: [
+                {
+                  name: 'title',
+                  type: 'text',
+                },
+                {
+                  name: 'description',
+                  type: 'textarea',
+                },
+                {
+                  name: 'icon',
+                  type: 'text',
+                  admin: {
+                    description: 'Icon name or class',
+                  },
+                },
+                {
+                  name: 'badge',
+                  type: 'text',
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
   ],
 }

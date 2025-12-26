@@ -12,6 +12,7 @@ import { Antonio, Inter, JetBrains_Mono } from 'next/font/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { IntroLoader } from '@/components/Loader/IntroLoader'
 
 const antonio = Antonio({
   subsets: ['latin'],
@@ -41,12 +42,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       lang="en"
       suppressHydrationWarning
     >
+
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body className='bg-smatch-black'>
+        <IntroLoader />
         <Providers>
           <AdminBar
             adminBarProps={{
