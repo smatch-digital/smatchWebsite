@@ -43,7 +43,7 @@ export const TrustedByBlock: React.FC<Props> = ({ title, partners }) => {
                         {displayPartners.map((partner, index) => {
                             const isImage = partner.logoType === 'image' && partner.logo
                             let imageUrl = ''
-                            let altText = partner.name
+                            const altText = partner.name
 
                             if (isImage) {
                                 if (typeof partner.logo === 'string') {

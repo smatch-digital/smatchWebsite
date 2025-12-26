@@ -30,10 +30,16 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
       <div className="pointer-events-none absolute inset-0 z-0">
         {/* Subtle Gold Radial Gradient */}
         <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 opacity-60 blur-[120px]" />
-        
+
         {/* Industrial Grid Texture Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
-        
+        <div
+          className="absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '40px 40px'
+          }}
+        />
+
         {/* Media Background */}
         <div className="absolute inset-0 opacity-40 mix-blend-overlay">
           {media && typeof media === 'object' && (
@@ -44,7 +50,7 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
 
       <div className="container relative z-10 flex flex-col items-center justify-center text-center">
         {/* Badge */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -55,7 +61,7 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
           </span>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -65,9 +71,9 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
           <div className="[&>h1]:mb-6 [&>h1]:font-heading [&>h1]:text-5xl [&>h1]:font-bold [&>h1]:uppercase [&>h1]:leading-[0.9] [&>h1]:tracking-tight [&>h1]:md:text-7xl [&>h1]:lg:text-8xl">
             {richText && <RichText data={richText} enableGutter={false} />}
           </div>
-          
+
           {Array.isArray(links) && links.length > 0 && (
-            <motion.ul 
+            <motion.ul
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
