@@ -15,7 +15,7 @@ async function getGlobal(slug: Global, depth = 0) {
       depth,
     })
     return global
-  } catch (error) {
+  } catch (_error) {
     return null
   }
 }

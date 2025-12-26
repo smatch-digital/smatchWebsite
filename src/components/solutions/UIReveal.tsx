@@ -25,7 +25,7 @@ export function UIReveal({ image, className }: UIRevealProps) {
         >
           <div className="w-full max-w-7xl mx-auto mb-8">
              <p className="text-smatch-brand font-mono text-xs uppercase tracking-widest mb-4">
-              /// UI_REVEAL
+              {/// UI_REVEAL}
             </p>
           </div>
 

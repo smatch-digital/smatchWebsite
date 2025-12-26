@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-// Import all icons you might use
 import { Barcode, Truck, Warehouse, ArrowRight, Cpu, Globe } from '@phosphor-icons/react/dist/ssr'
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Media } from '@/payload-types'
 
 // --- Types ---
 // Define what the data coming from Payload looks like
@@ -15,7 +15,7 @@ interface SolutionDoc {
   slug: string
   heroSubtitle?: string | null
   description?: string | null
-  heroImage?: any // Payload media type
+  heroImage?: Media // Payload media type
   icon?: string | null // The string name of the icon (e.g., "Barcode")
 }
 

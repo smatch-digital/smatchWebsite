@@ -75,7 +75,7 @@ export const ProblemStatement: React.FC<ProblemStatementProps> = ({
           >
             <div className="flex items-center gap-2 mb-6">
                <span className="text-yellow-500 font-mono text-sm font-bold tracking-wider">
-                /// PROBLEM_STATEMENT
+                {/// PROBLEM_STATEMENT}
               </span>
             </div>
 
