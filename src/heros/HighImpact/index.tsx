@@ -23,19 +23,19 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
 
   return (
     <div
-      className="relative flex items-center justify-center text-white min-h-[90vh] overflow-hidden bg-smatch-black"
+      className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-smatch-black text-white"
       data-theme="dark"
     >
       {/* Background Layer with Gold Radial Gradient and Grid Texture */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {/* Subtle Gold Radial Gradient */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-smatch-gold/10 rounded-full blur-[120px] opacity-60 animate-pulse" />
+        <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 opacity-60 blur-[120px]" />
         
         {/* Industrial Grid Texture Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
         
         {/* Media Background */}
-        <div className="absolute inset-0 mix-blend-overlay opacity-40">
+        <div className="absolute inset-0 opacity-40 mix-blend-overlay">
           {media && typeof media === 'object' && (
             <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
           )}
@@ -48,9 +48,9 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-6 inline-flex items-center justify-center px-4 py-1.5 border border-smatch-gold/30 rounded-full bg-smatch-gold/5 backdrop-blur-sm"
+          className="mb-6 inline-flex items-center justify-center rounded-full border border-smatch-gold/30 bg-smatch-gold/5 px-4 py-1.5 backdrop-blur-sm"
         >
-          <span className="font-mono text-sm tracking-[0.2em] text-smatch-gold uppercase">
+          <span className="font-mono text-sm uppercase tracking-[0.2em] text-smatch-gold">
             {badge}
           </span>
         </motion.div>
@@ -62,7 +62,7 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
           className="max-w-[50rem]"
         >
           {/* Main Title - Overriding RichText styles for High Impact */}
-          <div className="[&>h1]:font-heading [&>h1]:text-5xl [&>h1]:md:text-7xl [&>h1]:lg:text-8xl [&>h1]:font-bold [&>h1]:leading-[0.9] [&>h1]:uppercase [&>h1]:tracking-tight [&>h1]:mb-6">
+          <div className="[&>h1]:mb-6 [&>h1]:font-heading [&>h1]:text-5xl [&>h1]:font-bold [&>h1]:uppercase [&>h1]:leading-[0.9] [&>h1]:tracking-tight [&>h1]:md:text-7xl [&>h1]:lg:text-8xl">
             {richText && <RichText data={richText} enableGutter={false} />}
           </div>
           
@@ -71,7 +71,7 @@ export const HighImpactHero: React.FC<HighImpactHeroProps> = ({ links, media, ri
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-col md:flex-row gap-4 justify-center mt-8"
+              className="mt-8 flex flex-col justify-center gap-4 md:flex-row"
             >
               {links.map(({ link }, i) => {
                 return (

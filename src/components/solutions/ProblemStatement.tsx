@@ -74,8 +74,8 @@ export const ProblemStatement: React.FC<ProblemStatementProps> = ({
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="flex items-center gap-2 mb-6">
-               <span className="text-yellow-500 font-mono text-sm font-bold tracking-wider">
-                {/// PROBLEM_STATEMENT}
+              <span className="text-yellow-500 font-mono text-sm font-bold tracking-wider">
+                {'/// PROBLEM_STATEMENT'}
               </span>
             </div>
 
@@ -135,7 +135,7 @@ export const ProblemStatement: React.FC<ProblemStatementProps> = ({
                   transition={{ delay: terminalLines.length * 0.15 + 0.5, duration: 0.2 }}
                   className="mt-2"
                 >
-                   <motion.span
+                  <motion.span
                     animate={{ opacity: [1, 0] }}
                     transition={{ repeat: Infinity, duration: 0.8 }}
                     className="inline-block w-2.5 h-4 bg-emerald-500 align-middle ml-1"

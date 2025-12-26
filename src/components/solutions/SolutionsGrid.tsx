@@ -52,9 +52,9 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
   const icon = getIconComponent(data.icon)
 
   return (
-    <Link href={href} className="block w-full h-full">
+    <Link href={href} className="block size-full">
       <motion.div
-        className="group relative h-[600px] w-full rounded-[12px] overflow-hidden border border-white/10 bg-[#050505] cursor-pointer"
+        className="group relative h-[600px] w-full cursor-pointer overflow-hidden rounded-[12px] border border-white/10 bg-[#050505]"
         whileHover="hover"
         initial="initial"
       >
@@ -64,18 +64,18 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
             src={imageUrl}
             alt={data.title}
             fill
-            className="object-cover opacity-40 group-hover:opacity-60 transition-all duration-700 group-hover:scale-110 ease-out"
+            className="object-cover opacity-40 transition-all duration-700 ease-out group-hover:scale-110 group-hover:opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-80" />
         </div>
 
         {/* Border Glow */}
-        <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FFB800] rounded-[12px] z-20 transition-colors duration-300 pointer-events-none" />
+        <div className="pointer-events-none absolute inset-0 z-20 rounded-[12px] border-2 border-transparent transition-colors duration-300 group-hover:border-[#FFB800]" />
 
         {/* Content */}
         <div className="absolute inset-0 z-10 flex flex-col p-8">
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-[16px] bg-[#1A1A1A]/80 backdrop-blur-md border border-[#FFB800]/30 flex items-center justify-center group-hover:bg-[#FFB800]/10 group-hover:border-[#FFB800] transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <div className="flex flex-1 items-center justify-center">
+            <div className="flex size-20 items-center justify-center rounded-[16px] border border-[#FFB800]/30 bg-[#1A1A1A]/80 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover:border-[#FFB800] group-hover:bg-[#FFB800]/10">
               <div className="text-[#FFB800]">
                 {React.cloneElement(icon as React.ReactElement, { size: 40, weight: 'duotone' })}
               </div>
@@ -90,28 +90,28 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
             }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
-            <span className="text-sm font-mono uppercase tracking-widest mb-2 font-bold text-[#FFB800]">
+            <span className="mb-2 font-mono text-sm font-bold uppercase tracking-widest text-[#FFB800]">
               {data.heroSubtitle || 'Solution'}
             </span>
 
-            <h3 className="text-3xl font-bold uppercase leading-tight mb-4 text-white">
+            <h3 className="mb-4 text-3xl font-bold uppercase leading-tight text-white">
               {data.title}
             </h3>
 
             {data.description && (
-              <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-4 line-clamp-3">
+              <p className="mb-4 line-clamp-3 max-w-xs text-sm leading-relaxed text-gray-400">
                 {data.description}
               </p>
             )}
 
             <motion.div
-              className="overflow-hidden h-0 group-hover:h-auto opacity-0 group-hover:opacity-100 transition-all duration-300"
+              className="h-0 overflow-hidden opacity-0 transition-all duration-300 group-hover:h-auto group-hover:opacity-100"
               variants={{
                 initial: { height: 0, opacity: 0 },
                 hover: { height: 'auto', opacity: 1 },
               }}
             >
-              <button className="w-full bg-[#FFB800] hover:bg-[#E5A500] text-black font-bold py-4 px-6 rounded-[4px] uppercase tracking-widest text-xs flex items-center justify-between transition-colors mt-4">
+              <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFB800] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#E5A500]">
                 Explore Solution
                 <ArrowRight size={16} weight="bold" />
               </button>
@@ -126,21 +126,21 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
 // --- Main Grid Section ---
 export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#050505] py-32">
       {/* Background Atmosphere */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#FFB800]/20 to-transparent" />
-      <div className="absolute -left-[20%] top-[20%] w-[40%] h-[40%] bg-[#FFB800]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#FFB800]/20 to-transparent" />
+      <div className="pointer-events-none absolute -left-[20%] top-[20%] size-2/5 rounded-full bg-[#FFB800]/5 blur-[120px]" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
-          <span className="text-white font-bold text-lg mb-2 block">Nos Solutions</span>
-          <p className="text-gray-500 text-sm max-w-2xl mx-auto">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="mb-20 text-center">
+          <span className="mb-2 block text-lg font-bold text-white">Nos Solutions</span>
+          <p className="mx-auto max-w-2xl text-sm text-gray-500">
             Trois piliers technologiques pour transformer vos opérations industrielles.
           </p>
         </div>
 
         {/* The Dynamic Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {solutions.length > 0 ? (
             solutions.map((solution) => (
               <InteractiveCard
@@ -149,7 +149,7 @@ export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
               />
             ))
           ) : (
-            <div className="col-span-3 text-center text-gray-500 py-12">
+            <div className="col-span-3 py-12 text-center text-gray-500">
               <p>No solutions found. Please add them in the CMS.</p>
             </div>
           )}

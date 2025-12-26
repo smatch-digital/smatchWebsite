@@ -33,7 +33,7 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.6 }}
       onMouseMove={handleMouseMove}
-      className="group relative bg-[#0F0F0F] border border-white/5 p-8 rounded-md overflow-hidden hover:border-[#FFB800]/50 transition-colors duration-500"
+      className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0F0F0F] p-8 transition-colors duration-500 hover:border-[#FFB800]/50"
     >
       {/* Glow Effect */}
       <motion.div
@@ -56,27 +56,27 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
 // --- 2. Helper: Terminal Tag Component (The Requested Block) ---
 const TerminalTag = ({ text }: { text: string }) => {
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#050505] border border-white/10 rounded-md mb-4 group-hover:border-[#FFB800]/30 transition-colors duration-300 shadow-sm">
+    <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#050505] px-3 py-1.5 shadow-sm transition-colors duration-300 group-hover:border-[#FFB800]/30">
       {/* Prompt Symbol */}
-      <span className="font-mono text-[#FFB800] text-xs font-bold select-none">{'>_'}</span>
+      <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'>_'}</span>
 
       {/* Text */}
-      <span className="font-mono text-gray-400 text-[10px] uppercase tracking-wider group-hover:text-white transition-colors">
+      <span className="font-mono text-[10px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white">
         {text}
       </span>
 
       {/* Blinking Cursor */}
-      <span className="w-1.5 h-3 bg-[#FFB800] opacity-0 group-hover:opacity-100 group-hover:animate-pulse" />
+      <span className="h-3 w-1.5 bg-[#FFB800] opacity-0 group-hover:animate-pulse group-hover:opacity-100" />
     </div>
   )
 }
 
 export function MissionVision({ mission, vision }: MissionVisionProps) {
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#050505] py-32">
 
       {/* Background Tech Grid */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none"
+      <div className="pointer-events-none absolute inset-0 opacity-10"
            style={{
              backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
              backgroundSize: '40px 40px',
@@ -84,31 +84,31 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
            }}
       />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
 
           {/* Left Column: Cards */}
           <div className="flex flex-col gap-8">
             {/* Section Heading */}
             <div className="mb-2">
-              <span className="text-[#FFB800] font-mono text-xs font-bold tracking-[0.2em] uppercase mb-4 block pl-1">
+              <span className="mb-4 block pl-1 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#FFB800]">
                 Corporate Identity
               </span>
-              <h2 className="font-heading text-4xl md:text-5xl font-bold text-white uppercase tracking-tight leading-none">
+              <h2 className="font-heading text-4xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">
                 Notre <span className="text-[#FFB800]">ADN</span>
               </h2>
             </div>
 
             {/* Mission Card */}
             <GlowCard>
-              <div className="flex flex-col sm:flex-row items-start gap-8">
+              <div className="flex flex-col items-start gap-8 sm:flex-row">
                 {/* Icon Box */}
-                <div className="shrink-0 relative group">
-                  <div className="w-[60px] h-[60px] rounded-md bg-smatch-gold/5 border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
+                <div className="group relative shrink-0">
+                  <div className="flex size-[60px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800]">
                     <Target size={32} weight="duotone" className='text-smatch-gold'/>
                   </div>
                   {/* Connector Line */}
-                  <div className="hidden sm:block absolute top-16 left-1/2 w-px h-[140%] bg-gradient-to-b from-[#FFB800]/20 to-transparent -z-10" />
+                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
                 </div>
 
                 <div className="pt-1">
@@ -116,7 +116,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                   <TerminalTag text={mission.subtitle || 'PHASE 1: FOUNDATION'} />
 
                   {/* Title */}
-                  <h3 className="font-heading text-3xl font-bold text-white mb-4 uppercase leading-none">
+                  <h3 className="mb-4 font-heading text-3xl font-bold uppercase leading-none text-white">
                     {mission.title}
                   </h3>
 
@@ -124,9 +124,9 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                   {/* <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
                     {mission.description}
                   </p> */}
-                  <div className="bg-smatch-surface/20 border border-white/5 group-hover:border-[#FFB800]/50">
-                    <p className="font-mono text-sm text-white/40 px-4 py-1.5">
-                      <span className="font-mono text-[#FFB800] text-xs font-bold select-none">{'> '}</span>
+                  <div className="border border-white/5 bg-smatch-surface/20 group-hover:border-[#FFB800]/50">
+                    <p className="px-4 py-1.5 font-mono text-sm text-white/40">
+                      <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'> '}</span>
                       {mission.description || 'PHASE 1: FOUNDATION'}
                     </p>
                   </div>
@@ -136,13 +136,13 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
 
             {/* Vision Card */}
             <GlowCard delay={0.2}>
-              <div className="flex flex-col sm:flex-row items-start gap-8">
+              <div className="flex flex-col items-start gap-8 sm:flex-row">
                 {/* Icon Box */}
-                <div className="shrink-0 relative group">
-                  <div className="w-[60px] h-[60px] rounded-md bg-smatch-gold/5  border border-white/10 flex items-center justify-center text-white/20 group-hover:text-[#FFB800] group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 transition-all duration-500 shadow-2xl">
+                <div className="group relative shrink-0">
+                  <div className="flex size-[60px] items-center justify-center  rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800]">
                     <Eye size={32} weight="duotone" className='text-smatch-gold' />
                   </div>
-                  <div className="hidden sm:block absolute top-16 left-1/2 w-px h-[140%] bg-gradient-to-b from-[#FFB800]/20 to-transparent -z-10" />
+                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
 
                 </div>
 
@@ -151,12 +151,12 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
                   <TerminalTag text={vision.subtitle || 'PHASE 2: EXPANSION'} />
 
                   {/* Title */}
-                  <h3 className="font-heading text-3xl font-bold text-white mb-4 uppercase leading-none">
+                  <h3 className="mb-4 font-heading text-3xl font-bold uppercase leading-none text-white">
                     {vision.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="font-sans text-gray-400 text-sm leading-relaxed max-w-lg border-l-2 border-white/5 pl-4 group-hover:border-[#FFB800] transition-colors duration-500">
+                  <p className="max-w-lg border-l-2 border-white/5 pl-4 font-sans text-sm leading-relaxed text-gray-400 transition-colors duration-500 group-hover:border-[#FFB800]">
                     {vision.description}
                   </p>
                 </div>
@@ -165,7 +165,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
           </div>
 
           {/* Right Column: Animated Diagram */}
-          <div className="relative h-[600px]  w-full flex items-center justify-center">
+          <div className="relative flex  h-[600px] w-full items-center justify-center">
 
             {/* Central Core */}
             <motion.div
@@ -173,18 +173,18 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative z-20 w-48 h-48 rounded-full flex flex-col items-center justify-center text-center p-6"
+              className="relative z-20 flex size-48 flex-col items-center justify-center rounded-full p-6 text-center"
             >
               {/* Core Glows */}
-              <div className="absolute inset-0 bg-[#FFB800]/5 rounded-full blur-2xl animate-pulse" />
-              <div className="absolute inset-0 border border-[#FFB800]/30 rounded-full" />
-              <div className="absolute inset-4 border border-[#FFB800]/10 rounded-full border-dashed animate-[spin_10s_linear_infinite]" />
+              <div className="absolute inset-0 animate-pulse rounded-full bg-[#FFB800]/5 blur-2xl" />
+              <div className="absolute inset-0 rounded-full border border-[#FFB800]/30" />
+              <div className="absolute inset-4 animate-[spin_10s_linear_infinite] rounded-full border border-dashed border-[#FFB800]/10" />
 
               <div className="relative z-10 ">
-                <div className="text-[#FFB800] mb-3 flex justify-center drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
+                <div className="mb-3 flex justify-center text-[#FFB800] drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
                   <Cube size={48} weight="fill" />
                 </div>
-                <span className="font-heading text-white font-bold text-lg uppercase leading-tight tracking-wider">
+                <span className="font-heading text-lg font-bold uppercase leading-tight tracking-wider text-white">
                   Innovation<br />Continue
                 </span>
               </div>
@@ -197,30 +197,30 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               transition={{ duration: 60, ease: "linear", repeat: Infinity }}
             >
               {/* Node 1: Top */}
-              <div className="absolute z-10 top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-[5%] z-10 -translate-x-1/2 -translate-y-1/2">
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="relative z-10 w-40 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-4 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
-                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">01.0 // PROCESS</span>
-                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                  <span className="mb-2 block font-mono text-[10px] uppercase text-[#FFB800]">01.0 // PROCESS</span>
+                  <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase text-white">
                     <ChartLineUp size={16} className="text-[#FFB800]" />
                     Modéliser
                   </div>
                 </motion.div>
-                <div className="absolute z-0 top-full left-1/2 w-px h-[140px] bg-gradient-to-b from-[#FFB800]/50 to-transparent" />
+                <div className="absolute left-1/2 top-full z-0 h-[140px] w-px bg-gradient-to-b from-[#FFB800]/50 to-transparent" />
               </div>
 
               {/* Node 2: Right */}
-              <div className="absolute z-10 top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2">
+              <div className="absolute right-[5%] top-1/2 z-10 -translate-y-1/2 translate-x-1/2">
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 relative z-10 p-4 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="relative z-10 w-40 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-4 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
-                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">02.0 // ETHICS</span>
-                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                  <span className="mb-2 block font-mono text-[10px] uppercase text-[#FFB800]">02.0 // ETHICS</span>
+                  <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase text-white">
                     <ShieldCheck size={16} className="text-[#FFB800]" />
                     Responsabilité
                   </div>
@@ -229,30 +229,30 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
               </div>
 
               {/* Node 3: Bottom */}
-              <div className="absolute z-10 bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2">
+              <div className="absolute bottom-[5%] left-1/2 z-10 -translate-x-1/2 translate-y-1/2">
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="relative z-10 w-40 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-4 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
-                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">03.0 // TECH</span>
-                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                  <span className="mb-2 block font-mono text-[10px] uppercase text-[#FFB800]">03.0 // TECH</span>
+                  <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase text-white">
                     <Cpu size={16} className="text-[#FFB800]" />
                     Sécurité
                   </div>
                 </motion.div>
-                <div className="absolute bottom-full left-1/2 w-px h-[140px] bg-gradient-to-t from-[#FFB800]/50 to-transparent" />
+                <div className="absolute bottom-full left-1/2 h-[140px] w-px bg-gradient-to-t from-[#FFB800]/50 to-transparent" />
               </div>
 
               {/* Node 4: Left */}
-              <div className="absolute z-10 top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-[5%] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                  className="w-40 p-4 relative z-10 bg-[#0F0F0F] border border-[#FFB800]/20 rounded-md text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                  className="relative z-10 w-40 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-4 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
                 >
-                  <span className="block font-mono text-[10px] text-[#FFB800] uppercase mb-2">04.0 // VALUE</span>
-                  <div className="flex items-center justify-center gap-2 text-white font-bold text-xs uppercase">
+                  <span className="mb-2 block font-mono text-[10px] uppercase text-[#FFB800]">04.0 // VALUE</span>
+                  <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase text-white">
                     <Bank size={16} className="text-[#FFB800]" />
                     Valorisation
                   </div>

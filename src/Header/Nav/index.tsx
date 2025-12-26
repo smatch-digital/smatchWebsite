@@ -8,13 +8,13 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []
 
   return (
-    <nav className="flex items-center z-50">
+    <nav className="z-50 flex items-center">
       {/* Glassmorphism Pill Container */}
-      <div className="flex items-center gap-1 p-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-xl shadow-lg">
+      <div className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 p-1.5 shadow-lg backdrop-blur-xl">
 
         {/* Home Button (Active State Simulation) */}
-        <div className="px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-           <span className="font-sans font-bold text-sm tracking-widest text-white uppercase">HOME</span>
+        <div className="rounded-full border border-white/20 bg-white/10 px-6 py-2 backdrop-blur-md">
+           <span className="font-sans text-sm font-bold uppercase tracking-widest text-white">HOME</span>
         </div>
 
         {/* Other Links */}
@@ -25,17 +25,17 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                 key={i}
                 {...link}
                 appearance="link"
-                className="font-sans font-medium text-sm tracking-widest text-white/80 hover:text-smatch-gold uppercase transition-colors"
+                className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold"
               />
             )
           })}
           {/* Fallback Static Links if CMS is empty during dev */}
           {navItems.length === 0 && (
             <>
-              <a href="#" className="font-sans font-medium text-sm tracking-widest text-white/80 hover:text-smatch-gold uppercase transition-colors">A PROPOS</a>
-              <a href="#" className="font-sans font-medium text-sm tracking-widest text-white/80 hover:text-smatch-gold uppercase transition-colors">SOLUTIONS</a>
-              <a href="#" className="font-sans font-medium text-sm tracking-widest text-white/80 hover:text-smatch-gold uppercase transition-colors">PROJECTS</a>
-              <a href="#" className="font-sans font-medium text-sm tracking-widest text-white/80 hover:text-smatch-gold uppercase transition-colors">EXPERTISES</a>
+              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">A PROPOS</a>
+              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">SOLUTIONS</a>
+              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">PROJECTS</a>
+              <a href="#" className="font-sans text-sm font-medium uppercase tracking-widest text-white/80 transition-colors hover:text-smatch-gold">EXPERTISES</a>
             </>
           )}
         </div>

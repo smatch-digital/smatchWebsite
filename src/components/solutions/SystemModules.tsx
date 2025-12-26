@@ -39,7 +39,7 @@ const cardVariants = {
     transition: {
       duration: 0.5,
       ease: 'easeOut',
-    },
+    } as const,
   },
 }
 
@@ -73,9 +73,9 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-4"
+            className="mb-4 inline-flex items-center gap-2"
           >
-            <span className="text-yellow-500 font-mono text-sm tracking-wider font-bold">
+            <span className="font-mono text-sm font-bold tracking-wider text-yellow-500">
               {'/// SYSTEM_MODULES'}
             </span>
           </motion.div>
@@ -84,7 +84,7 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold tracking-tight text-foreground"
+            className="text-4xl font-bold tracking-tight text-foreground md:text-5xl"
           >
             Spécifications
           </motion.h2>
@@ -96,7 +96,7 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
           {modules.map((module, index) => (
             <motion.div
@@ -106,25 +106,25 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
             >
               {/* Card Container */}
               <div
-                className="relative h-full flex flex-col justify-between p-8 rounded-2xl
-                           bg-neutral-900/50 border border-white/10
+                className="relative flex h-full flex-col justify-between rounded-2xl border
+                           border-white/10 bg-neutral-900/50 p-8
                            transition-all duration-300 ease-out
                            hover:border-yellow-500/50 hover:bg-neutral-900/80
                            hover:shadow-[0_0_30px_-10px_rgba(234,179,8,0.15)]"
               >
                 {/* Top Row: Icon & Badge */}
-                <div className="flex justify-between items-start mb-12">
+                <div className="mb-12 flex items-start justify-between">
                   <div
-                    className="p-3 rounded-lg bg-white/5 border border-white/10
-                               text-yellow-500 group-hover:text-yellow-400
-                               group-hover:scale-110 transition-transform duration-300"
+                    className="rounded-lg border border-white/10 bg-white/5 p-3
+                               text-yellow-500 transition-transform
+                               duration-300 group-hover:scale-110 group-hover:text-yellow-400"
                   >
-                    <DynamicIcon name={module.icon} className="w-6 h-6" />
+                    <DynamicIcon name={module.icon} className="size-6" />
                   </div>
                   <span
-                    className="px-2 py-1 rounded text-[10px] font-mono font-bold tracking-widest
-                               bg-white/5 text-neutral-400 border border-white/5
-                               group-hover:text-yellow-500 group-hover:border-yellow-500/30 transition-colors"
+                    className="rounded border border-white/5 bg-white/5 px-2 py-1 font-mono
+                               text-[10px] font-bold tracking-widest text-neutral-400
+                               transition-colors group-hover:border-yellow-500/30 group-hover:text-yellow-500"
                   >
                     {module.badge}
                   </span>
@@ -132,18 +132,18 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
 
                 {/* Bottom Row: Content */}
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-500 transition-colors">
+                  <h3 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-yellow-500">
                     {module.title}
                   </h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed">
+                  <p className="text-sm leading-relaxed text-neutral-400">
                     {module.description}
                   </p>
                 </div>
 
                 {/* Hover Glow Effect (Subtle Gradient) */}
                 <div
-                  className="absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-500/5 to-transparent
-                             opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-500/5
+                             to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                 />
               </div>
             </motion.div>

@@ -129,27 +129,27 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           {/* Home Button */}
           <Link
             href="/"
-            className={`p-2 rounded-full transition-colors ${pathname === '/' ? 'text-[#FFB800]' : 'text-white/60'}`}
+            className={`rounded-full p-2 transition-colors ${pathname === '/' ? 'text-[#FFB800]' : 'text-white/60'}`}
           >
             <House size={24} weight={pathname === '/' ? 'fill' : 'regular'} />
           </Link>
 
-          <div className="w-px h-6 bg-white/10 mx-2" />
+          <div className="mx-2 h-6 w-px bg-white/10" />
 
           {/* Menu Trigger (Central Action) */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="bg-[#FFB800] text-black p-3 rounded-full shadow-[0_0_15px_rgba(255,184,0,0.3)] transform active:scale-95 transition-transform"
+            className="rounded-full bg-[#FFB800] p-3 text-black shadow-[0_0_15px_rgba(255,184,0,0.3)] transition-transform active:scale-95"
           >
             <SquaresFour size={24} weight="bold" />
           </button>
 
-          <div className="w-px h-6 bg-white/10 mx-2" />
+          <div className="mx-2 h-6 w-px bg-white/10" />
 
           {/* Quick Contact */}
           <Link
             href="/contact"
-            className="p-2 text-white/60 hover:text-[#FFB800] transition-colors"
+            className="p-2 text-white/60 transition-colors hover:text-[#FFB800]"
           >
             <PhoneCall size={24} />
           </Link>
@@ -157,13 +157,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
         {/* 3. The Menu Sheet (Slides up from bottom) */}
         <MobileMenuOverlay isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
-          <div className="flex justify-between items-center mb-8">
-            <span className="text-white/40 text-xs font-mono uppercase tracking-widest">
+          <div className="mb-8 flex items-center justify-between">
+            <span className="font-mono text-xs uppercase tracking-widest text-white/40">
               Navigation
             </span>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2 bg-white/5 rounded-full text-white"
+              className="rounded-full bg-white/5 p-2 text-white"
             >
               <X size={20} />
             </button>
@@ -174,27 +174,27 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               <Link
                 key={i}
                 href={item.link}
-                className="text-2xl font-heading font-bold text-white uppercase tracking-wider flex items-center justify-between group"
+                className="group flex items-center justify-between font-heading text-2xl font-bold uppercase tracking-wider text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-                <span className="w-2 h-2 rounded-full bg-[#FFB800] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="size-2 rounded-full bg-[#FFB800] opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>
             ))}
 
-            <div className="h-px bg-white/10 w-full my-4" />
+            <div className="my-4 h-px w-full bg-white/10" />
 
             {/* Extra Info in Menu */}
             <div className="grid grid-cols-2 gap-4">
               <Link
                 href="/contact"
-                className="bg-[#FFB800] text-black text-center font-bold py-4 rounded-xl uppercase tracking-widest text-sm flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#FFB800] py-4 text-center text-sm font-bold uppercase tracking-widest text-black"
               >
                 Start Project
               </Link>
               <Link
                 href="/journal"
-                className="bg-white/5 border border-white/10 text-white text-center font-bold py-4 rounded-xl uppercase tracking-widest text-sm flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-4 text-center text-sm font-bold uppercase tracking-widest text-white"
               >
                 Journal
               </Link>

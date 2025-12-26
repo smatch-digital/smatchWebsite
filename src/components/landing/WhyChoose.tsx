@@ -52,14 +52,14 @@ const WHY_CHOOSE_DATA = {
 
 export function WhyChoose() {
   return (
-    <section className="py-24 bg-smatch-black relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="relative overflow-hidden bg-smatch-black py-24">
+      <div className="container relative z-10 mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4 tracking-tight text-white">
+        <div className="mb-20 text-center">
+          <h2 className="mb-4 font-heading text-4xl font-bold tracking-tight text-white md:text-5xl">
             Pourquoi Choisir Smatch?
           </h2>
-          <p className="font-sans text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="mx-auto max-w-2xl font-sans text-lg leading-relaxed text-gray-400">
             Une expertise unique alliant connaissance metier et technologies de pointe.
           </p>
         </div>

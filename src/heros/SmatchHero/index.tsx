@@ -12,30 +12,30 @@ export const SmatchHero: React.FC<Page['hero']> = ({
   media,
 }) => {
   return (
-    <section className="relative mx-auto min-h-[90vh] flex items-center justify-center overflow-hidden bg-smatch-black pt-20">
+    <section className="relative mx-auto flex min-h-[90vh] items-center justify-center overflow-hidden bg-smatch-black pt-20">
       {/* Background Effects */}
-      <div className="absolute inset-0 mix-blend-screen z-0">
+      <div className="absolute inset-0 z-0 mix-blend-screen">
         {media && typeof media === 'object' && (
           <Media resource={media} fill imgClassName="mix-blend-screen object-cover" />
         )}
         {/* <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" /> */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-smatch-gold/10 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
         {/* <div className="absolute inset-0 bg-[url('/assets/hero/hero-overlay.png')] opacity-10 bg-repeat" /> */}
       </div>
 
-      <div className="container relative z-10 flex flex-col items-center text-center px-4">
+      <div className="container relative z-10 flex flex-col items-center px-4 text-center">
         {/* Top Gold Arc Effect (CSS Mock) */}
 
-        <h1 className="font-heading text-5xl drop-shadow-md md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight uppercase max-w-5xl leading-none">
+        <h1 className="mb-6 max-w-5xl font-heading text-5xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
           {headline}
         </h1>
 
-        <p className="text-smatch-text-secondary text-lg md:text-xl max-w-2xl mb-10">
+        <p className="mb-10 max-w-2xl text-lg text-smatch-text-secondary md:text-xl">
           {subheadline}
         </p>
 
         {enableCta && (
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <CMSLink {...secondaryCta} className="min-w-[200px] uppercase tracking-wider" />
             <CMSLink {...primaryCta} className="min-w-[200px] uppercase tracking-wider" />
           </div>

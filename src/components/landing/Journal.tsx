@@ -75,47 +75,47 @@ export function Journal() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
 
         {/* Header Section (Static) */}
-        <div className="container mx-auto px-4 pt-12 md:pt-24 z-10 bg-[#050505] relative">
-            <div className="flex flex-col md:flex-row justify-between items-end border-b border-white/10 pb-6 mb-12">
+        <div className="container relative z-10 mx-auto bg-[#050505] px-4 pt-12 md:pt-24">
+            <div className="mb-12 flex flex-col items-end justify-between border-b border-white/10 pb-6 md:flex-row">
 
             <div className="flex items-center gap-6">
-                <h2 className="font-heading text-lg md:text-xl font-bold tracking-widest text-white uppercase">
+                <h2 className="font-heading text-lg font-bold uppercase tracking-widest text-white md:text-xl">
                 {JOURNAL_DATA.header.title}
                 </h2>
 
                 {/* Live Feed Indicator */}
                 <div className="flex items-center gap-3">
-                    <div className="h-px w-8 bg-gray-700 hidden md:block"></div>
+                    <div className="hidden h-px w-8 bg-gray-700 md:block"></div>
                     <div className="flex items-center gap-2">
-                        <div className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFB800] opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FFB800]"></span>
+                        <div className="relative flex size-2.5">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75"></span>
+                        <span className="relative inline-flex size-2.5 rounded-full bg-[#FFB800]"></span>
                         </div>
-                        <span className="font-mono text-xs font-bold text-[#FFB800] tracking-wider">
+                        <span className="font-mono text-xs font-bold tracking-wider text-[#FFB800]">
                         {JOURNAL_DATA.header.status}
                         </span>
                     </div>
                 </div>
             </div>
 
-            <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest mt-4 md:mt-0">
+            <div className="mt-4 font-mono text-[10px] uppercase tracking-widest text-gray-500 md:mt-0">
                 {JOURNAL_DATA.header.meta}
             </div>
             </div>
         </div>
 
         {/* Horizontal Scroll Track */}
-        <div className="relative flex-1 flex items-center pl-4 md:pl-[max(1rem,calc((100vw-80rem)/2))]">
-           <motion.div style={{ x }} className="flex gap-0 h-[60vh]">
+        <div className="relative flex flex-1 items-center pl-4 md:pl-[max(1rem,calc((100vw-80rem)/2))]">
+           <motion.div style={{ x }} className="flex h-[60vh] gap-0">
               {JOURNAL_DATA.articles.map((article, index) => (
                  <div
                     key={index}
-                    className="relative w-[85vw] md:w-[35vw] lg:w-[30vw] min-w-[300px] h-full flex flex-col justify-between group border-r border-white/10 px-8 first:pl-0"
+                    className="group relative flex h-full w-[85vw] min-w-[300px] flex-col justify-between border-r border-white/10 px-8 first:pl-0 md:w-[35vw] lg:w-[30vw]"
                  >
                     {/* Image Area */}
-                    <div className="relative w-full aspect-video overflow-hidden rounded-sm bg-[#111] mb-8">
+                    <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-sm bg-[#111]">
                         {/* Placeholder for missing image */}
-                        <div className="absolute inset-0 bg-[#1A1A1A] flex items-center justify-center text-gray-700 font-mono text-xs">
+                        <div className="absolute inset-0 flex items-center justify-center bg-[#1A1A1A] font-mono text-xs text-gray-700">
                            NO SIGNAL
                         </div>
 
@@ -123,35 +123,35 @@ export function Journal() {
                             src={article.image}
                             alt={article.title}
                             fill
-                            className="object-cover grayscale opacity-60 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100"
+                            className="object-cover opacity-60 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                         />
 
                         {/* REC Overlay */}
-                        <div className="absolute top-3 left-3 font-mono text-[10px] text-white/70">REC</div>
-                        <div className="absolute top-3 right-3 font-mono text-[10px] text-white/70">
+                        <div className="absolute left-3 top-3 font-mono text-[10px] text-white/70">REC</div>
+                        <div className="absolute right-3 top-3 font-mono text-[10px] text-white/70">
                             {new Date().toISOString().slice(0,10)}
                         </div>
 
                         {/* Scanner Line Effect */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-[#FFB800]/50 shadow-[0_0_15px_#FFB800] translate-y-[-100%] group-hover:animate-[scan_2s_linear_infinite] opacity-0 group-hover:opacity-100" />
+                        <div className="absolute left-0 top-0 h-1 w-full -translate-y-full bg-[#FFB800]/50 opacity-0 shadow-[0_0_15px_#FFB800] group-hover:animate-[scan_2s_linear_infinite] group-hover:opacity-100" />
                     </div>
 
                     {/* Text Content */}
-                    <div className="flex flex-col flex-1">
-                        <div className="font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-3 border-l-2 border-transparent group-hover:border-[#FFB800] pl-0 group-hover:pl-3 transition-all duration-300">
+                    <div className="flex flex-1 flex-col">
+                        <div className="mb-3 border-l-2 border-transparent pl-0 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-all duration-300 group-hover:border-[#FFB800] group-hover:pl-3">
                             {article.meta}
                         </div>
 
-                        <h3 className="font-heading text-2xl md:text-3xl font-bold text-white mb-4 leading-tight group-hover:text-[#FFB800] transition-colors duration-300">
+                        <h3 className="mb-4 font-heading text-2xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#FFB800] md:text-3xl">
                             {article.title}
                         </h3>
 
-                        <p className="font-sans text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
+                        <p className="mb-8 max-w-sm font-sans text-sm leading-relaxed text-gray-400">
                             {article.description}
                         </p>
 
                         <div className="mt-auto">
-                            <button className="flex items-center gap-2 text-[10px] font-bold font-mono tracking-widest text-[#FFB800] uppercase group/btn">
+                            <button className="group/btn flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">
                                 <span className="mr-2">&gt;</span>
                                 {article.linkText}
                             </button>

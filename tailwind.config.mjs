@@ -102,11 +102,16 @@ const config = {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'slide-up': 'slideUp 0.5s ease-out forwards',
         spotlight: 'spotlight 2s ease .75s 1 forwards',
+        scroll: 'scroll 40s linear infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },

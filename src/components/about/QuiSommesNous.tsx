@@ -48,29 +48,29 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="py-32 bg-[#050505] relative overflow-hidden flex items-center min-h-[90vh]"
+      className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#050505] py-32"
     >
       {/* 1. Top Yellow Glow (Ambient Light) */}
-      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[60vw] h-[200px] bg-[#FFB800] opacity-70 blur-[150px] pointer-events-none z-0" />
+      <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFB800] opacity-70 blur-[150px]" />
 
       {/* 2. Parallax Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 mix-blend-overlay">
+      <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center mix-blend-overlay">
         <motion.span
           style={{
             y: bgTextY,
             opacity: bgTextOpacity,
             WebkitTextStroke: '1.5px rgba(255,255,255,1)',
           }}
-          className="text-[50vw] font-black font-heading text-transparent leading-none whitespace-nowrap mix-blend-overlay"
+          className="whitespace-nowrap font-heading text-[50vw] font-black leading-none text-transparent mix-blend-overlay"
         >
           SMATCH
         </motion.span>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           {/* Left Column: Headings */}
-          <div className="lg:col-span-7 flex flex-col select-none relative group/text">
+          <div className="group/text relative flex select-none flex-col lg:col-span-7">
             {/* Animated Entry Wrapper */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -79,7 +79,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
               transition={{ duration: 0.8, ease: 'easeOut' }}
             >
               {/* Solid White Text */}
-              <h2 className="font-heading text-7xl md:text-8xl lg:text-[11rem] font-black text-white leading-[0.85] tracking-tighter uppercase relative z-10">
+              <h2 className="relative z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-8xl lg:text-[11rem]">
                 {INTRO_DATA.headingPart1}
               </h2>
 
@@ -87,14 +87,14 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
               <div className="relative">
                 {/* The Stroke Version */}
                 <h2
-                  className="font-heading text-7xl md:text-8xl lg:text-[11rem] font-black text-transparent leading-[0.85] tracking-tighter uppercase relative left-1 md:left-4 z-10 transition-colors duration-500"
+                  className="relative left-1 z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-8xl lg:text-[11rem]"
                   style={{ WebkitTextStroke: '2px #FFB800' }}
                 >
                   {title ? title.split(' ').slice(1).join(' ') : INTRO_DATA.headingPart2}
                 </h2>
 
                 {/* The "Filling" Version (clip-path animation could go here, but let's do a glow) */}
-                <motion.div className="absolute inset-0 bg-[#FFB800] blur-[80px] opacity-0 group-hover/text:opacity-20 transition-opacity duration-700 pointer-events-none" />
+                <motion.div className="pointer-events-none absolute inset-0 bg-[#FFB800] opacity-0 blur-[80px] transition-opacity duration-700 group-hover/text:opacity-20" />
               </div>
 
               {/* Decorative Parallelogram (The little yellow shape in image) */}
@@ -108,7 +108,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
           </div>
 
           {/* Right Column: Content */}
-          <div className="lg:col-span-5 flex flex-col justify-center pt-8 lg:pt-0 pl-2 lg:pl-12">
+          <div className="flex flex-col justify-center pl-2 pt-8 lg:col-span-5 lg:pl-12 lg:pt-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -117,28 +117,28 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
             >
               {/* Tag */}
               <div className="mb-8 flex items-center gap-3">
-                <span className="w-1 h-4 bg-[#FFB800]" /> {/* Small accent bar */}
-                <span className="font-mono text-sm text-gray-500 tracking-[0.2em] uppercase">
+                <span className="h-4 w-1 bg-[#FFB800]" /> {/* Small accent bar */}
+                <span className="font-mono text-sm uppercase tracking-[0.2em] text-gray-500">
                   {INTRO_DATA.tag}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="font-sans text-[#A0A0A0] text-sm md:text-[15px] leading-relaxed text-justify mb-12 max-w-lg border-l border-white/10 pl-6">
+              <p className="mb-12 max-w-lg border-l border-white/10 pl-6 text-justify font-sans text-sm leading-relaxed text-[#A0A0A0] md:text-[15px]">
                 {description || INTRO_DATA.description}
               </p>
 
               {/* CTA Button */}
               <div>
-                <button className="group relative px-8 py-3 border border-gray-800 rounded-[6px] bg-transparent overflow-hidden transition-colors duration-300">
+                <button className="group relative overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300">
                   {/* Hover Background Fill */}
-                  <span className="absolute inset-0 bg-[#FFB800] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+                  <span className="absolute inset-0 translate-y-full bg-[#FFB800] transition-transform duration-300 ease-out group-hover:translate-y-0" />
 
                   {/* Text Content */}
-                  <span className="relative flex items-center gap-4 text-gray-500 text-xs font-bold tracking-[0.2em] uppercase group-hover:text-black transition-colors duration-300">
+                  <span className="relative flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 transition-colors duration-300 group-hover:text-black">
                     {locationLabel || INTRO_DATA.cta}
                     {/* Tiny animated arrow */}
-                    <span className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <span className="-translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
                       &rarr;
                     </span>
                   </span>

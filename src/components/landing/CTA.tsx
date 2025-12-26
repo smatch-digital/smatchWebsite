@@ -11,7 +11,7 @@ const CTA_DATA = {
 
 export function CTA() {
   return (
-    <section className="py-32 bg-smatch-black relative overflow-hidden">
+    <section className="relative overflow-hidden bg-smatch-black py-32">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 opacity-40">
         <Image
@@ -25,41 +25,41 @@ export function CTA() {
       </div>
 
       {/* Background Glow Center */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-smatch-gold/5 rounded-full blur-[80px] z-0" />
+      <div className="absolute left-1/2 top-1/2 z-0 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-smatch-gold/5 blur-[80px]" />
 
       {/* Golden Rings Effect (CSS Mock) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-smatch-gold/20 rounded-full opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-smatch-gold/10 rounded-full opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-smatch-gold/5 rounded-full opacity-20" />
+      <div className="absolute left-1/2 top-1/2 size-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-smatch-gold/20 opacity-20" />
+      <div className="absolute left-1/2 top-1/2 size-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-smatch-gold/10 opacity-20" />
+      <div className="absolute left-1/2 top-1/2 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-smatch-gold/5 opacity-20" />
 
       <div className="container relative z-10 px-4 text-center">
         {/* Floating Particles (Static Mock) */}
-        <div className="flex justify-center mb-8 gap-4">
-          <div className="w-2 h-2 bg-smatch-gold rounded-full animate-bounce delay-75" />
-          <div className="w-2 h-2 bg-smatch-gold rounded-full animate-bounce delay-150" />
-          <div className="w-2 h-2 bg-smatch-gold rounded-full animate-bounce delay-300" />
+        <div className="mb-8 flex justify-center gap-4">
+          <div className="size-2 animate-bounce rounded-full bg-smatch-gold delay-75" />
+          <div className="size-2 animate-bounce rounded-full bg-smatch-gold delay-150" />
+          <div className="size-2 animate-bounce rounded-full bg-smatch-gold delay-300" />
         </div>
 
-        <h2 className="font-heading text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        <h2 className="mb-6 font-heading text-4xl font-bold leading-tight text-white md:text-6xl">
           {CTA_DATA.headline}
         </h2>
 
-        <p className="font-sans text-smatch-text-secondary text-lg max-w-xl mx-auto mb-10">
+        <p className="mx-auto mb-10 max-w-xl font-sans text-lg text-smatch-text-secondary">
           {CTA_DATA.subheadline}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Button
             variant="gold"
             size="lg"
-            className="min-w-[180px] uppercase tracking-wider font-bold"
+            className="min-w-[180px] font-bold uppercase tracking-wider"
           >
             {CTA_DATA.primaryButton}
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="min-w-[180px] border-smatch-border text-white hover:border-smatch-gold hover:text-smatch-gold uppercase tracking-wider"
+            className="min-w-[180px] border-smatch-border uppercase tracking-wider text-white hover:border-smatch-gold hover:text-smatch-gold"
           >
             {CTA_DATA.secondaryButton}
           </Button>

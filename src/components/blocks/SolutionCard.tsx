@@ -37,13 +37,13 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
     <Link href={href} className="block h-full">
       <motion.div
         whileHover={{ y: -5 }}
-        className="group relative h-full flex flex-col bg-[#0F0F0F]/90 backdrop-blur-xl border border-white/5 p-8 rounded-[24px] overflow-hidden transition-all duration-300 hover:border-[#FFB800]/50 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
+        className="group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/5 bg-[#0F0F0F]/90 p-8 backdrop-blur-xl transition-all duration-300 hover:border-[#FFB800]/50 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
       >
         {/* 1. Top Section: Icon & Badge */}
-        <div className="flex justify-between items-start mb-8">
+        <div className="mb-8 flex items-start justify-between">
 
           {/* Icon Box - Gold border, dark fill */}
-          <div className="flex items-center justify-center w-[48px] h-[48px] rounded-[12px] border border-[#FFB800]/30 bg-[#FFB800]/5 text-[#FFB800] group-hover:bg-[#FFB800] group-hover:text-black transition-all duration-300">
+          <div className="flex size-[48px] items-center justify-center rounded-[12px] border border-[#FFB800]/30 bg-[#FFB800]/5 text-[#FFB800] transition-all duration-300 group-hover:bg-[#FFB800] group-hover:text-black">
             {/* Clone element to force size if it's a Phosphor icon */}
             {React.isValidElement(icon) ? (
               React.cloneElement(icon as React.ReactElement<{ size?: number | string; weight?: string }>, {
@@ -51,42 +51,42 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
                 weight: 'fill',
               })
             ) : typeof icon === 'object' && icon !== null && 'url' in icon ? (
-              <MediaComponent resource={icon as any} className="w-6 h-6 text-[#FFB800]" />
+              <MediaComponent resource={icon as any} className="size-6 text-[#FFB800]" />
             ) : (
               icon as any
             )}
           </div>
 
           {/* Badge - Terminal Style */}
-          <div className="flex items-center px-3 py-1.5 bg-[#151515] rounded-lg border border-white/5 shadow-inner">
-            <span className="font-mono text-[11px] font-bold text-[#FFB800] tracking-[0.15em] uppercase">
+          <div className="flex items-center rounded-lg border border-white/5 bg-[#151515] px-3 py-1.5 shadow-inner">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-[#FFB800]">
               {badge}
             </span>
           </div>
         </div>
 
         {/* 2. Content */}
-        <div className="flex-grow flex flex-col justify-end">
+        <div className="flex grow flex-col justify-end">
           {subtitle && (
-            <span className="font-mono text-[#FFB800] text-xs font-bold tracking-widest uppercase mb-2">
+            <span className="mb-2 font-mono text-xs font-bold uppercase tracking-widest text-[#FFB800]">
               {subtitle}
             </span>
           )}
-          <h3 className="font-sans text-[22px] font-bold text-white mb-2 tracking-wide leading-tight group-hover:text-[#FFB800] transition-colors">
+          <h3 className="mb-2 font-sans text-[22px] font-bold leading-tight tracking-wide text-white transition-colors group-hover:text-[#FFB800]">
             {title}
           </h3>
-          <p className="font-sans text-[#888888] text-[15px] leading-relaxed font-medium">
+          <p className="font-sans text-[15px] font-medium leading-relaxed text-[#888888]">
             {description}
           </p>
         </div>
 
         {/* 3. Stats Footer (Optional) */}
         {stats && stats.length > 0 && (
-          <div className="mt-8 pt-6 border-t border-white/5 flex items-center gap-8">
+          <div className="mt-8 flex items-center gap-8 border-t border-white/5 pt-6">
             {stats.map((stat, i) => (
               <div key={i} className="flex flex-col">
-                <span className="font-mono text-[#FFB800] text-lg font-bold">{stat.value}</span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-gray-600 font-bold mt-1">
+                <span className="font-mono text-lg font-bold text-[#FFB800]">{stat.value}</span>
+                <span className="mt-1 font-mono text-[10px] font-bold uppercase tracking-widest text-gray-600">
                   {stat.label}
                 </span>
               </div>
@@ -97,9 +97,9 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
         {/* 4. CTA Button (Optional) */}
         {ctaText && (
           <div className="mt-8">
-            <div className="inline-flex items-center justify-center px-6 py-3 bg-[#FFB800] text-black text-xs font-bold uppercase tracking-wider rounded-lg transition-transform transform group-hover:scale-105">
+            <div className="inline-flex items-center justify-center rounded-lg bg-[#FFB800] px-6 py-3 text-xs font-bold uppercase tracking-wider text-black transition-transform group-hover:scale-105">
               {ctaText}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
@@ -107,7 +107,7 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
         )}
 
         {/* 4. Hover Glow Effect */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#FFB800] blur-[100px] rounded-full pointer-events-none opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
+        <div className="pointer-events-none absolute -right-20 -top-20 size-40 rounded-full bg-[#FFB800] opacity-0 blur-[100px] transition-opacity duration-500 group-hover:opacity-20" />
       </motion.div>
     </Link>
   )

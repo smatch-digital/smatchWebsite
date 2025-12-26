@@ -23,8 +23,8 @@ export function UIReveal({ image, className }: UIRevealProps) {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center"
         >
-          <div className="w-full max-w-7xl mx-auto mb-8">
-            <p className="text-smatch-brand font-mono text-xs uppercase tracking-widest mb-4">
+          <div className="mx-auto mb-8 w-full max-w-7xl">
+            <p className="text-smatch-brand mb-4 font-mono text-xs uppercase tracking-widest">
               {'/// UI_REVEAL'}
             </p>
           </div>
@@ -34,9 +34,9 @@ export function UIReveal({ image, className }: UIRevealProps) {
             whileInView={{ scale: 1, opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-neutral-900"
+            className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10 pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/50 to-transparent" />
 
             <Image
               src={image}

@@ -260,6 +260,27 @@ export interface Page {
     | HistoryTimelineBlock
     | TeamBlock
     | SmartGridBlock
+    | {
+        title: string;
+        partners?:
+          | {
+              name: string;
+              logoType?: ('image' | 'text') | null;
+              /**
+               * Logo should be white (SVG preferred). Transparent background.
+               */
+              logo?: (number | null) | Media;
+              /**
+               * Text to display if no image is available.
+               */
+              textLogo?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'trustedBy';
+      }
   )[];
   meta?: {
     title?: string | null;
@@ -1404,6 +1425,22 @@ export interface PagesSelect<T extends boolean = true> {
         historyTimeline?: T | HistoryTimelineBlockSelect<T>;
         team?: T | TeamBlockSelect<T>;
         'smart-grid'?: T | SmartGridBlockSelect<T>;
+        trustedBy?:
+          | T
+          | {
+              title?: T;
+              partners?:
+                | T
+                | {
+                    name?: T;
+                    logoType?: T;
+                    logo?: T;
+                    textLogo?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   meta?:
     | T

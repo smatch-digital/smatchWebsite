@@ -30,7 +30,7 @@ export default async function SolutionsPage() {
 
   // @ts-ignore
   return (
-    <main className="flex flex-col w-full">
+    <main className="flex w-full flex-col">
       <SolutionsHero />
       {/* 3. Pass the fetched data to the Grid */}
       <SolutionsGrid solutions={solutions} />

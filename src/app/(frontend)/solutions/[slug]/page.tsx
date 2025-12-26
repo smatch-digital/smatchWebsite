@@ -95,7 +95,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   })) || []
 
   return (
-    <article className="bg-smatch-black min-h-screen">
+    <article className="min-h-screen bg-smatch-black">
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 

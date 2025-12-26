@@ -11,29 +11,29 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
   const safeEvents = events || []
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#050505] py-32">
        {/* Background Radial Glow (Left Side) */}
-       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#FFB800]/10 to-transparent blur-[120px] pointer-events-none opacity-40" />
+       <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFB800]/10 to-transparent opacity-40 blur-[120px]" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container relative z-10 mx-auto px-4">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="font-heading text-3xl md:text-4xl text-white font-bold text-center mb-24 uppercase tracking-wide"
+          className="mb-24 text-center font-heading text-3xl font-bold uppercase tracking-wide text-white md:text-4xl"
         >
           {title}
         </motion.h2>
 
-        <div className="relative max-w-5xl mx-auto">
+        <div className="relative mx-auto max-w-5xl">
           {/* Vertical Line */}
           <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute left-[20px] -translate-x-1/2 md:translate-x-0 md:left-0 md:right-0 md:mx-auto top-0 bottom-0 w-px bg-gradient-to-b from-white/5 via-smatch-gold to-white/5 origin-top"
+            className="absolute inset-y-0 left-[20px] w-px origin-top -translate-x-1/2 bg-gradient-to-b from-white/5 via-smatch-gold to-white/5 md:inset-x-0 md:mx-auto md:translate-x-0"
           />
 
           <div className="flex flex-col gap-24">
@@ -93,14 +93,14 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
                   {/* Content Side (Title & Desc) */}
                   <motion.div
                     variants={contentVariants}
-                    className={`pl-16 md:pl-0 w-full md:w-[45%] ${isEven ? 'md:text-right' : 'md:text-left'}`}
+                    className={`w-full pl-16 md:w-[45%] md:pl-0 ${isEven ? 'md:text-right' : 'md:text-left'}`}
                   >
                     <div className="group">
-                        <h3 className={`font-heading text-3xl md:text-4xl font-bold uppercase tracking-tight mb-2 transition-colors duration-300 ${event.isCurrent ? 'text-smatch-gold' : 'text-white group-hover:text-smatch-gold'}`}>
+                        <h3 className={`mb-2 font-heading text-3xl font-bold uppercase tracking-tight transition-colors duration-300 md:text-4xl ${event.isCurrent ? 'text-smatch-gold' : 'text-white group-hover:text-smatch-gold'}`}>
                             {event.title}
                         </h3>
                         {event.description && (
-                            <p className="font-mono text-gray-500 text-sm md:text-base leading-relaxed uppercase tracking-wide">
+                            <p className="font-mono text-sm uppercase leading-relaxed tracking-wide text-gray-500 md:text-base">
                                 {event.description}
                             </p>
                         )}
@@ -110,27 +110,27 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
                   {/* Node on Line */}
                   <motion.div
                     variants={nodeVariants}
-                    className="absolute left-[20px] -translate-x-1/2 md:translate-x-0 md:left-0 md:right-0 md:mx-auto flex items-center justify-center z-10 w-12 h-12"
+                    className="absolute left-[20px] z-10 flex size-12 -translate-x-1/2 items-center justify-center md:inset-x-0 md:mx-auto md:translate-x-0"
                   >
                       {/* Glow Effect for Current Node */}
                       {event.isCurrent && (
-                          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-smatch-gold/30 rounded-full blur-md animate-pulse" />
+                          <div className="absolute left-1/2 top-1/2 size-8 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/30 blur-md" />
                       )}
 
-                      <div className={`relative z-10 w-3 h-3 rounded-full transition-colors duration-300 backdrop-blur-md ${event.isCurrent ? 'bg-smatch-gold shadow-[0_0_15px_#FFC800]' : 'bg-smatch-gold/10 border border-white/20'}`} />
+                      <div className={`relative z-10 size-3 rounded-full backdrop-blur-md transition-colors duration-300 ${event.isCurrent ? 'bg-smatch-gold shadow-[0_0_15px_#FFC800]' : 'border border-white/20 bg-smatch-gold/10'}`} />
                   </motion.div>
 
                   {/* Version Tag Side */}
                   <motion.div
                     variants={versionVariants}
-                    className={`hidden md:flex w-[45%] items-center ${isEven ? 'justify-start' : 'justify-end'}`}
+                    className={`hidden w-[45%] items-center md:flex ${isEven ? 'justify-start' : 'justify-end'}`}
                   >
                       {event.isCurrent ? (
-                          <div className="px-3 py-1 border border-smatch-gold text-smatch-gold text-[10px] font-mono font-bold tracking-widest uppercase rounded-[2px] bg-smatch-gold/5">
+                          <div className="rounded-[2px] border border-smatch-gold bg-smatch-gold/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-smatch-gold">
                               {event.version || 'CURRENT'}
                           </div>
                       ) : (
-                          <span className="font-mono text-gray-600 text-[10px] tracking-widest uppercase">
+                          <span className="font-mono text-[10px] uppercase tracking-widest text-gray-600">
                               {event.version}
                           </span>
                       )}

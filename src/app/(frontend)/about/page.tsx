@@ -128,7 +128,7 @@ export default function AboutPage() {
   ]
 
   return (
-    <main className="bg-smatch-black min-h-screen">
+    <main className="min-h-screen bg-smatch-black">
       <AboutHero {...heroData} />
       <QuiSommesNous {...quiSommesNousData} />
       <MissionVision {...missionVisionData} />

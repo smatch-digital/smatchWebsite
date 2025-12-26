@@ -14,6 +14,8 @@ import { MissionVisionBlockComponent } from '@/blocks/MissionVision/Component'
 import { HistoryTimelineBlockComponent } from '@/blocks/HistoryTimeline/Component'
 import { TeamBlockComponent } from '@/blocks/Team/Component'
 import { SmartGrid } from '@/components/blocks/SmartGrid'
+import { TrustedByBlock } from '@/blocks/TrustedBy/Component'
+
 
 const blockComponents = {
   about: AboutBlock,
@@ -28,6 +30,7 @@ const blockComponents = {
   historyTimeline: HistoryTimelineBlockComponent,
   team: TeamBlockComponent,
   'smart-grid': SmartGrid,
+  trustedBy: TrustedByBlock,
 }
 
 export const RenderBlocks: React.FC<{

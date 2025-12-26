@@ -26,20 +26,20 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       {/* 1. The "Tag" with Gold Bar decoration */}
       <div className="flex items-center gap-3">
 
-        <span className="font-mono text-smatch-gold text-xs font-bold tracking-[0.2em] uppercase">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-smatch-gold">
           {'//'}{tag}
         </span>
 
       </div>
 
       {/* 2. The Main Title */}
-      <h2 className="font-heading text-4xl md:text-5xl font-bold uppercase text-white tracking-tight leading-none">
+      <h2 className="font-heading text-4xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">
         {title}
       </h2>
 
       {/* 3. Optional Description */}
       {description && (
-        <p className="max-w-2xl text-smatch-text-secondary text-base md:text-lg leading-relaxed mt-2">
+        <p className="mt-2 max-w-2xl text-base leading-relaxed text-smatch-text-secondary md:text-lg">
           {description}
         </p>
       )}

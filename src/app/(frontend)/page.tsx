@@ -11,7 +11,7 @@ import { CTA } from '@/components/landing/CTA'
 
 export default function Page() {
   return (
-    <main className="min-h-screen  mx-auto w-full font-sans bg-smatch-black text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
+    <main className="mx-auto  min-h-screen w-full bg-smatch-black font-sans text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
       <Hero />
       <TrustedBy />
       <Intro />

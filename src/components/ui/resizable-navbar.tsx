@@ -28,13 +28,13 @@ export const NavbarLayout = ({
           className,
         )}
       >
-        <div className="mx-auto max-w-[1440px] flex items-center justify-between relative">
+        <div className="relative mx-auto flex max-w-[1440px] items-center justify-between">
           {children}
         </div>
       </div>
 
       {/* Mobile Layout Container - Handles z-index for children */}
-      <div className="md:hidden fixed inset-0 z-[10000] pointer-events-none">{children}</div>
+      <div className="pointer-events-none fixed inset-0 z-[10000] md:hidden">{children}</div>
     </>
   )
 }
@@ -57,7 +57,7 @@ export const NavBrand = ({
         pointerEvents: isScrolled ? 'none' : 'auto',
       }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="hidden md:flex items-center min-w-[200px]"
+      className="hidden min-w-[200px] items-center md:flex"
     >
       {children}
     </motion.div>
@@ -72,7 +72,7 @@ export const NavCenterPill = ({
   className?: string
 }) => {
   return (
-    <div className="absolute left-1/2 -translate-x-1/2 top-0 pointer-events-auto">
+    <div className="pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2">
       <div
         className={cn(
           'relative flex flex-row items-center gap-1',
@@ -110,14 +110,14 @@ export const NavLinks = ({ items, activePath }: { items: NavItem[]; activePath?:
             {isActive && (
               <motion.div
                 layoutId="nav-pill-active"
-                className="absolute inset-0 bg-white/10 rounded-full border border-white/5 shadow-inner"
+                className="absolute inset-0 rounded-full border border-white/5 bg-white/10 shadow-inner"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
             {!isActive && hovered === idx && (
               <motion.div
                 layoutId="nav-pill-hover"
-                className="absolute inset-0 bg-white/5 border border-white/10 shadow-inner rounded-full"
+                className="absolute inset-0 rounded-full border border-white/10 bg-white/5 shadow-inner"
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
               />
             )}
@@ -152,7 +152,7 @@ export const NavCTAContainer = ({
         pointerEvents: isScrolled ? 'none' : 'auto',
       }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="hidden md:flex items-center justify-end min-w-[200px]"
+      className="hidden min-w-[200px] items-center justify-end md:flex"
     >
       {children}
     </motion.div>
@@ -162,8 +162,8 @@ export const NavCTAContainer = ({
 export const CTAButton = ({ children, href }: { children: React.ReactNode; href: string }) => {
   return (
     <Link href={href}>
-      <div className="bg-[#FFB800] hover:bg-[#E0A200] text-black transition-colors duration-300 rounded-[8px] px-6 py-2.5 shadow-[0_0_20px_rgba(255,184,0,0.2)]">
-        <span className="font-sans text-[12px] font-bold tracking-widest uppercase">
+      <div className="rounded-[8px] bg-[#FFB800] px-6 py-2.5 text-black shadow-[0_0_20px_rgba(255,184,0,0.2)] transition-colors duration-300 hover:bg-[#E0A200]">
+        <span className="font-sans text-[12px] font-bold uppercase tracking-widest">
           {children}
         </span>
       </div>
@@ -176,8 +176,8 @@ export const CTAButton = ({ children, href }: { children: React.ReactNode; href:
 // 1. Top Bar (Logo Only)
 export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="absolute top-0 left-0 w-full p-4 flex justify-center pointer-events-none md:hidden z-10">
-      <div className="pointer-events-auto  bg-[#0F0F0F]/80 backdrop-blur-2xl border border-white/10 rounded-md px-2 py-2 ">
+    <div className="pointer-events-none absolute left-0 top-0 z-10 flex w-full justify-center p-4 md:hidden">
+      <div className="pointer-events-auto  rounded-md border border-white/10 bg-[#0F0F0F]/80 p-2 backdrop-blur-2xl ">
         {children}
       </div>
     </div>
@@ -187,8 +187,8 @@ export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
 // 2. Bottom Dock (The Navigation)
 export const MobileBottomDock = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="absolute bottom-4 left-0 w-full flex justify-center pointer-events-none md:hidden z-50">
-      <div className="pointer-events-auto flex items-center gap-6 bg-[#0F0F0F]/80 backdrop-blur-2xl border border-white/10 rounded-md px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)]">
+    <div className="pointer-events-none absolute bottom-4 left-0 z-50 flex w-full justify-center md:hidden">
+      <div className="pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
         {children}
       </div>
     </div>
@@ -215,7 +215,7 @@ export const MobileMenuOverlay = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] md:hidden pointer-events-auto"
+            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
           />
 
           {/* Sheet - Slides up from bottom */}
@@ -224,10 +224,10 @@ export const MobileMenuOverlay = ({
             animate={{ y: '0%', opacity: 1 }}
             exit={{ y: '100%', opacity: 1 }}
             transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-            className="fixed bottom-0 left-0 right-0 z-[100] bg-[#111] border-t border-white/10 rounded-t-[2rem] p-8 md:hidden shadow-[0_-10px_40px_rgba(0,0,0,0.5)] pointer-events-auto min-h-[60vh]"
+            className="pointer-events-auto fixed inset-x-0 bottom-0 z-[100] min-h-[60vh] rounded-t-[2rem] border-t border-white/10 bg-[#111] p-8 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] md:hidden"
           >
             {/* Drag Handle */}
-            <div className="w-12 h-1 bg-white/10 rounded-full mx-auto mb-8" />
+            <div className="mx-auto mb-8 h-1 w-12 rounded-full bg-white/10" />
 
             {children}
           </motion.div>

@@ -23,18 +23,18 @@ export function OrganizationGrid({
   items
 }: OrganizationGridProps) {
   return (
-    <section className="py-24 bg-smatch-black relative">
+    <section className="relative bg-smatch-black py-24">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-heading text-4xl text-white font-bold mb-4 uppercase tracking-wide">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 font-heading text-4xl font-bold uppercase tracking-wide text-white">
             {title}
           </h2>
-          <p className="text-smatch-text-secondary text-lg max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-smatch-text-secondary">
             {subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <motion.div
               key={index}
