@@ -66,12 +66,12 @@ export function WhyChoose() {
 
         {/* Smart Grid Implementation */}
         <SmartGrid
-          items={WHY_CHOOSE_DATA.items.map((item) => ({
+          cards={WHY_CHOOSE_DATA.items.map((item) => ({
             id: item.code,
             title: item.title,
             description: item.description,
             icon: item.icon,
-            badge: item.code, // Pass the code as the badge
+            badge: item.code,
           }))}
           columns={3}
         />

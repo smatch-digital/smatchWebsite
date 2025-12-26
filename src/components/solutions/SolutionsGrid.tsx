@@ -15,7 +15,7 @@ interface SolutionDoc {
   slug: string
   heroSubtitle?: string | null
   description?: string | null
-  heroImage?: Media // Payload media type
+  heroImage?: Media | number | null // Payload media type or relation ID
   icon?: string | null // The string name of the icon (e.g., "Barcode")
 }
 
@@ -25,15 +25,14 @@ interface SolutionsGridProps {
 
 // --- Icon Mapping Strategy ---
 // Since CMS gives us a string "Barcode", we need to return the Component <Barcode />
-const getIconComponent = (iconName: string | null | undefined) => {
-  const icons: Record<string, React.ReactNode> = {
-    'Barcode': <Barcode />,
-    'Truck': <Truck />,
-    'Warehouse': <Warehouse />,
-    'Circuitry': <Cpu />,
-    'Globe': <Globe />,
-    // Add default fallback
-    'default': <Barcode />
+const getIconComponent = (iconName: string | null | undefined): React.ReactElement => {
+  const icons: Record<string, React.ReactElement> = {
+    'Barcode': <Barcode size={40} weight="duotone" />,
+    'Truck': <Truck size={40} weight="duotone" />,
+    'Warehouse': <Warehouse size={40} weight="duotone" />,
+    'Circuitry': <Cpu size={40} weight="duotone" />,
+    'Globe': <Globe size={40} weight="duotone" />,
+    'default': <Barcode size={40} weight="duotone" />
   }
   return icons[iconName || 'default'] || icons['default']
 }
@@ -44,9 +43,9 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
   const href = `/solutions/${data.slug}`
 
   // 2. Handle Image URL (Payload returns objects for media)
-  const imageUrl = typeof data.heroImage === 'string'
-    ? data.heroImage
-    : data.heroImage?.url || '/assets/placeholders/default-grid.jpg'
+  const imageUrl = typeof data.heroImage === 'object' && data.heroImage?.url
+    ? data.heroImage.url
+    : '/assets/placeholders/default-grid.jpg'
 
   // 3. Get the correct icon
   const icon = getIconComponent(data.icon)
@@ -77,7 +76,7 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
           <div className="flex flex-1 items-center justify-center">
             <div className="flex size-20 items-center justify-center rounded-[16px] border border-[#FFB800]/30 bg-[#1A1A1A]/80 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover:border-[#FFB800] group-hover:bg-[#FFB800]/10">
               <div className="text-[#FFB800]">
-                {React.cloneElement(icon as React.ReactElement, { size: 40, weight: 'duotone' })}
+                {icon}
               </div>
             </div>
           </div>

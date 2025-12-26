@@ -1,6 +1,6 @@
-import type { Block } from 'payload'
+import type { Block, Field } from 'payload'
 
-const memberFields = [
+const memberFields: Field[] = [
   {
     name: 'name',
     type: 'text',
@@ -49,7 +49,7 @@ const memberFields = [
       },
     ],
   },
-] as const
+]
 
 export const Team: Block = {
   slug: 'team',
