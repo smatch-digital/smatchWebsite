@@ -76,7 +76,7 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
             className="inline-flex items-center gap-2 mb-4"
           >
             <span className="text-yellow-500 font-mono text-sm tracking-wider font-bold">
-              {/// SYSTEM_MODULES}
+              {'/// SYSTEM_MODULES'}
             </span>
           </motion.div>
           <motion.h2
