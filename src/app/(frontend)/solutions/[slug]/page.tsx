@@ -42,7 +42,7 @@ type Args = {
 export default async function SolutionPage({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug } = await paramsPromise
-  
+
   if (!slug) return notFound()
 
   const decodedSlug = decodeURIComponent(slug)
@@ -55,22 +55,22 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   }
 
   // Extract data with type safety
-  const { 
-    title, 
-    // @ts-ignore
-    heroSubtitle, 
-    // @ts-ignore
-    heroImage, 
-    // @ts-ignore
-    problemTitle, 
-    // @ts-ignore
-    problemDescription, 
-    // @ts-ignore
-    terminalContent, 
-    // @ts-ignore
-    dashboardImage, 
-    // @ts-ignore
-    modules 
+  const {
+    title,
+    // @ts-expect-error
+    heroSubtitle,
+    // @ts-expect-error
+    heroImage,
+    // @ts-expect-error
+    problemTitle,
+    // @ts-expect-error
+    problemDescription,
+    // @ts-expect-error
+    terminalContent,
+    // @ts-expect-error
+    dashboardImage,
+    // @ts-expect-error
+    modules
   } = solution
 
   // Helper to get image URL
@@ -99,8 +99,8 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
-      <SolutionsHero 
-        title={title} 
+      <SolutionsHero
+        title={title}
         subtitle={heroSubtitle || undefined}
         image={heroImgUrl}
       />
@@ -127,7 +127,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug } = await paramsPromise
   if (!slug) return {}
-  
+
   const decodedSlug = decodeURIComponent(slug)
   const solution = await querySolutionBySlug({ slug: decodedSlug })
 

@@ -10,7 +10,7 @@ import type { Media } from '@/payload-types'
 // --- Types ---
 // Define what the data coming from Payload looks like
 interface SolutionDoc {
-  id: string
+  id: number
   title: string
   slug: string
   heroSubtitle?: string | null
