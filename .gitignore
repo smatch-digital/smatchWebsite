@@ -1,42 +1,74 @@
-build
-dist / media
-node_modules
-.DS_Store
-.env
-.next
-.vercel
-
-# Payload default media upload directory
-public/media/
-
-public/robots.txt
-public/sitemap*.xml
-
-
-# Playwright
+# -----------------------------------------------------------------------------
+# DEPENDENCIES
+# -----------------------------------------------------------------------------
 node_modules/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# -----------------------------------------------------------------------------
+# BUILD ARTIFACTS
+# -----------------------------------------------------------------------------
+.next/
+dist/
+build/
+*.tsbuildinfo
+
+# -----------------------------------------------------------------------------
+# ENVIRONMENT & SECRETS (CRITICAL)
+# -----------------------------------------------------------------------------
+.env
+.env*.local
+.env.production
+.env.development
+.env.test
+
+# -----------------------------------------------------------------------------
+# VERCEL
+# -----------------------------------------------------------------------------
+.vercel/
+
+# -----------------------------------------------------------------------------
+# PAYLOAD CMS
+# -----------------------------------------------------------------------------
+# Ignore the uploaded media files (local uploads), but keep the directory
+public/media/*
+!public/media/.gitkeep
+
+# -----------------------------------------------------------------------------
+# NEXT.JS & SEO
+# -----------------------------------------------------------------------------
+# Generated sitemaps and robots often built at runtime or build time
+# If you commit them, remove these lines. If generated, keep them.
+public/sitemap*.xml
+public/robots.txt
+
+# -----------------------------------------------------------------------------
+# IDE & TOOLS
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.figma/
+.trae/
+
+# -----------------------------------------------------------------------------
+# SYSTEM
+# -----------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# -----------------------------------------------------------------------------
+# TESTING (Playwright/Jest)
+# -----------------------------------------------------------------------------
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-.trae/documents/Fix Vercel Build Error (Sync Lockfile).md
-public/assets/solutions/rfid-scan.jpg
-public/assets/solutions/robot-arm.jpg
-public/assets/solutions/truck-cockpit.jpg
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Editor & System
-.idea
-.vscode/*.json
-!.vscode/extensions.json
-!.vscode/settings.json
-*.tsbuildinfo
-.trae/
-.figma/
-.figma/
+coverage/
