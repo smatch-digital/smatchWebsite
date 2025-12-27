@@ -17,8 +17,8 @@ export async function GET(req: NextRequest): Promise<Response> {
   const slug = searchParams.get('slug')
   const previewSecret = searchParams.get('previewSecret')
 
-  if (previewSecret !== process.env.PREVIEW_SECRET) {
-    return new Response('You are not allowed to preview this page', { status: 403 })
+  if (previewSecret !== process.env.NEXT_PUBLIC_PREVIEW_SECRET) {
+    return new Response('Invalid preview secret', { status: 403 })
   }
 
   if (!path || !collection || !slug) {
@@ -38,14 +38,14 @@ export async function GET(req: NextRequest): Promise<Response> {
     })
   } catch (error) {
     payload.logger.error({ err: error }, 'Error verifying token for live preview')
-    return new Response('You are not allowed to preview this page', { status: 403 })
+    return new Response('Error verifying token for live preview', { status: 403 })
   }
 
   const draft = await draftMode()
 
   if (!user) {
     draft.disable()
-    return new Response('You are not allowed to preview this page', { status: 403 })
+    return new Response('You are not allowed to preview this page (User not found)', { status: 403 })
   }
 
   // You can add additional checks here to see if the user is allowed to preview this page

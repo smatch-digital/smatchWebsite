@@ -63,6 +63,11 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      max: process.env.NODE_ENV === 'production' ? 1 : 10, // 1 connection per serverless function
+      min: 0,
+      idleTimeoutMillis: 10000,
+      connectionTimeoutMillis: 10000,
+      allowExitOnIdle: true, // Allow Node to exit if pool is idle
     },
   }),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
