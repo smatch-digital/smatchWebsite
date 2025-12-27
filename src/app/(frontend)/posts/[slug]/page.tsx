@@ -17,20 +17,23 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
-  const posts = await payload.find({
-    collection: 'posts',
-    draft: false,
-    limit: 1000,
-    overrideAccess: false,
-    pagination: false,
-    select: {
-      slug: true,
-    },
-  })
+  let params: { slug: string }[] = []
 
-  const params = posts.docs.map(({ slug }) => {
-    return { slug }
-  })
+  try {
+    const posts = await payload.find({
+      collection: 'posts',
+      draft: false,
+      limit: 1000,
+      overrideAccess: false,
+      pagination: false,
+      select: {
+        slug: true,
+      },
+    })
+    params = posts.docs.map(({ slug }) => ({ slug }))
+  } catch (error) {
+    console.warn('Failed to generate static params for posts:', error)
+  }
 
   return params
 }
