@@ -4,8 +4,8 @@ import { getPayload } from 'payload'
 import { ActivityTimelineBlock, TimelineItem } from '@/blocks/ActivityTimeline/Component'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 
-// Force dynamic rendering - prevents build-time DB query when table doesn't exist
-export const dynamic = 'force-dynamic'
+// Enable ISR (Incremental Static Regeneration) - Cache for 10 minutes
+export const revalidate = 600
 
 export const metadata: Metadata = {
     title: 'Journal des Opérations | Smatch Digital',
