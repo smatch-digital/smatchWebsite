@@ -66,7 +66,7 @@ export default buildConfig({
       max: process.env.NODE_ENV === 'production' ? 1 : 10, // 1 connection per serverless function
       min: 0,
       idleTimeoutMillis: 10000,
-      connectionTimeoutMillis: 10000,
+      connectionTimeoutMillis: 60000,
       allowExitOnIdle: true, // Allow Node to exit if pool is idle
     },
   }),
