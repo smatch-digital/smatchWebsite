@@ -55,17 +55,24 @@ export function Journal({ articles }: JournalProps) {
   const targetRef = useRef<HTMLDivElement>(null)
   const displayArticles = articles && articles.length > 0 ? articles : FALLBACK_ARTICLES
 
+  // Logic: Adjust scroll height based on item count.
+  // If few items (<= 2), utilize less vertical space because we need less horizontal travel.
+  // Standard height is 300vh for a rich feed.
+  const itemCount = displayArticles.length
+  const sectionHeight = itemCount <= 1 ? 'h-[150vh]' : itemCount <= 2 ? 'h-[200vh]' : 'h-[300vh]'
+
   // Track scroll progress
   const { scrollYProgress } = useScroll({
     target: targetRef,
   })
 
   // Transform vertical scroll to horizontal movement
-  const scrollAmount = displayArticles.length > 3 ? `-${(displayArticles.length - 2) * 20}%` : '-20%'
+  // If only 1 item, we might hardly scroll at all horizontally, or just a tiny bit.
+  const scrollAmount = itemCount > 3 ? `-${(itemCount - 2) * 20}%` : itemCount <= 1 ? '0%' : '-20%'
   const x = useTransform(scrollYProgress, [0, 1], ['0%', scrollAmount])
 
   return (
-    <section ref={targetRef} className="relative h-[300vh] bg-[#050505]">
+    <section ref={targetRef} className={`relative ${sectionHeight} bg-[#050505]`}>
       {/* Sticky Viewport */}
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         {/* Header */}
@@ -104,7 +111,7 @@ export function Journal({ articles }: JournalProps) {
             {displayArticles.map((article, index) => (
               <Link
                 href={article.linkUrl}
-                key={article.id}
+                key={`${article.id}-${index}`}
                 className="group relative flex h-full w-[85vw] min-w-[300px] flex-col justify-between border-r border-white/10 px-8 first:pl-0 md:w-[35vw] lg:w-[30vw]"
               >
                 {/* Image Area */}

@@ -25,7 +25,7 @@ export const TrustedByBlock: React.FC<Props> = ({ title, partners }) => {
     const displayPartners = [...partnersList, ...partnersList, ...partnersList, ...partnersList]
 
     return (
-        <section className="mx-auto border-y border-smatch-border/30 bg-smatch-black py-12 overflow-hidden">
+        <section className="mx-auto overflow-hidden border-y border-smatch-border/30 bg-smatch-black py-12">
             <div className="container mx-auto px-4">
                 <div className="mb-8 text-center">
                     <span className="font-mono text-sm uppercase tracking-[0.2em] text-smatch-text-muted">
@@ -33,10 +33,10 @@ export const TrustedByBlock: React.FC<Props> = ({ title, partners }) => {
                     </span>
                 </div>
 
-                <div className="relative w-full overflow-hidden mask-gradient-x">
+                <div className="mask-gradient-x relative w-full overflow-hidden">
                     {/* Gradient Masks ensuring seamless edges */}
-                    <div className="absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-smatch-black to-transparent pointer-events-none" />
-                    <div className="absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-smatch-black to-transparent pointer-events-none" />
+                    <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-smatch-black to-transparent" />
+                    <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-smatch-black to-transparent" />
 
                     {/* Marquee Track */}
                     <div className="flex w-max animate-scroll gap-12 md:gap-20">

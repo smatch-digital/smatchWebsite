@@ -146,7 +146,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
 
                     {/* Full Description (Rich Text) */}
                     {project.fullDescription && (
-                        <div className="prose prose-invert prose-lg max-w-none">
+                        <div className="prose prose-lg prose-invert max-w-none">
                             <RichText data={project.fullDescription} />
                         </div>
                     )}
@@ -182,7 +182,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             />
                                             {item.caption && (
-                                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
                                                     <p className="text-sm text-white">{item.caption}</p>
                                                 </div>
                                             )}

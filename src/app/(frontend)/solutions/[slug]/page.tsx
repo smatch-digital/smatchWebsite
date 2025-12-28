@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
     })
 
     return solutions.docs.map(({ slug }) => ({ slug }))
-  } catch (error) {
+  } catch (_error) {
     return []
   }
 }
@@ -67,25 +67,30 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   } = solution
 
   // Helper to get image URL
-  const getImageUrl = (media: any) => {
+  const getImageUrl = (media: unknown) => {
     if (!media) return null
     if (typeof media === 'string') return media
-    return media.url
+    if (typeof media === 'object' && media !== null && 'url' in media) return (media as { url: string }).url
+    return null
   }
 
   const heroImgUrl = getImageUrl(heroImage)
   const dashboardImgUrl = getImageUrl(dashboardImage)
 
   // Format terminal lines
-  const terminalLines = terminalContent?.map((item: any) => item.line) || []
+  const terminalLines = Array.isArray(terminalContent)
+    ? terminalContent.map((item) => item.line).filter((line): line is string => typeof line === 'string')
+    : []
 
   // Format modules
-  const formattedModules = modules?.map((mod: any) => ({
-    title: mod.title,
-    description: mod.description,
-    icon: mod.icon,
-    badge: mod.badge
-  })) || []
+  const formattedModules = Array.isArray(modules)
+    ? modules.map((mod) => ({
+      title: mod.title || '',
+      description: mod.description || '',
+      icon: mod.icon || '',
+      badge: mod.badge || ''
+    }))
+    : []
 
   return (
     <article className="min-h-screen bg-smatch-black">
@@ -147,7 +152,7 @@ const querySolutionBySlug = cache(async ({ slug }: { slug: string }) => {
     })
 
     return result.docs?.[0] || null
-  } catch (error) {
+  } catch (_error) {
     return null
   }
 })

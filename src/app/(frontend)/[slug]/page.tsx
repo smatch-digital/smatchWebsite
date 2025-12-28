@@ -36,7 +36,7 @@ export async function generateStaticParams() {
       })
 
     return params
-  } catch (error) {
+  } catch (_error) {
     return []
   }
 }
@@ -115,7 +115,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     })
 
     return result.docs?.[0] || null
-  } catch (error) {
+  } catch (_error) {
     return null
   }
 })

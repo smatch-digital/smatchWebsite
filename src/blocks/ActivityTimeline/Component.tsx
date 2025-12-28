@@ -92,7 +92,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="group relative flex gap-8"
+            className="group relative flex flex-col gap-6 md:flex-row md:gap-8" // UPDATED: Stack on mobile
         >
             {/* Timeline Line & Dot */}
             <div className="relative flex flex-col items-center">
@@ -100,10 +100,14 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                     }`}>
                     {item.status === 'upcoming' && <span className="size-2 rounded-full bg-black" />}
                 </div>
-                <div className="absolute top-4 h-full w-px bg-white/10" />
+                {/* Mobile Date when stacked */}
+                <div className="flex flex-col md:hidden">
+                    <span className="font-mono text-xs font-bold text-white">{formattedDate}</span>
+                </div>
+                <div className="absolute left-[7px] top-4 hidden h-full w-px bg-white/10 md:block" />
             </div>
 
-            {/* Date & Location Column */}
+            {/* Date & Location Column (Desktop) */}
             <div className="hidden w-32 shrink-0 flex-col pt-0.5 md:flex">
                 <span className="font-mono text-sm font-bold text-white">{formattedDate}</span>
                 {item.location && (
@@ -119,7 +123,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
             </div>
 
             {/* Main Card */}
-            <Link href={href} className="mb-8 flex flex-1 overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] transition-all duration-300 hover:border-[#FFB800]/50 hover:bg-[#111]">
+            <Link href={href} className="mb-8 flex w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] transition-all duration-300 hover:border-[#FFB800]/50 hover:bg-[#111] md:flex-row">
                 {/* Image */}
                 {imageUrl ? (
                     <div className="relative hidden w-1/3 min-w-[200px] md:block">
@@ -131,7 +135,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                         />
                     </div>
                 ) : (
-                    <div className="relative hidden w-1/3 min-w-[200px] items-center justify-center bg-[#111] md:flex">
+                    <div className="relative hidden h-48 w-full items-center justify-center bg-[#111] md:flex md:h-auto md:w-1/3 md:min-w-[200px]">
                         {item.type === 'event' ? (
                             <Users size={48} weight="thin" className="text-gray-700" />
                         ) : (
@@ -141,7 +145,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                 )}
 
                 {/* Content */}
-                <div className="flex flex-1 flex-col justify-between p-6">
+                <div className="flex flex-1 flex-col w-full justify-between p-6">
                     <div>
                         <StatusBadge status={item.status} />
 
@@ -157,7 +161,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                     </div>
 
                     {/* Bottom Row: Metadata + CTA */}
-                    <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         {/* Metadata Pills */}
                         {item.metadata && item.metadata.length > 0 && (
                             <div className="flex flex-wrap gap-2">
@@ -173,7 +177,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                         )}
 
                         {/* CTA Button */}
-                        <button className="ml-auto flex items-center gap-2 rounded border border-[#FFB800] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800] transition-all hover:bg-[#FFB800] hover:text-black">
+                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFB800] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800] transition-all hover:bg-[#FFB800] hover:text-black md:ml-auto md:mt-auto">
                             {item.linkLabel || 'Voir les détails'}
                             <ArrowRight size={12} weight="bold" />
                         </button>
@@ -203,16 +207,16 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
     }, [filteredItems])
 
     return (
-        <section className="relative w-full overflow-hidden bg-[#050505] py-24">
+        <section className="relative w-full overflow-hidden bg-[#050505] py-16 md:py-24">
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header with Filters */}
-                <div className="mb-16 flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-6 md:flex-row md:items-center">
+                <div className="mb-12 flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-6 md:mb-16 md:flex-row md:items-center">
                     <div className="flex items-center gap-4">
                         <h2 className="font-heading text-lg font-bold uppercase tracking-widest text-white md:text-xl">
                             {title}
                         </h2>
                         <div className="flex items-center gap-2">
-                            <div className="h-px w-8 bg-gray-700" />
+                            <div className="hidden h-px w-8 bg-gray-700 md:block" />
                             <div className="relative flex size-2.5">
                                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
                                 <span className="relative inline-flex size-2.5 rounded-full bg-[#FFB800]" />
@@ -225,7 +229,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
 
                     {/* Filter Tabs */}
                     {showFilters && (
-                        <div className="flex gap-6 font-mono text-sm uppercase tracking-widest">
+                        <div className="flex w-full gap-6 overflow-x-auto font-mono text-xs uppercase tracking-widest md:w-auto md:text-sm">
                             <button
                                 onClick={() => setActiveFilter('all')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'all'
@@ -265,7 +269,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="relative pl-4 md:pl-0"
+                        className="relative pl-0 md:pl-0"
                     >
                         {sortedItems.length > 0 ? (
                             sortedItems.map((item, index) => (

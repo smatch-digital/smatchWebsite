@@ -28,7 +28,7 @@ export default async function SolutionsPage() {
     },
   })
 
-  // @ts-ignore
+
   return (
     <main className="flex w-full flex-col">
       <SolutionsHero />

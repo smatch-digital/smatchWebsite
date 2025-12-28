@@ -10,7 +10,7 @@ import { cn } from '@/utilities/ui'
 export interface SystemModule {
   title: string
   description: string
-  icon: keyof typeof PhosphorIcons
+  icon: string
   badge: string
 }
 

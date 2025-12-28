@@ -23,7 +23,7 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.6 }}
       onMouseMove={handleMouseMove}
-      className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0F0F0F] p-8 transition-colors duration-500 hover:border-[#FFB800]/50"
+      className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0F0F0F] p-6 transition-colors duration-500 hover:border-[#FFB800]/50 md:p-8"
     >
       {/* Glow Effect */}
       <motion.div
@@ -51,7 +51,7 @@ const TerminalTag = ({ text }: { text: string }) => {
       <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'>_'}</span>
 
       {/* Text */}
-      <span className="font-mono text-[10px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white">
+      <span className="font-mono text-[9px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white md:text-[10px]">
         {text}
       </span>
 
@@ -78,52 +78,52 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
 
   const headerTitle = sectionHeader?.title || 'Notre ADN'
   const headerSubtitle = sectionHeader?.subtitle || 'Corporate Identity'
-  
+
   const coreText = core?.text || 'Innovation Continue'
 
   const safeNodes = nodes || []
 
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-32">
+    <section className="relative overflow-hidden bg-[#050505] py-20 md:py-32">
 
       {/* Background Tech Grid */}
       <div className="pointer-events-none absolute inset-0 opacity-10"
-           style={{
-             backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
-             backgroundSize: '40px 40px',
-             maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)'
-           }}
+        style={{
+          backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          maskImage: 'radial-gradient(circle at center, black 40%, transparent 80%)'
+        }}
       />
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="grid grid-cols-1 items-center gap-20 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
           {/* Left Column: Cards */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6 md:gap-8">
             {/* Section Heading */}
             <div className="mb-2">
-              <span className="mb-4 block pl-1 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#FFB800]">
+              <span className="mb-2 block pl-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-smatch-gold md:mb-4 md:text-xs">
                 {headerSubtitle}
               </span>
-              <h2 className="font-heading text-4xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">
+              <h2 className="font-heading text-3xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">
                 {/* Handle splitting if "ADN" needs color, for now standard text */}
                 {headerTitle.includes('ADN') ? (
-                    <>
-                        {headerTitle.replace('ADN', '')} <span className="text-[#FFB800]">ADN</span>
-                    </>
+                  <>
+                    {headerTitle.replace('ADN', '')} <span className="text-[#FFB800]">ADN</span>
+                  </>
                 ) : (
-                    headerTitle
+                  headerTitle
                 )}
               </h2>
             </div>
 
             {/* Mission Card */}
             <GlowCard>
-              <div className="flex flex-col items-start gap-8 sm:flex-row">
+              <div className="flex flex-col items-start gap-6 sm:flex-row md:gap-8">
                 {/* Icon Box */}
                 <div className="group relative shrink-0">
-                  <div className="flex size-[60px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800]">
-                    <Target size={32} weight="duotone" className='text-smatch-gold'/>
+                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800] md:size-[60px]">
+                    <Target size={24} weight="duotone" className='text-smatch-gold md:text-[32px]' />
                   </div>
                   {/* Connector Line */}
                   <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
@@ -134,14 +134,14 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                   <TerminalTag text={missionSubtitle} />
 
                   {/* Title */}
-                  <h3 className="mb-4 font-heading text-3xl font-bold uppercase leading-none text-white">
+                  <h3 className="mb-2 font-heading text-2xl font-bold uppercase leading-none text-white md:mb-4 md:text-3xl">
                     {missionTitle}
                   </h3>
 
                   {/* Description */}
                   <div className="border border-white/5 bg-smatch-surface/20 group-hover:border-[#FFB800]/50">
-                    <p className="px-4 py-1.5 font-mono text-sm text-white/40">
-                      <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'> '}</span>
+                    <p className="px-3 py-1.5 font-mono text-xs text-white/40 md:px-4 md:text-sm">
+                      <span className="select-none font-mono text-[10px] font-bold text-[#FFB800] md:text-xs">{'> '}</span>
                       {missionDesc}
                     </p>
                   </div>
@@ -151,11 +151,11 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
 
             {/* Vision Card */}
             <GlowCard delay={0.2}>
-              <div className="flex flex-col items-start gap-8 sm:flex-row">
+              <div className="flex flex-col items-start gap-6 sm:flex-row md:gap-8">
                 {/* Icon Box */}
                 <div className="group relative shrink-0">
-                  <div className="flex size-[60px] items-center justify-center  rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800]">
-                    <Eye size={32} weight="duotone" className='text-smatch-gold' />
+                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800] md:size-[60px]">
+                    <Eye size={24} weight="duotone" className='text-smatch-gold md:text-[32px]' />
                   </div>
                   <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
 
@@ -166,12 +166,12 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                   <TerminalTag text={visionSubtitle} />
 
                   {/* Title */}
-                  <h3 className="mb-4 font-heading text-3xl font-bold uppercase leading-none text-white">
+                  <h3 className="mb-2 font-heading text-2xl font-bold uppercase leading-none text-white md:mb-4 md:text-3xl">
                     {visionTitle}
                   </h3>
 
                   {/* Description */}
-                  <p className="max-w-lg border-l-2 border-white/5 pl-4 font-sans text-sm leading-relaxed text-gray-400 transition-colors duration-500 group-hover:border-[#FFB800]">
+                  <p className="max-w-lg border-l-2 border-white/5 pl-4 font-sans text-xs leading-relaxed text-gray-400 transition-colors duration-500 group-hover:border-[#FFB800] md:text-sm">
                     {visionDesc}
                   </p>
                 </div>
@@ -180,7 +180,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
           </div>
 
           {/* Right Column: Animated Diagram */}
-          <div className="relative flex  h-[600px] w-full items-center justify-center">
+          <div className="relative flex h-[400px] w-full items-center justify-center md:h-[600px]">
 
             {/* Central Core */}
             <motion.div
@@ -188,7 +188,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative z-20 flex size-48 flex-col items-center justify-center rounded-full p-6 text-center"
+              className="relative z-20 flex size-32 flex-col items-center justify-center rounded-full p-4 text-center md:size-48 md:p-6"
             >
               {/* Core Glows */}
               <div className="absolute inset-0 animate-pulse rounded-full bg-[#FFB800]/5 blur-2xl" />
@@ -196,13 +196,13 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
               <div className="absolute inset-4 animate-[spin_10s_linear_infinite] rounded-full border border-dashed border-[#FFB800]/10" />
 
               <div className="relative z-10 ">
-                <div className="mb-3 flex justify-center text-[#FFB800] drop-shadow-[0_0_10px_rgba(255,184,0,0.5)]">
-                  <Cube size={48} weight="fill" />
+                <div className="mb-2 flex justify-center text-[#FFB800] drop-shadow-[0_0_10px_rgba(255,184,0,0.5)] md:mb-3">
+                  <Cube size={32} weight="fill" className="md:size-[48px]" />
                 </div>
-                <span className="font-heading text-lg font-bold uppercase leading-tight tracking-wider text-white">
+                <span className="font-heading text-sm font-bold uppercase leading-tight tracking-wider text-white md:text-lg">
                   {coreText.split(' ').map((word, i) => (
                     <React.Fragment key={i}>
-                      {word}<br/>
+                      {word}<br />
                     </React.Fragment>
                   ))}
                 </span>
@@ -217,23 +217,23 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
             >
               {safeNodes.map((node, i) => {
                 const Icon = NODE_ICONS[i % NODE_ICONS.length]
-                
+
                 // Position logic based on index (0=top, 1=right, 2=bottom, 3=left)
                 let positionClass = ''
                 let connectionLine = null
 
                 if (i === 0) {
-                    positionClass = "top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2"
-                    connectionLine = <div className="absolute left-1/2 top-full z-0 h-[140px] w-px bg-gradient-to-b from-[#FFB800]/50 to-transparent" />
+                  positionClass = "top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  connectionLine = <div className="absolute left-1/2 top-full z-0 h-[80px] w-px bg-gradient-to-b from-[#FFB800]/50 to-transparent md:h-[140px]" />
                 } else if (i === 1) {
-                    positionClass = "top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2"
-                    connectionLine = <div className="absolute right-full top-1/2 h-px w-[100px] bg-gradient-to-r from-[#FFB800]/50 to-transparent" />
+                  positionClass = "top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2"
+                  connectionLine = <div className="absolute right-full top-1/2 h-px w-[60px] bg-gradient-to-r from-[#FFB800]/50 to-transparent md:w-[100px]" />
                 } else if (i === 2) {
-                    positionClass = "bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2"
-                    connectionLine = <div className="absolute bottom-full left-1/2 h-[140px] w-px bg-gradient-to-t from-[#FFB800]/50 to-transparent" />
+                  positionClass = "bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2"
+                  connectionLine = <div className="absolute bottom-full left-1/2 h-[80px] w-px bg-gradient-to-t from-[#FFB800]/50 to-transparent md:h-[140px]" />
                 } else if (i === 3) {
-                    positionClass = "top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2"
-                    connectionLine = <div className="absolute left-full top-1/2 h-px w-[100px] bg-gradient-to-l from-[#FFB800]/50 to-transparent" />
+                  positionClass = "top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2"
+                  connectionLine = <div className="absolute left-full top-1/2 h-px w-[60px] bg-gradient-to-l from-[#FFB800]/50 to-transparent md:w-[100px]" />
                 }
 
                 return (
@@ -241,11 +241,11 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                     <motion.div
                       animate={{ rotate: -360 }}
                       transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                      className="relative z-10 w-40 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-4 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+                      className="relative z-10 w-28 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-2 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] md:w-40 md:p-4"
                     >
-                      <span className="mb-2 block font-mono text-[10px] uppercase text-[#FFB800]">{node.label}</span>
-                      <div className="flex items-center justify-center gap-2 text-xs font-bold uppercase text-white">
-                        <Icon size={16} className="text-[#FFB800]" />
+                      <span className="mb-1 block font-mono text-[8px] uppercase text-[#FFB800] md:mb-2 md:text-[10px]">{node.label}</span>
+                      <div className="flex items-center justify-center gap-1 text-[10px] font-bold uppercase text-white md:gap-2 md:text-xs">
+                        <Icon size={12} className="text-[#FFB800] md:size-[16px]" />
                         {node.text}
                       </div>
                     </motion.div>

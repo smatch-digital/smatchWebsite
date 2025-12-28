@@ -18,12 +18,12 @@ export default function Error({
     return (
         <div className="container flex min-h-[70vh] flex-col items-center justify-center py-28 text-center">
             <div className="relative mb-8">
-                <div className="border-smatch-error flex size-24 animate-pulse items-center justify-center rounded-full border-2">
+                <div className="flex size-24 animate-pulse items-center justify-center rounded-full border-2 border-error">
                     <span className="text-4xl">⚠️</span>
                 </div>
             </div>
 
-            <h2 className="text-smatch-error mb-4 font-heading text-4xl">CRITICAL SYSTEM MALFUNCTION</h2>
+            <h2 className="mb-4 font-heading text-4xl text-error">CRITICAL SYSTEM MALFUNCTION</h2>
 
             <p className="mb-8 max-w-md text-smatch-text-secondary">
                 An unexpected anomaly has been detected in the core logic. Our engineers have been notified
@@ -36,7 +36,7 @@ export default function Error({
                 </Button>
                 <Button
                     onClick={() => (window.location.href = '/')}
-                    className="bg-smatch-error text-white hover:bg-red-700"
+                    className="bg-error text-white hover:bg-red-700"
                 >
                     EMERGENCY EXIT
                 </Button>
