@@ -24,7 +24,7 @@ export function UIReveal({ image, className }: UIRevealProps) {
           className="flex flex-col items-center"
         >
           <div className="mx-auto mb-8 w-full max-w-7xl">
-            <p className="text-smatch-brand mb-4 font-mono text-xs uppercase tracking-widest">
+            <p className="text-smatch-gold mb-4 font-mono text-xs uppercase tracking-widest">
               {'/// UI_REVEAL'}
             </p>
           </div>

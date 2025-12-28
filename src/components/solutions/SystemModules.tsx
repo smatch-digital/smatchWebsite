@@ -48,7 +48,7 @@ const cardVariants = {
 const DynamicIcon = ({ name, className }: { name: string; className?: string }) => {
   // Safe cast to access icon by string key
   // Phosphor icons are usually PascalCase (e.g. "House", "User")
-  const IconComponent = (PhosphorIcons as any)[name]
+  const IconComponent = (PhosphorIcons as unknown as Record<string, React.ElementType>)[name]
 
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found in @phosphor-icons/react`)

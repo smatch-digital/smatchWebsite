@@ -1,7 +1,7 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
-export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
-  await db.execute(sql`
+export async function up({ db }: MigrateUpArgs): Promise<void> {
+	await db.execute(sql`
    DO $$ BEGIN
  CREATE TYPE "public"."enum_pages_hero_links_link_type" AS ENUM('reference', 'custom');
 EXCEPTION
@@ -2646,8 +2646,8 @@ END $$;
   CREATE INDEX IF NOT EXISTS "footer_rels_posts_id_idx" ON "footer_rels" USING btree ("posts_id");`)
 }
 
-export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
-  await db.execute(sql`
+export async function down({ db }: MigrateDownArgs): Promise<void> {
+	await db.execute(sql`
    DROP TABLE IF EXISTS "pages_hero_links" CASCADE;
   DROP TABLE IF EXISTS "pages_blocks_cta_links" CASCADE;
   DROP TABLE IF EXISTS "pages_blocks_cta" CASCADE;

@@ -72,3 +72,10 @@ desktop.ini
 /blob-report/
 /playwright/.cache/
 coverage/
+.cursorrules
+content/big_data_data_analysis_content.pdf
+content/industrie_4_0_iot_content.pdf
+content/solutions_metiers_content.pdf
+lint_final.json
+lint_report_new.json
+lint_results.txt
