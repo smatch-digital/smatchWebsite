@@ -67,17 +67,18 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-  db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || '',
-      // Use DB_POOL_MAX env var, fallback to 10 for builds, 1 for serverless runtime
-      max: parseInt(process.env.DB_POOL_MAX || '10', 10),
-      min: 0,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 10000,
-      allowExitOnIdle: true, // Allow Node to exit if pool is idle
-    },
-  }),
+// src/payload.config.ts
+db: postgresAdapter({
+  pool: {
+    connectionString: process.env.DATABASE_URI || '',
+    // Change 1 to 4 (or at least 2)
+    max: process.env.NODE_ENV === 'production' ? 4 : 10,
+    min: 0,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 60000,
+    allowExitOnIdle: true,
+  },
+}),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
