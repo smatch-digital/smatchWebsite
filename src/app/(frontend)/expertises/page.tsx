@@ -66,7 +66,7 @@ export default function ExpertisePage() {
           </div>
 
           <h1 className="font-heading text-6xl md:text-8xl font-black uppercase tracking-tighter text-white mb-6">
-            Domaines <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">D'Excellence.</span>
+            Domaines <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">D&apos;Excellence.</span>
           </h1>
 
           <div className="h-[1px] w-24 bg-[#FFB800] mx-auto mb-6" />
@@ -89,11 +89,11 @@ export default function ExpertisePage() {
             <div className="order-2 lg:order-1">
               <SectionTag number="01" title="ZONES D'USINE" />
               <h2 className="font-heading text-5xl md:text-6xl font-bold uppercase leading-[0.9] mb-6">
-                L'Automatisation <br/>
+                L&apos;Automatisation <br/>
                 <span className="text-white/40">Intelligente.</span>
               </h2>
               <p className="text-gray-400 leading-relaxed max-w-md border-l-2 border-white/10 pl-6">
-                Accélérez votre transformation vers l'Industrie 4.0. De la logistique à la ligne de production, nous déployons l'intelligence au cœur de la machine.
+                Accélérez votre transformation vers l&apos;Industrie 4.0. De la logistique à la ligne de production, nous déployons l&apos;intelligence au cœur de la machine.
               </p>
 
               <FeatureList items={[
@@ -163,7 +163,7 @@ export default function ExpertisePage() {
                 <span className="text-white/40">Du Vivant.</span>
               </h2>
               <p className="text-gray-400 leading-relaxed max-w-md border-l-2 border-white/10 pl-6">
-                Des solutions adaptées au contexte agricole Marocain et aux défis de l'élevage moderne.
+                Des solutions adaptées au contexte agricole Marocain et aux défis de l&apos;élevage moderne.
               </p>
 
               <FeatureList items={[
@@ -192,7 +192,7 @@ export default function ExpertisePage() {
                     <span className="text-white/40">De la donnée.</span>
                 </h2>
                 <p className="max-w-xl text-gray-400 font-mono text-sm">
-                    "Transformez vos données brutes en décisions stratégiques grâce à l'IA et la simulation."
+                    &quot;Transformez vos données brutes en décisions stratégiques grâce à l&apos;IA et la simulation.&quot;
                 </p>
             </div>
 
@@ -218,13 +218,13 @@ export default function ExpertisePage() {
                  <div className="group border-l border-white/10 pl-8 py-2 hover:border-[#FFB800] transition-colors duration-500">
                     <h3 className="mb-3 font-mono text-[#FFB800] text-xs font-bold tracking-widest">02. INTELLIGENCE ARTIFICIELLE :</h3>
                     <h4 className="text-lg font-bold text-gray-300 mb-2 group-hover:text-white transition-colors">Modélisation & NLP</h4>
-                    <p className="text-xs text-gray-500 font-mono leading-relaxed">Modélisation prédictive, NLP et Computer Vision pour automatiser l'analyse.</p>
+                    <p className="text-xs text-gray-500 font-mono leading-relaxed">Modélisation prédictive, NLP et Computer Vision pour automatiser l&apos;analyse.</p>
                 </div>
                  {/* Col 3 */}
                  <div className="group border-l border-white/10 pl-8 py-2 hover:border-[#FFB800] transition-colors duration-500">
                     <h3 className="mb-3 font-mono text-[#FFB800] text-xs font-bold tracking-widest">03. SIMULATION 3D :</h3>
                     <h4 className="text-lg font-bold text-gray-300 mb-2 group-hover:text-white transition-colors">Jumeaux Numériques</h4>
-                    <p className="text-xs text-gray-500 font-mono leading-relaxed">Jumeaux numériques pour l'optimisation des flux et tests de scénarios sans risque.</p>
+                    <p className="text-xs text-gray-500 font-mono leading-relaxed">Jumeaux numériques pour l&apos;optimisation des flux et tests de scénarios sans risque.</p>
                 </div>
             </div>
         </div>

@@ -138,7 +138,7 @@ export const IconGallery: React.FC = () => {
 
                 {filteredIcons.length === 0 && (
                     <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
-                        No icons found matching "{search}"
+                        No icons found matching &quot;{search}&quot;
                     </div>
                 )}
             </div>

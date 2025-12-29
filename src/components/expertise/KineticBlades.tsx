@@ -170,7 +170,7 @@ export function KineticBlades() {
                         />
 
                         {/* 3. Grid Pattern Overlay */}
-                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20" />
+                        <div className="pointer-events-none absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(to right, #80808012 1px, transparent 1px), linear-gradient(to bottom, #80808012 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
                         {/* 4. Active Glow (Gold/Color) */}
                         <div
