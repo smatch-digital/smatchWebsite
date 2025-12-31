@@ -59,11 +59,11 @@ export function ExpertiseHero({
           className="flex flex-col items-center"
         >
           {/* Typography */}
-          <h1 className="mb-6 max-w-5xl font-heading text-8xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
+          <h1 className="mb-6 max-w-5xl font-heading text-6xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
             {title}
           </h1>
 
-          <p className="mb-10 max-w-2xl text-lg font-light text-white md:text-xl">
+          <p className="mb-10 max-w-2xl text-sm font-light text-white md:text-xl">
             {subtitle}
           </p>
         </motion.div>
