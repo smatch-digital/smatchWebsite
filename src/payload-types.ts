@@ -1141,7 +1141,16 @@ export interface IntroBlock {
 export interface JournalBlock {
   title?: string | null;
   liveFeedText?: string | null;
+  populateBy?: ('latest' | 'selection') | null;
+  /**
+   * Nombre maximum d'éléments à afficher
+   */
   limit?: number | null;
+  filterByType?: ('all' | 'project' | 'event') | null;
+  /**
+   * Choisissez les projets/événements à afficher
+   */
+  selectedItems?: (number | Project)[] | null;
   manualItems?:
     | {
         title: string;
@@ -1932,7 +1941,10 @@ export interface IntroBlockSelect<T extends boolean = true> {
 export interface JournalBlockSelect<T extends boolean = true> {
   title?: T;
   liveFeedText?: T;
+  populateBy?: T;
   limit?: T;
+  filterByType?: T;
+  selectedItems?: T;
   manualItems?:
     | T
     | {
