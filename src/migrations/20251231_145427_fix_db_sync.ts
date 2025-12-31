@@ -18,6 +18,54 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
      END IF;
    END$$;
 
+   CREATE TABLE IF NOT EXISTS "pages_blocks_journal" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar DEFAULT 'JOURNAL DES OPÉRATIONS',
+  	"live_feed_text" varchar DEFAULT 'LIVE FEED',
+  	"limit" numeric DEFAULT 5,
+  	"block_name" varchar
+  );
+
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_journal" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar DEFAULT 'JOURNAL DES OPÉRATIONS',
+  	"live_feed_text" varchar DEFAULT 'LIVE FEED',
+  	"limit" numeric DEFAULT 5,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+
+  CREATE TABLE IF NOT EXISTS "pages_blocks_journal_manual_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"description" varchar,
+  	"meta" varchar,
+  	"link_text" varchar,
+  	"link_url" varchar,
+  	"image_id" integer
+  );
+
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_journal_manual_items" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"description" varchar,
+  	"meta" varchar,
+  	"link_text" varchar,
+  	"link_url" varchar,
+  	"image_id" integer,
+  	"_uuid" varchar
+  );
+
    CREATE TABLE IF NOT EXISTS "pages_blocks_contact_addresses" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
