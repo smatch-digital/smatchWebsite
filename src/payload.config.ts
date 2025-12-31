@@ -73,7 +73,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
       // Change 1 to 4 (or at least 2)
-      max: process.env.NODE_ENV === 'production' ? 4 : 2,
+      max: process.env.NODE_ENV === 'production' ? 4 : 8,
       min: 0,
       idleTimeoutMillis: 10000,
       connectionTimeoutMillis: 60000,
