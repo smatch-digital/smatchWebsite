@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 import configPromise from '@payload-config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
@@ -22,7 +22,9 @@ export default async function Page() {
     return (
       <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-center bg-smatch-black p-4 font-sans text-smatch-text-primary">
         <h1 className="mb-4 text-2xl font-bold text-smatch-gold">Setup Required</h1>
-        <p className="mb-8 text-gray-400">The &quot;Home&quot; page has not been created in the CMS yet.</p>
+        <p className="mb-8 text-gray-400">
+          The &quot;Home&quot; page has not been created in the CMS yet.
+        </p>
         <div className="rounded-lg border border-white/10 bg-white/5 p-6">
           <p>Please run the seed script or create a page with slug &quot;home&quot;.</p>
         </div>

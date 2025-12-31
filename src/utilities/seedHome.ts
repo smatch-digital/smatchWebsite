@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 
 export const seedHome = async (): Promise<void> => {
     const payload = await getPayload({ config: configPromise })

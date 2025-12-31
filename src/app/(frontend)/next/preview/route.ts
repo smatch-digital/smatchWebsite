@@ -1,5 +1,5 @@
 import type { CollectionSlug, PayloadRequest } from 'payload'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 
 import { draftMode } from 'next/headers'
 import { redirect } from 'next/navigation'

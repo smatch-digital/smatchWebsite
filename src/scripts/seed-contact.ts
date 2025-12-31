@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 import configPromise from '@payload-config'
 
 async function seedContact() {

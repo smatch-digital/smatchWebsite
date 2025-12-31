@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 import configPromise from '@payload-config'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
@@ -22,16 +22,15 @@ export default async function SolutionsPage() {
       title: true,
       slug: true,
       heroSubtitle: true, // Assuming this maps to your "subtitle"
-      description: true,  // Assuming you have a short description field
-      icon: true,         // We need the icon name string
-      heroImage: true,    // For the card background
+      description: true, // Assuming you have a short description field
+      icon: true, // We need the icon name string
+      heroImage: true, // For the card background
     },
   })
 
-
   return (
     <main className="flex w-full flex-col">
-      <SolutionsHero image={'/assets/hero/SolutionHero.webp'}/>
+      <SolutionsHero image={'/assets/hero/SolutionHero.webp'} />
       {/* 3. Pass the fetched data to the Grid */}
       <SolutionsGrid solutions={solutions} />
       <SolutionsCTA />

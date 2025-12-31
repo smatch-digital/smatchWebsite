@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { getPayload } from '@/getPayload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
@@ -63,14 +63,15 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     problemDescription,
     terminalContent,
     dashboardImage,
-    modules
+    modules,
   } = solution
 
   // Helper to get image URL
   const getImageUrl = (media: unknown) => {
     if (!media) return null
     if (typeof media === 'string') return media
-    if (typeof media === 'object' && media !== null && 'url' in media) return (media as { url: string }).url
+    if (typeof media === 'object' && media !== null && 'url' in media)
+      return (media as { url: string }).url
     return null
   }
 
@@ -79,17 +80,19 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
 
   // Format terminal lines
   const terminalLines = Array.isArray(terminalContent)
-    ? terminalContent.map((item) => item.line).filter((line): line is string => typeof line === 'string')
+    ? terminalContent
+        .map((item) => item.line)
+        .filter((line): line is string => typeof line === 'string')
     : []
 
   // Format modules
   const formattedModules = Array.isArray(modules)
     ? modules.map((mod) => ({
-      title: mod.title || '',
-      description: mod.description || '',
-      icon: mod.icon || '',
-      badge: mod.badge || ''
-    }))
+        title: mod.title || '',
+        description: mod.description || '',
+        icon: mod.icon || '',
+        badge: mod.badge || '',
+      }))
     : []
 
   return (
@@ -112,13 +115,9 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         />
       )}
 
-      {dashboardImgUrl && (
-        <UIReveal image={dashboardImgUrl} />
-      )}
+      {dashboardImgUrl && <UIReveal image={dashboardImgUrl} />}
 
-      {formattedModules.length > 0 && (
-        <SystemModules modules={formattedModules} />
-      )}
+      {formattedModules.length > 0 && <SystemModules modules={formattedModules} />}
     </article>
   )
 }
