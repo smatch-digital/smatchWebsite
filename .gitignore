@@ -58,6 +58,8 @@ public/robots.txt
 !.vscode/launch.json
 .figma/
 .trae/
+.agent/
+.cursorrules
 
 # -----------------------------------------------------------------------------
 # SYSTEM
@@ -67,17 +69,17 @@ Thumbs.db
 desktop.ini
 
 # -----------------------------------------------------------------------------
-# TESTING (Playwright/Jest)
+# TESTING & AUDITS
 # -----------------------------------------------------------------------------
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 coverage/
-.cursorrules
-content/big_data_data_analysis_content.pdf
-content/industrie_4_0_iot_content.pdf
-content/solutions_metiers_content.pdf
+audit/
+battery-report.html
+gemini.md
 lint_final.json
 lint_report_new.json
 lint_results.txt
+*.pdf
