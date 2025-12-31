@@ -35,7 +35,7 @@ export function ExpertiseHero({
       <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
 
       {/* Full-bleed Background Image */}
-      <div className="absolute inset-0 z-0 h-full w-full">
+      <div className="absolute inset-0 z-0 size-full">
         {image && (
           <Image
             src={image}

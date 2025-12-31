@@ -43,9 +43,9 @@ export const seedHome = async (): Promise<void> => {
                     label: 'DÉCOUVRIR LES OFFRES',
                     appearance: 'outline-gold'
                 } as any,
-                // Media is required by config! We can't easily seed it without uploading a file. 
+                // Media is required by config! We can't easily seed it without uploading a file.
                 // Strategy: We will create a placeholder page but without media, hoping validation doesn't block us OR we force it.
-                // Actually, Payload validation WILL block us. 
+                // Actually, Payload validation WILL block us.
                 // We will try to upload a dummy image or rely on user to fix it.
                 // For now, let's omit media and see if we can force save or if it fails.
             },
@@ -54,11 +54,11 @@ export const seedHome = async (): Promise<void> => {
                     blockType: 'trustedBy',
                     title: 'TRUSTED BY',
                     partners: [
-                        { name: 'Partner 1', logoType: 'text', textLogo: 'PARTNER 1', logo: '' },
-                        { name: 'Partner 2', logoType: 'text', textLogo: 'PARTNER 2', logo: '' },
-                        { name: 'Partner 3', logoType: 'text', textLogo: 'PARTNER 3', logo: '' },
-                        { name: 'Partner 4', logoType: 'text', textLogo: 'PARTNER 4', logo: '' },
-                        { name: 'Partner 5', logoType: 'text', textLogo: 'PARTNER 5', logo: '' },
+                        { name: 'Partner 1', logoType: 'text', textLogo: 'PARTNER 1', logo: null },
+                        { name: 'Partner 2', logoType: 'text', textLogo: 'PARTNER 2', logo: null },
+                        { name: 'Partner 3', logoType: 'text', textLogo: 'PARTNER 3', logo: null },
+                        { name: 'Partner 4', logoType: 'text', textLogo: 'PARTNER 4', logo: null },
+                        { name: 'Partner 5', logoType: 'text', textLogo: 'PARTNER 5', logo: null },
                     ]
                 },
                 {
@@ -71,7 +71,7 @@ export const seedHome = async (): Promise<void> => {
                     description: "SMATCH Digital accélère la transformation numérique de ses partenaires à travers des solutions technologiques centrées sur l'humain, combinant expertise métier et innovations. En tant qu'intégrateur et éditeur, nous intervenons dans les secteurs industriel, logistique, agricole et touristique en apportant des solutions prêtes à la mise en œuvre. La traçabilité, l'IoT, l'automatisation, l'IA et la Data Intelligence sont autant de briques qui composent l'apanage de nos solutions. Notre approche favorise l'interopérabilité, la valorisation des données, et l'adoption des technologies intelligentes au service de la performance terrain.",
                     cta: 'CASABLANCA, MA'
                 },
-                // Ecosystem is complex structure, skipping for brevity of seed, assuming users can add it via UI 
+                // Ecosystem is complex structure, skipping for brevity of seed, assuming users can add it via UI
                 // OR adding empty/minimal placeholder if required.
                 // { blockType: 'ecosystem', ... }
 
@@ -138,9 +138,15 @@ export const seedHome = async (): Promise<void> => {
                 },
                 {
                     blockType: 'cta',
-                    // CTA block specifics... assuming simple fields
-                    // Check CTA config if needed, usually links.
+                    headline: 'Pret a transformer votre organisation ?',
+                    link: {
+                        type: 'custom',
+                        url: '/projects',
+                        label: 'VOIR PROJET',
+                        appearance: 'gold'
+                    }
                 }
+
             ],
         },
     })

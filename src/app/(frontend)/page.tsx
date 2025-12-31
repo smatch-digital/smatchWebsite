@@ -33,7 +33,7 @@ export default async function Page() {
   const { hero, layout } = homePage
 
   return (
-    <main className="mx-auto min-h-screen w-full mb-20 bg-smatch-black font-sans text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
+    <main className="mx-auto mb-20 min-h-screen w-full bg-smatch-black font-sans text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
     </main>

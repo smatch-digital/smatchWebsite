@@ -138,7 +138,7 @@ export default function ExpertiseScroll() {
                 <span className="font-mono text-sm text-yellow-500 tracking-widest mb-4 block">
                   0{index + 1} / {section.subtitle}
                 </span>
-                <h2 className="text-4xl md:text-5xl font-black font-heading leading-loose text-white mb-6 uppercase leading-none">
+                <h2 className="text-4xl md:text-5xl font-black font-heading text-white mb-6 uppercase leading-none">
                   {section.title}
                 </h2>
                 <p className="text-zinc-500 text-lg max-w-xs">{section.description}</p>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { Spotlight } from '../ui/spotlight'
 
 const HERO_DATA = {

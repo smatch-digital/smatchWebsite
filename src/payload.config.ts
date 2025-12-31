@@ -79,7 +79,7 @@ export default buildConfig({
       connectionTimeoutMillis: 60000,
       allowExitOnIdle: true,
     },
-    push: true, // Directly sync schema without migrations (dev mode)
+    push: process.env.NODE_ENV !== 'production',
   }),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
   cors: [getServerSideURL()].filter(Boolean),

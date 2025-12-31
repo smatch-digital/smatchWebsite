@@ -145,7 +145,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                 )}
 
                 {/* Content */}
-                <div className="flex flex-1 flex-col w-full justify-between p-6">
+                <div className="flex w-full flex-1 flex-col justify-between p-6">
                     <div>
                         <StatusBadge status={item.status} />
 

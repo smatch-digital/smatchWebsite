@@ -245,7 +245,7 @@ const TeamMemberCard = ({
               className="scale-100 object-cover grayscale transition-all duration-500 group-hover:scale-110 group-hover:grayscale-0"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-[8px] font-bold text-white/20">
+            <div className="flex size-full items-center justify-center text-[8px] font-bold text-white/20">
               IMG
             </div>
           )}
