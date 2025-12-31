@@ -125,20 +125,20 @@ export default function ExpertiseScroll() {
 
   return (
     <div className="bg-black relative z-10">
-      <div className="container mx-auto px-4 py-32">
+      <div className="container mx-auto px-4 py-12 md:py-32">
         {/* Loop through Main Sections */}
         {EXPERTISE_DATA.map((section, index) => (
           <div
             key={section.id}
-            className="relative grid md:grid-cols-12 gap-16 lg:gap-24 py-32 border-t border-white/10 first:border-0"
+            className="relative grid md:grid-cols-12 gap-8 md:gap-16 lg:gap-24 py-12 md:py-32 border-t border-white/10 first:border-0"
           >
             {/* LEFT COLUMN: Sticky Header */}
             <div className="md:col-span-4 lg:col-span-3">
-              <div className="sticky top-40">
+              <div className="relative md:sticky md:top-40">
                 <span className="font-mono text-sm text-yellow-500 tracking-widest mb-4 block">
                   0{index + 1} / {section.subtitle}
                 </span>
-                <h2 className="text-4xl md:text-5xl font-black font-heading text-white mb-6 uppercase leading-none">
+                <h2 className="text-3xl md:text-5xl font-black font-heading text-white mb-6 uppercase leading-none">
                   {section.title}
                 </h2>
                 <p className="text-zinc-500 text-lg max-w-xs">{section.description}</p>
@@ -146,16 +146,16 @@ export default function ExpertiseScroll() {
             </div>
 
             {/* RIGHT COLUMN: Stacked Cards */}
-            <div className="md:col-span-8 lg:col-span-9 space-y-48">
+            <div className="md:col-span-8 lg:col-span-9 space-y-12 md:space-y-48">
               {section.cards.map((card, i) => (
                 <div key={i} className="group relative snap-center">
                   {/* Background Glow */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/10 to-transparent rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/10 to-transparent rounded-md blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  <div className="relative bg-zinc-900/40 border border-white/10 rounded-[2.5rem] overflow-hidden backdrop-blur-sm hover:border-yellow-500/30 transition-colors duration-500">
+                  <div className="relative bg-zinc-900/40 border border-white/10 rounded-md overflow-hidden backdrop-blur-sm hover:border-yellow-500/30 transition-colors duration-500">
                     <div className="grid lg:grid-cols-2 gap-0">
                       {/* Text Content */}
-                      <div className="p-10 md:p-16 lg:p-20 flex flex-col justify-center">
+                      <div className="p-6 md:p-16 lg:p-20 flex flex-col justify-center">
                         <div className="flex items-center gap-4 mb-8">
                           <div className="p-3 bg-white/5 rounded-full border border-white/10 text-white">
                             {card.icon}
@@ -165,7 +165,7 @@ export default function ExpertiseScroll() {
                           </span>
                         </div>
 
-                        <h3 className="text-3xl font-bold text-white mb-4 uppercase">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 uppercase">
                           {card.title}
                         </h3>
                         <p className="text-zinc-400 leading-relaxed mb-12">{card.description}</p>
