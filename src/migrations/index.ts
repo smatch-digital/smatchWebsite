@@ -1,5 +1,5 @@
 import * as migration_20251230_123137_init from './20251230_123137_init';
-import * as migration_20251231_094145_fix_missing_tables from './20251231_094145_fix_missing_tables';
+import * as migration_20251231_145427_fix_db_sync from './20251231_145427_fix_db_sync';
 
 export const migrations = [
   {
@@ -8,8 +8,8 @@ export const migrations = [
     name: '20251230_123137_init',
   },
   {
-    up: migration_20251231_094145_fix_missing_tables.up,
-    down: migration_20251231_094145_fix_missing_tables.down,
-    name: '20251231_094145_fix_missing_tables'
+    up: migration_20251231_145427_fix_db_sync.up,
+    down: migration_20251231_145427_fix_db_sync.down,
+    name: '20251231_145427_fix_db_sync'
   },
 ];

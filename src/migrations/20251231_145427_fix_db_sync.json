@@ -3484,12 +3484,28 @@
           "notNull": false,
           "default": "'LIVE FEED'"
         },
+        "populate_by": {
+          "name": "populate_by",
+          "type": "enum_pages_blocks_journal_populate_by",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'latest'"
+        },
         "limit": {
           "name": "limit",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false,
           "default": 5
+        },
+        "filter_by_type": {
+          "name": "filter_by_type",
+          "type": "enum_pages_blocks_journal_filter_by_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'all'"
         },
         "block_name": {
           "name": "block_name",
@@ -8093,12 +8109,28 @@
           "notNull": false,
           "default": "'LIVE FEED'"
         },
+        "populate_by": {
+          "name": "populate_by",
+          "type": "enum__pages_v_blocks_journal_populate_by",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'latest'"
+        },
         "limit": {
           "name": "limit",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false,
           "default": 5
+        },
+        "filter_by_type": {
+          "name": "filter_by_type",
+          "type": "enum__pages_v_blocks_journal_filter_by_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'all'"
         },
         "_uuid": {
           "name": "_uuid",
@@ -16462,6 +16494,23 @@
         "event"
       ]
     },
+    "public.enum_pages_blocks_journal_populate_by": {
+      "name": "enum_pages_blocks_journal_populate_by",
+      "schema": "public",
+      "values": [
+        "latest",
+        "selection"
+      ]
+    },
+    "public.enum_pages_blocks_journal_filter_by_type": {
+      "name": "enum_pages_blocks_journal_filter_by_type",
+      "schema": "public",
+      "values": [
+        "all",
+        "project",
+        "event"
+      ]
+    },
     "public.enum_pages_blocks_contact_theme": {
       "name": "enum_pages_blocks_contact_theme",
       "schema": "public",
@@ -16650,6 +16699,23 @@
         "event"
       ]
     },
+    "public.enum__pages_v_blocks_journal_populate_by": {
+      "name": "enum__pages_v_blocks_journal_populate_by",
+      "schema": "public",
+      "values": [
+        "latest",
+        "selection"
+      ]
+    },
+    "public.enum__pages_v_blocks_journal_filter_by_type": {
+      "name": "enum__pages_v_blocks_journal_filter_by_type",
+      "schema": "public",
+      "values": [
+        "all",
+        "project",
+        "event"
+      ]
+    },
     "public.enum__pages_v_blocks_contact_theme": {
       "name": "enum__pages_v_blocks_contact_theme",
       "schema": "public",
@@ -16820,6 +16886,6 @@
     "tables": {},
     "columns": {}
   },
-  "id": "a38285a7-e7b9-4e76-a6e1-353812e9a8fb",
+  "id": "7175731e-4e5d-4bfb-888a-8555227c7237",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }
