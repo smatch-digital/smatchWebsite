@@ -23,6 +23,7 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    theme: 'dark', // Force the admin panel to use dark mode
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
@@ -67,18 +68,19 @@ export default buildConfig({
   },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
-// src/payload.config.ts
-db: postgresAdapter({
-  pool: {
-    connectionString: process.env.DATABASE_URI || '',
-    // Change 1 to 4 (or at least 2)
-    max: process.env.NODE_ENV === 'production' ? 4 : 10,
-    min: 0,
-    idleTimeoutMillis: 10000,
-    connectionTimeoutMillis: 60000,
-    allowExitOnIdle: true,
-  },
-}),
+  // src/payload.config.ts
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URI || '',
+      // Change 1 to 4 (or at least 2)
+      max: process.env.NODE_ENV === 'production' ? 4 : 10,
+      min: 0,
+      idleTimeoutMillis: 10000,
+      connectionTimeoutMillis: 60000,
+      allowExitOnIdle: true,
+    },
+    push: true, // Directly sync schema without migrations (dev mode)
+  }),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],

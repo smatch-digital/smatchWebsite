@@ -27,7 +27,7 @@ export default function AboutPage() {
   }
 
   const quiSommesNousData = {
-    title: 'QUI SOMMES NOUS?',
+    title: '',
     description:
       "SMATCH Digital accélère la transformation numérique de ses partenaires à travers des solutions technologiques centrées sur l'humain, combinant expertise métier et innovations. En tant qu'intégrateur et éditeur, nous intervenons dans les secteurs industriel, logistique, agricole et touristique en apportant des solutions prêtes à la mise en œuvre. La traçabilité, l'IoT, l'automatisation, l'IA et la Data Intelligence sont autant de briques qui composent l'apanage de nos solutions.",
     locationLabel: 'CASABLANCA, MA',

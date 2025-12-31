@@ -20,6 +20,8 @@ build/
 # ENVIRONMENT & SECRETS (CRITICAL)
 # -----------------------------------------------------------------------------
 .env
+.env copy
+.env*copy*
 .env*.local
 .env.production
 .env.development

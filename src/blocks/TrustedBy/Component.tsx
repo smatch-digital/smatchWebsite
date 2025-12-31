@@ -25,7 +25,7 @@ export const TrustedByBlock: React.FC<Props> = ({ title, partners }) => {
     const displayPartners = [...partnersList, ...partnersList, ...partnersList, ...partnersList]
 
     return (
-        <section className="mx-auto overflow-hidden border-y border-smatch-border/30 bg-smatch-black py-12">
+        <section className="mx-auto overflow-hidden bg-smatch-black py-12">
             <div className="container mx-auto px-4">
                 <div className="mb-8 text-center">
                     <span className="font-mono text-sm uppercase tracking-[0.2em] text-smatch-text-muted">

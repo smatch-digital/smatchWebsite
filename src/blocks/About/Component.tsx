@@ -74,16 +74,17 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
           {/* Left Column: Headings */}
-          <div className="group/text relative flex select-none flex-col lg:col-span-7">
+          <div className="group/text relative flex select-none flex-col space-y-5 lg:col-span-7">
             {/* Animated Entry Wrapper */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
+              className='flex flex-col gap-8'
             >
               {/* Solid White Text */}
-              <h2 className="relative z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-8xl lg:text-[11rem]">
+              <h2 className="relative z-10 font-heading text-6xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-7xl lg:text-[11rem]">
                 {headingPart1}
               </h2>
 
@@ -91,7 +92,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
               <div className="relative">
                 {/* The Stroke Version */}
                 <h2
-                  className="relative left-1 z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-8xl lg:text-[11rem]"
+                  className="relative left-1 z-10 font-heading text-6xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-7xl lg:text-[11rem]"
                   style={{ WebkitTextStroke: '2px #FFB800' }}
                 >
                   {headingPart2}

@@ -1,876 +1,179 @@
-# Smatch Website - Comprehensive Project Documentation
+# Smatch Website ⚡️
 
-> A modern, enterprise-grade website built with Next.js 15, PayloadCMS, and an industrial luxury design system.
+> **Industrial Luxury** meets **Engineering Authority**.
+> Built with Next.js 15, PayloadCMS 3.6, and React 19.
 
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Technology Stack](#technology-stack)
-- [Architecture](#architecture)
-- [Project Structure](#project-structure)
-- [Design System](#design-system)
-- [Core Features](#core-features)
-- [PayloadCMS Integration](#payloadcms-integration)
-- [Development Setup](#development-setup)
-- [Building & Deployment](#building--deployment)
-- [Testing](#testing)
-- [Environment Variables](#environment-variables)
+![Tech Stack](https://img.shields.io/badge/Next.js-15.4-black?style=for-the-badge&logo=next.js) ![Tech Stack](https://img.shields.io/badge/PayloadCMS-3.68-white?style=for-the-badge&logo=payload) ![Tech Stack](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react) ![Tech Stack](https://img.shields.io/badge/TypeScript-5.7-blue?style=for-the-badge&logo=typescript)
 
 ---
 
-## Project Overview
+## 📖 Overview
 
-Smatch is a premium industrial transformation consultancy website that showcases an "Industrial Luxury" aesthetic. The website features:
+This repository houses the official website for **Smatch**, designed to convey high-end industrial proficiency and data density. The architecture is a "Monster" hybrid of a static-first frontend and a dynamic headless CMS, unified in a single Next.js repo.
 
-- **Enterprise CMS**: Full-featured PayloadCMS backend with PostgreSQL
-- **Premium Design**: Black & gold color scheme with custom typography
-- **Modern Frontend**: Next.js 15 with App Router and React 19
-- **Type-Safe**: Full TypeScript implementation with generated types
-- **Flexible Content**: Headless CMS with layout builder blocks
-- **SEO Optimized**: Built-in SEO plugin, sitemap generation, and meta management
-
-### Design Philosophy
-
-The website embodies "Industrial Luxury" through:
-- Deep black backgrounds (#050505)
-- Premium gold accents (#FFC800)
-- Modern typography (Antonio for headings, Inter for body, JetBrains Mono for data)
-- Minimalist yet impactful layouts
-- Gradient effects and subtle animations
+**Key Features:**
+- **Dynamic Block System**: Over 17 custom CMS blocks for flexible page building.
+- **Premium Aesthetics**: Custom "Industrial Luxury" design system with GSAP/Framer Motion animations.
+- **Type-Safe**: End-to-end type safety from database to frontend components.
+- **Global Editing**: Full control over headers, footers, and SEO metadata via Payload Globals.
 
 ---
 
-## Technology Stack
+## 🛠 Tech Stack
 
-### Frontend
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Next.js** | 15.4.10 | React framework with App Router |
-| **React** | 19.2.1 | UI library |
-| **TypeScript** | 5.7.3 | Type safety |
-| **TailwindCSS** | 3.4.3 | Utility-first styling |
-| **Framer Motion** | 12.23.26 | Animations |
-
-### Backend & CMS
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **PayloadCMS** | 3.68.5 | Headless CMS |
-| **PostgreSQL** | - | Database (via @payloadcms/db-postgres) |
-| **Lexical Editor** | 3.68.5 | Rich text editing |
-
-### UI Components
-
-- **Radix UI**: Accessible component primitives
-- **shadcn/ui**: Pre-built component library
-- **Lucide React**: Icon library
-- **Phosphor Icons**: Additional icon set
-
-### Development Tools
-
-- **ESLint**: Code linting
-- **Prettier**: Code formatting
-- **Playwright**: E2E testing
-- **Vitest**: Unit/integration testing
-- **pnpm**: Package manager
+| Category | Technology | Version | Purpose |
+|----------|------------|---------|---------|
+| **Core** | Next.js | 15.4.10 | App Router, Server Components |
+| **CMS** | PayloadCMS | 3.68.5 | Headless content management |
+| **DB** | PostgreSQL | Latest | Structured data persistence |
+| **UI** | TailwindCSS | 3.4.3 | Utility-first styling |
+| **Animation** | GSAP + Framer Motion | Latest | High-performance interactions |
+| **Icons** | Phosphor Icons | 2.1.10 | Consistent iconography |
+| **Language** | TypeScript | 5.7.3 | Strict type checking |
 
 ---
 
-## Architecture
+## 🚀 Getting Started
 
-### Application Structure
+### Prerequisites
+- **Node.js**: v20.9.0 or higher
+- **pnpm**: v9 or v10 (`npm i -g pnpm`)
+- **PostgreSQL**: A running Postgres instance
 
-The project follows Next.js 15 App Router conventions with a clear separation between frontend and CMS:
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repo-url>
+    cd smatch-website
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+
+3.  **Environment Setup:**
+    Duplicate `.env.example` to `.env` and fill in your secrets.
+    ```env
+    # Database
+    DATABASE_URI="postgresql://user:password@localhost:5432/smatch"
+
+    # Payload
+    PAYLOAD_SECRET="<generate-a-long-random-string>"
+    NEXT_PUBLIC_SERVER_URL="http://localhost:3000"
+
+    # Optional S3 (for media)
+    S3_ENABLED=true
+    S3_BUCKET=...
+    S3_ACCESS_KEY_ID=...
+    S3_SECRET_ACCESS_KEY=...
+    S3_REGION=...
+    ```
+
+4.  **Run Development Server:**
+    ```bash
+    pnpm dev
+    ```
+    - Website: [http://localhost:3000](http://localhost:3000)
+    - Admin Panel: [http://localhost:3000/admin](http://localhost:3000/admin)
+
+---
+
+## 📂 Project Architecture
+
+The project follows a standard Next.js App Router structure with PayloadCMS integrated.
 
 ```
 src/
 ├── app/
-│   ├── (frontend)/    # Public-facing website routes
-│   └── (payload)/     # PayloadCMS admin panel routes
-├── collections/       # PayloadCMS collection configs
-├── globals/          # PayloadCMS global configs
-├── blocks/           # Content blocks for layout builder
-├── components/       # React components
-├── heros/           # Hero section variants
-└── utilities/       # Helper functions
-```
-
-### Routing Strategy
-
-**Route Groups:**
-- `(frontend)` - Main website with custom layout
-- `(payload)` - Admin panel with PayloadCMS layout
-
-This allows different layouts for the public site vs. admin panel while keeping both in the same codebase.
-
-### Data Flow
-
-```mermaid
-graph TD
-    A[PayloadCMS Admin] -->|Creates/Edits| B[PostgreSQL Database]
-    B -->|Queries| C[Next.js Server Components]
-    C -->|Renders| D[Static/Dynamic Pages]
-    D -->|SEO Metadata| E[Search Engines]
-    C -->|Revalidation| F[ISR Cache]
+│   ├── (frontend)/       # Public facing pages (website)
+│   └── (payload)/        # Payload Admin panel routes
+├── blocks/               # Modular CMS blocks (Config + Component)
+│   ├── ArchiveBlock/
+│   ├── MissionVision/
+│   └── ...
+├── collections/          # Payload Collection definitions
+│   ├── Pages/
+│   ├── Projects/
+│   └── Media/
+├── components/           # Shared React components
+│   ├── ui/               # Shadcn/Radix primitives
+│   └── landing/          # Landing page specific components
+├── globals/              # Global CMS configs (Header, Footer)
+├── heros/                # Hero component variants
+├── utilities/            # Helper functions (formatters, seeders)
+└── payload.config.ts     # Main CMS configuration
 ```
 
 ---
 
-## Project Structure
+## 🎨 Design System
 
-### Key Directories
+We adhere to a strict "Smatch" design language defined in `tailwind.config.mjs`.
 
-#### `/src/app/(frontend)/`
-Public-facing website routes:
-- `page.tsx` - Homepage
-- `layout.tsx` - Root layout with Header/Footer
-- `globals.css` - Global styles and CSS variables
-- Dynamic routes for pages, posts, projects
-
-#### `/src/app/(payload)/`
-PayloadCMS admin panel:
-- `admin/` - Admin UI routes
-- Auto-generated by PayloadCMS
-
-#### `/src/collections/`
-PayloadCMS collection definitions:
-- `Pages.ts` - Dynamic pages with layout builder
-- `Posts.ts` - Blog posts/articles
-- `Projects.ts` - Portfolio/case studies
-- `Solutions.ts` - Service offerings
-- `Team.ts` - Team members
-- `Media.ts` - Asset management
-- `Categories.ts` - Taxonomy
-- `Users/` - Authentication & authorization
-
-#### `/src/globals/`
-Site-wide configuration:
-- `Header.ts` - Navigation structure
-- `Footer.ts` - Footer content
-
-#### `/src/blocks/`
-Layout builder content blocks:
-- `ArchiveBlock/` - Post/project listings
-- `Banner/` - Announcement banners
-- `CallToAction/` - CTA sections
-- `Code/` - Code snippets with syntax highlighting
-- `Content/` - Rich text content
-- `Form/` - Form builder integration
-- `MediaBlock/` - Image/video displays
-- `RelatedPosts/` - Content recommendations
-
-#### `/src/components/`
-Reusable React components:
-- `landing/` - Homepage sections (Hero, Domains, Ecosystem, etc.)
-- `ui/` - shadcn/ui components
-- `AdminBar/` - Preview/edit toolbar
-- `Media/` - Image/video components
-- `RichText/` - Lexical renderer
-- `Logo/` - Brand logo
-
-#### `/src/heros/`
-Hero section variants:
-- `SmatchHero/` - Custom hero with 5 layout styles:
-  - **Standard** - Centered headline with background
-  - **Innovation** - Floating 3D asset
-  - **Arsenal** - Split layout with image
-  - **Empreinte** - Asymmetric with rings
-  - **Domaines** - Full-width with prism
-- `PostHero/` - Blog post headers
-- `HighImpact/`, `MediumImpact/`, `LowImpact/` - Generic hero templates
-
----
-
-## Design System
-
-### Color Palette
-
-**Smatch Industrial Luxury Theme:**
-
-```css
-/* Primary Colors */
---smatch-black: #050505      /* Main background */
---smatch-charcoal: #0F0F0F   /* Secondary background */
---smatch-surface: #1A1A1A    /* Card backgrounds */
---smatch-border: #333333     /* Subtle borders */
-
-/* Gold Accent */
---smatch-gold: #FFC800           /* Primary accent */
---smatch-gold-dim: #B8860B       /* Darker gold */
---smatch-gold-light: #FFE566     /* Hover states */
---smatch-gold-glow: rgba(255, 200, 0, 0.5)  /* Shadows */
-
-/* Text Colors */
---smatch-text-primary: #FFFFFF
---smatch-text-secondary: #A1A1AA
---smatch-text-muted: #52525B
-```
+### Colors
+- **Backgrounds**: `smatch-black` (#050505), `smatch-charcoal` (#0F0F0F)
+- **Accents**: `smatch-gold` (#FFC800) for primary actions and highlights.
+- **Text**: `smatch-text-primary` (White), `smatch-text-secondary` (Zinc-400).
 
 ### Typography
+- **Headings**: `Antonio` (Variable, uppercase, industrial).
+- **Body**: `Inter` (Clean, legible).
+- **Code/Data**: `JetBrains Mono` (Technical data visualization).
 
-**Font Stack:**
-
-| Font Family | Usage | CSS Variable |
-|-------------|-------|--------------|
-| **Antonio** | Headlines, large display text | `font-heading` |
-| **Inter** | Body text, UI elements | `font-sans` |
-| **JetBrains Mono** | Code, data, technical content | `font-mono` |
-
-**Tailwind Classes:**
-```jsx
-// Heading
-className="font-heading text-8xl font-bold"
-
-// Body
-className="font-sans text-lg"
-
-// Code/Data
-className="font-mono text-sm"
-```
-
-### Custom Gradients
-
-```css
-/* TailwindCSS utilities */
-bg-gold-gradient      /* Gold to darker gold */
-bg-metal-sheen        /* Subtle white shimmer */
-bg-fade-to-black      /* Top transparent to black */
-```
-
-### Shadows & Effects
-
-```css
-/* Glow effects */
-shadow-glow-sm   /* 0 0 10px gold/10% */
-shadow-glow-md   /* 0 0 20px gold/20% */
-shadow-glow-lg   /* 0 0 30px gold/30% */
-```
-
-### Animations
-
-Built-in Tailwind animations:
-- `animate-fade-in` - Fade in on load
-- `animate-slide-up` - Slide up on appear
-- `animate-pulse` - Breathing effect for accents
+### Rules
+1.  **Use Tokens**: Never hardcode hex values. Use `bg-smatch-black`, `text-smatch-gold`.
+2.  **Visual Hierarchy**: Use whitespace as an active element.
+3.  **Gold Usage**: Reserved for high-importance interactions and "success" states.
 
 ---
 
-## Core Features
+## ⚡️ Development Workflow
 
-### 1. Layout Builder
+### Creating a New Block
+1.  **Folder**: Create `src/blocks/MyNewBlock/`.
+2.  **Config**: Add `config.ts` (Payload Field definition).
+3.  **Component**: Add `Component.tsx` (React server component).
+4.  **Register**:
+    - Add to `src/collections/Pages/index.ts` (schema).
+    - Add to `src/components/RenderBlocks.tsx` (rendering).
+5.  **Types**: Run `pnpm generate:types`.
 
-**Flexible Page Construction:**
-- Drag-and-drop block system in PayloadCMS
-- Predefined, reusable content blocks
-- Per-page customization
-- Live preview while editing
+### Database Changes
+When you modify a Collection or Global config:
+1.  Run `pnpm generate:types` to update TypeScript interfaces.
+2.  Run `pnpm migrate` (if using strict migrations, otherwise Payload handles schema sync in dev).
 
-**Available Blocks:**
-- Archive (Posts/Projects grid)
-- Banner (Announcements)
-- Call to Action
-- Code (Syntax highlighted)
-- Content (Rich text)
-- Form (Contact forms)
-- Media (Images/Videos)
-- Related Posts
+### Commands
 
-### 2. Hero System
-
-**Multi-Style Hero Component:**
-
-The `SmatchHero` component supports 5 distinct layouts controlled via CMS:
-
-1. **Standard** - Full-width centered headline with background image
-2. **Innovation** - Floating 3D asset with bottom-aligned text
-3. **Arsenal** - Side-by-side text and image
-4. **Empreinte** - Asymmetric layout with decorative rings
-5. **Domaines** - Full-bleed background with centered text
-
-Selection is made via the `heroStyle` field in PayloadCMS.
-
-### 3. SEO & Performance
-
-**Built-in SEO:**
-- Meta title/description per page
-- Open Graph images
-- Twitter cards
-- XML sitemap generation (`next-sitemap`)
-- Structured data ready
-
-**Performance Optimizations:**
-- Image optimization via Next.js Image
-- On-demand revalidation (ISR)
-- Static generation where possible
-- Font optimization with `next/font`
-
-### 4. Content Management
-
-**PayloadCMS Collections:**
-
-| Collection | Description | Features |
-|------------|-------------|----------|
-| **Pages** | Main site pages | Layout builder, SEO, versioning |
-| **Posts** | Blog articles | Categories, drafts, scheduled publish |
-| **Projects** | Portfolio items | Slug-based routing |
-| **Solutions** | Service offerings | Custom templates |
-| **Team** | Team members | Role management |
-| **Media** | Assets | Image focal point, size variants |
-| **Categories** | Taxonomy | Nested structure |
-| **Users** | Auth & permissions | Role-based access |
-
-### 5. Authentication & Access Control
-
-**User Roles:**
-- Admins can manage all content
-- Editors can create/edit content
-- Access control at collection and field level
-
-**Security:**
-- JWT-based authentication
-- Secure password hashing
-- CORS configuration
-- Environment variable secrets
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start dev server with TurboPack |
+| `pnpm build` | Build for production |
+| `pnpm generate:types` | Regenerate TypeScript types from CMS config |
+| `pnpm lint:fix` | Fix ESLint and Prettier issues |
+| `pnpm payload` | Run Payload CLI commands |
 
 ---
 
-## PayloadCMS Integration
+## 🚢 Deployment
 
-### Configuration
+Deployed via **Vercel**.
 
-**Database:** PostgreSQL via `@payloadcms/db-postgres`
+1.  **Build Command**: `next build`
+2.  **Output Directory**: `.next`
+3.  **Environment**: Ensure all `PAYLOAD_SECRET` and Database variables are set in Vercel.
 
-**Editor:** Lexical (Facebook's text editor framework)
-
-**Key Plugins:**
-- `@payloadcms/plugin-seo` - SEO fields
-- `@payloadcms/plugin-search` - Full-text search
-- `@payloadcms/plugin-redirects` - URL redirects
-- `@payloadcms/plugin-nested-docs` - Nested categories
-- `@payloadcms/plugin-form-builder` - Dynamic forms
-
-### Admin Panel Customization
-
-**Custom Components:**
-- `BeforeLogin` - Pre-login message
-- `BeforeDashboard` - Welcome message
-- Custom logo and branding
-
-**Live Preview:**
-Configured breakpoints:
-- Mobile: 375×667
-- Tablet: 768×1024
-- Desktop: 1440×900
-
-### Content Workflow
-
-```mermaid
-graph LR
-    A[Draft] -->|Edit| B[Preview]
-    B -->|Approve| C[Publish]
-    C -->|Revalidate| D[Live Site]
-    C -->|Schedule| E[Future Publish]
-```
-
-**Features:**
-- Draft/publish workflow
-- Version history
-- Scheduled publishing (via jobs queue)
-- Live preview in admin
+> **Note**: For Vercel deployment, ensure the Postgres database allows connections from Vercel's IP range or use a connection pooling string (e.g., Supabase Transaction Mode).
 
 ---
 
-## Development Setup
+## 🤝 Contributing
 
-### Prerequisites
-
-- **Node.js**: 18.20.2+ or 20.9.0+
-- **pnpm**: 9 or 10
-- **PostgreSQL**: Local or remote instance
-
-### Installation
-
-1. **Clone Repository:**
-   ```bash
-   # Already cloned at:
-   cd c:\Users\kourd\Desktop\Smatch\Website\website
-   ```
-
-2. **Install Dependencies:**
-   ```bash
-   pnpm install
-   ```
-
-3. **Environment Configuration:**
-   ```bash
-   cp .env.example .env
-   ```
-
-   Edit `.env` with your values:
-   ```env
-   DATABASE_URI=postgresql://user:password@localhost:5432/smatch
-   PAYLOAD_SECRET=your-secret-key-here
-   NEXT_PUBLIC_SERVER_URL=http://localhost:3000
-   CRON_SECRET=your-cron-secret
-   PREVIEW_SECRET=your-preview-secret
-   ```
-
-4. **Database Setup:**
-   ```bash
-   # Run migrations (if any)
-   pnpm payload migrate
-   ```
-
-5. **Start Development Server:**
-   ```bash
-   pnpm dev
-   ```
-
-6. **Access:**
-   - **Website:** http://localhost:3000
-   - **Admin Panel:** http://localhost:3000/admin
-
-7. **Create First Admin User:**
-   - Navigate to `/admin`
-   - Fill out the registration form
-   - Login with credentials
-
-### Development Scripts
-
-```bash
-# Development
-pnpm dev                    # Start dev server
-pnpm dev:prod              # Production build test
-
-# Building
-pnpm build                 # Build for production
-pnpm start                 # Start production server
-
-# Code Quality
-pnpm lint                  # Run ESLint
-pnpm lint:fix              # Auto-fix linting issues
-
-# PayloadCMS
-pnpm payload               # Payload CLI
-pnpm generate:types        # Generate TypeScript types
-pnpm generate:importmap    # Generate import map for admin
-
-# Testing
-pnpm test                  # Run all tests
-pnpm test:int              # Integration tests (Vitest)
-pnpm test:e2e              # E2E tests (Playwright)
-
-# Utilities
-pnpm reinstall             # Clean reinstall dependencies
-```
-
-### Database Seed
-
-To populate with sample data:
-
-1. Navigate to `/admin`
-2. Click "Seed Database" link
-3. Confirm destructive operation
-
-**Demo User After Seed:**
-- Email: `demo-author@payloadcms.com`
-- Password: `password`
-
-> ⚠️ **WARNING:** Seeding drops existing data!
+1.  Follow the **"Monster" Rules**: Robust error handling, strict typing, and high-end aesthetics.
+2.  **Avoid "Any"**: Utilize generated types (`@/payload-types`).
+3.  **Library First**: Use existing Shadcn/Radix components before building custom ones.
 
 ---
-
-## Building & Deployment
-
-### Production Build
-
-```bash
-# 1. Build application
-pnpm build
-
-# 2. Generate sitemap
-# (runs automatically after build via postbuild hook)
-
-# 3. Start production server
-pnpm start
-```
-
-### Environment Variables (Production)
-
-Ensure the following are set:
-
-```env
-DATABASE_URI=postgresql://...           # Production DB
-PAYLOAD_SECRET=<strong-secret>          # JWT secret
-NEXT_PUBLIC_SERVER_URL=https://smatch.com  # Production URL
-CRON_SECRET=<cron-secret>              # Cron auth
-PREVIEW_SECRET=<preview-secret>        # Preview auth
-```
-
-### Deployment Options
-
-#### Vercel (Recommended)
-
-1. **Database Setup:**
-   - Use Vercel Postgres or external PostgreSQL
-   - Update `DATABASE_URI` in Vercel environment variables
-
-2. **Environment Variables:**
-   - Add all `.env` variables to Vercel project settings
-
-3. **Deploy:**
-   ```bash
-   # Automatic via Git push
-   git push origin main
-   ```
-
-**Vercel-Specific:**
-- Uses Vercel Postgres adapter (optional)
-- Vercel Blob storage for media (optional)
-- Cron jobs may be limited by plan tier
-
-#### Docker
-
-```bash
-# Start with Docker Compose
-docker-compose up
-
-# Access:
-# - Website: http://localhost:3000
-# - Admin: http://localhost:3000/admin
-```
-
-**Docker Configuration:**
-- See `Dockerfile` and `docker-compose.yml`
-- PostgreSQL container included
-- Environment variables loaded from `.env`
-
-#### Self-Hosting
-
-Requirements:
-- Node.js server
-- PostgreSQL database
-- Reverse proxy (nginx/Caddy)
-
-Steps:
-1. Build application: `pnpm build`
-2. Run migrations: `pnpm payload migrate`
-3. Start: `pnpm start`
-4. Configure reverse proxy to port 3000
-
----
-
-## Testing
-
-### Integration Tests (Vitest)
-
-**Location:** `/tests/`
-
-**Run Tests:**
-```bash
-pnpm test:int
-```
-
-**Configuration:** `vitest.config.mts`
-
-### E2E Tests (Playwright)
-
-**Location:** `/tests/` (e2e files)
-
-**Run Tests:**
-```bash
-pnpm test:e2e
-```
-
-**Configuration:** `playwright.config.ts`
-
-**Supported Browsers:**
-- Chromium
-- Firefox
-- WebKit
-
-### Test Environment
-
-**Setup:** `vitest.setup.ts`
-- DOM environment: jsdom
-- React Testing Library
-
----
-
-## Environment Variables
-
-### Required
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `DATABASE_URI` | PostgreSQL connection string | `postgresql://user:pass@host:5432/db` |
-| `PAYLOAD_SECRET` | JWT signing secret | `<random-64-char-string>` |
-| `NEXT_PUBLIC_SERVER_URL` | Public site URL | `http://localhost:3000` |
-
-### Optional
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `CRON_SECRET` | Authenticates scheduled jobs | - |
-| `PREVIEW_SECRET` | Validates preview requests | - |
-| `NODE_ENV` | Environment mode | `development` |
-
-### Generating Secrets
-
-```bash
-# Generate random secret
-openssl rand -base64 32
-```
-
----
-
-## Key Files Reference
-
-### Configuration Files
-
-| File | Purpose |
-|------|---------|
-| `next.config.js` | Next.js configuration |
-| `tailwind.config.mjs` | TailwindCSS theme setup |
-| `payload.config.ts` | PayloadCMS configuration |
-| `tsconfig.json` | TypeScript compiler options |
-| `eslint.config.mjs` | ESLint rules |
-| `.prettierrc.json` | Prettier formatting |
-| `playwright.config.ts` | E2E test configuration |
-| `vitest.config.mts` | Unit test configuration |
-| `next-sitemap.config.cjs` | Sitemap generation |
-
-### Important Source Files
-
-| File | Purpose |
-|------|---------|
-| `src/payload.config.ts` | CMS collections, globals, plugins |
-| `src/app/(frontend)/layout.tsx` | Main site layout, fonts |
-| `src/app/(frontend)/globals.css` | Global styles, CSS variables |
-| `src/blocks/RenderBlocks.tsx` | Block renderer logic |
-| `src/heros/RenderHero.tsx` | Hero renderer logic |
-| `src/payload-types.ts` | Auto-generated TypeScript types |
-
----
-
-## Development Workflow
-
-### Typical Development Cycle
-
-1. **Content Modeling:**
-   - Edit collection configs in `/src/collections/`
-   - Run `pnpm generate:types` to update types
-
-2. **Component Development:**
-   - Create components in `/src/components/`
-   - Use generated types for type safety
-   - Style with TailwindCSS utilities
-
-3. **Block Development:**
-   - Create config in `/src/blocks/{BlockName}/config.ts`
-   - Create component in `/src/blocks/{BlockName}/Component.tsx`
-   - Import in `payload.config.ts`
-
-4. **Testing:**
-   - Write integration tests in `/tests/`
-   - Run `pnpm test` before committing
-
-5. **Content Creation:**
-   - Login to `/admin`
-   - Create pages, posts, projects
-   - Use live preview
-
-6. **Build & Deploy:**
-   - Run `pnpm build` to verify
-   - Deploy to Vercel or self-host
-
-### Code Quality Checks
-
-```bash
-# Before committing
-pnpm lint:fix        # Fix linting issues
-pnpm build           # Verify build
-pnpm test            # Run tests
-```
-
-### Working with PayloadCMS
-
-**After Schema Changes:**
-```bash
-pnpm generate:types      # Update TypeScript types
-pnpm generate:importmap  # Update admin component paths
-```
-
-**Database Migrations:**
-```bash
-# Create migration (production)
-pnpm payload migrate:create
-
-# Run migrations
-pnpm payload migrate
-```
-
----
-
-## Design Patterns & Best Practices
-
-### 1. Server Components First
-
-**Prefer Server Components for:**
-- Data fetching
-- SEO-critical content
-- Static content
-
-**Use Client Components for:**
-- Interactivity (useState, useEffect)
-- Event handlers
-- Browser APIs
-
-```tsx
-// Server Component (default)
-async function MyPage() {
-  const data = await payload.find({ collection: 'posts' })
-  return <div>{/* ... */}</div>
-}
-
-// Client Component
-'use client'
-function InteractiveButton() {
-  const [count, setCount] = useState(0)
-  return <button onClick={() => setCount(c => c + 1)}>{count}</button>
-}
-```
-
-### 2. Type Safety
-
-**Always use generated types:**
-
-```tsx
-import type { Page, Post, Project } from '@/payload-types'
-
-function MyComponent({ page }: { page: Page }) {
-  // Fully typed
-}
-```
-
-### 3. Responsive Design
-
-**Mobile-first approach:**
-
-```tsx
-className="text-4xl md:text-6xl lg:text-8xl"  // Mobile → Tablet → Desktop
-```
-
-### 4. Performance
-
-**Optimize images:**
-
-```tsx
-import { Media } from '@/components/Media'
-
-<Media
-  resource={image}
-  fill
-  imgClassName="object-cover"
-  priority  // For above-the-fold images
-/>
-```
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-**1. Build Errors:**
-```bash
-# Clear cache and rebuild
-rm -rf .next
-pnpm build
-```
-
-**2. Type Errors:**
-```bash
-# Regenerate types
-pnpm generate:types
-```
-
-**3. Database Connection:**
-- Verify `DATABASE_URI` is correct
-- Check PostgreSQL is running
-- Test connection string manually
-
-**4. Admin Panel Not Loading:**
-```bash
-# Regenerate import map
-pnpm generate:importmap
-```
-
-**5. Module Not Found:**
-```bash
-# Clean install
-pnpm reinstall
-```
-
----
-
-## Contributing
-
-### Code Style
-
-- **TypeScript**: Strict mode enabled
-- **Formatting**: Prettier (automatic)
-- **Linting**: ESLint (run before commit)
-
-### Commit Messages
-
-Follow conventional commits:
-```
-feat: Add new hero layout
-fix: Resolve image loading issue
-docs: Update README
-style: Format code with Prettier
-```
-
-### Pull Request Process
-
-1. Create feature branch
-2. Make changes
-3. Run `pnpm lint:fix` and `pnpm test`
-4. Submit PR with description
-
----
-
-## Resources
-
-### Documentation
-
-- [PayloadCMS Docs](https://payloadcms.com/docs)
-- [Next.js Docs](https://nextjs.org/docs)
-- [TailwindCSS Docs](https://tailwindcss.com/docs)
-- [Radix UI Docs](https://www.radix-ui.com/primitives)
-
-### Project-Specific
-
-- `AGENTS.md` - PayloadCMS development rules
-- `PROJECT_ANALYSIS.md` - Additional project notes
-- `/src/payload.config.ts` - CMS configuration reference
-
----
-
-## License
-
-MIT
-
----
-
-## Support
-
-For questions or issues:
-- GitHub Discussions: [Create discussion](https://github.com/payloadcms/payload/discussions)
-- Discord: [Join community](https://discord.com/invite/payload)
-
----
-
-**Last Updated:** December 19, 2025
+*© 2025 Smatch Digital. All rights reserved.*

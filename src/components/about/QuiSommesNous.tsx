@@ -1,16 +1,11 @@
 'use client'
 
 import React, { useRef } from 'react'
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-} from 'framer-motion'
+import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion'
 
 const INTRO_DATA = {
-  headingPart1: 'ÉDITEUR.',
-  headingPart2: 'INTÉGRATEUR.',
+  headingPart1: 'QUI SOMMES',
+  headingPart2: 'NOUS?',
   tag: '/// ORIGIN_STORY',
   description:
     "SMATCH Digital accélère la transformation numérique de ses partenaires à travers des solutions technologiques centrées sur l'humain, combinant expertise métier et innovations. En tant qu'intégrateur et éditeur, nous intervenons dans les secteurs industriel, logistique, agricole et touristique en apportant des solutions prêtes à la mise en œuvre. La traçabilité, l'IoT, l'automatisation, l'IA et la Data Intelligence sont autant de briques qui composent l'apanage de nos solutions. Notre approche favorise l'interopérabilité, la valorisation des données, et l'adoption des technologies intelligentes au service de la performance terrain.",
@@ -77,6 +72,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
+              className="flex flex-col gap-8"
             >
               {/* Solid White Text */}
               <h2 className="relative z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-8xl lg:text-[11rem]">
@@ -88,7 +84,7 @@ export function QuiSommesNous({ title, description, locationLabel }: QuiSommesNo
                 {/* The Stroke Version */}
                 <h2
                   className="relative left-1 z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-8xl lg:text-[11rem]"
-                  style={{ WebkitTextStroke: '2px #FFB800' }}
+                  style={{ WebkitTextStroke: '3px #FFB800' }}
                 >
                   {title ? title.split(' ').slice(1).join(' ') : INTRO_DATA.headingPart2}
                 </h2>

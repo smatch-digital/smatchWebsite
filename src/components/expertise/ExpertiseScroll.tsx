@@ -1,284 +1,208 @@
 'use client'
 
-import React, { useRef, useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
-import { ArrowRight, Cube, Factory, Brain, ChartBar, Truck, Database, WifiHigh, ShieldCheck, Plant, Bed, UsersThree } from '@phosphor-icons/react/dist/ssr'
-import clsx from 'clsx'
-import Image from 'next/image'
+import React, { useEffect } from 'react'
+import {
+  Factory,
+  Globe,
+  Truck,
+  Leaf,
+  Cpu,
+  Database,
+  Cube,
+  CheckCircle,
+} from '@phosphor-icons/react/dist/ssr'
+import { cn } from '@/utilities/ui'
 
-// Register (ensure only client side)
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger)
-}
-
-// --- CONFIG ---
-const ALL_GOLD = '#FFB800'
-
-// --- MOCK DATA ---
-const EXPERTISE_SECTIONS = [
-    {
-        id: 'big-data',
-        layout: 'sticky_grid',
-        title: 'BIG DATA & ANALYSIS',
-        subtitle: 'INTELLIGENCE DÉCISIONNELLE',
-        description: "La donnée est le nouvel or noir. Nous structurons vos Data Lakes et déployons des algorithmes prédictifs.",
-        mainImage: '/assets/expertise/data-iso.png',
-        color: ALL_GOLD, // Unified to Gold
-        cards: [
-            { id: 'lakes', title: 'Data Archiving', icon: Database, desc: 'Centralisation & Sécurité', image: '/assets/expertise/data-iso.png' },
-            { id: 'etl', title: 'ETL Pipelines', icon: ChartBar, desc: 'Transformation de Données', image: '/assets/expertise/ai-iso.png' },
-            { id: 'bi', title: 'Business Intelligence', icon: Brain, desc: 'Tableaux de Bord Dynamiques', image: '/assets/expertise/sim-iso.png' },
-        ]
-    },
-    {
-        id: 'industry-4-0',
-        layout: 'sticky_grid',
-        title: 'INDUSTRIE 4.0 & IOT',
-        subtitle: 'L\'USINE CONNECTÉE',
-        description: "Connecter le monde physique au numérique. Capteurs IoT, maintenance prédictive et automatisation.",
-        mainImage: '/assets/domains/industry-iso.png',
-        color: ALL_GOLD,
-        cards: [
-            { id: 'iot', title: 'Capteurs IOT', icon: WifiHigh, desc: 'Collecte Temps Réel', image: '/assets/domains/industry-iso.png' },
-            { id: 'robotics', title: 'Robotique', icon: Factory, desc: 'Automatisation & Cobots', image: '/assets/domains/supply-chain-iso.png' },
-            { id: 'predictive', title: 'Maintenance IA', icon: ShieldCheck, desc: 'Anticipation des Pannes', image: '/assets/domains/solutions-iso.png' },
-        ]
-    },
-    {
-        id: 'solutions-metier',
-        layout: 'scannable_sticky', // THE NEW REQUESTED LAYOUT
-        title: 'DIGITALISATION DU VIVANT',
-        subtitle: 'SOLUTIONS MÉTIERS',
-        description: "Des écosystèmes digitaux complets pour des secteurs spécialisés. De l'agriculture de précision à la gestion hôtelière.",
-        mainImage: '/assets/domains/solutions-iso.png',
-        color: ALL_GOLD,
-        cards: [
-            { id: 'agri', title: 'Agriculture', icon: Plant, desc: 'Tracking & Monitoring Bétail', image: '/assets/expertise/agri-wireframe.png' },
-            // Added Spacer items or simply relying on gap? User said "spaced out vertically with large gaps".
-            { id: 'hospitality', title: 'Hospitalité', icon: Bed, desc: 'Smart Hotels & Expérience Client', image: '/assets/expertise/hotel-wireframe.png' },
-            { id: 'city', title: 'Citoyenneté', icon: UsersThree, desc: 'E-Gouvernement & Identité', image: '/assets/expertise/city-wireframe.png' },
-            // Extra spacer for scrolling past
-        ]
-    }
+// --- DATA ---
+const EXPERTISE_DATA = [
+  {
+    id: 'industrie',
+    title: 'INDUSTRIE X.0',
+    subtitle: 'AUTOMATISATION',
+    description: 'Transformation numérique des lignes de production.',
+    cards: [
+      {
+        title: 'AUTOMATISATION INTELLIGENTE',
+        subtitle: 'INDUSTRIE 4.0',
+        description:
+          "Accélérez votre transformation vers l'Industrie 4.0. De la logistique à la ligne de production, nous déployons l'intelligence au cœur de la machine.",
+        image: '/assets/expertise/turbine.png',
+        features: [
+          'Pilotage & Robotique (Bras, AGV)',
+          'Systèmes Embarqués sur mesure',
+          'Maintenance Prédictive IoT',
+        ],
+        icon: <Factory className="h-8 w-8 text-yellow-500" />,
+      },
+    ],
+  },
+  {
+    id: 'solutions',
+    title: 'SOLUTIONS MÉTIER',
+    subtitle: 'SECTEURS CLÉS',
+    description: 'Expertise verticale pour des défis spécifiques.',
+    cards: [
+      {
+        title: 'SUPPLY CHAIN 360',
+        subtitle: 'LOGISTIQUE',
+        description:
+          'Une visibilité totale sur vos opérations grâce à la traçabilité RFID, la gestion WMS avancée et l’orchestration des transports.',
+        image: '/assets/domains/supply-chain-iso.png',
+        features: ['WMS & TMS Intégrés', 'Traçabilité RFID Temps Réel', 'Optimisation de Tournées'],
+        icon: <Truck className="h-8 w-8 text-orange-500" />,
+      },
+      {
+        title: 'AGRI & HOSPITALITÉ',
+        subtitle: 'SMART SERVICES',
+        description:
+          "Digitalisation des actifs ruraux (AgriTech) et réinvention de l'expérience client (Hospitalité) via l'IoT.",
+        image: '/assets/expertise/bull-wireframe.png',
+        features: ['Suivi Bétail & Rendement', 'Check-in Sans Contact', 'Computer Vision'],
+        icon: <Leaf className="h-8 w-8 text-green-500" />,
+      },
+      {
+        title: 'CITOYENNETÉ',
+        subtitle: 'SMART CITY',
+        description:
+          'Plateformes unifiées, identité numérique et transparence administrative pour les villes de demain.',
+        image: '/assets/domains/core-inteligence.png',
+        features: ['Portails Citoyens Unifiés', 'Identité Numérique', 'Gestion des Déchets'],
+        icon: <Globe className="h-8 w-8 text-blue-500" />,
+      },
+    ],
+  },
+  {
+    id: 'data-ai',
+    title: 'DATA & INTELLIGENCE',
+    subtitle: 'COGNITIVE',
+    description: 'Le pouvoir de la donnée massive.',
+    cards: [
+      {
+        title: 'INTELLIGENCE ARTIFICIELLE',
+        subtitle: 'AI AGENTS',
+        description:
+          "Algorithmes génératifs et vision par ordinateur pour l'automatisation des tâches complexes.",
+        image: '/assets/domains/core-inteligence.svg',
+        features: ['LLMs & Agents Autonomes', 'OCR & Traitement Doc', 'Computer Vision'],
+        icon: <Cpu className="h-8 w-8 text-purple-500" />,
+      },
+      {
+        title: 'BIG DATA ANALYTICS',
+        subtitle: 'DATA ENGINEERING',
+        description:
+          'Traitement massif de données non structurées. De la collecte à la visualisation décisionnelle.',
+        image: '/assets/expertise/data-cube.png',
+        features: ['Data Lakes & Warehouses', 'Pipelines ETL Temps Réel', 'Dashboards BI'],
+        icon: <Database className="h-8 w-8 text-cyan-500" />,
+      },
+      {
+        title: 'SIMULATION 3D',
+        subtitle: 'DIGITAL TWINS',
+        description:
+          'Jumeaux numériques pour entrepôts et usines. Simulation immersive des opérations sous Unreal Engine 5.',
+        image: '/assets/domains/industry-iso.png',
+        features: ['Jumeaux Numériques', 'Simulation de Flux', 'Rendu Temps Réel'],
+        icon: <Cube className="h-8 w-8 text-red-500" />,
+      },
+    ],
+  },
 ]
 
-// --- 1. STICKY GRID (Existing Logic for first 2 sections) ---
-const StickyGridSection = ({ section, index }: { section: typeof EXPERTISE_SECTIONS[0], index: number }) => {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const [activeImage, setActiveImage] = useState(section.mainImage)
+export default function ExpertiseScroll() {
+  // Enable scroll snapping on the document root
+  useEffect(() => {
+    // Save original style to restore on unmount
+    const originalScrollSnapType = document.documentElement.style.scrollSnapType
 
-    useGSAP(() => {
-        gsap.fromTo(containerRef.current,
-            { opacity: 0, y: 50 },
-            {
-                opacity: 1, y: 0,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: 'top 80%',
-                    end: 'top 20%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        )
-    }, { scope: containerRef })
+    // Use 'proximity' instead of 'mandatory' so the browser doesn't force scrolling
+    // away from sections that don't have snap points (like Hero/Footer).
+    document.documentElement.style.scrollSnapType = 'y proximity'
 
-    return (
-        <div ref={containerRef} className="relative flex min-h-screen flex-col items-start lg:flex-row">
-            {/* Sticky Visual */}
-            <div className="sticky top-0 hidden h-screen w-full flex-1 items-center justify-center bg-[#050505] p-10 lg:flex lg:w-1/2">
-                <div className="relative flex size-full max-w-xl items-center justify-center rounded-3xl border border-white/5 bg-[#0A0A0A] shadow-2xl">
-                    <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))]" style={{ '--tw-gradient-from': `${section.color}15`, '--tw-gradient-to': 'transparent' } as any} />
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeImage}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.4 }}
-                            className="relative z-10 size-full p-12"
-                        >
-                            <div className="relative size-full">
-                                <Image
-                                    src={activeImage}
-                                    alt={section.title}
-                                    fill
-                                    className="object-contain drop-shadow-[0_0_50px_rgba(255,184,0,0.2)]"
-                                    onError={(e) => { e.currentTarget.style.display = 'none' }}
-                                />
-                                <div className="absolute inset-0 -z-10 flex items-center justify-center text-white/5">
-                                    <Cube weight="thin" size={128} />
-                                </div>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
-                    <div className="absolute bottom-10 left-10 font-mono text-6xl font-bold text-white/5">0{index + 1}.</div>
-                </div>
+    return () => {
+      document.documentElement.style.scrollSnapType = originalScrollSnapType
+    }
+  }, [])
+
+  return (
+    <div className="bg-black relative z-10">
+      <div className="container mx-auto px-4 py-32">
+        {/* Loop through Main Sections */}
+        {EXPERTISE_DATA.map((section, index) => (
+          <div
+            key={section.id}
+            className="relative grid md:grid-cols-12 gap-16 lg:gap-24 py-32 border-t border-white/10 first:border-0"
+          >
+            {/* LEFT COLUMN: Sticky Header */}
+            <div className="md:col-span-4 lg:col-span-3">
+              <div className="sticky top-40">
+                <span className="font-mono text-sm text-yellow-500 tracking-widest mb-4 block">
+                  0{index + 1} / {section.subtitle}
+                </span>
+                <h2 className="text-4xl md:text-5xl font-black font-heading leading-loose text-white mb-6 uppercase leading-none">
+                  {section.title}
+                </h2>
+                <p className="text-zinc-500 text-lg max-w-xs">{section.description}</p>
+              </div>
             </div>
 
-            {/* Content Content */}
-            <div className="relative z-10 w-full flex-1 bg-[#050505] px-6 py-24 lg:w-1/2 lg:px-20 lg:py-32">
-                <div className="mb-20">
-                    <span className="mb-4 block font-mono text-xs font-bold uppercase tracking-[0.2em]" style={{ color: section.color }}>{section.subtitle}</span>
-                    <h2 className="mb-8 font-heading text-5xl font-bold uppercase leading-none tracking-tight text-white md:text-6xl">{section.title}</h2>
-                    <p className="max-w-xl font-sans text-lg leading-relaxed text-gray-400">{section.description}</p>
-                </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {section.cards.map((card) => (
-                        <div
-                            key={card.id}
-                            onMouseEnter={() => setActiveImage(card.image)}
-                            onMouseLeave={() => setActiveImage(section.mainImage)}
-                            className="group relative cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-[#0F0F0F] p-8 transition-all duration-300 hover:border-[#FFB800]"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                            <div className="relative z-10 flex flex-col items-start gap-4">
-                                <div className="rounded-md bg-white/5 p-3 text-white/40 transition-colors duration-300 group-hover:bg-[#FFB800] group-hover:text-black">
-                                    <card.icon size={24} weight="duotone" />
-                                </div>
-                                <div>
-                                    <h3 className="font-heading text-xl font-bold uppercase text-white transition-colors group-hover:text-[#FFB800]">{card.title}</h3>
-                                    <p className="mt-2 font-mono text-xs text-gray-500">{card.desc}</p>
-                                </div>
-                            </div>
+            {/* RIGHT COLUMN: Stacked Cards */}
+            <div className="md:col-span-8 lg:col-span-9 space-y-48">
+              {section.cards.map((card, i) => (
+                <div key={i} className="group relative snap-center">
+                  {/* Background Glow */}
+                  <div className="absolute -inset-4 bg-gradient-to-r from-yellow-500/10 to-transparent rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                  <div className="relative bg-zinc-900/40 border border-white/10 rounded-[2.5rem] overflow-hidden backdrop-blur-sm hover:border-yellow-500/30 transition-colors duration-500">
+                    <div className="grid lg:grid-cols-2 gap-0">
+                      {/* Text Content */}
+                      <div className="p-10 md:p-16 lg:p-20 flex flex-col justify-center">
+                        <div className="flex items-center gap-4 mb-8">
+                          <div className="p-3 bg-white/5 rounded-full border border-white/10 text-white">
+                            {card.icon}
+                          </div>
+                          <span className="font-mono text-xs font-bold text-yellow-500 uppercase tracking-widest">
+                            {card.subtitle}
+                          </span>
                         </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    )
-}
 
+                        <h3 className="text-3xl font-bold text-white mb-4 uppercase">
+                          {card.title}
+                        </h3>
+                        <p className="text-zinc-400 leading-relaxed mb-12">{card.description}</p>
 
-// --- 2. SCANNABLE STICKY SECTION ('The Magic') ---
-const ScannableStickySection = ({ section, index }: { section: typeof EXPERTISE_SECTIONS[0], index: number }) => {
-    const containerRef = useRef<HTMLDivElement>(null)
-    const rightColRef = useRef<HTMLDivElement>(null)
-    const [activeCardId, setActiveCardId] = useState<string>(section.cards[0].id)
+                        <ul className="space-y-6">
+                          {card.features.map((feature, fIndex) => (
+                            <li
+                              key={fIndex}
+                              className="flex items-start gap-3 text-sm text-zinc-300"
+                            >
+                              <CheckCircle className="w-5 h-5 text-yellow-500 shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-    useGSAP(() => {
-        // For each card in the right column, create a ScrollTrigger
-        const cards = gsap.utils.toArray('.scannable-card') as HTMLElement[]
-
-        cards.forEach((card) => {
-            ScrollTrigger.create({
-                trigger: card,
-                start: 'top center+=10%', // When card hits center
-                end: 'bottom center+=10%',
-                onEnter: () => setActiveCardId(card.dataset.id!),
-                onEnterBack: () => setActiveCardId(card.dataset.id!),
-                // Toggle classes for visual "Scanning" effect
-                toggleClass: { targets: card, className: 'is-active-scan' },
-            })
-        })
-
-    }, { scope: rightColRef, dependencies: [section.cards] })
-
-    // Derived Active Data
-    const activeCardData = section.cards.find(c => c.id === activeCardId) || section.cards[0]
-
-
-    return (
-        <div ref={containerRef} className="relative flex flex-col bg-[#050505] lg:flex-row">
-
-            {/* LEFT: THE ANCHOR (Sticky) */}
-            <div className="relative hidden h-screen w-1/2 flex-col justify-between p-20 lg:sticky lg:top-0 lg:flex">
-                {/* Text Block */}
-                <div className="relative z-10 mt-20">
-                    <span className="mb-4 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#FFB800]">
-                        {section.subtitle}
-                    </span>
-                    <h2 className="mb-6 font-heading text-6xl font-bold uppercase leading-[0.9] text-white">
-                        {section.title}
-                    </h2>
-                    <p className="max-w-md font-sans text-lg leading-relaxed text-gray-400">
-                        {section.description}
-                    </p>
-                </div>
-
-                {/* THE 3D BULL / VISUAL */}
-                {/* Changes based on activeCardId */}
-                <div className="absolute bottom-0 right-0 z-0 h-4/5 w-[90%] opacity-100">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeCardId}
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -50 }}
-                            transition={{ duration: 0.5 }}
-                            className="relative size-full"
-                        >
-                            <Image
-                                src={activeCardData.image}
-                                alt={activeCardData.title}
-                                fill
-                                className="object-contain object-bottom drop-shadow-[0_0_80px_rgba(255,184,0,0.15)]"
-                            />
-                            {/* Connector Line (Virtual) */}
-                            {/* A visual line from right edge towards center to imply connection to the list */}
-                            <div className="absolute right-0 top-1/2 h-px w-20 bg-gradient-to-l from-[#FFB800] to-transparent" />
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-
-                {/* Footer Number */}
-                <div className="relative z-10 font-mono text-sm text-gray-600">
-                    SYSTEM STATUS: SCANNING...
-                </div>
-            </div>
-
-
-            {/* RIGHT: THE TRIGGER LIST (Scrollable) */}
-            <div ref={rightColRef} className="flex min-h-[150vh] w-full flex-col justify-center px-6 py-24 pb-[40vh] lg:w-1/2 lg:px-32 lg:pt-[40vh]">
-                <div className="flex flex-col gap-[30vh]"> {/* LARGE GAPS between cards */}
-                    {section.cards.map((card) => (
-                        <div
-                            key={card.id}
-                            data-id={card.id}
-                            className={clsx(
-                                "scannable-card group relative flex items-center gap-6 rounded-r-xl border-l-4 bg-[#0F0F0F] p-8 transition-all duration-500",
-                                // Inactive State: Dark, Transparent-ish border
-                                "border-transparent opacity-40 grayscale",
-                                // Active State (Handled by GSAP toggleClass 'is-active-scan' usually, but we also use React State for failsafe)
-                                activeCardId === card.id && "!border-[#FFB800] !bg-black/80 !opacity-100 ring-1 ring-[#FFB800]/20 !grayscale-0 backdrop-blur-md"
-                            )}
-                        >
-                            {/* Connector Line (Leftwards) - Only visible when active */}
-                            <div className={clsx(
-                                "absolute -left-20 top-1/2 h-px w-20 bg-[#FFB800] transition-all duration-500",
-                                activeCardId === card.id ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-                            )} />
-
-                            <div className="flex size-16 shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFB800]">
-                                <card.icon size={32} weight={activeCardId === card.id ? "fill" : "duotone"} />
-                            </div>
-
-                            <div>
-                                <h3 className="font-heading text-2xl font-bold uppercase text-white">{card.title}</h3>
-                                <p className="font-mono text-xs text-gray-500">{card.desc}</p>
-                            </div>
+                      {/* Image Content */}
+                      <div className="relative min-h-[300px] lg:min-h-full bg-black/50 border-t lg:border-t-0 lg:border-l border-white/10">
+                        <div className="absolute inset-0 flex items-center justify-center p-8">
+                          {/* Glow behind image */}
+                          <div className="absolute w-[200px] h-[200px] bg-yellow-500/20 blur-[80px] rounded-full" />
+                          <img
+                            src={card.image}
+                            alt={card.title}
+                            className="relative z-10 w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                          />
                         </div>
-                    ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              ))}
             </div>
-
-        </div>
-    )
-}
-
-
-export function ExpertiseScroll() {
-    return (
-        <div className="relative w-full">
-            {EXPERTISE_SECTIONS.map((section, i) => {
-                if (section.layout === 'scannable_sticky') {
-                    return <ScannableStickySection key={section.id} section={section} index={i} />
-                }
-                return <StickyGridSection key={section.id} section={section} index={i} />
-            })}
-        </div>
-    )
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }

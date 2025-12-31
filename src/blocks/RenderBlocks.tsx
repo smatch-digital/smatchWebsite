@@ -13,10 +13,12 @@ import { DomainsBlock } from './Domains/Component'
 import { MissionVisionBlockComponent } from '@/blocks/MissionVision/Component'
 import { HistoryTimelineBlockComponent } from '@/blocks/HistoryTimeline/Component'
 import { TeamBlockComponent } from '@/blocks/Team/Component'
-import { SmartGrid } from '@/components/blocks/SmartGrid'
+import { IntroBlockComponent } from '@/blocks/Intro/Component'
+import { JournalBlockComponent } from '@/blocks/Journal/Component'
+import { SmartGrid } from '@/blocks/SmartGrid/Component'
 import { TrustedByBlock } from '@/blocks/TrustedBy/Component'
 import { ActivityTimelineBlock } from '@/blocks/ActivityTimeline/Component'
-
+import { ContactBlock } from '@/blocks/Contact/Component'
 
 const blockComponents = {
   about: AboutBlock,
@@ -33,6 +35,9 @@ const blockComponents = {
   'smart-grid': SmartGrid,
   trustedBy: TrustedByBlock,
   activityTimeline: ActivityTimelineBlock,
+  intro: IntroBlockComponent,
+  journal: JournalBlockComponent,
+  contact: ContactBlock,
 }
 
 export const RenderBlocks: React.FC<{

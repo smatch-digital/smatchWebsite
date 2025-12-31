@@ -1,9 +1,9 @@
-import * as migration_20251227_141521_fix_schema from './20251227_141521_fix_schema';
+import * as migration_20251230_123137_init from './20251230_123137_init';
 
 export const migrations = [
   {
-    up: migration_20251227_141521_fix_schema.up,
-    down: migration_20251227_141521_fix_schema.down,
-    name: '20251227_141521_fix_schema'
+    up: migration_20251230_123137_init.up,
+    down: migration_20251230_123137_init.down,
+    name: '20251230_123137_init'
   },
 ];

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { Spotlight } from '../ui/spotlight'
 
 export interface AboutHeroProps {
@@ -17,29 +18,17 @@ export function AboutHero({
   secondaryCtaLabel = 'DÉCOUVRIR LES OFFRES',
 }: AboutHeroProps) {
   return (
-    <section className="relative mx-auto flex min-h-[90vh] items-center justify-center overflow-hidden bg-smatch-black pt-20">
+    <section className="relative mx-auto flex h-screen min-h-[90vh] items-center justify-center overflow-hidden bg-smatch-black pt-20">
       {/* Background Effects */}
-      <div className='absolute inset-x-0 bottom-0 z-10 size-full bg-gradient-to-t from-smatch-black to-transparent'></div>
-      <div className="absolute inset-0 z-0 mix-blend-screen">
-        <Spotlight
-          className="-top-40 left-0 md:-top-20 md:left-60 "
-          fill="#FFC800"
-        />
+      <div className="absolute inset-x-0 bottom-0 z-10 size-full bg-gradient-to-t from-smatch-black to-transparent"></div>
+      <div className="absolute inset-0 z-0 ">
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFC800" />
         <Spotlight
           className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
           fill="#FFE6A1"
         />
-        <Spotlight
-          className="-top-40 left-0 md:-top-40 md:left-[30rem]"
-          fill="#FFC800"
-        />
-        <Image
-          className="object-cover opacity-60 mix-blend-screen"
-          src={'/assets/hero/hero-background.jpg'}
-          alt=""
-          fill
-          priority
-        />
+        <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
+        <Image className="object-cover " src={'/assets/hero/AboutHero.webp'} alt="" fill priority />
         <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
       </div>
 
@@ -51,19 +40,6 @@ export function AboutHero({
         <p className="mb-10 max-w-2xl text-lg text-smatch-text-secondary md:text-xl">
           {subheadline}
         </p>
-
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <Button
-            variant="outline-gold"
-            size="lg"
-            className="min-w-[200px] uppercase tracking-wider"
-          >
-            {secondaryCtaLabel}
-          </Button>
-          <Button variant="gold" size="lg" className="min-w-[200px] uppercase tracking-wider">
-            {primaryCtaLabel}
-          </Button>
-        </div>
       </div>
     </section>
   )

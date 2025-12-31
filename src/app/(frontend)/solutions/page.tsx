@@ -31,7 +31,7 @@ export default async function SolutionsPage() {
 
   return (
     <main className="flex w-full flex-col">
-      <SolutionsHero />
+      <SolutionsHero image={'/assets/hero/SolutionHero.webp'}/>
       {/* 3. Pass the fetched data to the Grid */}
       <SolutionsGrid solutions={solutions} />
       <SolutionsCTA />

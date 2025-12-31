@@ -45,6 +45,7 @@ export default async function ProjectsPage() {
             <SolutionsHero
                 title="JOURNAL DES OPÉRATIONS"
                 subtitle="Projets. Événements. Le fil de notre transformation numérique."
+                image="/assets/hero/ProjectsHero.webp"
             />
             <ActivityTimelineBlock
                 title="ACTIVITÉS RÉCENTES"

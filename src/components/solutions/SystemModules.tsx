@@ -84,7 +84,7 @@ export const SystemModules: React.FC<SystemModulesProps> = ({ modules, className
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl font-bold tracking-tight text-foreground md:text-5xl"
+            className="text-4xl font-bold tracking-tight text-white md:text-5xl"
           >
             Spécifications
           </motion.h2>

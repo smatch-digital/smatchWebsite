@@ -1,38 +1,28 @@
 import type { Block } from 'payload'
 
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
-import { linkGroup } from '../../fields/linkGroup'
+import { link } from '../../fields/link'
 
 export const CallToAction: Block = {
   slug: 'cta',
   interfaceName: 'CallToActionBlock',
   fields: [
     {
-      name: 'richText',
-      type: 'richText',
-      editor: lexicalEditor({
-        features: ({ rootFeatures }) => {
-          return [
-            ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-            FixedToolbarFeature(),
-            InlineToolbarFeature(),
-          ]
-        },
-      }),
-      label: false,
-    },
-    linkGroup({
-      appearances: ['default', 'outline'],
-      overrides: {
-        maxRows: 2,
+      name: 'headline',
+      type: 'text',
+      required: true,
+      admin: {
+        description: 'Main CTA heading (e.g., "Ready to transform your organization?")',
       },
+    },
+    {
+      name: 'subheadline',
+      type: 'textarea',
+      admin: {
+        description: 'Supporting text below the headline',
+      },
+    },
+    link({
+      appearances: ['gold', 'outline-gold'],
     }),
   ],
   labels: {

@@ -5,6 +5,33 @@ export const SmartGrid: Block = {
   interfaceName: 'SmartGridBlock',
   fields: [
     {
+      type: 'group',
+      name: 'sectionHeader',
+      label: 'Section Header',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          label: 'Title',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Description',
+        },
+        {
+          name: 'align',
+          type: 'select',
+          defaultValue: 'center',
+          options: [
+            { label: 'Left', value: 'left' },
+            { label: 'Center', value: 'center' },
+            { label: 'Right', value: 'right' }
+          ]
+        }
+      ]
+    },
+    {
       name: 'columns',
       type: 'select',
       defaultValue: '3',
@@ -44,13 +71,30 @@ export const SmartGrid: Block = {
           required: true,
         },
         {
+          name: 'iconType',
+          type: 'radio',
+          defaultValue: 'upload',
+          options: [
+            { label: 'Upload SVG', value: 'upload' },
+            { label: 'Icon Name (Phosphor)', value: 'name' }
+          ]
+        },
+        {
           name: 'icon',
           type: 'upload',
           relationTo: 'media',
-          required: true,
           admin: {
             description: 'Upload an SVG icon.',
+            condition: (_, siblingData) => siblingData.iconType === 'upload'
           },
+        },
+        {
+          name: 'iconName',
+          type: 'text',
+          admin: {
+            description: 'Enter Phosphor Icon name (e.g. Factory, RocketLaunch)',
+            condition: (_, siblingData) => siblingData.iconType === 'name'
+          }
         },
         {
           name: 'badge',

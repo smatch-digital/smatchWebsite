@@ -298,6 +298,9 @@ export interface Page {
         blockName?: string | null;
         blockType: 'activityTimeline';
       }
+    | IntroBlock
+    | JournalBlock
+    | ContactBlock
   )[];
   meta?: {
     title?: string | null;
@@ -500,45 +503,33 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: number | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: number | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
+  /**
+   * Main CTA heading (e.g., "Ready to transform your organization?")
+   */
+  headline: string;
+  /**
+   * Supporting text below the headline
+   */
+  subheadline?: string | null;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: ('gold' | 'outline-gold') | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
@@ -624,18 +615,108 @@ export interface ArchiveBlock {
     [k: string]: unknown;
   } | null;
   populateBy?: ('collection' | 'selection') | null;
-  relationTo?: 'posts' | null;
+  relationTo?: ('posts' | 'projects') | null;
   categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
-    | {
-        relationTo: 'posts';
-        value: number | Post;
-      }[]
+    | (
+        | {
+            relationTo: 'posts';
+            value: number | Post;
+          }
+        | {
+            relationTo: 'projects';
+            value: number | Project;
+          }
+      )[]
     | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'archive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  title: string;
+  /**
+   * URL-friendly identifier (e.g., "tech-summit-2024")
+   */
+  slug: string;
+  type: 'project' | 'event';
+  status: 'upcoming' | 'completed' | 'archived';
+  date: string;
+  /**
+   * Description courte affichée sur la carte
+   */
+  description?: string | null;
+  /**
+   * Image principale de la carte
+   */
+  image?: (number | null) | Media;
+  /**
+   * Ex: "Paris, France"
+   */
+  location?: string | null;
+  /**
+   * Identifiant unique. Ex: "SUMMIT_34", "AGRI_TECH"
+   */
+  code?: string | null;
+  /**
+   * Ajoutez des informations comme "ACCESS: PUBLIC", "PARTICIPANTS: 1200+", "RELEASE: STABLE"
+   */
+  metadata?:
+    | {
+        /**
+         * Phosphor icon name
+         */
+        icon?: string | null;
+        label: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Ex: "S'INSCRIRE", "VOIR LE RÉCAP", "Voir le changelog"
+   */
+  linkLabel?: string | null;
+  /**
+   * Cochez si le bouton doit rediriger vers une URL externe
+   */
+  externalLink?: boolean | null;
+  /**
+   * URL complète (ex: https://example.com)
+   */
+  linkUrl?: string | null;
+  /**
+   * Contenu affiché sur la page de détail
+   */
+  fullDescription?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1000,16 +1081,26 @@ export interface TeamBlock {
  * via the `definition` "SmartGridBlock".
  */
 export interface SmartGridBlock {
+  sectionHeader?: {
+    title?: string | null;
+    description?: string | null;
+    align?: ('left' | 'center' | 'right') | null;
+  };
   columns?: ('2' | '3' | '4') | null;
   cards?:
     | {
         title: string;
         subtitle?: string | null;
         description: string;
+        iconType?: ('upload' | 'name') | null;
         /**
          * Upload an SVG icon.
          */
-        icon: number | Media;
+        icon?: (number | null) | Media;
+        /**
+         * Enter Phosphor Icon name (e.g. Factory, RocketLaunch)
+         */
+        iconName?: string | null;
         badge?: string | null;
         ctaText?: string | null;
         href?: string | null;
@@ -1029,87 +1120,71 @@ export interface SmartGridBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "projects".
+ * via the `definition` "IntroBlock".
  */
-export interface Project {
-  id: number;
-  title: string;
-  /**
-   * URL-friendly identifier (e.g., "tech-summit-2024")
-   */
-  slug: string;
-  type: 'project' | 'event';
-  status: 'upcoming' | 'completed' | 'archived';
-  date: string;
-  /**
-   * Description courte affichée sur la carte
-   */
+export interface IntroBlock {
+  header?: {
+    headingPart1?: string | null;
+    headingPart2?: string | null;
+  };
+  tag?: string | null;
   description?: string | null;
-  /**
-   * Image principale de la carte
-   */
-  image?: (number | null) | Media;
-  /**
-   * Ex: "Paris, France"
-   */
-  location?: string | null;
-  /**
-   * Identifiant unique. Ex: "SUMMIT_34", "AGRI_TECH"
-   */
-  code?: string | null;
-  /**
-   * Ajoutez des informations comme "ACCESS: PUBLIC", "PARTICIPANTS: 1200+", "RELEASE: STABLE"
-   */
-  metadata?:
+  cta?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'intro';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "JournalBlock".
+ */
+export interface JournalBlock {
+  title?: string | null;
+  liveFeedText?: string | null;
+  limit?: number | null;
+  manualItems?:
     | {
-        /**
-         * Phosphor icon name
-         */
-        icon?: string | null;
+        title: string;
+        description?: string | null;
+        meta?: string | null;
+        linkText?: string | null;
+        linkUrl?: string | null;
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'journal';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  headline: string;
+  subheadline?: string | null;
+  form: number | Form;
+  email: string;
+  phone?: string | null;
+  addresses?:
+    | {
         label: string;
         value: string;
         id?: string | null;
       }[]
     | null;
-  /**
-   * Ex: "S'INSCRIRE", "VOIR LE RÉCAP", "Voir le changelog"
-   */
-  linkLabel?: string | null;
-  /**
-   * Cochez si le bouton doit rediriger vers une URL externe
-   */
-  externalLink?: boolean | null;
-  /**
-   * URL complète (ex: https://example.com)
-   */
-  linkUrl?: string | null;
-  /**
-   * Contenu affiché sur la page de détail
-   */
-  fullDescription?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  gallery?:
+  socialLinks?:
     | {
-        image: number | Media;
-        caption?: string | null;
+        platform: string;
+        url: string;
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
+  theme?: ('dark' | 'charcoal') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1543,6 +1618,9 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        intro?: T | IntroBlockSelect<T>;
+        journal?: T | JournalBlockSelect<T>;
+        contact?: T | ContactBlockSelect<T>;
       };
   meta?:
     | T
@@ -1563,21 +1641,17 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
-  links?:
+  headline?: T;
+  subheadline?: T;
+  link?:
     | T
     | {
-        link?:
-          | T
-          | {
-              type?: T;
-              newTab?: T;
-              reference?: T;
-              url?: T;
-              label?: T;
-              appearance?: T;
-            };
-        id?: T;
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
       };
   id?: T;
   blockName?: T;
@@ -1802,6 +1876,13 @@ export interface TeamBlockSelect<T extends boolean = true> {
  * via the `definition` "SmartGridBlock_select".
  */
 export interface SmartGridBlockSelect<T extends boolean = true> {
+  sectionHeader?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        align?: T;
+      };
   columns?: T;
   cards?:
     | T
@@ -1809,7 +1890,9 @@ export interface SmartGridBlockSelect<T extends boolean = true> {
         title?: T;
         subtitle?: T;
         description?: T;
+        iconType?: T;
         icon?: T;
+        iconName?: T;
         badge?: T;
         ctaText?: T;
         href?: T;
@@ -1822,6 +1905,73 @@ export interface SmartGridBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IntroBlock_select".
+ */
+export interface IntroBlockSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        headingPart1?: T;
+        headingPart2?: T;
+      };
+  tag?: T;
+  description?: T;
+  cta?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "JournalBlock_select".
+ */
+export interface JournalBlockSelect<T extends boolean = true> {
+  title?: T;
+  liveFeedText?: T;
+  limit?: T;
+  manualItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        meta?: T;
+        linkText?: T;
+        linkUrl?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  headline?: T;
+  subheadline?: T;
+  form?: T;
+  email?: T;
+  phone?: T;
+  addresses?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  theme?: T;
   id?: T;
   blockName?: T;
 }

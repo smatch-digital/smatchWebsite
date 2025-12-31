@@ -5,6 +5,20 @@ import Link from 'next/link'
 import { Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
 
+import {
+  Factory,
+  RocketLaunch,
+  ShieldCheck,
+  UsersThree,
+  Plug,
+  ChartLineUp,
+  Barcode,
+  Truck,
+  Warehouse,
+  Cpu,
+  Globe,
+} from '@phosphor-icons/react/dist/ssr'
+
 // Define the exact props we need for strict typing
 export interface SolutionStat {
   value: string
@@ -21,6 +35,24 @@ export interface SolutionCardProps {
   href?: string
   badge?: string
   ctaText?: string
+}
+
+// --- Icon Mapping Strategy ---
+const getIconComponent = (iconName: string): React.ReactNode => {
+  const icons: Record<string, React.ReactElement> = {
+    'Factory': <Factory size={24} weight="fill" />,
+    'RocketLaunch': <RocketLaunch size={24} weight="fill" />,
+    'ShieldCheck': <ShieldCheck size={24} weight="fill" />,
+    'UsersThree': <UsersThree size={24} weight="fill" />,
+    'Plug': <Plug size={24} weight="fill" />,
+    'ChartLineUp': <ChartLineUp size={24} weight="fill" />,
+    'Barcode': <Barcode size={24} weight="fill" />,
+    'Truck': <Truck size={24} weight="fill" />,
+    'Warehouse': <Warehouse size={24} weight="fill" />,
+    'Circuitry': <Cpu size={24} weight="fill" />,
+    'Globe': <Globe size={24} weight="fill" />,
+  }
+  return icons[iconName] || null
 }
 
 export const SolutionCard: React.FC<SolutionCardProps> = ({
@@ -52,6 +84,8 @@ export const SolutionCard: React.FC<SolutionCardProps> = ({
               })
             ) : typeof icon === 'object' && icon !== null && 'url' in icon ? (
               <MediaComponent resource={icon as any} className="size-6 text-[#FFB800]" />
+            ) : typeof icon === 'string' ? (
+              getIconComponent(icon) || (icon as any)
             ) : (
               icon as any
             )}
