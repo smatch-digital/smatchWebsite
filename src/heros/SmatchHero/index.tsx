@@ -36,11 +36,11 @@ export const SmatchHero: React.FC<Page['hero']> = ({
       <div className="container relative z-10 flex flex-col items-center px-4 text-center">
         {/* Top Gold Arc Effect (CSS Mock) */}
 
-        <h1 className="mb-6 max-w-5xl font-heading text-8xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
+        <h1 className="mb-6 max-w-5xl font-heading text-6xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
           {headline}
         </h1>
 
-        <p className="mb-10 max-w-2xl text-lg font-light text-white md:text-xl">{subheadline}</p>
+        <p className="mb-10 max-w-2xl text-sm font-light text-white md:text-xl">{subheadline}</p>
 
         {enableCta && (
           <div className="flex flex-col gap-4 sm:flex-row">
