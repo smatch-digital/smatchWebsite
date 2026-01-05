@@ -1059,6 +1059,13 @@ export interface TeamBlock {
         id?: string | null;
       }[]
     | null;
+  directorsQuote?: {
+    text?: string | null;
+    /**
+     * Leave empty to use primary leader name automatically
+     */
+    author?: string | null;
+  };
   members?:
     | {
         name: string;
@@ -1863,6 +1870,12 @@ export interface TeamBlockSelect<T extends boolean = true> {
         linkedin?: T;
         email?: T;
         id?: T;
+      };
+  directorsQuote?:
+    | T
+    | {
+        text?: T;
+        author?: T;
       };
   members?:
     | T

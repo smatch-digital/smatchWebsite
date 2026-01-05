@@ -93,6 +93,27 @@ export const Team: Block = {
       fields: memberFields,
     },
     {
+      name: 'directorsQuote',
+      type: 'group',
+      label: "Director's Quote (Sidebar Panel)",
+      fields: [
+        {
+          name: 'text',
+          type: 'textarea',
+          label: 'Quote Text',
+          defaultValue: "Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines. Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.",
+        },
+        {
+          name: 'author',
+          type: 'text',
+          label: 'Quote Author',
+          admin: {
+            description: 'Leave empty to use primary leader name automatically',
+          },
+        },
+      ],
+    },
+    {
       name: 'members',
       type: 'array',
       label: 'Team Members (Bottom Row)',

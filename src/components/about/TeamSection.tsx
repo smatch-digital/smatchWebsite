@@ -1,24 +1,38 @@
 'use client'
 
-import React, { useState } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, LinkedinLogo, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
-import { cn } from '@/utilities/ui'
+import Image from 'next/image'
+
+// --- Utility for Tailwind Classes ---
+function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 // --- Data Structure ---
+
+const DIRECTORS_WORD = {
+  id: 'quote-lead',
+  text: "Consultant manager polyvalent alliant expertise technique et vision entrepreneuriale. Mon code source : transformer la complexité en opportunité.",
+  author: "TARIK ZAGHLOUL",
+  role: "CEO & FOUNDER",
+  tag: "VISION"
+}
+
 const TEAM_MEMBERS = [
   {
     id: 'tarik',
     tag: '[ ARCHITECT_01 ]',
     name: 'TARIK ZAGHLOUL',
     role: 'CEO & FOUNDER | EPFL ALUMNI',
-    description: '"Consultant manager polyvalent alliant expertise technique et vision entrepreneuriale. Mon code source : transformer la complexité en opportunité."',
+    // Description text for the card
+    description: 'Consultant manager polyvalent alliant expertise technique et vision entrepreneuriale. Mon code source : transformer la complexité en opportunité.',
     footerId: 'ID: TZ_001 // LEAD',
     image: '/assets/team/tarik.jpg',
     linkedin: '#',
     email: 'mailto:tarik@smatch.ma',
+    isLeader: true,
   },
   {
     id: 'mostafa',
@@ -34,7 +48,7 @@ const TEAM_MEMBERS = [
   {
     id: 'mohammed',
     tag: 'TEAM_LEADER',
-    name: 'Mohammed B.',
+    name: 'MOHAMMED B.',
     role: 'HEAD OF ENGINEERING',
     description: "Pilotage de l'architecture technique et supervision des équipes de développement Full Stack.",
     footerId: 'ID: MB_003 // ENG',
@@ -45,7 +59,7 @@ const TEAM_MEMBERS = [
   {
     id: 'fatima',
     tag: 'DATA_SCI',
-    name: 'Fatima B.',
+    name: 'FATIMA B.',
     role: 'TEAM LEAD',
     description: "Expertise en modélisation prédictive et algorithmes d'IA appliqués à la logistique.",
     footerId: 'ID: FB_004 // DATA',
@@ -56,7 +70,7 @@ const TEAM_MEMBERS = [
   {
     id: 'adil',
     tag: 'LOGISTICS',
-    name: 'Adil F.',
+    name: 'ADIL F.',
     role: 'EXPERT EN LOGISTIQUE',
     description: "Optimisation des flux WMS et intégration des processus terrain.",
     footerId: 'ID: AF_005 // LOG',
@@ -66,309 +80,239 @@ const TEAM_MEMBERS = [
   },
 ]
 
-// --- Helper Components ---
+// --- Components ---
 
-const SocialButton = ({ icon: Icon, href, className }: { icon: any, href: string, className?: string }) => (
-  <Link
-    href={href}
-    className={cn(
-      "w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#FFB800] hover:border-[#FFB800] hover:bg-[#FFB800]/10 transition-all duration-300 bg-[#111]",
-      className
-    )}
-  >
-    <Icon size={18} />
-  </Link>
-)
-
-// --- 1. Main Leader Card (Tarik) ---
-const LeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; className?: string }) => {
+const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
   return (
-    <div className={cn("relative group rounded-[24px] border border-white/5 bg-[#0A0A0A] overflow-hidden flex flex-col justify-between p-6 md:p-12 transition-all duration-500 hover:border-[#FFB800]/30", className)}>
+    <div className="relative w-full h-full overflow-hidden rounded-[20px] bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-all hover:border-[#FFB800]/30 md:p-8">
+      {/* Decorative Noise/Grid Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" />
+      <div className="relative z-10 flex flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
 
-      {/* Texture Background */}
-      <div className="pointer-events-none absolute inset-0 bg-[url('/assets/noise.png')] opacity-20 mix-blend-overlay" />
+        {/* Image & ID Block */}
+        <div className="flex flex-col gap-4 lg:w-[320px]">
+          {/* Image Container */}
+          <div className="relative aspect-[5/8] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50 group">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
 
-      {/* Background Glow (Responsive size) */}
-      <div className="pointer-events-none absolute -right-[20%] -top-[20%] size-4/5 rounded-full bg-[#FFB800]/5 blur-[100px] transition-colors duration-700 group-hover:bg-[#FFB800]/10 md:size-3/5" />
+            {member.image ? (
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                className="object-cover opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0 grayscale"
+                sizes="(max-width: 1024px) 100vw, 320px"
+                priority
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center bg-[#111] text-white/20 font-mono">
+                NO_IMG
+              </div>
+            )}
 
-      {/* Content Grid */}
-      <div className="relative z-10 flex flex-col items-start gap-8 md:flex-row md:gap-10">
-        {/* PFP Container */}
-        <div className="relative flex w-full shrink-0 justify-center md:block md:w-auto">
-           <div className="relative size-32 overflow-hidden rounded-[20px] border border-white/10 bg-[#151515] shadow-2xl transition-colors duration-500 group-hover:border-[#FFB800]/50 md:h-64 md:w-56">
-               {member.image ? (
-                 <Image
-                   src={member.image}
-                   alt={member.name}
-                   fill
-                   className="scale-100 object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                 />
-               ) : (
-                 <div className="absolute inset-0 flex items-center justify-center font-mono text-xs text-white/20">NO IMG</div>
-               )}
-               {/* Tech Corners */}
-               <div className="absolute right-2 top-2 size-2 border-r border-t border-[#FFB800] opacity-0 transition-opacity group-hover:opacity-100" />
-               <div className="absolute bottom-2 left-2 size-2 border-b border-l border-[#FFB800] opacity-0 transition-opacity group-hover:opacity-100" />
-           </div>
+            <div className="absolute top-0 w-full h-[2px] bg-[#FFB800]/50 shadow-[0_0_20px_#FFB800] opacity-0 group-hover:opacity-100 group-hover:animate-scan z-20" />
+          </div>
+
+          {/* ID Tag (Font Mono) */}
         </div>
-
-        {/* Text Info */}
-        <div className="flex flex-1 flex-col pt-2 text-center md:text-left">
-            <span className="mb-4 block self-center rounded border border-[#FFB800]/20 bg-[#FFB800]/5 px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#FFB800] md:self-start md:text-xs">
-                {member.tag}
+        {/* Text Content */}
+        <div className="flex-1">
+          {/* Tag */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-4 py-1.5">
+            <span className="font-mono text-xs font-bold tracking-[0.2em] text-[#FFB800]">
+              {member.tag}
             </span>
+          </div>
 
-            <h3 className="mb-4 font-heading text-3xl font-bold uppercase leading-[0.9] tracking-tight text-white md:text-5xl lg:text-6xl">
-                {member.name}
-            </h3>
+          {/* Name (Font Heading / Antonio) */}
+          <h3 className="mb-4 font-heading text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-[5rem]">
+            {member.name.split(' ')[0]} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+              {member.name.split(' ').slice(1).join(' ')}
+            </span>
+          </h3>
 
-            <p className="mb-8 border-l-0 border-[#FFB800] pl-0 font-sans text-xs font-medium uppercase tracking-widest text-gray-400 md:border-l-2 md:pl-4 md:text-sm">
-                {member.role}
+          {/* Role (Font Mono / JetBrains) */}
+          <p className="mb-8 font-mono text-sm uppercase tracking-widest text-[#FFB800]/80">
+            {member.role}
+          </p>
+
+          {/* Description Block (Moved back inside card as per request) */}
+          <div className="relative mb-10 border-l-2 border-[#FFB800] pl-6">
+            {/* Gradient Quote (Font Sans / Inter) */}
+            <p className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed text-transparent font-sans md:text-xl">
+              "{member.description}"
             </p>
+          </div>
 
-            <div className="mt-auto border-t border-white/5 pt-8">
-                <p className="mx-auto max-w-lg font-sans text-base italic leading-relaxed text-gray-400 md:mx-0 md:text-lg">
-                    {member.description}
-                </p>
-            </div>
-
-            {/* Social Icons */}
-            <div className="mt-8 flex justify-center gap-3 md:justify-start">
-                <SocialButton icon={LinkedinLogo} href={member.linkedin} />
-                <SocialButton icon={EnvelopeSimple} href={member.email} />
-            </div>
+          {/* Socials (Phosphor Icons) */}
+          <div className="flex gap-4">
+            <Link href={member.linkedin} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFB800] hover:border-[#FFB800] hover:text-black text-white">
+              <LinkedinLogo size={32} weight="duotone" />
+            </Link>
+            <Link href={member.email} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFB800] hover:border-[#FFB800] hover:text-black text-white">
+              <EnvelopeSimple size={32} weight="duotone" />
+            </Link>
+          </div>
         </div>
-      </div>
 
-      {/* Bottom ID Tag */}
-      <div className="relative z-10 mt-auto flex items-center justify-center pt-6 md:justify-start">
-         <div className="flex items-center gap-3">
-            <div className="size-1.5 animate-pulse rounded-full bg-[#FFB800]" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
-                {member.footerId}
-            </span>
-         </div>
+      </div>
+      <div className="flex items-center justify-between border-t border-white/10 pt-4 mt-8 font-mono text-xs tracking-widest text-gray-500">
+        <span>{member.footerId}</span>
+        <span className="text-[#FFB800]">ONLINE</span>
       </div>
     </div>
   )
 }
 
-// --- 2. Secondary Leader Card (Mostafa) ---
-const SecondaryLeaderCard = ({ member, className }: { member: typeof TEAM_MEMBERS[0]; className?: string }) => {
-    return (
-      <div className={cn("relative group rounded-[24px] border border-white/5 bg-[#0A0A0A] overflow-hidden flex flex-col p-6 md:p-10 transition-all duration-500 hover:border-[#FFB800]/30", className)}>
+const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
+  return (
+    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFB800]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,184,0,0.1)]">
 
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {/* Hover Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-        {/* Top Section: Image & Tag */}
-        <div className="relative z-10 mb-8 flex flex-col items-start justify-between gap-4 md:flex-row">
-             {/* PFP Circle */}
-             <div className="relative size-16 overflow-hidden rounded-2xl border border-white/10 transition-colors duration-500 group-hover:border-[#FFB800]/50 md:size-20">
-                 {member.image && (
-                     <Image
-                        src={member.image}
-                        alt={member.name}
-                        fill
-                        className="object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-                     />
-                 )}
-             </div>
-
-             {/* Tag */}
-             <div className="self-start rounded-md border border-white/10 bg-[#151515] px-3 py-1">
-                 <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-colors group-hover:text-white">
-                     {member.tag}
-                 </span>
-             </div>
+      {/* Header: Image & Tag */}
+      <div className="relative z-10 mb-6 flex items-start justify-between">
+        <div className="relative h-24 w-24 overflow-hidden rounded-lg border border-white/10 bg-[#151515]">
+          {member.image ? (
+            <img
+              src={member.image}
+              alt={member.name}
+              className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-[10px] text-white/20">IMG</div>
+          )}
         </div>
 
-        {/* Main Content */}
-        <div className="relative z-10 flex-1">
-            <h3 className="mb-3 font-heading text-3xl font-bold uppercase leading-none text-white transition-colors duration-300 group-hover:text-[#FFB800] md:text-5xl">
-                {member.name}
-            </h3>
-            <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.15em] text-gray-500 md:text-xs">
-                {member.role}
-            </p>
-            <p className="mb-8 border-l border-white/10 pl-4 font-sans text-sm leading-relaxed text-gray-400 transition-colors group-hover:border-[#FFB800]">
-                {member.description}
-            </p>
-        </div>
+        <div className="rounded border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-md">
+          <span className="font-mono text-[10px] font-bold tracking-wider text-[#FFB800]">
+            {member.tag === '[ ARCHITECT_01 ]' ? 'LEAD' : member.tag}
+          </span>
 
-        {/* Footer & Socials */}
-        <div className="relative z-10 mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-6">
-            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30">
-                {member.footerId}
-            </span>
-
-            <div className="flex gap-2">
-                 <SocialButton icon={LinkedinLogo} href={member.linkedin} className="size-8" />
-                 <SocialButton icon={EnvelopeSimple} href={member.email} className="size-8" />
-            </div>
         </div>
       </div>
-    )
-  }
 
-// --- 3. Expandable Team Member Card ---
-const TeamMemberCard = ({
-    member,
-    isHovered,
-    onHover,
-    onLeave
-}: {
-    member: typeof TEAM_MEMBERS[0];
-    isHovered: boolean;
-    onHover: () => void;
-    onLeave: () => void;
-}) => {
-    // Only apply expansion logic on desktop. On mobile, we rely on standard layout.
-    // In Framer Motion, we can condition the 'animate' prop.
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Name (Font Heading) */}
+        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white group-hover:text-[#FFB800] transition-colors">
+          {member.name}
+        </h3>
 
-    return (
-        <motion.div
-            onMouseEnter={onHover}
-            onMouseLeave={onLeave}
-            className="group relative flex h-[450px] w-full cursor-pointer flex-col justify-end overflow-hidden rounded-[24px] border border-white/5 bg-[#0A0A0A] p-6 md:h-[500px] md:p-8"
-            // Desktop: Flex expand. Mobile: Static flex-1 (handled by parent layout usually, but here we enforce full width on mobile)
-            animate={{
-                flex: isHovered ? 2.5 : 1,
-            }}
-            // Custom Bezier for ultra-smooth "luxury" feel
-            transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-        >
-            {/* Background Image Logic */}
-            <div className="absolute inset-0 z-0">
-               {/* Dark overlay when not hovered */}
-               <div className="absolute inset-0 z-10 bg-[#0A0A0A] opacity-100 transition-opacity duration-500 group-hover:opacity-0" />
+        {/* Role (Font Mono) */}
+        <p className="mb-4 font-mono text-[11px] uppercase tracking-wider text-gray-500">
+          {member.role}
+        </p>
 
-               {/* Image */}
-               {member.image && (
-                 <Image
-                   src={member.image}
-                   alt={member.name}
-                   fill
-                   className="scale-105 object-cover grayscale transition-all duration-700 group-hover:scale-100 group-hover:grayscale-0"
-                 />
-               )}
+        {/* Description (Font Sans) */}
+        <p className="mb-6 font-sans text-sm font-light leading-relaxed text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-3">
+          {member.description}
+        </p>
+      </div>
+      {/* <div className="flex gap-4">
+        <Link href={member.linkedin} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
+          <LinkedinLogo size={32} weight="duotone" className='hover' />
+        </Link>
+        <Link href={member.email} className="group flex h-8 w-8 items-center justify-center rounded-sm  transition-all  text-white">
+          <EnvelopeSimple size={32} weight="duotone" className='hover' />
+        </Link>
+      </div> */}
 
-               {/* Gradient for text readability when hovered */}
-               <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-black/90 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      {/* Footer */}
+      <div className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 pt-4">
+        <span className="font-mono text-[10px] text-gray-600 group-hover:text-[#FFB800] transition-colors">
+          {member.footerId}
+        </span>
+        <div className="rounded-full bg-white/5 p-1.5 transition-colors group-hover:bg-[#FFB800] group-hover:text-black text-white/30">
+          <ArrowUpRight size={14} weight="bold" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function TeamSection() {
+  const tarik = TEAM_MEMBERS[0]
+  const team = TEAM_MEMBERS.slice(1)
+
+  return (
+    <section className="relative w-full bg-[#050505] py-24 text-white overflow-hidden">
+      {/* Background Atmosphere */}
+      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-[#FFB800]/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="container relative z-10 mx-auto px-4">
+
+        {/* Section Header */}
+        <div className="mb-20 text-center">
+          <span className="mb-4 inline-block font-mono text-xs text-[#FFB800] tracking-[0.3em]">
+                        // THE MINDS BEHIND
+          </span>
+          <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
+            Notre <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-600">Équipe.</span>
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-8">
+
+          {/* 1. Header Grid: Leader + Quote Side Panel */}
+          <div className="grid gap-6 lg:grid-cols-12">
+
+            {/* Leader Card (Col Span 8) */}
+            <div className="lg:col-span-8">
+              <LeaderCard member={tarik} />
             </div>
 
-            {/* Top Dot & Tag (Absolute top) */}
-            <div className="absolute left-6 top-6 z-30 flex w-[calc(100%-3rem)] items-center justify-between md:left-8 md:top-8 md:w-[calc(100%-4rem)]">
-                <div className="flex items-center gap-3">
-                    <div className={`size-2 rounded-full transition-colors duration-300 ${isHovered ? 'bg-[#FFB800] shadow-[0_0_10px_#FFB800]' : 'bg-white/20'}`} />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40 transition-colors group-hover:text-white">
-                        {member.tag}
-                    </span>
-                </div>
-            </div>
-
-            {/* Content Container (Slides up on hover) */}
-            <div className="relative z-30 translate-y-4 transition-transform duration-500 ease-out group-hover:translate-y-0">
-                <h4 className={`mb-1 font-heading text-2xl font-bold uppercase leading-none transition-colors duration-300 md:text-3xl ${isHovered ? 'text-white' : 'text-white/60'}`}>
-                    {member.name}
-                </h4>
-                <p className="mb-0 font-mono text-[10px] uppercase tracking-[0.2em] text-[#FFB800]">
-                    {member.role}
+            {/* Quote Side Panel (Col Span 4) */}
+            <div className="relative flex flex-col justify-between overflow-hidden  p-8 lg:col-span-4 lg:p-12">
+              {/* Giant Watermark Quote */}
+              <div className="pointer-events-none mix-blend-overlay absolute left-4 top-0 font-sans font-black text-[200px] leading-none text-white/5 select-none">
+                <Image className='mix-blend-overlay pointer-events-none select-none opacity-10  ' src="/assets/comma-first.svg" alt="" width={200} height={150} />
+              </div>
+              <p className='my-auto bg-gradient-to-r text-justify pt-20 from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed text-transparent font-sans md:text-xl'>
+                Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines.
+                <br />
+                Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.
+              </p>
+              <div className="relative my-auto z-10 h-full flex flex-col justify-end">
+                <div className="mb-4 h-[1px] w-12 bg-[#FFB800]" />
+                <p className="font-mono text-xl tracking-widest text-[#FFB800]">
+                  - {tarik.name}
                 </p>
-
-                {/* Reveal Content (Description + Socials) */}
-                <motion.div
-                    initial={false}
-                    animate={{
-                        opacity: isHovered ? 1 : 0,
-                        height: isHovered ? 'auto' : 0
-                    }}
-                    transition={{ duration: 0.4, ease: "circOut" }}
-                    className="overflow-hidden"
-                >
-                    {/* Description */}
-                    <div className="my-4 border-l-2 border-[#FFB800] pl-3">
-                         <p className="max-w-[95%] font-sans text-xs leading-relaxed text-gray-300 md:text-sm">
-                            {member.description}
-                         </p>
-                    </div>
-
-                    {/* Footer Row */}
-                    <div className="flex items-center justify-between border-t border-white/10 pt-4">
-                         <div className="flex gap-2">
-                            <SocialButton icon={LinkedinLogo} href={member.linkedin} className="size-8" />
-                            <SocialButton icon={EnvelopeSimple} href={member.email} className="size-8" />
-                         </div>
-                         <ArrowUpRight size={16} className="text-[#FFB800]" />
-                    </div>
-                </motion.div>
+              </div>
+              <div className="pointer-events-none mix-blend-overlay absolute right-4 bottom-0 font-sans font-black text-[200px] leading-none text-white/5 select-none">
+                <Image className='mix-blend-overlay pointer-events-none select-none opacity-10' src="/assets/comma-final.svg" alt="" width={200} height={150} />
+              </div>
             </div>
 
-            {/* Border Glow on Hover */}
-            <div className="pointer-events-none absolute inset-0 z-40 rounded-[24px] border border-[#FFB800] opacity-0 transition-opacity duration-500 group-hover:opacity-40" />
-        </motion.div>
-    )
+
+          </div>
+
+          {/* 2. Team Grid */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {team.map((member) => (
+              <TeamMemberCard key={member.id} member={member} />
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      {/* Custom Keyframe Styles for animations */}
+      <style jsx global>{`
+                @keyframes scan {
+                    0% { top: 0%; opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { top: 100%; opacity: 0; }
+                }
+                .animate-scan {
+                    animation: scan 2s linear infinite;
+                }
+            `}</style>
+    </section>
+  )
 }
 
-
-export function TeamSection() {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-    const tarik = TEAM_MEMBERS[0];
-    const mostafa = TEAM_MEMBERS[1];
-    const team = TEAM_MEMBERS.slice(2);
-
-    return (
-        <section className="relative overflow-hidden bg-[#050505] py-24 md:py-32">
-            {/* Background Atmosphere */}
-            <div className="absolute left-1/2 top-0 h-px w-full max-w-7xl -translate-x-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-            <div className="container relative z-10 mx-auto px-4">
-                <div className="flex flex-col gap-12">
-
-                    {/* Header */}
-                    <div className="flex flex-col items-end justify-between gap-4 border-b border-white/5 pb-6 md:flex-row">
-                        <div>
-                            <span className="mb-2 block font-mono text-xs font-bold uppercase tracking-widest text-[#FFB800]">Our People</span>
-                            <h2 className="font-heading text-4xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">
-                                L&apos;Équipe <span className="text-[#333]">/</span> Leadership
-                             </h2>
-                         </div>
-                         <div className="hidden text-right md:block">
-                             <p className="max-w-xs font-mono text-xs uppercase tracking-widest text-white/40">
-                                 Experts en ingénierie, logistique et transformation digitale.
-                             </p>
-                         </div>
-                    </div>
-
-                    {/* ROW 1: Leaders */}
-                    {/* Stacks vertically on mobile, side-by-side on desktop */}
-                    <div className="grid grid-cols-1 gap-6 lg:h-[600px] lg:grid-cols-12">
-                        {/* Tarik (Larger) */}
-                        <div className="h-full lg:col-span-7">
-                            <LeaderCard member={tarik} className="h-full" />
-                        </div>
-                        {/* Mostafa (Smaller) */}
-                        <div className="h-full lg:col-span-5">
-                            <SecondaryLeaderCard member={mostafa} className="h-full" />
-                        </div>
-                    </div>
-
-                    {/* ROW 2: Team Members */}
-                    {/* Flex row on desktop (for expansion effect), Flex col on mobile (for stability) */}
-                    <div className="ghttps://i.pinimg.com/1200x/83/bc/8b/83bc8b88cf6bc4b4e04d153a418cde62.jpgap-6 flex h-auto w-full flex-col md:h-[500px] md:flex-row">
-                        {team.map((member, i) => (
-                            <TeamMemberCard
-                                key={member.id}
-                                member={member}
-                                isHovered={hoveredIndex === i}
-                                onHover={() => setHoveredIndex(i)}
-                                onLeave={() => setHoveredIndex(null)}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
+export { TeamSection };

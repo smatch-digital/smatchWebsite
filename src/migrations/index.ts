@@ -1,5 +1,6 @@
 import * as migration_20251230_123137_init from './20251230_123137_init';
 import * as migration_20251231_145427_fix_db_sync from './20251231_145427_fix_db_sync';
+import * as migration_20260105_160729 from './20260105_160729';
 
 export const migrations = [
   {
@@ -10,6 +11,11 @@ export const migrations = [
   {
     up: migration_20251231_145427_fix_db_sync.up,
     down: migration_20251231_145427_fix_db_sync.down,
-    name: '20251231_145427_fix_db_sync'
+    name: '20251231_145427_fix_db_sync',
+  },
+  {
+    up: migration_20260105_160729.up,
+    down: migration_20260105_160729.down,
+    name: '20260105_160729'
   },
 ];
