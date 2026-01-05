@@ -1221,6 +1221,10 @@ export interface ContactBlock {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Paste the Google Maps embed URL (from "Share > Embed a map")
+   */
+  mapEmbedUrl?: string | null;
   theme?: ('dark' | 'charcoal') | null;
   id?: string | null;
   blockName?: string | null;
@@ -2020,6 +2024,7 @@ export interface ContactBlockSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  mapEmbedUrl?: T;
   theme?: T;
   id?: T;
   blockName?: T;

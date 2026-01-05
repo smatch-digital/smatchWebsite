@@ -34,6 +34,7 @@ type ContactBlockProps = {
     url: string
     id?: string
   }[]
+  mapEmbedUrl?: string
   theme?: 'dark' | 'charcoal'
 }
 
@@ -46,6 +47,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
     phone,
     addresses,
     socialLinks,
+    mapEmbedUrl,
     theme = 'dark',
   } = props
 
@@ -239,6 +241,24 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* Google Maps Embed */}
+            {mapEmbedUrl && (
+              <div className="relative bg-zinc-900/40 border border-white/5 rounded-2xl overflow-hidden h-64 lg:h-72">
+                <iframe
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%)' }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Office Location Map"
+                  className="absolute inset-0 w-full h-full"
+                />
+                <div className="absolute inset-0 bg-smatch-gold/5 pointer-events-none mix-blend-multiply" />
               </div>
             )}
           </div>
