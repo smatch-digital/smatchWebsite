@@ -87,7 +87,7 @@ The project follows a standard Next.js App Router structure with PayloadCMS inte
 ```
 src/
 ├── app/
-│   ├── (frontend)/       # Public facing pages (website)
+│   ├── (frontend)/       # Public facing pages website
 │   └── (payload)/        # Payload Admin panel routes
 ├── blocks/               # Modular CMS blocks (Config + Component)
 │   ├── ArchiveBlock/
