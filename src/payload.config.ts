@@ -79,7 +79,8 @@ export default buildConfig({
       connectionTimeoutMillis: 60000,
       allowExitOnIdle: true,
     },
-    push: process.env.NODE_ENV !== 'production',
+    // Only push in local dev, NEVER in production/CI builds
+    push: process.env.PAYLOAD_PUSH === 'true',
   }),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
   cors: [getServerSideURL()].filter(Boolean),
