@@ -301,6 +301,7 @@ export interface Page {
     | IntroBlock
     | JournalBlock
     | ContactBlock
+    | ExpertiseDomainsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1232,6 +1233,70 @@ export interface ContactBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExpertiseDomainsBlock".
+ */
+export interface ExpertiseDomainsBlock {
+  /**
+   * Add expertise domains (e.g., Industry, Solutions, Data & AI)
+   */
+  sections?:
+    | {
+        /**
+         * URL-friendly identifier (e.g., "industrie", "solutions", "data-ai")
+         */
+        sectionId: string;
+        title: string;
+        subtitle?: string | null;
+        description?: string | null;
+        cards?:
+          | {
+              title: string;
+              subtitle?: string | null;
+              description?: string | null;
+              image: number | Media;
+              iconName?:
+                | (
+                    | 'Factory'
+                    | 'Globe'
+                    | 'Truck'
+                    | 'Leaf'
+                    | 'Cpu'
+                    | 'Database'
+                    | 'Cube'
+                    | 'Gear'
+                    | 'Lightning'
+                    | 'Cloud'
+                  )
+                | null;
+              iconColor?:
+                | (
+                    | 'text-yellow-500'
+                    | 'text-orange-500'
+                    | 'text-green-500'
+                    | 'text-blue-500'
+                    | 'text-purple-500'
+                    | 'text-cyan-500'
+                    | 'text-red-500'
+                  )
+                | null;
+              features?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'expertise-domains';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "solutions".
  */
 export interface Solution {
@@ -1665,6 +1730,7 @@ export interface PagesSelect<T extends boolean = true> {
         intro?: T | IntroBlockSelect<T>;
         journal?: T | JournalBlockSelect<T>;
         contact?: T | ContactBlockSelect<T>;
+        'expertise-domains'?: T | ExpertiseDomainsBlockSelect<T>;
       };
   meta?:
     | T
@@ -2026,6 +2092,40 @@ export interface ContactBlockSelect<T extends boolean = true> {
       };
   mapEmbedUrl?: T;
   theme?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ExpertiseDomainsBlock_select".
+ */
+export interface ExpertiseDomainsBlockSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        sectionId?: T;
+        title?: T;
+        subtitle?: T;
+        description?: T;
+        cards?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              description?: T;
+              image?: T;
+              iconName?: T;
+              iconColor?: T;
+              features?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

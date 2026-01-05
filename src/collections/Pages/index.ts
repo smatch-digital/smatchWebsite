@@ -19,6 +19,7 @@ import { ActivityTimeline } from '@/blocks/ActivityTimeline/config'
 import { Intro } from '@/blocks/Intro/config'
 import { Journal } from '@/blocks/Journal/config'
 import { ContactBlock } from '@/blocks/Contact/config'
+import { ExpertiseDomains } from '@/blocks/ExpertiseDomains/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -43,7 +44,7 @@ export const Pages: CollectionConfig<'pages'> = {
   },
   // This config controls what's populated by default when a page is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>
+  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'pages'>`
   defaultPopulate: {
     title: true,
     slug: true,
@@ -102,6 +103,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Intro,
                 Journal,
                 ContactBlock,
+                ExpertiseDomains,
               ],
               required: true,
               admin: {

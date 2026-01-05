@@ -19,6 +19,7 @@ import { SmartGrid } from '@/blocks/SmartGrid/Component'
 import { TrustedByBlock } from '@/blocks/TrustedBy/Component'
 import { ActivityTimelineBlock } from '@/blocks/ActivityTimeline/Component'
 import { ContactBlock } from '@/blocks/Contact/Component'
+import { ExpertiseDomainsBlock } from '@/blocks/ExpertiseDomains/Component'
 
 const blockComponents = {
   about: AboutBlock,
@@ -38,6 +39,7 @@ const blockComponents = {
   intro: IntroBlockComponent,
   journal: JournalBlockComponent,
   contact: ContactBlock,
+  'expertise-domains': ExpertiseDomainsBlock,
 }
 
 export const RenderBlocks: React.FC<{

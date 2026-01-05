@@ -1,26 +1,69 @@
-import React from 'react'
-import ExpertiseScroll from '@/components/expertise/ExpertiseScroll'
-import { ExpertiseHero } from '@/components/expertise/ExpertiseHero'
+import type { Metadata } from 'next'
+import configPromise from '@payload-config'
+import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+import { draftMode } from 'next/headers'
+import React, { cache } from 'react'
+import { notFound } from 'next/navigation'
 
-export const metadata = {
-  title: 'Smatch Digital | Expertise',
-  description: 'Industrial Solutions, Big Data & AI capabilities.',
-}
+import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { RenderHero } from '@/heros/RenderHero'
+import { generateMeta } from '@/utilities/generateMeta'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
 
-export default function ExpertisePage() {
+export default async function ExpertisePage() {
+  const { isEnabled: draft } = await draftMode()
+
+  const page = await queryPageBySlug({ slug: 'expertises' })
+
+  if (!page) {
+    return notFound()
+  }
+
+  const { hero, layout } = page
+
   return (
     <main className="min-h-screen bg-black">
-      {/* 1. Hero Section */}
-      <ExpertiseHero
-        title="Domaines D'Excellence."
-        subtitle="Une expertise technique unique, déployée sur 3 axes stratégiques : Industrie, Agriculture et Data."
-        image="/assets/hero/ExpertiseHero.webp"
-      />
-
-
-
-      {/* 3. The New Horizontal Scroll Engine */}
-      <ExpertiseScroll />
+      {draft && <LivePreviewListener />}
+      <RenderHero {...hero} />
+      <RenderBlocks blocks={layout} />
     </main>
   )
 }
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await queryPageBySlug({ slug: 'expertises' })
+
+  if (page) {
+    return generateMeta({ doc: page })
+  }
+
+  return {
+    title: 'Smatch Digital | Expertise',
+    description: 'Industrial Solutions, Big Data & AI capabilities.',
+  }
+}
+
+const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+  const { isEnabled: draft } = await draftMode()
+
+  const payload = await getPayload({ config: configPromise })
+
+  try {
+    const result = await payload.find({
+      collection: 'pages',
+      draft,
+      limit: 1,
+      pagination: false,
+      overrideAccess: draft,
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
+    })
+
+    return result.docs?.[0] || null
+  } catch (_error) {
+    return null
+  }
+})
