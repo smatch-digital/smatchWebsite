@@ -1,38 +1,12 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import {
-    Factory,
-    Globe,
-    Truck,
-    Leaf,
-    Cpu,
-    Database,
-    Cube,
-    Gear,
-    Lightning,
-    Cloud,
-    CheckCircle,
-} from '@phosphor-icons/react/dist/ssr'
+import * as PhosphorIcons from '@phosphor-icons/react/dist/ssr'
 import Image from 'next/image'
 import { cn } from '@/utilities/ui'
 import type { Media } from '@/payload-types'
 
-// Icon map for dynamic resolution
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-    Factory,
-    Globe,
-    Truck,
-    Leaf,
-    Cpu,
-    Database,
-    Cube,
-    Gear,
-    Lightning,
-    Cloud,
-}
-
-// Types for the block (will be generated after pnpm generate:types)
+// Types for the block
 interface ExpertiseCard {
     title?: string | null
     subtitle?: string | null
@@ -60,11 +34,18 @@ interface Props {
     blockName?: string | null
 }
 
-// Dynamic icon resolver
+// Dynamic icon resolver - loads any Phosphor icon by name
 const getIcon = (iconName: string | null | undefined, colorClass: string) => {
     if (!iconName) return null
-    const IconComponent = iconMap[iconName]
-    if (!IconComponent) return null
+
+    // Access the icon from the Phosphor library
+    const IconComponent = (PhosphorIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[iconName]
+
+    if (!IconComponent) {
+        console.warn(`[ExpertiseDomains] Icon "${iconName}" not found in Phosphor library`)
+        return null
+    }
+
     return <IconComponent className={cn('h-8 w-8', colorClass)} />
 }
 
@@ -147,7 +128,7 @@ export const ExpertiseDomainsBlock: React.FC<Props> = ({ sections, className }) 
                                                                 key={fIndex}
                                                                 className="flex items-start gap-3 text-sm text-zinc-300"
                                                             >
-                                                                <CheckCircle className="h-5 w-5 shrink-0 text-yellow-500" />
+                                                                <PhosphorIcons.CheckCircle className="h-5 w-5 shrink-0 text-yellow-500" />
                                                                 {feature.text}
                                                             </li>
                                                         ))}

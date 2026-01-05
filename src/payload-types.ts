@@ -1254,31 +1254,14 @@ export interface ExpertiseDomainsBlock {
               subtitle?: string | null;
               description?: string | null;
               image: number | Media;
-              iconName?:
-                | (
-                    | 'Factory'
-                    | 'Globe'
-                    | 'Truck'
-                    | 'Leaf'
-                    | 'Cpu'
-                    | 'Database'
-                    | 'Cube'
-                    | 'Gear'
-                    | 'Lightning'
-                    | 'Cloud'
-                  )
-                | null;
-              iconColor?:
-                | (
-                    | 'text-yellow-500'
-                    | 'text-orange-500'
-                    | 'text-green-500'
-                    | 'text-blue-500'
-                    | 'text-purple-500'
-                    | 'text-cyan-500'
-                    | 'text-red-500'
-                  )
-                | null;
+              /**
+               * Paste icon name from Icon Library (e.g., "Factory", "Globe", "Cpu")
+               */
+              iconName?: string | null;
+              /**
+               * Tailwind color class (e.g., "text-yellow-500", "text-green-500")
+               */
+              iconColor?: string | null;
               features?:
                 | {
                     text: string;
