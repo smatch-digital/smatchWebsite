@@ -50,12 +50,6 @@ export const Media: CollectionConfig = {
         name: 'thumbnail',
         width: 300,
       },
-      /*
-      {
-        name: 'square',
-        width: 500,
-        height: 500,
-      },
       {
         name: 'small',
         width: 600,
@@ -68,11 +62,6 @@ export const Media: CollectionConfig = {
         name: 'large',
         width: 1400,
       },
-      {
-        name: 'xlarge',
-        width: 1920,
-      },
-      */
       {
         name: 'og',
         width: 1200,

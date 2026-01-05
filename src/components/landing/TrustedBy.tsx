@@ -37,6 +37,7 @@ export function TrustedBy() {
                     src={logo.src}
                     alt={logo.name}
                     fill
+                    sizes="160px"
                     className="object-contain"
                   />
                 </div>

@@ -25,11 +25,12 @@ export function Hero() {
         />
         <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
         <Image
-          className=""
           src={'/assets/hero/hero-background.jpg'}
-          alt=""
-          width={2000}
-          height={2000}
+          alt="Hero background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         {/* <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" /> */}
         <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" />
