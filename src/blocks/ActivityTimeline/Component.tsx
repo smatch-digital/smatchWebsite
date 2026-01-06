@@ -211,7 +211,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header with Filters */}
                 <div className="mb-12 flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-6 md:mb-16 md:flex-row md:items-center">
-                    <div className="flex items-center gap-4">
+                    <div className="flex w-full items-center gap-4">
                         <h2 className="font-heading text-lg font-bold uppercase tracking-widest text-white md:text-xl">
                             {title}
                         </h2>
@@ -229,7 +229,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
 
                     {/* Filter Tabs */}
                     {showFilters && (
-                        <div className="flex w-full gap-6 overflow-x-auto font-mono text-xs uppercase tracking-widest md:w-auto md:text-sm">
+                        <div className="flex justify-end w-full gap-6 overflow-x-auto font-mono text-xs uppercase tracking-widest md:w-auto md:text-sm">
                             <button
                                 onClick={() => setActiveFilter('all')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'all'
