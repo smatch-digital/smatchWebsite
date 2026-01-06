@@ -42,7 +42,7 @@ export const Solutions: CollectionConfig = {
               type: 'text',
               label: 'Icon Name',
               admin: {
-                description: 'Phosphor Icon name (e.g., Barcode, Truck, Warehouse)',
+                description: 'Copy from Icon Library (/admin/icons) e.g., Barcode, Truck, Warehouse',
               },
             },
           ],
@@ -112,8 +112,9 @@ export const Solutions: CollectionConfig = {
                 {
                   name: 'icon',
                   type: 'text',
+                  label: 'Icon Name',
                   admin: {
-                    description: 'Icon name or class',
+                    description: 'Copy from Icon Library (/admin/icons)',
                   },
                 },
                 {

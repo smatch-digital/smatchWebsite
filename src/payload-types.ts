@@ -1291,7 +1291,7 @@ export interface Solution {
    */
   description?: string | null;
   /**
-   * Phosphor Icon name (e.g., Barcode, Truck, Warehouse)
+   * Copy from Icon Library (/admin/icons) e.g., Barcode, Truck, Warehouse
    */
   icon?: string | null;
   heroSubtitle?: string | null;
@@ -1310,7 +1310,7 @@ export interface Solution {
         title?: string | null;
         description?: string | null;
         /**
-         * Icon name or class
+         * Copy from Icon Library (/admin/icons)
          */
         icon?: string | null;
         badge?: string | null;
