@@ -55,20 +55,21 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
       className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#050505] py-32"
     >
       {/* 1. Top Yellow Glow (Ambient Light) */}
-      <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFB800] opacity-70 blur-[150px]" />
+      {/* <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFB800] opacity-70 blur-[150px]" /> */}
 
       {/* 2. Parallax Background Text */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex select-none items-center justify-center mix-blend-overlay">
+      <div className="pointer-events-none absolute top-0 bottom-0 right-5 z-0 flex select-none items-center justify-center">
         <motion.span
           style={{
             y: bgTextY,
             opacity: bgTextOpacity,
             WebkitTextStroke: '1.5px rgba(255,255,255,1)',
           }}
-          className="whitespace-nowrap font-heading text-[50vw] font-black leading-none text-transparent mix-blend-overlay"
+          className="whitespace-nowrap ml-6 font-heading text-[50vw] text-center font-black leading-none text-transparent"
         >
           SMATCH
         </motion.span>
+        <div className="bg-gradient-to-t from-smatch-black to-transparent absolute inset-0 z-1"></div>
       </div>
 
       <div className="container relative z-10 mx-auto px-4">

@@ -41,45 +41,51 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
   if (!tabs || tabs.length === 0) return null
 
   return (
-    <section className="overflow-hidden bg-smatch-black py-32 text-white">
-      <div className="container mx-auto max-w-7xl px-4">
+    <section className="overflow-hidden bg-[#050505] py-20 md:py-32 text-white selection:bg-[#FFB800] selection:text-black">
+      <div className="container mx-auto max-w-[1400px] px-4">
         {/* Section Header */}
-        <div className="mb-24 text-center">
-          <h2 className="mb-4 font-heading text-3xl font-bold tracking-tight md:text-4xl">
+        <div className="mb-16 md:mb-24 text-center">
+          <h2 className="mb-4 font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
             {title}
           </h2>
-          <p className="mx-auto max-w-2xl font-sans text-base text-gray-500">
+          <p className="mx-auto max-w-2xl text-lg md:text-xl font-medium text-white/50">
             {subtitle}
           </p>
         </div>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           {/* LEFT: Navigation Tabs */}
-          <div className="flex flex-col pt-4 lg:col-span-3">
+          <div className="flex flex-col rounded-md border border-white/5 bg-[#0A0A0A] overflow-hidden transition-all duration-500 hover:border-[#FFB800]/30 lg:col-span-3">
             {tabs.map((tab, index) => {
               const tabId = tab.id || index.toString()
               const isActive = activeTabId === tabId
+              const isLast = index === tabs.length - 1
 
               return (
                 <button
                   key={tabId}
                   onClick={() => setActiveTabId(tabId)}
                   className={`
-                    group relative flex flex-col items-start p-6 text-left transition-all duration-300
-                    ${isActive ? 'opacity-100' : 'opacity-40 hover:opacity-70'}
+                    group relative flex flex-col items-start p-8 text-left transition-all duration-300
+                    ${!isLast ? 'border-b border-white/5' : ''}
+                    ${isActive ? 'bg-white/[0.02]' : 'hover:bg-white/[0.02]'}
                   `}
                 >
                   {/* Active Indicator Line */}
-                  <div
-                    className={`absolute inset-y-6 left-0 w-[2px] transition-colors duration-300 ${
-                      isActive ? 'bg-smatch-gold' : 'bg-gray-800'
-                    }`}
-                  />
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeTabIndicator"
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-[#FFB800]"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    />
+                  )}
 
-                  <span className="mb-2 font-mono text-sm font-bold text-smatch-gold">
+                  <span className={`mb-3 font-mono text-xl font-bold ${isActive ? 'text-[#FFB800]' : 'text-[#FFB800]/70'}`}>
                     {String(index + 1).padStart(2, '0')}.
                   </span>
-                  <span className="max-w-[150px] font-heading text-xl font-bold leading-tight">
+                  <span className={`max-w-[200px] font-heading text-lg font-bold leading-tight ${isActive ? 'text-white' : 'text-white/60'}`}>
                     {tab.tabLabel}
                   </span>
                 </button>
@@ -89,7 +95,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
           {/* RIGHT: Content Card */}
           <div className="lg:col-span-9">
-            <div className="relative flex min-h-[500px] flex-col justify-between rounded-2xl border border-white/5 bg-[#0F0F0F] p-8 md:p-12">
+            <div className="group relative flex min-h-[500px] flex-col justify-between rounded-md border border-white/5 bg-[#0A0A0A] p-8 md:p-12 transition-all duration-500 hover:border-[#FFB800]/30">
               <AnimatePresence mode="wait">
                 {tabs.map((tab, index) => {
                   const tabId = tab.id || index.toString()
@@ -109,12 +115,12 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                       {/* Text Content */}
                       <div className="relative z-10 flex h-full flex-col">
                         <div className="mb-6">
-                          <span className="font-mono text-[10px] uppercase tracking-widest text-gray-600">
+                          <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
                             {tab.moduleTag}
                           </span>
                         </div>
 
-                        <h4 className="mb-2 text-sm font-bold text-smatch-gold">
+                        <h4 className="mb-2 text-sm font-bold text-[#FFB800]">
                           {tab.subTitle}
                         </h4>
 
@@ -122,15 +128,15 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                           {tab.mainTitle}
                         </h3>
 
-                        <p className="mb-12 max-w-sm font-sans text-sm leading-relaxed text-gray-500">
+                        <p className="mb-12 max-w-sm font-sans text-sm leading-relaxed text-white/50">
                           {tab.description}
                         </p>
 
                         <div className="mt-auto border-t border-white/5 pt-6">
-                          <span className="mb-1 block font-mono text-[10px] uppercase text-gray-600">
+                          <span className="mb-1 block font-mono text-[10px] uppercase text-white/40">
                             Hardware
                           </span>
-                          <span className="font-mono text-xs text-gray-400">
+                          <span className="font-mono text-xs text-white/60">
                             {tab.hardware}
                           </span>
                         </div>
@@ -138,15 +144,15 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
                       {/* Visual / Image Area */}
                       <div className="relative flex min-h-[300px] items-center justify-center md:min-h-0">
-                        {/* The "Holo-Platform" Base Effects */}
-                        <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-smatch-gold/5 blur-2xl" />
+                        {/* Ambient Glow */}
+                        <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-[#FFB800] opacity-20 blur-[60px] transition-opacity duration-700 group-hover:opacity-40" />
 
                         {/* Tech Decorative Lines Container */}
-                        <div className="pointer-events-none absolute inset-0 rounded-lg border border-white/5 opacity-50">
-                          <div className="absolute left-0 top-0 size-2 border-l border-t border-smatch-gold" />
-                          <div className="absolute right-0 top-0 size-2 border-r border-t border-smatch-gold" />
-                          <div className="absolute bottom-0 left-0 size-2 border-b border-l border-smatch-gold" />
-                          <div className="absolute bottom-0 right-0 size-2 border-b border-r border-smatch-gold" />
+                        <div className="pointer-events-none absolute inset-0 rounded-md border border-white/5 opacity-50">
+                          <div className="absolute left-0 top-0 size-2 border-l border-t border-[#FFB800]" />
+                          <div className="absolute right-0 top-0 size-2 border-r border-t border-[#FFB800]" />
+                          <div className="absolute bottom-0 left-0 size-2 border-b border-l border-[#FFB800]" />
+                          <div className="absolute bottom-0 right-0 size-2 border-b border-r border-[#FFB800]" />
                         </div>
 
                         {/* ACTUAL IMAGE RENDER */}
@@ -155,7 +161,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                             <motion.img
                               src={imageUrl}
                               alt={tab.mainTitle}
-                              className="h-auto w-[110%] translate-x-6 translate-y-6 object-contain drop-shadow-2xl md:w-[130%] md:translate-x-12 md:translate-y-12"
+                              className="h-auto w-[110%] translate-x-6 translate-y-6 object-contain drop-shadow-2xl md:w-[130%] md:translate-x-12 md:translate-y-12 transition-transform duration-700 group-hover:scale-105"
                               initial={{ y: 10, opacity: 0 }}
                               animate={{ y: 0, opacity: 1 }}
                               transition={{ duration: 0.5, delay: 0.1 }}

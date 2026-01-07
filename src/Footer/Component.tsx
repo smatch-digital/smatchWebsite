@@ -4,26 +4,26 @@ import Image from 'next/image'
 import React from 'react'
 
 import type { Footer } from '@/payload-types'
-import { LinkedinLogo, YoutubeLogo, XLogo } from '@phosphor-icons/react/dist/ssr'
+import { LinkedinLogo, YoutubeLogo, XLogo, Envelope, Phone, Buildings } from '@phosphor-icons/react/dist/ssr'
 
 export async function Footer() {
   await getCachedGlobal('footer', 1)()
 
   return (
-    <footer className="relative mt-20 w-full overflow-hidden bg-smatch-black pb-12 pt-24 text-white">
+    <footer className="relative mt-32 w-full overflow-hidden bg-smatch-black pb-16 pt-32 text-white">
       {/* Background Watermark - "SMATCH" stroked text at bottom */}
       <div className="pointer-events-none absolute bottom-[-4vw] left-0 z-0 flex w-full select-none justify-center overflow-hidden mix-blend-overlay">
-        <Image className='object-contain ' src={'/assets/footer/bg.png'} alt='bg' width={1440} height={500} />
+        <Image className='object-contain' src={'/assets/footer/bg.png'} alt='bg' width={1600} height={500} />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container pb-12 relative z-10 mx-auto w-[95%] max-w-[1600px] px-4">
         {/* Main Grid: 4 Columns */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid grid-cols-1 py-4 gap-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
 
           {/* COLUMN 1: Brand Identity */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             {/* Logo */}
-            <div className="mb-2">
+            <div>
               <Image
                 src="/logo.svg"
                 alt="SMATCH DIGITAL"
@@ -43,23 +43,23 @@ export async function Footer() {
             </div>
 
             {/* Socials */}
-            <div className="flex gap-4">
-              <Link href="#" className="text-white transition-all hover:scale-110 hover:text-smatch-gold">
-                <XLogo size={24} weight="fill" />
+            <div className="flex gap-5">
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+                <XLogo size={22} weight="fill" />
               </Link>
-              <Link href="#" className="text-white transition-all hover:scale-110 hover:text-smatch-gold">
-                <LinkedinLogo size={24} weight="fill" />
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+                <LinkedinLogo size={22} weight="fill" />
               </Link>
-              <Link href="#" className="text-white transition-all hover:scale-110 hover:text-smatch-gold">
-                <YoutubeLogo size={24} weight="fill" />
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+                <YoutubeLogo size={22} weight="fill" />
               </Link>
             </div>
           </div>
 
           {/* COLUMN 2: Écosystème */}
-          <div className="flex flex-col gap-6 pt-2">
-            <h4 className="font-heading text-lg font-bold text-white">Écosystème</h4>
-            <ul className="space-y-3">
+          <div className="flex flex-col gap-6">
+            <h4 className="font-heading text-sm font-bold uppercase tracking-widest text-white">Écosystème</h4>
+            <ul className="space-y-4">
               <li>
                 <Link href="#" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   Supply Chain & Logistique (WMS/TMS)
@@ -84,9 +84,9 @@ export async function Footer() {
           </div>
 
           {/* COLUMN 3: SM@TCH */}
-          <div className="flex flex-col gap-6 pt-2">
-            <h4 className="font-heading text-lg font-bold text-white">SM@TCH</h4>
-            <ul className="space-y-3">
+          <div className="flex flex-col gap-6">
+            <h4 className="font-heading text-sm font-bold uppercase tracking-widest text-white">SM@TCH</h4>
+            <ul className="space-y-4">
               <li>
                 <Link href="/about" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   À Propos
@@ -110,28 +110,70 @@ export async function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4: Contact & Info */}
-          <div className="flex flex-col gap-6 pt-2">
-            <h4 className="font-heading text-lg font-bold text-white">Contact & Info</h4>
-            <div className="space-y-4 font-sans text-sm font-medium text-gray-500">
-              <div className="flex flex-col">
-                <span className="text-gray-500">Bureau</span>
-                <span className="text-gray-500">Casablanca, Maroc</span>
+          {/* COLUMN 4: Contact & Bureaux */}
+          <div className="flex flex-col gap-8">
+            {/* Contact Info */}
+            <div className="space-y-5">
+              {/* Email */}
+              <a href="mailto:contact@smatch.ma" className="group flex items-center gap-3 transition-colors">
+                <Envelope size={18} className="text-smatch-gold" />
+                <div>
+                  <span className="block font-mono text-[10px] uppercase tracking-widest text-gray-600">Discutez avec nous</span>
+                  <span className="font-sans text-sm font-medium text-white group-hover:text-smatch-gold">Contact@smatch.ma</span>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a href="tel:+212520001878" className="group flex items-center gap-3 transition-colors">
+                <Phone size={18} className="text-smatch-gold" />
+                <div>
+                  <span className="block font-mono text-[10px] uppercase tracking-widest text-gray-600">Appelez-nous</span>
+                  <span className="font-sans text-sm font-medium text-white group-hover:text-smatch-gold">+212 520001878</span>
+                </div>
+              </a>
+            </div>
+
+            {/* Offices */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Buildings size={18} className="text-smatch-gold" />
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-smatch-gold">Nos Bureaux</span>
               </div>
-              <div>
-                <a href="mailto:contact@smatch.ma" className="block transition-colors hover:text-smatch-gold">
-                  contact@smatch.ma
-                </a>
-              </div>
-              <div>
-                <a href="tel:+212520001878" className="block transition-colors hover:text-smatch-gold">
-                  +212 520 001 878
-                </a>
+
+              <div className="space-y-3 pl-1">
+                <div>
+                  <span className="block font-mono text-[10px] uppercase tracking-widest text-gray-600">Locaux Équipe Technique</span>
+                  <span className="font-sans text-sm font-medium text-white">TECHNOPARK, Casablanca</span>
+                </div>
+                <div>
+                  <span className="block font-mono text-[10px] uppercase tracking-widest text-gray-600">Entrepôt Tests Concepts (POC, MVP)</span>
+                  <span className="font-sans text-sm font-medium text-white">SOFTPARK, Ainsebaa, Casablanca</span>
+                </div>
+                <div>
+                  <span className="block font-mono text-[10px] uppercase tracking-widest text-gray-600">Locaux Administratifs</span>
+                  <span className="font-sans text-sm font-medium text-white">Q.Palmier, Casablanca</span>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+          <p className="font-mono text-xs text-gray-600">
+            © {new Date().getFullYear()} SMATCH DIGITAL. Tous droits réservés.
+          </p>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
+              Politique de confidentialité
+            </Link>
+            <Link href="/terms" className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
+              Conditions d&apos;utilisation
+            </Link>
           </div>
         </div>
       </div>
     </footer>
   )
 }
+

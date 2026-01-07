@@ -6,6 +6,7 @@ import {
   Globe,
   HardDrives,
   Cloud,
+  Cpu,
 } from '@phosphor-icons/react/dist/ssr'
 import Image from 'next/image'
 
@@ -42,10 +43,11 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
   } = props
 
   return (
-    <section className="relative overflow-hidden bg-smatch-black py-16 text-white md:py-32">
-      {/* 1. BACKGROUND CONNECTING LINES (The "Nervous System") */}
-      <div className="pointer-events-none absolute inset-0 z-0 hidden opacity-20 md:block">
-        <svg className="size-full" viewBox="0 0 1515 1200" preserveAspectRatio="none">
+    <section className="relative w-full bg-[#050505] py-20 text-white selection:bg-[#FFB800] selection:text-black md:py-32 overflow-hidden">
+
+      {/* 1. BACKGROUND NERVOUS SYSTEM (Restored SVG Lines) */}
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
+        <svg className="h-full w-full" viewBox="0 0 1515 1200" preserveAspectRatio="none">
           <defs>
             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FFB800" stopOpacity="0" />
@@ -60,272 +62,229 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
         </svg>
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-full px-4 md:max-w-[1515px]">
-        {/* Header */}
-        <div className="mb-12 text-center md:mb-[146px]">
-          <h2 className="mb-0 font-heading text-[28px] font-bold tracking-tight text-white md:text-[32px]">
+      <div className="container relative z-10 mx-auto max-w-[1400px] px-4">
+
+        {/* HEADER */}
+        <div className="mb-16 text-center md:mb-24">
+          <h2 className="font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
             {headline}
           </h2>
-          <p className="mx-auto mt-6 max-w-[999px] font-sans text-base font-medium leading-relaxed text-[#ffffff82] md:mt-[41px] md:text-[24px] md:leading-[36px]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-white/50 md:text-xl">
             {description}
           </p>
         </div>
 
-        {/* BENTO LAYOUT */}
-        <div className="flex flex-col items-center gap-6 md:gap-[20px]">
-          {/* ROW 1: Connectivity, Middle (Support+Core), API */}
-          <div className="flex w-full flex-col justify-center gap-6 md:flex-row md:gap-[20px]">
-            {/* 1. Connectivité Universelle (Tall Left) */}
-            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[545px] md:w-[400px]">
-              <div className="flex h-full flex-col items-center px-6 py-12 md:px-[55px] md:pb-[61px] md:pt-[109px]">
-                {/* Graphic: Orbit */}
-                <div className="relative size-[180px] shrink-0 md:size-[222px]">
-                  <div className="absolute inset-0 rounded-full border border-white/5 shadow-[0px_0px_20px_rgba(0,0,0,0.5)]" />
-                  <div className="absolute inset-[30px] rounded-full border border-white/10 md:inset-[40px]" />
-                  <div className="absolute inset-[60px] z-10 flex items-center justify-center rounded-full border border-white/10 bg-[#0A0A0A] shadow-[0_0_15px_rgba(255,255,255,0.05)] md:inset-[72px]">
-                    <span className="font-sans text-[24px] font-semibold text-white md:text-[32px]">@</span>
-                  </div>
+        {/* THE GRID (8 cols x 6 rows) */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-8 md:grid-rows-6 md:gap-4">
 
-                  {/* Orbiting Icons */}
-                  <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
-                    <div className="absolute right-[30px] top-0 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-1.5 shadow-lg md:right-[40px] md:p-2">
-                      <Database size={12} weight="fill" className="text-smatch-gold md:size-[14px]" />
-                    </div>
-                    <div className="absolute right-[-5px] top-[70px] animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-1.5 shadow-lg md:right-[-10px] md:top-[90px] md:p-2">
-                      <Globe size={12} weight="fill" className="text-blue-500 md:size-[14px]" />
-                    </div>
-                    <div className="absolute bottom-0 right-[30px] animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-1.5 shadow-lg md:right-[40px] md:p-2">
-                      <Cloud size={12} weight="fill" className="text-gray-400 md:size-[14px]" />
-                    </div>
-                    <div className="absolute left-[-5px] top-[70px] animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-1.5 shadow-lg md:left-[-10px] md:top-[90px] md:p-2">
-                      <HardDrives size={12} weight="fill" className="text-gray-400 md:size-[14px]" />
-                    </div>
+          {/* 1. UNIVERSAL CONNECTIVITY (Tall Left) */}
+          {/* Position: Col 1-2 / Row 1-4 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-5">
+            <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
+
+              {/* ORBIT ANIMATION */}
+              <div className="relative mx-auto mt-8 size-[200px] md:mt-12">
+                <div className="absolute inset-0 rounded-full border border-white/5 shadow-[0px_0px_20px_rgba(0,0,0,0.5)]" />
+                <div className="absolute inset-[30px] rounded-full border border-white/10" />
+                <div className="absolute inset-[60px] z-10 flex items-center justify-center rounded-full border border-white/10 bg-[#0A0A0A] shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                  <span className="font-sans text-3xl font-semibold text-white">@</span>
+                </div>
+                {/* Orbiting Icons - 4 icons at 90° intervals */}
+                <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
+                  {/* Top (0°) */}
+                  <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
+                    <Database size={14} className="text-[#FFB800]" />
+                  </div>
+                  {/* Right (90°) */}
+                  <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
+                    <Globe size={14} className="text-blue-500" />
+                  </div>
+                  {/* Bottom (180°) */}
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
+                    <Cloud size={14} className="text-gray-400" />
+                  </div>
+                  {/* Left (270°) */}
+                  <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
+                    <HardDrives size={14} className="text-gray-400" />
                   </div>
                 </div>
+              </div>
 
-                {/* Text Content */}
-                <div className="mt-8 text-center md:mt-[58px] md:w-[276px]">
-                  <h3 className="mb-3 font-sans text-lg font-bold leading-[1.2] text-white md:mb-[28px] md:text-[24px]">
-                    {connectivityTitle}
-                  </h3>
-                  <p className="text-sm font-medium leading-relaxed text-[#ffffff7a] md:text-[16px] md:leading-[24px]">
-                    {connectivityDesc}
-                  </p>
+              {/* 3D PLUG IMAGE */}
+              <div className="absolute inset-0 -left-20 z-30 pointer-events-none md:-top-20 md:-left-20">
+                <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+                  <Image className='relative w-[280px] md:w-[320px]' alt='' src="/assets/ecosystem/plug.webp" width={400} height={400} />
+                  <div className='absolute top-20 left-20 z-0 opacity-50 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[80px] mix-blend-screen transition-opacity duration-700 group-hover:opacity-80'></div>
+                </div>
+              </div>
+
+              {/* Text Content */}
+              <div className="relative z-10 mt-auto text-center">
+                <h3 className="mb-3 text-xl font-bold leading-tight md:text-2xl">{connectivityTitle}</h3>
+                <p className="text-sm font-medium leading-relaxed text-white/50">
+                  {connectivityDesc}
+                </p>
+              </div>
+            </div>
+            {/* Hover Glow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FFB800]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </div>
+
+
+          {/* 2. SUPPORT (Wide Top) */}
+          {/* Position: Col 3-6 / Row 1-2 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-3 md:col-end-7 md:row-start-1 md:row-end-3 md:p-10">
+            {/* 3D Asset - z-20 above content */}
+            <div className="absolute -top-20 -right-16 z-20 pointer-events-none md:-bottom-24 md:-right-20">
+              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image className="w-[180px] md:w-[350px]" alt='' src="/assets/ecosystem/support.png" width={300} height={300} />
+                <div className='absolute top-10 left-10 -z-10 opacity-30 bg-smatch-gold h-[80px] w-[80px] rounded-full blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
+              </div>
+            </div>
+            {/* Content - z-10 below asset */}
+            <div className="relative z-10 flex h-full flex-col justify-between md:flex-col md:gap-10">
+
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h3 className="mb-2 text-xl font-bold md:text-2xl">{supportTitle}</h3>
+                  <p className="max-w-xs text-sm font-medium text-white/50">{supportDesc}</p>
+                </div>
+              </div>
+
+              {/* Chat UI (Restored Logic) */}
+              <div className="flex flex-1 flex-col justify-center gap-3">
+                {/* Bot */}
+                <div className="flex items-center">
+                  <div className="size-8 shrink-0 rounded-full bg-white/10" />
+                  <div className="ml-3 rounded-r-2xl rounded-bl-sm rounded-tl-2xl border border-white/5 bg-[#ffffff0a] px-4 py-3">
+                    <p className="text-xs text-white/60">Alerte: Le serveur de production WMS necessite une mise a jour.</p>
+                  </div>
+                </div>
+                {/* User */}
+                <div className="flex items-center justify-end">
+                  <div className="mr-3 rounded-l-2xl rounded-br-sm rounded-tr-2xl bg-[#FFB800] px-4 py-3 shadow-lg">
+                    <p className="text-xs font-bold text-black">Recu. Deploiment du patch correctif v2.4.1 en cours...</p>
+                  </div>
+                  <div className="size-8 shrink-0 rounded-full bg-[#FFB800]" />
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Middle Column: Support + Core */}
-            <div className="flex w-full flex-col gap-6 md:w-[675px] md:gap-[20px]">
-              {/* 2. Support Ingénieur */}
-              <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 transition-colors duration-500 hover:border-smatch-gold/20 md:h-[271px] md:p-[43px_38px_47px_42px]">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-sans text-lg font-bold leading-[1.2] text-white md:text-[24px]">
-                      {supportTitle}
-                    </h3>
-                    <p className="mt-2 text-sm font-medium leading-[1.2] text-[#ffffff7a] md:mt-[18px] md:text-[16px]">
-                      {supportDesc}
-                    </p>
-                  </div>
-                  <div className="flex size-[32px] items-center justify-center rounded-full bg-white/5 md:size-[42px]">
-                    <ChatCircleText size={20} className="text-white md:size-[24px]" />
-                  </div>
-                </div>
 
-                {/* Chat Bubbles */}
-                <div className="mt-6 flex flex-col gap-3 md:mt-[34px] md:gap-4">
-                  {/* Bot Message */}
-                  <div className="flex items-center">
-                    <div className="size-[28px] shrink-0 rounded-full bg-white/10 md:size-[34px]" />
-                    <div className="ml-[12px] rounded-r-[20px] rounded-bl-[4px] rounded-tl-[20px] border border-white/5 bg-[#ffffff0a] px-[16px] py-[10px] md:ml-[17px] md:px-[20px] md:py-[12px]">
-                      <p className="text-xs leading-snug text-[#ffffff80] md:text-[14px]">
-                        Alert: The WMS server requires an update.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Reply Message */}
-                  <div className="flex items-center justify-end">
-                    <div className="mr-[12px] rounded-l-[20px] rounded-br-[4px] rounded-tr-[20px] bg-smatch-gold px-[16px] py-[10px] shadow-lg md:mr-[17px] md:px-[20px] md:py-[12px]">
-                      <p className="text-xs font-bold leading-snug text-black md:text-[14px]">
-                        Received. Deploying patch v2.4.1...
-                      </p>
-                    </div>
-                    <div className="size-[28px] shrink-0 rounded-full bg-smatch-gold md:size-[34px]" />
-                  </div>
-                </div>
-              </div>
-
-              {/* 4. Core Intelligence */}
-              <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] py-10 transition-colors duration-500 hover:border-smatch-gold/50 md:h-[254px] md:py-0">
-                {/* CSS Glow Effects */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,184,0,0.15),transparent_70%)] opacity-80" />
-                <div className="pointer-events-none absolute left-1/2 top-1/2 size-[300px] -translate-x-1/2 -translate-y-1/2 bg-smatch-gold opacity-10 blur-[120px]" />
-                <div className="absolute bottom-0 left-20 top-1/4 h-20 w-40 rounded-full bg-smatch-gold opacity-70 blur-3xl " />
-                <div className="absolute bottom-0 left-40 top-1/4 h-20 w-80 rounded-full bg-smatch-gold opacity-100 mix-blend-overlay blur-3xl" />
-
-                <Image
-                  className="relative z-[1] mx-auto h-auto w-4/5 object-contain md:h-full md:w-1/2"
-                  src={'/assets/domains/core-inteligence.svg'}
-                  alt="Core intelligence"
-                  fill
-                  sizes="(max-width: 768px) 80vw, 50vw"
-                />
+          {/* 3. API FIRST (Tall Right) */}
+          {/* Position: Col 7-8 / Row 1-4 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-5">
+            <div className="absolute top-1/4 -right-12 z-20 pointer-events-none md:bottom-20 md:right-[-40px] md:top-auto">
+              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image className="w-[140px] md:w-[250px]" alt='' src="/assets/ecosystem/api.png" width={300} height={300} />
+                <div className='absolute top-10 left-10 -z-10 opacity-30 bg-smatch-gold h-[60px] w-[60px] rounded-full blur-[50px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
+            <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
+              {/* Window Controls */}
+              <div className="mb-6 flex items-center gap-2">
+                <div className="size-2.5 rounded-full bg-[#FF5F57]" />
+                <div className="size-2.5 rounded-full bg-[#FEBC2E]" />
+                <div className="size-2.5 rounded-full bg-[#28C840]" />
+                <span className="ml-auto font-mono text-[10px] text-white/30">api.config.ts</span>
+              </div>
 
-            {/* 3. API First (Tall Right) */}
-            <div className="group relative flex w-full flex-col overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[545px] md:w-[400px]">
-              <div className="p-6 md:p-[24px]">
-                {/* Window Controls */}
-                <div className="mb-6 flex items-center gap-2">
-                  <div className="size-2.5 rounded-full bg-[#FF5F57] md:size-3" />
-                  <div className="size-2.5 rounded-full bg-[#FEBC2E] md:size-3" />
-                  <div className="size-2.5 rounded-full bg-[#28C840] md:size-3" />
-                  <span className="ml-auto font-mono text-[10px] text-white/30 md:text-[12px]">api.config.ts</span>
+              <div className="mb-8 h-px w-full bg-white/5" />
+
+              {/* Code Snippet (Restored Colors) */}
+              <div className="font-mono text-xs leading-relaxed md:text-sm">
+                <div>
+                  <span className="text-[#C792EA]">import</span> <span className="text-white">{'{ WMS }'}</span> <span className="text-[#C792EA]">from</span> <span className="text-[#98C379]">'@smatch/core'</span>;
                 </div>
-
-                <div className="mb-6 h-px w-full bg-white/5" />
-
-                {/* Code Content */}
-                <div className="font-mono text-xs leading-relaxed md:text-[14px]">
-                  <div>
-                    <span className="text-[#C792EA]">import</span>
-                    <span className="text-white">{'{ WMS }'}</span>
-                    <span className="text-[#C792EA]">from</span>
-                    <span className="text-[#98C379]">&apos;@smatch/core&apos;</span>;
-                  </div>
-                  <div className="mt-4">
-                    <span className="text-[#C792EA]">const</span>
-                    <span className="text-[#61AFEF]">client</span>
-                    <span className="text-white">=</span>
-                    <span className="text-[#E5C07B]">new</span>
-                    <span className="text-[#E5C07B]">WMS</span>
-                    <span className="text-white">({"{"}</span>
-                  </div>
-                  <div className="pl-4 text-white/80">
-                    apiKey: <span className="text-[#98C379]">&apos;sk_live...&apos;</span>,
-                  </div>
-                  <div className="pl-4 text-white/80">
-                    region: <span className="text-[#98C379]">&apos;ma-cas-1&apos;</span>
-                  </div>
-                  <div className="text-white">{"}"});</div>
-                  <div className="mt-4 italic text-white/40">{'//'} initialize sync</div>
+                <div className="mt-4">
+                  <span className="text-[#C792EA]">const</span> <span className="text-[#61AFEF]">client</span> <span className="text-white">=</span> <span className="text-[#E5C07B]">new</span> <span className="text-[#E5C07B]">WMS</span><span className="text-white">({'{'}</span>
                 </div>
+                <div className="pl-4 text-white/80">
+                  apiKey: <span className="text-[#98C379]">'sk_live...'</span>,
+                </div>
+                <div className="pl-4 text-white/80">
+                  region: <span className="text-[#98C379]">'ma-cas-1'</span>
+                </div>
+                <div className="text-white">{'}'});</div>
+                <div className="mt-4 italic text-white/40">// initialize sync</div>
               </div>
 
               {/* Bottom Text */}
-              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A] to-transparent p-6 pt-16 md:p-[30px] md:pt-20">
-                <h3 className="mb-2 font-sans text-lg font-bold text-white md:text-[24px]">{apiTitle}</h3>
-                <p className="text-sm font-medium leading-snug text-[#ffffff7a] md:text-[16px]">
-                  {apiDesc}
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A] to-transparent p-6 pt-16">
+                <h3 className="mb-2 text-xl font-bold">{apiTitle}</h3>
+                <p className="text-sm font-medium text-white/50">{apiDesc}</p>
+              </div>
+            </div>
+          </div>
+
+
+          {/* 4. CORE INTELLIGENCE (Middle Center) */}
+          {/* Position: Col 3-6 / Row 3-4 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
+            <div className="absolute inset-0 left-10 z-20 pointer-events-none flex md:left-4">
+              <div className="relative flex justify-center items-center">
+                <Image className="w-[160px] md:w-[250px] opacity-90 transform transition-transform duration-700 ease-out group-hover:scale-110" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
+                <div className='absolute top-14 left-14 -z-10 opacity-30 bg-smatch-gold h-[80px] w-[80px] rounded-full blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
+              </div>
+            </div>
+            <div className="relative z-10 flex h-full flex-col items-center justify-center p-8 text-center bg-transparent">
+
+
+
+              <div className="pl-0 md:pl-52 relative z-20">
+                <div className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 backdrop-blur-md">
+                  <Cpu size={14} className="text-[#FFB800]" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">Neural Engine</span>
+                </div>
+                <h3 className="text-3xl font-bold text-white md:text-4xl">Core Intelligence</h3>
+              </div>
+            </div>
+          </div>
+
+
+          {/* 5. OPTIMIZATION (Bottom Left) */}
+          {/* Position: Col 1-4 / Row 5-6 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-1 md:col-end-5 md:row-start-5 md:row-end-7 md:p-10">
+
+            <div className="absolute -bottom-10 -right-16 z-20 pointer-events-none md:-bottom-20 md:-right-10">
+              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image className='relative w-[280px] md:w-[350px]' alt='' src="/assets/ecosystem/chart.png" width={400} height={400} />
+                <div className='absolute top-20 right-20 -z-10 opacity-30 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
+              </div>
+            </div>
+            <div className="relative z-20 flex h-full items-start justify-between">
+              <div className="max-w-[340px]">
+                <h3 className="mb-2 text-xl font-bold md:text-2xl">{optimizationTitle}</h3>
+                <p className="text-sm font-medium leading-relaxed text-white/50">
+                  {optimizationDesc}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* ROW 2: Optimization, Control */}
-          <div className="flex w-full flex-col justify-center gap-6 md:flex-row md:gap-[20px]">
-            {/* 5. Optimization par l'IA */}
-            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] p-6 transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[749px] md:p-[32px]">
-              <div className="relative z-20 md:ml-[10px] md:mt-[20px]">
-                <h3 className="mb-2 font-sans text-lg font-bold text-white md:mb-[15px] md:text-[24px]">
-                  {optimizationTitle}
-                </h3>
-                {/* Max width restricted on mobile to prevent overlap */}
-                <p className="max-w-[60%] text-sm font-medium leading-[20px] text-[#ffffff7a] md:max-w-[340px] md:text-[16px] md:leading-[24px]">
-                  {optimizationDesc}
+
+          {/* 6. CONTROL (Bottom Right) */}
+          {/* Position: Col 5-8 / Row 5-6 */}
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-5 md:col-end-9 md:row-start-5 md:row-end-7">
+            <div className="absolute -bottom-12 -right-12 z-20 pointer-events-none md:-bottom-20 md:-right-20">
+              <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
+                <Image className='relative w-[220px] md:w-[380px] -rotate-12' alt='' src="/assets/ecosystem/joystick.png" width={300} height={300} />
+                <div className='absolute top-20 right-20 -z-10 opacity-30 bg-smatch-gold h-[100px] w-[100px] rounded-full blur-[70px] transition-opacity duration-700 group-hover:opacity-60'></div>
+              </div>
+            </div>
+            <div className="absolute inset-0 flex items-end justify-between p-6 md:p-10">
+              <div className="z-10 mb-2">
+                <h3 className="mb-2 text-xl font-bold md:text-2xl">{controlTitle}</h3>
+                <p className="max-w-[320px] text-sm font-medium leading-relaxed text-white/50">
+                  {controlDesc}
                 </p>
               </div>
-
-              {/* Chart */}
-              <div className="pointer-events-none absolute bottom-[-10px] right-[-10px] h-[100px] w-3/4 md:bottom-0 md:right-0 md:h-[160px] md:w-3/5">
-                <svg
-                  className="size-full overflow-visible"
-                  preserveAspectRatio="none"
-                  viewBox="0 0 300 100"
-                >
-                  <defs>
-                    <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#FFB800" stopOpacity="0.2" />
-                      <stop offset="100%" stopColor="#FFB800" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M0 100 L0 90 C 50 90, 100 80, 150 60 C 200 40, 250 20, 300 15 L 300 100 Z"
-                    fill="url(#chartGradient)"
-                  />
-                  <path
-                    d="M0 90 C 50 90, 100 80, 150 60 C 200 40, 250 20, 300 15"
-                    fill="none"
-                    stroke="#FFB800"
-                    strokeWidth="2"
-                  />
-
-                  {/* Glowing Dot on Chart */}
-                  <circle cx="250" cy="20" r="4" fill="#FFB800" className="animate-pulse" />
-                </svg>
-
-                {/* Floating Tooltip */}
-                <div className="absolute right-1/4 top-0 rounded-lg border border-smatch-gold/30 bg-[#1A1A1A] px-2 py-1 text-center shadow-xl md:top-[10px] md:px-3 md:py-2">
-                  <span className="block text-sm font-bold leading-none text-smatch-gold md:text-[18px]">
-                    +35%
-                  </span>
-                  <span className="mt-0.5 block text-[8px] uppercase tracking-wider text-white/60 md:mt-1 md:text-[10px]">
-                    Efficacité
-                  </span>
-                </div>
+              <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-[#FFB800] shadow-[0_0_20px_rgba(255,184,0,0.4)]">
+                <Check size={20} className="text-black" strokeWidth={3} />
               </div>
             </div>
 
-            {/* 6. Controle Total */}
-            <div className="group relative w-full overflow-hidden rounded-[20px] border border-white/5 bg-[#0A0A0A] transition-colors duration-500 hover:border-smatch-gold/20 md:h-[232px] md:w-[747px]">
-              {/* Background Gradient to simulate image if needed */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.03),transparent_50%)]" />
-
-              <div className="absolute inset-0 flex items-end justify-between p-6 md:p-[40px]">
-                <div className="z-10 mb-2 flex flex-col items-start">
-                  <h3 className="mb-1 font-sans text-lg font-bold text-white md:mb-[12px] md:text-[24px]">
-                    {controlTitle}
-                  </h3>
-                  <p className="max-w-[220px] text-sm font-medium leading-[20px] text-[#ffffff7a] md:max-w-[320px] md:text-[16px] md:leading-[24px]">
-                    {controlDesc}
-                  </p>
-                </div>
-
-                {/* Check Icon */}
-                <div className="mb-2 mr-2 md:mb-[10px] md:mr-[10px]">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-smatch-gold shadow-[0_0_20px_rgba(255,184,0,0.4)] md:size-[32px]">
-                    <Check size={16} className="text-black md:size-[18px]" weight="bold" />
-                  </div>
-                </div>
-              </div>
-
-              {/* UI Floating Elements */}
-              <div className="absolute right-[10px] top-[20px] flex flex-col gap-2 md:right-[30px] md:top-[30px] md:gap-3">
-                <div className="flex w-[180px] -rotate-2 items-center justify-between rounded-xl border border-smatch-gold bg-[#111] p-2 shadow-lg md:w-[280px] md:p-3">
-                  <div>
-                    <span className="mb-0.5 block font-mono text-[8px] uppercase tracking-wider text-smatch-gold md:text-[10px]">
-                      Active Env
-                    </span>
-                    <span className="text-[10px] font-bold text-white md:text-[13px]">v4.0 Cloud</span>
-                  </div>
-                  <div className="rounded-full bg-smatch-gold p-0.5 md:p-1">
-                    <Check size={10} className="text-black md:size-[12px]" weight="bold" />
-                  </div>
-                </div>
-
-                <div className="flex w-[180px] origin-top-right scale-95 items-center justify-between rounded-xl border border-white/10 bg-[#111] p-2 opacity-40 md:w-[280px] md:p-3">
-                  <div>
-                    <span className="mb-0.5 block font-mono text-[8px] uppercase tracking-wider text-gray-500 md:text-[10px]">
-                      Legacy System
-                    </span>
-                    <span className="text-[10px] font-bold text-gray-400 md:text-[13px]">v3.2 On-Premise</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

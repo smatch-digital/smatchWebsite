@@ -7,14 +7,17 @@ const config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/payload/**/*.{js,ts,jsx,tsx,mdx}', // Ensure Payload admin components are covered if customized
+    './src/blocks/**/*.{js,ts,jsx,tsx,mdx}', // Blocks like Ecosystem, Team, etc.
+    './src/Header/**/*.{js,ts,jsx,tsx,mdx}', // Header components
+    './src/Footer/**/*.{js,ts,jsx,tsx,mdx}', // Footer components
+    './src/payload/**/*.{js,ts,jsx,tsx,mdx}', // Payload admin components
   ],
   theme: {
     container: {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px',
+        '2xl': '1600px',
       },
     },
     extend: {

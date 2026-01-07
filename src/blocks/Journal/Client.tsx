@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -41,12 +41,19 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
     // Transform vertical scroll to horizontal movement
     // If only 1 item, we might hardly scroll at all horizontally, or just a tiny bit.
     const scrollAmount = itemCount > 3 ? `-${(itemCount - 2) * 20}%` : itemCount <= 1 ? '0%' : '-20%'
-    const x = useTransform(scrollYProgress, [0, 1], ['0%', scrollAmount])
+    const xRaw = useTransform(scrollYProgress, [0, 1], ['0%', scrollAmount])
+
+    // Wrap in useSpring for smooth, physics-based animation (reduces perceived lag)
+    const x = useSpring(xRaw, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001,
+    })
 
     return (
         <section ref={targetRef} className={`relative ${sectionHeight} bg-[#050505]`}>
             {/* Sticky Viewport */}
-            <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
+            <div className="sticky top-0 flex h-screen flex-col overflow-hidden my-12">
                 {/* Header */}
                 <div className="container relative z-10 mx-auto bg-[#050505] px-4 pt-12 md:pt-24">
                     <div className="mb-12 flex flex-col items-end justify-between border-b border-white/10 pb-6 md:flex-row">
@@ -79,7 +86,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
 
                 {/* Horizontal Scroll Track */}
                 <div className="relative flex flex-1 items-center pl-4 md:pl-[max(1rem,calc((100vw-80rem)/2))]">
-                    <motion.div style={{ x }} className="flex h-[60vh] gap-0">
+                    <motion.div style={{ x }} className="flex h-[60vh] gap-0 will-change-transform">
                         {articles.map((article, index) => (
                             <Link
                                 href={article.linkUrl}

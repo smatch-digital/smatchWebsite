@@ -65,7 +65,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   // SVG Logo
   const LogoSVG = () => (
     <Link href="/" className="group flex items-center gap-3">
-      <Image src='/logo.svg' alt='Smatch Logo' width={100} height={50} />
+      <Image src='/logo.svg' alt='Smatch Logo' width={130} height={50} />
       {/* <div className="w-[32px] h-[32px] md:w-[40px] md:h-[40px] relative">
         <svg
           width="100%"

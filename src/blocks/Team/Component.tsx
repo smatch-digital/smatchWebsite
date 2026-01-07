@@ -30,15 +30,15 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
   const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFB800]/30 md:p-8">
+    <div className="relative flex flex-col justify-between h-full max-h-[400px] w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFB800]/30 md:p-6">
       {/* Decorative Noise/Grid Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
-      <div className="relative z-10 flex flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
+      <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
 
         {/* Image & ID Block */}
-        <div className="flex flex-col gap-4 lg:w-[320px]">
+        <div className="w-full max-w-[190px] shrink-0">
           {/* Image Container */}
-          <div className="group relative aspect-[5/8] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50">
+          <div className="group relative aspect-[2/3] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50">
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
             {imageUrl ? (
@@ -47,7 +47,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
                 alt={imageAlt || ''}
                 fill
                 className="object-cover opacity-90 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
-                sizes="(max-width: 1024px) 100vw, 320px"
+                sizes="(max-width: 768px) 128px, 192px"
                 priority
               />
             ) : (
@@ -64,15 +64,15 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
         <div className="flex-1">
           {/* Tag */}
           {member.tag && (
-            <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-4 py-1.5">
-              <span className="font-mono text-xs font-bold tracking-[0.2em] text-[#FFB800]">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-3 py-1">
+              <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-[#FFB800]">
                 {member.tag}
               </span>
             </div>
           )}
 
           {/* Name (Font Heading / Antonio) */}
-          <h3 className="mb-4 font-heading text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-[5rem]">
+          <h3 className="mb-2 font-heading text-3xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-5xl">
             {member.name.split(' ')[0]} <br />
             <span className="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
               {member.name.split(' ').slice(1).join(' ')}
@@ -80,29 +80,29 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           </h3>
 
           {/* Role (Font Mono / JetBrains) */}
-          <p className="mb-8 font-mono text-sm uppercase tracking-widest text-[#FFB800]/80">
+          <p className="mb-4 font-mono text-xs uppercase tracking-widest text-[#FFB800]/80">
             {member.role}
           </p>
 
           {/* Description Block */}
           {member.description && (
-            <div className="relative mb-10 border-l-2 border-[#FFB800] pl-6">
-              <p className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-lg font-light leading-relaxed text-transparent md:text-xl">
+            <div className="relative mb-6 border-l-2 border-[#FFB800] pl-4">
+              <p className="line-clamp-3 bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed text-transparent md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
             </div>
           )}
 
           {/* Socials (Phosphor Icons) */}
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             {member.linkedin && (
-              <Link href={member.linkedin} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
-                <LinkedinLogo size={32} weight="duotone" />
+              <Link href={member.linkedin} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
+                <LinkedinLogo size={20} weight="duotone" />
               </Link>
             )}
             {member.email && (
-              <Link href={`mailto:${member.email}`} className="group flex size-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
-                <EnvelopeSimple size={32} weight="duotone" />
+              <Link href={`mailto:${member.email}`} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
+                <EnvelopeSimple size={20} weight="duotone" />
               </Link>
             )}
           </div>
@@ -111,7 +111,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
       </div>
       {/* Footer ID Tag */}
       {member.footerId && (
-        <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs tracking-widest text-gray-500">
+        <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[10px] tracking-widest text-gray-500">
           <span>{member.footerId}</span>
           <span className="text-[#FFB800]">ONLINE</span>
         </div>
@@ -235,15 +235,15 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
 
           {/* 1. Leader Section: Leader Card + Quote Side Panel */}
           {primaryLeader && (
-            <div className="grid gap-6 lg:grid-cols-12">
+            <div className="flex flex-1 flex-col  gap-6 lg:flex-row  max-h-[400px]">
 
               {/* Leader Card (Col Span 8) */}
-              <div className="lg:col-span-8">
+              <div className="flex flex-1 md:col-span-1 lg:col-span-8">
                 <LeaderCard member={primaryLeader} />
               </div>
 
               {/* Quote Side Panel (Col Span 4) */}
-              <div className="relative flex flex-col justify-between overflow-hidden p-8 lg:col-span-4 lg:p-12">
+              <div className="relative flex flex-col flex-1 justify-between overflow-hidden p-8 md:col-span-1 lg:col-span-4 lg:p-12">
                 {/* Giant Watermark Quote */}
                 <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
                   <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay' src="/assets/comma-first.svg" alt="" width={200} height={150} />
@@ -267,7 +267,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
 
           {/* 2. Team Grid */}
           {teamGrid.length > 0 && (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
               {teamGrid.map((member, index) => (
                 <TeamMemberCard key={member.id || index} member={member} />
               ))}
