@@ -237,7 +237,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                   <Cpu size={14} className="text-[#FFB800]" />
                   <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">Neural Engine</span>
                 </div>
-                <h3 className="text-3xl font-bold text-white md:text-4xl">Core Intelligence</h3>
+                <h3 className="text-3xl font-bold text-white md:text-4xl">Intelligence fondamentale</h3>
               </div>
             </div>
           </div>

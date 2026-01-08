@@ -30,7 +30,7 @@ interface SolutionsHeroProps {
 
 export function SolutionsHero({
   title = "L'ARSENAL DIGITAL.",
-  subtitle = 'Logistique. Mobilité. Industrie X.0. Le moteur de votre transformation commence ici.',
+  subtitle = 'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
   image,
   fullBleed = true,
   className,

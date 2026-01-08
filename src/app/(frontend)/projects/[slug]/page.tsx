@@ -56,138 +56,202 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
     typeof project.image === 'object' && project.image?.url ? project.image.url : null
   const formattedDate = project.date
     ? new Date(project.date).toLocaleDateString('fr-FR', {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      })
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    })
     : ''
 
   return (
-    <article className="min-h-screen bg-smatch-black">
+    <article className="min-h-screen bg-smatch-black selection:bg-smatch-gold selection:text-black">
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
 
-      {/* Hero Section */}
-      <section className="relative flex min-h-[60vh] items-end overflow-hidden">
-        {/* Background Image */}
+      {/* Enhanced Hero Section */}
+      <section className="relative flex min-h-[85vh] items-end overflow-hidden">
+        {/* Background Image with Gradient Overlay */}
         {imageUrl && (
           <div className="absolute inset-0 z-0">
-            <Image src={imageUrl} alt={project.title} fill className="object-cover" priority />
-            <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-smatch-black/80 to-transparent" />
+            <Image
+              src={imageUrl}
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-[2s] hover:scale-105"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-smatch-black/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-smatch-black/80 via-transparent to-smatch-black/40" />
           </div>
         )}
 
-        <div className="container relative z-10 mx-auto px-4 pb-12 pt-32 md:px-6">
+        <div className="container relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-32 md:px-6">
           {/* Back Link */}
           <Link
             href="/projects"
-            className="mb-8 inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-gray-400 transition-colors hover:text-[#FFB800]"
+            className="group mb-12 inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-[#FFB800]"
           >
-            <ArrowLeft size={16} />
+            <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/10">
+              <ArrowLeft size={14} />
+            </div>
             Retour au Journal
           </Link>
 
           {/* Status Badge */}
           {project.status === 'upcoming' && (
-            <div className="mb-4 inline-flex items-center gap-2 rounded border border-[#FFB800]/50 bg-[#FFB800]/10 px-3 py-1">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FFB800]/50 bg-[#FFB800]/10 px-4 py-1.5 backdrop-blur-sm">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
               </span>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">
-                BIENTÔT
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFB800]">
+                Projet en cours
               </span>
             </div>
           )}
 
-          {/* Title */}
-          <h1 className="mb-6 max-w-4xl font-heading text-4xl font-bold uppercase leading-tight text-white md:text-6xl">
+          {/* Massive Title */}
+          <h1 className="max-w-5xl font-heading text-5xl font-bold uppercase leading-[0.9] tracking-tight text-white drop-shadow-xl md:text-7xl lg:text-[8rem]">
             {project.title}
           </h1>
 
-          {/* Meta Row */}
-          <div className="flex flex-wrap items-center gap-6 text-gray-400">
-            {formattedDate && (
-              <div className="flex items-center gap-2">
-                <CalendarBlank size={18} />
-                <span className="font-mono text-sm">{formattedDate}</span>
+          {/* Quick Summary Line */}
+          {project.location && (
+            <div className="mt-8 flex items-center gap-4 text-white/50">
+              <div className="h-px w-12 bg-[#FFB800]" />
+              <span className="font-mono text-sm uppercase tracking-widest">{project.location}</span>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Main Content: Split Grid Layout */}
+      <section className="border-t border-white/5 bg-[#0A0A0A] py-24">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6">
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
+
+            {/* LEFT COLUMN: Sticky Specifications (Col-Span-4) */}
+            <div className="lg:col-span-4">
+              <div className="sticky top-32 space-y-12">
+                <div>
+                  <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFB800]">
+                    Spécifications
+                  </h3>
+                  <dl className="space-y-6 divide-y divide-white/10 border-t border-white/10 pt-6">
+                    {formattedDate && (
+                      <div className="flex justify-between py-2">
+                        <dt className="font-heading text-sm uppercase text-gray-500">Date</dt>
+                        <dd className="font-mono text-sm font-medium text-white">{formattedDate}</dd>
+                      </div>
+                    )}
+                    {project.location && (
+                      <div className="flex justify-between py-2">
+                        <dt className="font-heading text-sm uppercase text-gray-500">Lieu</dt>
+                        <dd className="font-mono text-sm font-medium text-white">{project.location}</dd>
+                      </div>
+                    )}
+                    {project.code && (
+                      <div className="flex justify-between py-2">
+                        <dt className="font-heading text-sm uppercase text-gray-500">Code Projet</dt>
+                        <dd className="font-mono text-sm font-medium text-white">{project.code}</dd>
+                      </div>
+                    )}
+
+                    {/* Dynamic Metadata Fields */}
+                    {project.metadata && project.metadata.map((meta, i) => (
+                      <div key={i} className="flex justify-between py-2">
+                        <dt className="font-heading text-sm uppercase text-gray-500">{meta.label}</dt>
+                        <dd className="font-mono text-sm font-medium text-white text-right max-w-[60%]">{meta.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+
+                {/* Abstract / Decoration */}
+                <div className="relative aspect-square w-full overflow-hidden opacity-30 invert filter">
+                  {/* Abstract background graphic or map could go here */}
+                  <div className="absolute inset-0 border border-dashed border-white/20" />
+                  <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-white/20">
+                    SMATCH DIGITAL ARCHIVE
+                  </div>
+                </div>
               </div>
-            )}
-            {project.location && (
-              <div className="flex items-center gap-2">
-                <MapPin size={18} />
-                <span className="font-mono text-sm">{project.location}</span>
-              </div>
-            )}
-            {project.code && (
-              <div className="flex items-center gap-2">
-                <Tag size={18} />
-                <span className="font-mono text-sm">CODE: {project.code}</span>
-              </div>
-            )}
+            </div>
+
+            {/* RIGHT COLUMN: The Story (Col-Span-8) */}
+            <div className="lg:col-span-8">
+              {/* Lead Paragraph */}
+              {project.description && (
+                <p className="mb-16 font-sans text-2xl font-light leading-relaxed text-white antialiased md:text-3xl">
+                  {project.description}
+                </p>
+              )}
+
+              {/* Rich Text Content */}
+              {project.fullDescription && (
+                <div className="prose prose-lg prose-invert max-w-none 
+                  prose-headings:font-heading prose-headings:uppercase prose-headings:tracking-tighter prose-headings:text-white 
+                  prose-p:font-sans prose-p:text-gray-300 prose-p:leading-relaxed
+                  prose-a:text-[#FFB800] prose-a:no-underline hover:prose-a:underline
+                  prose-strong:text-white prose-strong:font-bold
+                  prose-blockquote:border-l-[#FFB800] prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:pl-6 prose-blockquote:italic
+                ">
+                  <RichText data={project.fullDescription} />
+                </div>
+              )}
+
+              {/* Gallery Section */}
+              {project.gallery && project.gallery.length > 0 && (
+                <div className="mt-24 space-y-8">
+                  <div className="flex items-end justify-between border-b border-white/10 pb-4">
+                    <h2 className="font-heading text-2xl uppercase tracking-wide text-white">Galerie Visuelle</h2>
+                    <span className="font-mono text-xs text-gray-500">IMAGE_COUNT: {project.gallery.length}</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    {project.gallery.map((item, i) => {
+                      const galleryImageUrl =
+                        typeof item.image === 'object' && item.image?.url ? item.image.url : null
+                      if (!galleryImageUrl) return null
+
+                      // Alternate span logic for visual interest (basic styling for now)
+                      const isWide = i % 3 === 0
+
+                      return (
+                        <div
+                          key={i}
+                          className={`group relative overflow-hidden rounded-md bg-white/5 ${isWide ? 'md:col-span-2 aspect-[2/1]' : 'aspect-square'}`}
+                        >
+                          <Image
+                            src={galleryImageUrl}
+                            alt={item.caption || `Image ${i + 1}`}
+                            fill
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/20" />
+
+                          {item.caption && (
+                            <div className="absolute inset-x-0 bottom-0 translate-y-full bg-black/80 px-4 py-3 backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0">
+                              <p className="font-mono text-xs text-white">{item.caption}</p>
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Content Section */}
-      <section className="py-16">
-        <div className="container mx-auto max-w-4xl px-4 md:px-6">
-          {/* Short Description */}
-          {project.description && (
-            <p className="mb-12 text-xl leading-relaxed text-gray-300">{project.description}</p>
-          )}
-
-          {/* Full Description (Rich Text) */}
-          {project.fullDescription && (
-            <div className="prose prose-lg prose-invert max-w-none">
-              <RichText data={project.fullDescription} />
-            </div>
-          )}
-
-          {/* Metadata Pills */}
-          {project.metadata && project.metadata.length > 0 && (
-            <div className="mt-12 flex flex-wrap gap-4 border-t border-white/10 pt-8">
-              {project.metadata.map((meta, i) => (
-                <div
-                  key={i}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-sm text-gray-300"
-                >
-                  {meta.label}: <span className="text-[#FFB800]">{meta.value}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Gallery */}
-          {project.gallery && project.gallery.length > 0 && (
-            <div className="mt-16">
-              <h2 className="mb-8 font-heading text-2xl font-bold uppercase text-white">Galerie</h2>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {project.gallery.map((item, i) => {
-                  const galleryImageUrl =
-                    typeof item.image === 'object' && item.image?.url ? item.image.url : null
-                  if (!galleryImageUrl) return null
-                  return (
-                    <div key={i} className="group relative aspect-video overflow-hidden rounded-lg">
-                      <Image
-                        src={galleryImageUrl}
-                        alt={item.caption || `Image ${i + 1}`}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {item.caption && (
-                        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                          <p className="text-sm text-white">{item.caption}</p>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          )}
+      {/* Next/Prev Navigation (Optional/Placeholder) */}
+      <div className="border-t border-white/10 bg-[#050505] py-12">
+        <div className="container mx-auto max-w-7xl px-4 text-center md:px-6">
+          <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">Back to Index</Link>
         </div>
-      </section>
+      </div>
     </article>
   )
 }
