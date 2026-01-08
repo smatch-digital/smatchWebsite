@@ -142,7 +142,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               </div>
             </div>
             {/* Content - z-10 below asset */}
-            <div className="relative z-10 flex h-full flex-col justify-between md:flex-col md:gap-10">
+            <div className="relative z-10 flex h-full flex-col justify-between md:flex-col md:gap-4">
 
               <div className="flex flex-col justify-between">
                 <div>
