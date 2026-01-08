@@ -23,7 +23,7 @@ export const SmatchHero: React.FC<Page['hero']> = ({
         className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
         fill="#FFE6A1"
       />
-      <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
+      
       <div className="absolute inset-0 z-0 size-full ">
         {media && typeof media === 'object' && (
           <Media resource={media} fill imgClassName="object-cover object-center" priority />
