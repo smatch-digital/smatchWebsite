@@ -42,8 +42,10 @@ public/media/*
 # -----------------------------------------------------------------------------
 # NEXT.JS & SEO
 # -----------------------------------------------------------------------------
-# Generated sitemaps and robots often built at runtime or build time
-# If you commit them, remove these lines. If generated, keep them.
+# NOTE: Sitemap and robots.txt are now generated dynamically via:
+#   - src/app/sitemap.ts
+#   - src/app/robots.ts
+# These public/ ignores are kept for legacy compatibility if static files exist.
 public/sitemap*.xml
 public/robots.txt
 
@@ -76,9 +78,9 @@ desktop.ini
 /blob-report/
 /playwright/.cache/
 coverage/
-# audit/
+# audit/ - Keeping Lighthouse reports in version control
 battery-report.html
-gemini.md
+# gemini.md - Keeping project documentation in version control
 lint_final.json
 lint_report_new.json
 lint_results.txt
