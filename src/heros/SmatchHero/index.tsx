@@ -26,7 +26,7 @@ export const SmatchHero: React.FC<Page['hero']> = ({
       <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
       <div className="absolute inset-0 z-0 size-full ">
         {media && typeof media === 'object' && (
-          <Media resource={media} fill imgClassName="object-cover object-center" />
+          <Media resource={media} fill imgClassName="object-cover object-center" priority />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" />
         {/* <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" /> */}
