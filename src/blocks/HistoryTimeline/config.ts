@@ -66,6 +66,16 @@ export const HistoryTimeline: Block = {
                 width: '50%',
               },
             },
+            {
+              name: 'isSmatchEraStart',
+              type: 'checkbox',
+              label: '🌟 Smatch Era Starts Here',
+              defaultValue: false,
+              admin: {
+                width: '50%',
+                description: 'Order events newest-first. This event and all ABOVE it glow gold. All BELOW are greyed out.',
+              },
+            },
           ],
         },
       ],

@@ -1054,6 +1054,10 @@ export interface HistoryTimelineBlock {
         description?: string | null;
         version?: string | null;
         isCurrent?: boolean | null;
+        /**
+         * Order events newest-first. This event and all ABOVE it glow gold. All BELOW are greyed out.
+         */
+        isSmatchEraStart?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -1918,6 +1922,7 @@ export interface HistoryTimelineBlockSelect<T extends boolean = true> {
         description?: T;
         version?: T;
         isCurrent?: T;
+        isSmatchEraStart?: T;
         id?: T;
       };
   id?: T;
