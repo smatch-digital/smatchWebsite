@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, CalendarBlank, MapPin, Tag, Users, Rocket, Key } from '@phosphor-icons/react'
+import * as PhosphorIcons from '@phosphor-icons/react'
 import type { Media } from '@/payload-types'
 
 // --- Types ---
@@ -38,14 +38,16 @@ interface ActivityTimelineProps {
 
 // --- Icon Mapping for Metadata ---
 const getMetadataIcon = (iconName: string | null | undefined) => {
-    const icons: Record<string, React.ReactNode> = {
-        'Key': <Key size={14} weight="bold" />,
-        'Users': <Users size={14} weight="bold" />,
-        'Rocket': <Rocket size={14} weight="bold" />,
-        'Tag': <Tag size={14} weight="bold" />,
-        'default': <Tag size={14} weight="bold" />,
+    if (!iconName) return <PhosphorIcons.Tag size={14} weight="bold" />
+
+    // Dynamically lookup icon from the imported namespace
+    const IconComponent = (PhosphorIcons as any)[iconName]
+
+    if (IconComponent) {
+        return <IconComponent size={14} weight="bold" />
     }
-    return icons[iconName || 'default'] || icons['default']
+
+    return <PhosphorIcons.Tag size={14} weight="bold" />
 }
 
 // --- Status Badge ---
@@ -137,9 +139,9 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                 ) : (
                     <div className="relative hidden h-48 w-full items-center justify-center bg-[#111] md:flex md:h-auto md:w-1/3 md:min-w-[200px]">
                         {item.type === 'event' ? (
-                            <Users size={48} weight="thin" className="text-gray-700" />
+                            <PhosphorIcons.Users size={48} weight="thin" className="text-gray-700" />
                         ) : (
-                            <Rocket size={48} weight="thin" className="text-gray-700" />
+                            <PhosphorIcons.Rocket size={48} weight="thin" className="text-gray-700" />
                         )}
                     </div>
                 )}
@@ -179,7 +181,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                         {/* CTA Button */}
                         <button className="mt-2 flex items-center gap-2 rounded border border-[#FFB800] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800] transition-all hover:bg-[#FFB800] hover:text-black md:ml-auto md:mt-auto">
                             {item.linkLabel || 'Voir les détails'}
-                            <ArrowRight size={12} weight="bold" />
+                            <PhosphorIcons.ArrowRight size={12} weight="bold" />
                         </button>
                     </div>
                 </div>

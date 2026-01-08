@@ -44,13 +44,13 @@ export async function Footer() {
 
             {/* Socials */}
             <div className="flex gap-5">
-              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold" aria-label="Suivez-nous sur X (Twitter)">
                 <XLogo size={22} weight="fill" />
               </Link>
-              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold" aria-label="Suivez-nous sur LinkedIn">
                 <LinkedinLogo size={22} weight="fill" />
               </Link>
-              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold">
+              <Link href="#" className="text-white/60 transition-all hover:scale-110 hover:text-smatch-gold" aria-label="Suivez-nous sur YouTube">
                 <YoutubeLogo size={22} weight="fill" />
               </Link>
             </div>

@@ -76,7 +76,7 @@ desktop.ini
 /blob-report/
 /playwright/.cache/
 coverage/
-audit/
+# audit/
 battery-report.html
 gemini.md
 lint_final.json
