@@ -85,32 +85,35 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
         )}
 
         <div className="container relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-32 md:px-6">
-          {/* Back Link */}
-          <Link
-            href="/projects"
-            className="group mb-12 inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-[#FFB800]"
-          >
-            <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/10">
-              <ArrowLeft size={14} />
-            </div>
-            Retour au Journal
-          </Link>
+          {/* Top Navigation Row */}
+          <div className="mb-12 flex items-start justify-between">
+            {/* Back Link */}
+            <Link
+              href="/projects"
+              className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-[#FFB800]"
+            >
+              <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/10">
+                <ArrowLeft size={14} />
+              </div>
+              Retour au Journal
+            </Link>
 
-          {/* Status Badge */}
-          {project.status === 'upcoming' && (
-            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#FFB800]/50 bg-[#FFB800]/10 px-4 py-1.5 backdrop-blur-sm">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
-                <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
-              </span>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFB800]">
-                Projet en cours
-              </span>
-            </div>
-          )}
+            {/* Status Badge (Top Right) */}
+            {project.status === 'upcoming' && (
+              <div className="inline-flex items-center gap-3 rounded-full border border-[#FFB800]/50 bg-[#FFB800]/10 px-4 py-1.5 backdrop-blur-sm">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
+                </span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFB800]">
+                  {project.type === 'event' ? 'ÉVÉNEMENT EN COURS' : 'PROJET EN COURS'}
+                </span>
+              </div>
+            )}
+          </div>
 
           {/* Massive Title */}
-          <h1 className="max-w-5xl font-heading text-5xl font-bold uppercase leading-[0.9] tracking-tight text-white drop-shadow-xl md:text-7xl lg:text-[8rem]">
+          <h1 className="max-w-5xl font-heading text-5xl font-bold uppercase leading-[0.9] tracking-tight text-white drop-shadow-xl md:text-6xl">
             {project.title}
           </h1>
 
