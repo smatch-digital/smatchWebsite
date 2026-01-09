@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import { AdminBar } from '@/components/AdminBar'
@@ -102,4 +102,11 @@ export const metadata: Metadata = {
     title: 'Smatch Digital',
     description: 'Solutions WMS & Supply Chain pour l\'industrie marocaine.',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#050505',
 }

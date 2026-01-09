@@ -15,8 +15,25 @@
   }
 
   /* Ensure the body doesn't jump when the navbar gets fixed */
+  /* Ensure the body doesn't jump when the navbar gets fixed */
   html {
     scroll-behavior: smooth;
+    /* 
+      FLUID TYPOGRAPHY & SPACING SYSTEM
+      ---------------------------------
+      This is the core fix for the "CEO's Laptop" scaling issue.
+      Instead of a fixed 16px, we scale the root font-size based on viewport width.
+      
+      Since Tailwind uses `rem` (1rem = root font-size), this ONE change automatically
+      scales ALL padding, margins, gaps, width, and fonts across the entire site.
+
+      FORMULA:
+      - 1920px (Desktop): ~16px (100% scale)
+      - 1366px (Laptop):  ~14px (~87% scale)
+      
+      Result: The site "zooms out" slightly on laptops to fit more content.
+    */
+    font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1.05rem); 
   }
 
   body {
