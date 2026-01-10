@@ -65,7 +65,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Tag */}
           {member.tag && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-3 py-1">
-              <span className="font-mono text-[10px] font-bold tracking-[0.2em] text-[#FFB800]">
+              <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-[0.2em] text-[#FFB800]">
                 {member.tag}
               </span>
             </div>
@@ -111,7 +111,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
       </div>
       {/* Footer ID Tag */}
       {member.footerId && (
-        <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[10px] tracking-widest text-gray-500">
+        <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] tracking-widest text-gray-500">
           <span>{member.footerId}</span>
           <span className="text-[#FFB800]">ONLINE</span>
         </div>
@@ -148,7 +148,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
         {member.tag && (
           <div className="rounded border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-md">
-            <span className="font-mono text-[10px] font-bold tracking-wider text-[#FFB800]">
+            <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-wider text-[#FFB800]">
               {member.tag}
             </span>
           </div>
@@ -163,7 +163,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
         </h3>
 
         {/* Role (Font Mono) */}
-        <p className="mb-4 font-mono text-[11px] uppercase tracking-wider text-gray-500">
+        <p className="mb-4 font-mono text-[clamp(0.6rem,0.8vw,0.7rem)] uppercase tracking-wider text-gray-500">
           {member.role}
         </p>
 
@@ -177,7 +177,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
       {/* Footer */}
       <div className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 pt-4">
-        <span className="font-mono text-[10px] text-gray-600 transition-colors group-hover:text-[#FFB800]">
+        <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] text-gray-600 transition-colors group-hover:text-[#FFB800]">
           {member.footerId}
         </span>
         <div className="rounded-full bg-white/5 p-1.5 text-white/30 transition-colors group-hover:bg-[#FFB800] group-hover:text-black">

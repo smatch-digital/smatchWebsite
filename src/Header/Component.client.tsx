@@ -48,19 +48,19 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   const items =
     navItems.length > 0
       ? navItems.map((item) => ({
-          name: item.link.label || 'Link',
-          link:
-            ((item.link.type === 'reference'
-              ? item.link.reference?.value
-              : item.link.url) as string) || '#',
-        }))
+        name: item.link.label || 'Link',
+        link:
+          ((item.link.type === 'reference'
+            ? item.link.reference?.value
+            : item.link.url) as string) || '#',
+      }))
       : [
-          { name: 'HOME', link: '/' },
-          { name: 'A PROPOS', link: '/about' },
-          { name: 'SOLUTIONS', link: '/solutions' },
-          { name: 'PROJECTS', link: '/projects' },
-          { name: 'EXPERTISES', link: '/expertises' },
-        ]
+        { name: 'HOME', link: '/' },
+        { name: 'A PROPOS', link: '/about' },
+        { name: 'SOLUTIONS', link: '/solutions' },
+        { name: 'PROJECTS', link: '/projects' },
+        { name: 'EXPERTISES', link: '/expertises' },
+      ]
 
   // SVG Logo
   const LogoSVG = () => (
@@ -91,10 +91,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </svg>
       </div>
       <div className="flex flex-col justify-center">
-        <span className="font-heading font-extrabold text-[14px] md:text-[16px] leading-[0.9] text-white tracking-tight">
+        <span className="font-heading font-extrabold text-[clamp(0.875rem,2vw,1rem)] leading-[0.9] text-white tracking-tight">
           SMATCH
         </span>
-        <span className="font-sans font-medium text-[8px] md:text-[9px] leading-none text-white/60 tracking-[0.25em] mt-1">
+        <span className="font-sans font-medium text-[clamp(0.5rem,1vw,0.6rem)] leading-none text-white/60 tracking-[0.25em] mt-1">
           DIGITAL
         </span>
       </div> */}

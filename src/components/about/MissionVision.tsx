@@ -61,7 +61,7 @@ const TerminalTag = ({ text }: { text: string }) => {
       <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'>_'}</span>
 
       {/* Text */}
-      <span className="font-mono text-[9px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white md:text-[10px]">
+      <span className="font-mono text-[clamp(0.5rem,0.6vw,0.625rem)] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white">
         {text}
       </span>
 
@@ -91,7 +91,7 @@ export function MissionVision({ mission, vision }: MissionVisionProps) {
           <div className="flex flex-col gap-6 md:gap-8">
             {/* Section Heading */}
             <div className="mb-2">
-              <span className="mb-2 block pl-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-smatch-gold md:mb-4 md:text-xs">
+              <span className="mb-2 block pl-1 font-mono text-[clamp(0.6rem,0.75vw,0.75rem)] font-bold uppercase tracking-[0.2em] text-smatch-gold md:mb-4">
                 Corporate Identity
               </span>
               <h2 className="font-heading text-3xl font-bold uppercase leading-none tracking-tight text-white md:text-5xl">

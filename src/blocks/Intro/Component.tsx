@@ -101,13 +101,13 @@ export const IntroBlockComponent: React.FC<IntroBlockProps> = (props) => {
                             {/* Tag */}
                             <div className="mb-8 flex items-center gap-3">
                                 <span className="h-4 w-1 bg-[#FFB800]" /> {/* Small accent bar */}
-                                <span className="font-mono text-sm uppercase tracking-[0.2em] text-gray-500">
+                                <span className="font-mono text-[clamp(0.75rem,2vw,1rem)] uppercase tracking-[0.2em] text-gray-500">
                                     {tag}
                                 </span>
                             </div>
 
                             {/* Description */}
-                            <p className="mb-12 max-w-lg border-l border-white/10 pl-6 text-justify font-sans text-sm leading-relaxed text-[#A0A0A0] md:text-[15px]">
+                            <p className="mb-12 max-w-lg border-l border-white/10 pl-6 text-justify font-sans text-[clamp(0.875rem,1.5vw,1rem)] leading-relaxed text-[#A0A0A0]">
                                 {description}
                             </p>
 

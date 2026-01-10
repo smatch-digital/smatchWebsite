@@ -13,6 +13,7 @@ import { Antonio, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
+import { ScaleWrapper } from '@/components/ScaleWrapper'
 
 const antonio = Antonio({
   subsets: ['latin'],
@@ -57,9 +58,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
 
-          <Header />
-          {children}
-          <Footer />
+          <ScaleWrapper>
+            <Header />
+            {children}
+            <Footer />
+          </ScaleWrapper>
         </Providers>
       </body>
     </html>
