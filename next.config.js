@@ -17,8 +17,12 @@ const nextConfig = {
       },
       // Local development
       {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
         protocol: 'http',
-        hostname: 'localhost',
+        hostname: '**',
       },
     ],
   },
