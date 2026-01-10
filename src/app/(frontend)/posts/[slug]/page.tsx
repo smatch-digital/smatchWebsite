@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
@@ -16,7 +15,7 @@ import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
   let params: { slug: string }[] = []
 
   try {
@@ -92,7 +91,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
 
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   const result = await payload.find({
     collection: 'posts',

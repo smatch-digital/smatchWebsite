@@ -1,10 +1,9 @@
 import 'dotenv/config'
 import { getPayload } from '@/getPayload'
-import configPromise from '@payload-config'
 
 async function seedContact() {
     console.log('Starting Contact Page Seeding...')
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
 
     // 1. Create or find Contact Form
     console.log('Setting up Contact Form...')

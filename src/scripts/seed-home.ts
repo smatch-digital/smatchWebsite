@@ -1,6 +1,5 @@
 
 import { getPayload } from '@/getPayload'
-import configPromise from '@payload-config'
 import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
@@ -50,7 +49,7 @@ async function uploadMedia(payload: any, filePath: string, alt: string) {
 
 async function seedHome() {
     console.log('Starting Home Page Seeding...')
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
 
     // 1. Upload Assets
     const heroBgId = await uploadMedia(payload, 'hero/hero-background.jpg', 'Hero Background')

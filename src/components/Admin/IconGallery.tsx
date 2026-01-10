@@ -191,7 +191,7 @@ export const IconGallery: React.FC = () => {
                         }}
                     >
                         {filteredIcons.map((name) => {
-                            const Icon = (PhosphorIcons as Record<string, React.ComponentType>)[name]
+                            const Icon = (PhosphorIcons as unknown as Record<string, React.ComponentType>)[name]
                             const isCopied = copied === name
 
                             if (!Icon) return null

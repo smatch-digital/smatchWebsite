@@ -1,12 +1,11 @@
 import React from 'react'
 import { getPayload } from '@/getPayload'
-import configPromise from '@payload-config'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMetadata } from './[slug]/page'
 
 export default async function Page() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
   const { docs } = await payload.find({
     collection: 'pages',
     where: {

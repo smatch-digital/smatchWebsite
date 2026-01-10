@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { PayloadRedirects } from '@/components/PayloadRedirects'
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
@@ -15,7 +14,7 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 
 export async function generateStaticParams() {
   try {
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
     const solutions = await payload.find({
       collection: 'solutions',
       draft: false,
@@ -81,18 +80,18 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   // Format terminal lines
   const terminalLines = Array.isArray(terminalContent)
     ? terminalContent
-        .map((item) => item.line)
-        .filter((line): line is string => typeof line === 'string')
+      .map((item) => item.line)
+      .filter((line): line is string => typeof line === 'string')
     : []
 
   // Format modules
   const formattedModules = Array.isArray(modules)
     ? modules.map((mod) => ({
-        title: mod.title || '',
-        description: mod.description || '',
-        icon: mod.icon || '',
-        badge: mod.badge || '',
-      }))
+      title: mod.title || '',
+      description: mod.description || '',
+      icon: mod.icon || '',
+      badge: mod.badge || '',
+    }))
     : []
 
   return (
@@ -134,7 +133,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 
 const querySolutionBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   try {
     const result = await payload.find({

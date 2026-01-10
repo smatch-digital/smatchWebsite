@@ -1,8 +1,7 @@
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 
 export const seedHome = async (): Promise<void> => {
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
 
     const homePage = await payload.find({
         collection: 'pages',

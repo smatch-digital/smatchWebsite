@@ -132,10 +132,10 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
   return (
     <section className={cn('relative w-full py-24 lg:py-32 overflow-hidden', bgColor)}>
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-smatch-gold/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-smatch-gold/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] max-w-[300px] max-h-[300px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="container px-4 md:px-6 relative z-10 max-w-7xl mx-auto">
+      <div className="container mx-auto relative z-10">
         {/* 1. Header Section */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-yellow-500/10  border-yellow-500/20 mb-6 backdrop-blur-sm">

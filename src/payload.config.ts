@@ -72,8 +72,10 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
-      // Change 1 to 4 (or at least 2)
-      max: process.env.NODE_ENV === 'production' ? 4 : 10,
+      // Supabase Free Tier: 60 direct connections, 200 pooler connections
+      // Production: 15 (safe for Vercel serverless concurrency)
+      // Dev: 10 (comfortable for local development)
+      max: process.env.NODE_ENV === 'production' ? 15 : 10,
       min: 0,
       idleTimeoutMillis: 10000,
       connectionTimeoutMillis: 60000,

@@ -10,17 +10,15 @@ const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Supabase Storage (production media)
       {
         protocol: 'https',
-        hostname: '**.supabase.co',
+        hostname: '*.supabase.co',
       },
+      // Local development
       {
         protocol: 'http',
-        hostname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: '**',
+        hostname: 'localhost',
       },
     ],
   },
@@ -36,14 +34,13 @@ const nextConfig = {
   reactStrictMode: false,
   redirects,
 
-  // 👇 CRITICAL: IGNORE ALL LINTING & TYPESCRIPT ERRORS FOR PRODUCTION 👇
+  // Type Safety: Enforce strict checks in production builds
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
-  // 👆 END CRITICAL SECTION 👆
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

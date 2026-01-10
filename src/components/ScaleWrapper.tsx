@@ -7,10 +7,12 @@ import React, { useEffect, useState } from 'react'
  * 
  * This component forces the application to maintain the proportions of the 
  * 1600px design on smaller screens (between 1024px and 1600px) by 
- * mathematically scaling the content.
+ * mathematically scaling the content using CSS transform.
  * 
  * It effectively "zooms out" the interface on 1080p-1440p screens (or high-DPI 
  * screens with scaling) to preserve the "Pro" look intended for wide displays.
+ * 
+ * Uses transform: scale() for cross-browser compatibility (Firefox, Safari, Chrome, Edge).
  */
 export const ScaleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [scale, setScale] = useState(1)
@@ -47,16 +49,27 @@ export const ScaleWrapper: React.FC<{ children: React.ReactNode }> = ({ children
         return <>{children}</>
     }
 
+    // Calculate inverse dimensions to prevent scrollbars
+    // When we scale down, we need to expand the "virtual" width proportionally
+    const inverseScale = 1 / scale
+
     return (
         <div
             style={{
-                // @ts-ignore - 'zoom' is a non-standard property but essential for this specific Chrome/Edge fix
-                zoom: scale,
+                overflow: 'hidden',
                 width: '100%',
-                height: '100%',
             }}
         >
-            {children}
+            <div
+                style={{
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'top left',
+                    width: `${inverseScale * 100}%`,
+                    minHeight: `${inverseScale * 100}vh`,
+                }}
+            >
+                {children}
+            </div>
         </div>
     )
 }

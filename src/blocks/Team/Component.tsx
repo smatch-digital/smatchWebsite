@@ -211,7 +211,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
       {/* Background Atmosphere */}
       <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFB800]/5 blur-[120px]" />
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="mb-20 text-center">
@@ -235,7 +235,7 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
 
           {/* 1. Leader Section: Leader Card + Quote Side Panel */}
           {primaryLeader && (
-            <div className="flex flex-1 flex-col  gap-6 lg:flex-row  max-h-[400px]">
+            <div className="flex flex-1 flex-col gap-6 lg:flex-row lg:max-h-[400px]">
 
               {/* Leader Card (Col Span 8) */}
               <div className="flex flex-1 md:col-span-1 lg:col-span-8">

@@ -21,57 +21,61 @@ import { ActivityTimelineBlock } from '@/blocks/ActivityTimeline/Component'
 import { ContactBlock } from '@/blocks/Contact/Component'
 import { ExpertiseDomainsBlock } from '@/blocks/ExpertiseDomains/Component'
 
-const blockComponents = {
-  about: AboutBlock,
-  ecosystem: EcosystemBlock,
-  domains: DomainsBlock,
-  archive: ArchiveBlock,
-  content: ContentBlock,
-  cta: CallToActionBlock,
-  formBlock: FormBlock,
-  mediaBlock: MediaBlock,
-  missionVision: MissionVisionBlockComponent,
-  historyTimeline: HistoryTimelineBlockComponent,
-  team: TeamBlockComponent,
-  'smart-grid': SmartGrid,
-  trustedBy: TrustedByBlock,
-  activityTimeline: ActivityTimelineBlock,
-  intro: IntroBlockComponent,
-  journal: JournalBlockComponent,
-  contact: ContactBlock,
-  'expertise-domains': ExpertiseDomainsBlock,
+// Type-safe block component registry
+// Each component accepts its specific block type props + optional disableInnerContainer
+type BlockComponent = React.FC<{ disableInnerContainer?: boolean } & Record<string, unknown>>
+
+const blockComponents: Record<string, BlockComponent> = {
+  about: AboutBlock as unknown as BlockComponent,
+  ecosystem: EcosystemBlock as unknown as BlockComponent,
+  domains: DomainsBlock as unknown as BlockComponent,
+  archive: ArchiveBlock as unknown as BlockComponent,
+  content: ContentBlock as unknown as BlockComponent,
+  cta: CallToActionBlock as unknown as BlockComponent,
+  formBlock: FormBlock as unknown as BlockComponent,
+  mediaBlock: MediaBlock as unknown as BlockComponent,
+  missionVision: MissionVisionBlockComponent as unknown as BlockComponent,
+  historyTimeline: HistoryTimelineBlockComponent as unknown as BlockComponent,
+  team: TeamBlockComponent as unknown as BlockComponent,
+  'smart-grid': SmartGrid as unknown as BlockComponent,
+  trustedBy: TrustedByBlock as unknown as BlockComponent,
+  activityTimeline: ActivityTimelineBlock as unknown as BlockComponent,
+  intro: IntroBlockComponent as unknown as BlockComponent,
+  journal: JournalBlockComponent as unknown as BlockComponent,
+  contact: ContactBlock as unknown as BlockComponent,
+  'expertise-domains': ExpertiseDomainsBlock as unknown as BlockComponent,
 }
 
-export const RenderBlocks: React.FC<{
-  blocks: Page['layout'][0][]
-}> = (props) => {
-  const { blocks } = props
+type LayoutBlock = NonNullable<Page['layout']>[number]
 
+interface RenderBlocksProps {
+  blocks: LayoutBlock[]
+}
+
+export const RenderBlocks: React.FC<RenderBlocksProps> = ({ blocks }) => {
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
-  if (hasBlocks) {
-    return (
-      <Fragment>
-        {blocks.map((block, index) => {
-          const { blockType } = block
-
-          if (blockType && blockType in blockComponents) {
-            const Block = blockComponents[blockType]
-
-            if (Block) {
-              return (
-                <div className="" key={index}>
-                  {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
-                </div>
-              )
-            }
-          }
-          return null
-        })}
-      </Fragment>
-    )
+  if (!hasBlocks) {
+    return null
   }
 
-  return null
+  return (
+    <Fragment>
+      {blocks.map((block, index) => {
+        const { blockType } = block
+
+        if (!blockType || !(blockType in blockComponents)) {
+          return null
+        }
+
+        const Block = blockComponents[blockType]
+
+        return (
+          <div key={index}>
+            <Block {...block} disableInnerContainer />
+          </div>
+        )
+      })}
+    </Fragment>
+  )
 }

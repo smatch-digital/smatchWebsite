@@ -6,14 +6,14 @@ import { JournalClientComponent, JournalItem } from './Client'
 export const JournalBlockComponent = async (props: JournalBlock) => {
     const { populateBy, limit, filterByType, selectedItems, title, liveFeedText, manualItems } = props
 
-    let items: (Project | string)[] = []
+    let items: (number | Project)[] = []
 
     if (populateBy === 'selection') {
-        items = selectedItems || []
+        items = (selectedItems || []) as (number | Project)[]
     } else {
         const payload = await getPayload()
         const where: any = {}
-        
+
         if (filterByType && filterByType !== 'all') {
             where.type = { equals: filterByType }
         }
@@ -21,7 +21,7 @@ export const JournalBlockComponent = async (props: JournalBlock) => {
         // Only show published/completed/upcoming projects, hide archived if needed?
         // Let's assume we want to show everything that is public.
         // Projects access control is public read, so we are good.
-        
+
         const { docs } = await payload.find({
             collection: 'projects',
             where,
@@ -31,33 +31,30 @@ export const JournalBlockComponent = async (props: JournalBlock) => {
         items = docs
     }
 
-    // Transform items to JournalItem format
-    const displayArticles: JournalItem[] = items.map((item, index) => {
-        if (typeof item === 'string') return null // Should not happen if depth is correct
+    // Transform items to JournalItem format - filter to Project objects first, then map
+    const displayArticles: JournalItem[] = items
+        .filter((item): item is Project => typeof item !== 'number')
+        .map((project) => {
+            // Format meta string: "YEAR | TYPE"
+            const year = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear()
+            const typeLabel = project.type === 'event' ? 'ÉVÉNEMENT' : 'PROJET'
+            const meta = `${year} | ${typeLabel}`
 
-        // Ensure we have a valid Project object
-        const project = item as Project
-        
-        // Format meta string: "YEAR | TYPE"
-        const year = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear()
-        const typeLabel = project.type === 'event' ? 'ÉVÉNEMENT' : 'PROJET'
-        const meta = `${year} | ${typeLabel}`
+            // Get image URL
+            const imageUrl = typeof project.image === 'object' && project.image?.url
+                ? project.image.url
+                : '/assets/journal/placeholder.jpg'
 
-        // Get image URL
-        const imageUrl = typeof project.image === 'object' && project.image?.url 
-            ? project.image.url 
-            : '/assets/journal/placeholder.jpg'
-
-        return {
-            id: project.id,
-            meta,
-            title: project.title,
-            description: project.description || '',
-            linkText: 'VOIR PLUS', // Or customize based on type
-            linkUrl: `/projects/${project.slug}`,
-            image: imageUrl || ''
-        }
-    }).filter((item): item is JournalItem => item !== null)
+            return {
+                id: project.id,
+                meta,
+                title: project.title,
+                description: project.description || '',
+                linkText: 'VOIR PLUS', // Or customize based on type
+                linkUrl: `/projects/${project.slug}`,
+                image: imageUrl || ''
+            }
+        })
 
     // Fallback to manual items if no dynamic items found (optional, for backward compatibility)
     if (displayArticles.length === 0 && manualItems && manualItems.length > 0) {

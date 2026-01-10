@@ -7,6 +7,7 @@
   "type": "module",
   "packageManager": "pnpm@10.26.2",
   "scripts": {
+    
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "ci": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap && cross-env NODE_OPTIONS=--no-deprecation CI=true payload migrate --accept-warnings && cross-env NODE_OPTIONS=--no-deprecation next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",

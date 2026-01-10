@@ -3,7 +3,6 @@ import type { Metadata } from 'next/types'
 import { CollectionArchive } from '@/components/CollectionArchive'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 import React from 'react'
 import PageClient from './page.client'
@@ -19,7 +18,7 @@ type Args = {
 
 export default async function Page({ params: paramsPromise }: Args) {
   const { pageNumber } = await paramsPromise
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   const sanitizedPageNumber = Number(pageNumber)
 

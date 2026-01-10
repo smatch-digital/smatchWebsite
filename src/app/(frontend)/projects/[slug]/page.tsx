@@ -15,7 +15,7 @@ import RichText from '@/components/RichText'
 
 export async function generateStaticParams() {
   try {
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
     const projects = await payload.find({
       collection: 'projects',
       limit: 1000,
@@ -84,7 +84,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           </div>
         )}
 
-        <div className="container relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-32 md:px-6">
+        <div className="container mx-auto relative z-10 pb-16 pt-32">
           {/* Top Navigation Row */}
           <div className="mb-12 flex items-start justify-between">
             {/* Back Link */}
@@ -105,7 +105,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
                   <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
                 </span>
-                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFB800]">
+                <span className="font-mono text-[clamp(0.6rem,0.5vw,0.75rem)] font-bold uppercase tracking-widest text-[#FFB800]">
                   {project.type === 'event' ? 'ÉVÉNEMENT EN COURS' : 'PROJET EN COURS'}
                 </span>
               </div>
@@ -129,7 +129,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
 
       {/* Main Content: Split Grid Layout */}
       <section className="border-t border-white/5 bg-[#0A0A0A] py-24">
-        <div className="container mx-auto max-w-7xl px-4 md:px-6">
+        <div className="container mx-auto">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
 
             {/* LEFT COLUMN: Sticky Specifications (Col-Span-4) */}
@@ -173,7 +173,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                 <div className="relative aspect-square w-full overflow-hidden opacity-30 invert filter">
                   {/* Abstract background graphic or map could go here */}
                   <div className="absolute inset-0 border border-dashed border-white/20" />
-                  <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-white/20">
+                  <div className="absolute inset-0 flex items-center justify-center font-mono text-[clamp(0.5rem,0.6vw,0.75rem)] text-white/20">
                     SMATCH DIGITAL ARCHIVE
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
 
       {/* Next/Prev Navigation (Optional/Placeholder) */}
       <div className="border-t border-white/10 bg-[#050505] py-12">
-        <div className="container mx-auto max-w-7xl px-4 text-center md:px-6">
+        <div className="container mx-auto text-center">
           <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">Back to Index</Link>
         </div>
       </div>
@@ -271,7 +271,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 
 const queryProjectBySlug = cache(async ({ slug }: { slug: string }) => {
   const { isEnabled: draft } = await draftMode()
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   try {
     const result = await payload.find({

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 import { ActivityTimelineBlock, TimelineItem } from '@/blocks/ActivityTimeline/Component'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectsPage() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   // Fetch all published projects/events, sorted by date descending
   const { docs } = await payload.find({

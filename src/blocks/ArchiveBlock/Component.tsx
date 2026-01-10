@@ -1,6 +1,5 @@
 import type { Post, ArchiveBlock as ArchiveBlockProps } from '@/payload-types'
 
-import configPromise from '@payload-config'
 import { getPayload } from '@/getPayload'
 import React from 'react'
 import RichText from '@/components/RichText'
@@ -27,7 +26,7 @@ export const ArchiveBlock: React.FC<
   let posts: Post[] = []
 
   if (populateBy === 'collection') {
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload()
 
     const flattenedCategories = categories?.map((category) => {
       if (typeof category === 'object') return category.id
@@ -40,12 +39,12 @@ export const ArchiveBlock: React.FC<
       limit,
       ...(flattenedCategories && flattenedCategories.length > 0
         ? {
-            where: {
-              categories: {
-                in: flattenedCategories,
-              },
+          where: {
+            categories: {
+              in: flattenedCategories,
             },
-          }
+          },
+        }
         : {}),
     })
 

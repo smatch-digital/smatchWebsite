@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { getPayload } from '@/getPayload'
-import configPromise from '@payload-config'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
 import { SolutionsCTA } from '@/components/solutions/SolutionsCTA'
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 
 export default async function SolutionsPage() {
   // 1. Initialize Payload
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload()
 
   // 2. Fetch all published solutions
   const { docs: solutions } = await payload.find({
