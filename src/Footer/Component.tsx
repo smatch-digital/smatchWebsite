@@ -10,7 +10,7 @@ export async function Footer() {
   await getCachedGlobal('footer', 1)()
 
   return (
-    <footer className="relative mt-4 md:mt-6 w-full overflow-hidden bg-smatch-black pb-8 md:pb-16 text-white">
+    <footer className="relative mt-4 md:mt-6 w-full overflow-hidden bg-smatch-black text-white">
       {/* Background Watermark - "SMATCH" stroked text at bottom */}
       <div className="pointer-events-none absolute bottom-[-4vw] left-0 z-0 flex w-full select-none justify-center overflow-hidden mix-blend-overlay">
         <Image className='object-contain' src={'/assets/footer/bg.png'} alt='bg' width={1600} height={500} />
