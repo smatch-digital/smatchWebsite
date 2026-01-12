@@ -42,7 +42,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
   return (
     <section className="overflow-hidden bg-[#050505] py-20 md:py-32 text-white selection:bg-[#FFB800] selection:text-black">
-      <div className="container mx-auto max-w-[1400px] px-4">
+      <div className="container mx-auto max-w-[1600px] px-4">
         {/* Section Header */}
         <div className="mb-16 md:mb-24 text-center">
           <h2 className="mb-4 font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">

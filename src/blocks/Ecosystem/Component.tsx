@@ -62,7 +62,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
         </svg>
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-[1400px] px-4">
+      <div className="container relative z-10 mx-auto max-w-[1600px] px-4">
 
         {/* HEADER */}
         <div className="mb-16 text-center md:mb-24">
