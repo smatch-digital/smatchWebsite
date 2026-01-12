@@ -29,9 +29,14 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
 
     // Logic: Adjust scroll height based on item count.
     // If few items (<= 2), utilize less vertical space because we need less horizontal travel.
-    // Standard height is 300vh for a rich feed.
+    // Responsive heights: reduced for smaller screens (720p and below) to prevent excessive whitespace.
     const itemCount = articles.length
-    const sectionHeight = itemCount <= 1 ? 'h-[150vh]' : itemCount <= 2 ? 'h-[200vh]' : 'h-[300vh]'
+    const sectionHeight =
+        itemCount <= 1
+            ? 'h-[100vh] md:h-[150vh]'
+            : itemCount <= 2
+                ? 'h-[150vh] md:h-[200vh]'
+                : 'h-[200vh] md:h-[300vh]'
 
     // Track scroll progress
     const { scrollYProgress } = useScroll({
@@ -53,7 +58,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
     return (
         <section ref={targetRef} className={`relative ${sectionHeight} bg-[#050505]`}>
             {/* Sticky Viewport */}
-            <div className="sticky top-0 flex h-screen flex-col overflow-hidden my-12">
+            <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
                 {/* Header */}
                 <div className="container relative z-10 mx-auto bg-[#050505] px-4 pt-12 md:pt-24">
                     <div className="mb-12 flex flex-col items-end justify-between border-b border-white/10 pb-6 md:flex-row">

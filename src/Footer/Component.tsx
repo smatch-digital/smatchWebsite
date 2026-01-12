@@ -10,7 +10,7 @@ export async function Footer() {
   await getCachedGlobal('footer', 1)()
 
   return (
-    <footer className="relative mt-6 w-full overflow-hidden bg-smatch-black pb-16  text-white">
+    <footer className="relative mt-4 md:mt-6 w-full overflow-hidden bg-smatch-black pb-8 md:pb-16 text-white">
       {/* Background Watermark - "SMATCH" stroked text at bottom */}
       <div className="pointer-events-none absolute bottom-[-4vw] left-0 z-0 flex w-full select-none justify-center overflow-hidden mix-blend-overlay">
         <Image className='object-contain' src={'/assets/footer/bg.png'} alt='bg' width={1600} height={500} />
@@ -159,7 +159,7 @@ export async function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+        <div className="mt-12 md:mt-20 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-6 md:pt-8 md:flex-row">
           <p className="font-mono text-xs text-gray-600">
             © {new Date().getFullYear()} SMATCH DIGITAL. Tous droits réservés.
           </p>
