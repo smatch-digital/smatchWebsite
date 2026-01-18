@@ -8,11 +8,13 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import { notFound } from 'next/navigation'
 import { Antonio, Inter, JetBrains_Mono } from 'next/font/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
+import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 
 
 const antonio = Antonio({
@@ -34,13 +36,32 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+interface RootLayoutProps {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}
+
+/**
+ * Generate static params for all supported locales
+ * This enables static generation for all locale paths
+ */
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }))
+}
+
+export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { isEnabled } = await draftMode()
+  const { locale } = await params
+
+  // Validate locale - return 404 for invalid locales
+  if (!isValidLocale(locale)) {
+    notFound()
+  }
 
   return (
     <html
       className={cn(antonio.variable, inter.variable, jetbrains.variable)}
-      lang="fr"
+      lang={locale}
       suppressHydrationWarning
     >
 
@@ -58,9 +79,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }}
           />
 
-          <Header />
+          <Header locale={locale} />
           {children}
-          <Footer />
+          <Footer locale={locale} />
         </Providers>
       </body>
     </html>
@@ -102,6 +123,12 @@ export const metadata: Metadata = {
     creator: '@smatchdigital',
     title: 'Smatch Digital',
     description: 'Solutions WMS & Supply Chain pour l\'industrie marocaine.',
+  },
+  alternates: {
+    languages: {
+      'en': '/en',
+      'fr': '/fr',
+    },
   },
 }
 

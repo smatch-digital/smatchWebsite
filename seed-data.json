@@ -1,0 +1,31 @@
+{
+  "pages": [],
+  "posts": [],
+  "media": [],
+  "categories": [],
+  "users": [
+    {
+      "id": 1,
+      "name": "mehdi",
+      "updatedAt": "2026-01-15T22:36:46.955Z",
+      "createdAt": "2026-01-15T22:36:46.954Z",
+      "email": "kourdroid@gmail.com",
+      "sessions": [
+        {
+          "id": "5ec30e5a-62a6-4ac1-8977-f62714a39840",
+          "createdAt": "2026-01-15T22:36:47.057Z",
+          "expiresAt": "2026-01-16T00:36:47.057Z"
+        }
+      ]
+    }
+  ],
+  "solutions": [],
+  "projects": [],
+  "team": [],
+  "header": {
+    "navItems": []
+  },
+  "footer": {
+    "navItems": []
+  }
+}

@@ -13,12 +13,14 @@ export const TrustedBy: Block = {
             label: 'Section Title',
             defaultValue: 'TRUSTED BY',
             required: true,
+            localized: true,
         },
         {
             name: 'partners',
             type: 'array',
             label: 'Partners',
             minRows: 1,
+            localized: true,
             fields: [
                 {
                     name: 'name',

@@ -19,6 +19,7 @@ export const Projects: CollectionConfig = {
       type: 'text',
       label: 'Titre',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -83,6 +84,7 @@ export const Projects: CollectionConfig = {
               name: 'description',
               type: 'textarea',
               label: 'Description',
+              localized: true,
               admin: {
                 description: 'Description courte affichée sur la carte',
               },
@@ -105,6 +107,7 @@ export const Projects: CollectionConfig = {
               name: 'location',
               type: 'text',
               label: 'Lieu',
+              localized: true,
               admin: {
                 description: 'Ex: "Paris, France"',
               },
@@ -168,6 +171,7 @@ export const Projects: CollectionConfig = {
               name: 'linkLabel',
               type: 'text',
               label: 'Texte du Bouton',
+              localized: true,
               defaultValue: 'Voir les détails',
               admin: {
                 description: 'Ex: "S\'INSCRIRE", "VOIR LE RÉCAP", "Voir le changelog"',
@@ -200,6 +204,7 @@ export const Projects: CollectionConfig = {
               name: 'fullDescription',
               type: 'richText',
               label: 'Description Complète',
+              localized: true,
               admin: {
                 description: 'Contenu affiché sur la page de détail',
               },

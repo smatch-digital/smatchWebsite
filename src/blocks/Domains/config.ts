@@ -8,12 +8,14 @@ export const Domains: Block = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       defaultValue: 'Architecture de Solutions',
     },
     {
       name: 'subtitle',
       type: 'textarea',
       required: true,
+      localized: true,
       defaultValue:
         "Une suite intégrée d'outils puissants conçus pour l'évolutivité, la sécurité et la performance opérationnelle.",
     },
@@ -23,6 +25,7 @@ export const Domains: Block = {
       label: 'Domain Tabs',
       minRows: 1,
       required: true,
+      localized: true,
       fields: [
         {
           name: 'tabLabel',

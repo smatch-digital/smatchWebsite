@@ -3,11 +3,24 @@ import { getPayload } from '@/getPayload'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMetadata } from './[slug]/page'
+import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 
-export default async function Page() {
+interface PageProps {
+  params: Promise<{ locale?: string }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { locale: localeParam } = await params
+
+  // Validate locale or use default
+  const locale: Locale = localeParam && isValidLocale(localeParam)
+    ? localeParam
+    : i18nConfig.defaultLocale
+
   const payload = await getPayload()
   const { docs } = await payload.find({
     collection: 'pages',
+    locale: locale,
     where: {
       slug: {
         equals: 'home',

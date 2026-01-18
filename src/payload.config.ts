@@ -66,6 +66,23 @@ export default buildConfig({
       ],
     },
   },
+  // Localization Configuration - Payload-Native i18n
+  // English as default, French as secondary locale
+  // Fallback enabled for content reliability (DDIA principle)
+  localization: {
+    locales: [
+      {
+        label: 'English',
+        code: 'en',
+      },
+      {
+        label: 'Français',
+        code: 'fr',
+      },
+    ],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   // src/payload.config.ts

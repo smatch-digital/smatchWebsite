@@ -12,6 +12,7 @@ export const MissionVision: Block = {
       name: 'sectionHeader',
       type: 'group',
       label: 'Section Header',
+      localized: true,
       fields: [
         {
           name: 'subtitle',
@@ -31,6 +32,7 @@ export const MissionVision: Block = {
       name: 'mission',
       type: 'group',
       label: 'Mission Card',
+      localized: true,
       fields: [
         {
           name: 'subtitle',
@@ -56,6 +58,7 @@ export const MissionVision: Block = {
       name: 'vision',
       type: 'group',
       label: 'Vision Card',
+      localized: true,
       fields: [
         {
           name: 'subtitle',
@@ -81,6 +84,7 @@ export const MissionVision: Block = {
       name: 'core',
       type: 'group',
       label: 'Central Core',
+      localized: true,
       fields: [
         {
           name: 'text',
@@ -96,6 +100,7 @@ export const MissionVision: Block = {
       label: 'Orbiting Nodes',
       minRows: 4,
       maxRows: 4,
+      localized: true,
       labels: {
         singular: 'Node',
         plural: 'Nodes',

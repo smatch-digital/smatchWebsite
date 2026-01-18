@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import type { Header } from '@/payload-types'
+import type { Locale } from '@/utilities/i18n'
 // Import icons for the dock
 import {
   SquaresFour, // The "Menu" icon
@@ -26,9 +27,10 @@ import {
 
 interface HeaderClientProps {
   data: Header | null
+  locale: Locale
 }
 
-export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
+export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
@@ -44,27 +46,32 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Data Transformation
+  // Data Transformation - prefix links with locale
   const items =
     navItems.length > 0
-      ? navItems.map((item) => ({
-        name: item.link.label || 'Link',
-        link:
+      ? navItems.map((item) => {
+        const rawLink =
           ((item.link.type === 'reference'
             ? item.link.reference?.value
-            : item.link.url) as string) || '#',
-      }))
+            : item.link.url) as string) || '#'
+        // Prefix internal links with locale
+        const link = rawLink.startsWith('/') ? `/${locale}${rawLink}` : rawLink
+        return {
+          name: item.link.label || 'Link',
+          link,
+        }
+      })
       : [
-        { name: 'HOME', link: '/' },
-        { name: 'A PROPOS', link: '/about' },
-        { name: 'SOLUTIONS', link: '/solutions' },
-        { name: 'PROJECTS', link: '/projects' },
-        { name: 'EXPERTISES', link: '/expertises' },
+        { name: 'HOME', link: `/${locale}` },
+        { name: 'A PROPOS', link: `/${locale}/about` },
+        { name: 'SOLUTIONS', link: `/${locale}/solutions` },
+        { name: 'PROJECTS', link: `/${locale}/projects` },
+        { name: 'EXPERTISES', link: `/${locale}/expertises` },
       ]
 
-  // SVG Logo
+  // SVG Logo - Homepage link prefixed with locale
   const LogoSVG = () => (
-    <Link href="/" className="group flex items-center gap-3">
+    <Link href={`/${locale}`} className="group flex items-center gap-3">
       <Image src='/logo.svg' alt='Smatch Logo' width={130} height={50} />
       {/* <div className="w-[32px] h-[32px] md:w-[40px] md:h-[40px] relative">
         <svg
@@ -114,7 +121,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </NavCenterPill>
 
         <NavCTAContainer isScrolled={isScrolled}>
-          <CTAButton href="/contact">Contact Us</CTAButton>
+          <CTAButton href={`/${locale}/contact`}>Contact Us</CTAButton>
         </NavCTAContainer>
 
         {/* --- MOBILE --- */}
@@ -128,10 +135,10 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         <MobileBottomDock>
           {/* Home Button */}
           <Link
-            href="/"
-            className={`rounded-full p-2 transition-colors ${pathname === '/' ? 'text-[#FFB800]' : 'text-white/60'}`}
+            href={`/${locale}`}
+            className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFB800]' : 'text-white/60'}`}
           >
-            <House size={24} weight={pathname === '/' ? 'fill' : 'regular'} />
+            <House size={24} weight={pathname === `/${locale}` ? 'fill' : 'regular'} />
           </Link>
 
           <div className="mx-2 h-6 w-px bg-white/10" />
@@ -148,7 +155,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
 
           {/* Quick Contact */}
           <Link
-            href="/contact"
+            href={`/${locale}/contact`}
             className="p-2 text-white/60 transition-colors hover:text-[#FFB800]"
           >
             <PhoneCall size={24} />
@@ -187,13 +194,13 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             {/* Extra Info in Menu */}
             <div className="grid grid-cols-2 gap-4">
               <Link
-                href="/contact"
+                href={`/${locale}/contact`}
                 className="flex items-center justify-center gap-2 rounded-xl bg-[#FFB800] py-4 text-center text-sm font-bold uppercase tracking-widest text-black"
               >
                 Start Project
               </Link>
               <Link
-                href="/journal"
+                href={`/${locale}/journal`}
                 className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-4 text-center text-sm font-bold uppercase tracking-widest text-white"
               >
                 Journal

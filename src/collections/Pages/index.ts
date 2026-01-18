@@ -72,6 +72,7 @@ export const Pages: CollectionConfig<'pages'> = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       type: 'tabs',
@@ -85,6 +86,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
+              localized: true,
               blocks: [
                 CallToAction,
                 Content,

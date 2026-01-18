@@ -13,6 +13,7 @@ export const Solutions: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
     },
     {
       name: 'slug',
@@ -33,6 +34,7 @@ export const Solutions: CollectionConfig = {
               name: 'description',
               type: 'textarea',
               label: 'Short Description',
+              localized: true,
               admin: {
                 description: 'Shown on the solution card in the grid',
               },
@@ -53,6 +55,7 @@ export const Solutions: CollectionConfig = {
             {
               name: 'heroSubtitle',
               type: 'text',
+              localized: true,
             },
             {
               name: 'heroImage',
@@ -67,10 +70,12 @@ export const Solutions: CollectionConfig = {
             {
               name: 'problemTitle',
               type: 'text',
+              localized: true,
             },
             {
               name: 'problemDescription',
               type: 'textarea',
+              localized: true,
             },
             {
               name: 'terminalContent',

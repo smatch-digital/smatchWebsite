@@ -4,10 +4,15 @@ import Image from 'next/image'
 import React from 'react'
 
 import type { Footer } from '@/payload-types'
+import type { Locale } from '@/utilities/i18n'
 import { LinkedinLogo, YoutubeLogo, XLogo, Envelope, Phone, Buildings } from '@phosphor-icons/react/dist/ssr'
 
-export async function Footer() {
-  await getCachedGlobal('footer', 1)()
+interface FooterProps {
+  locale: Locale
+}
+
+export async function Footer({ locale }: FooterProps) {
+  await getCachedGlobal('footer', 1, locale)()
 
   return (
     <footer className="relative mt-4 md:mt-6 w-full overflow-hidden bg-smatch-black text-white">
@@ -88,22 +93,22 @@ export async function Footer() {
             <h4 className="font-heading text-sm font-bold uppercase tracking-widest text-white">SM@TCH</h4>
             <ul className="space-y-4">
               <li>
-                <Link href="/about" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
+                <Link href={`/${locale}/about`} className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   À Propos
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
+                <Link href={`/${locale}/projects`} className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   Nos Projets & Réalisations
                 </Link>
               </li>
               <li>
-                <Link href="/journal" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
+                <Link href={`/${locale}/journal`} className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   Journal des Opérations
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
+                <Link href={`/${locale}/careers`} className="font-sans text-sm font-medium text-gray-500 transition-colors hover:text-white">
                   Carrières
                 </Link>
               </li>
@@ -164,10 +169,10 @@ export async function Footer() {
             © {new Date().getFullYear()} SMATCH DIGITAL. Tous droits réservés.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
+            <Link href={`/${locale}/privacy`} className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
               Politique de confidentialité
             </Link>
-            <Link href="/terms" className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
+            <Link href={`/${locale}/terms`} className="font-mono text-xs text-gray-600 transition-colors hover:text-white">
               Conditions d&apos;utilisation
             </Link>
           </div>

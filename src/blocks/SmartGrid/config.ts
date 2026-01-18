@@ -8,6 +8,7 @@ export const SmartGrid: Block = {
       type: 'group',
       name: 'sectionHeader',
       label: 'Section Header',
+      localized: true,
       fields: [
         {
           name: 'title',
@@ -55,6 +56,7 @@ export const SmartGrid: Block = {
       type: 'array',
       label: 'Cards',
       minRows: 1,
+      localized: true,
       fields: [
         {
           name: 'title',
