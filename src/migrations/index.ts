@@ -1,9 +1,9 @@
-import * as migration_20260115_224626_init from './20260115_224626_init';
+import * as migration_20260118_153052_add_i18n_support from './20260118_153052_add_i18n_support';
 
 export const migrations = [
   {
-    up: migration_20260115_224626_init.up,
-    down: migration_20260115_224626_init.down,
-    name: '20260115_224626_init',
+    up: migration_20260118_153052_add_i18n_support.up,
+    down: migration_20260118_153052_add_i18n_support.down,
+    name: '20260118_153052_add_i18n_support'
   },
 ];
