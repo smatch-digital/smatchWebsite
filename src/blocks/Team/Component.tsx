@@ -30,15 +30,15 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
   const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
   return (
-    <div className="relative flex flex-col justify-between h-full max-h-[400px] w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:p-6">
+    <div className="relative flex flex-col justify-between h-auto w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:max-h-[400px] md:p-6">
       {/* Decorative Noise/Grid Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
       <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
 
         {/* Image & ID Block */}
-        <div className="w-full max-w-[190px] shrink-0">
+        <div className="mx-auto w-full max-w-[140px] shrink-0 md:mx-0 md:max-w-[190px]">
           {/* Image Container */}
-          <div className="group relative aspect-[2/3] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50">
+          <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-white/10 bg-black/50 md:aspect-[2/3]">
             <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 
             {imageUrl ? (

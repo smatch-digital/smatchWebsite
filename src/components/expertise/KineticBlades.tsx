@@ -142,7 +142,7 @@ export function KineticBlades() {
 
 
     return (
-        <div ref={containerRef} className="flex h-[700px] w-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/10 bg-[#050505] p-2 md:flex-row md:gap-0 md:p-0">
+        <div ref={containerRef} className="flex h-auto min-h-[600px] w-full flex-col gap-4 overflow-hidden rounded-3xl border border-white/10 bg-[#050505] p-2 md:h-[700px] md:min-h-0 md:flex-row md:gap-0 md:p-0">
             {BLADES_DATA.map((blade) => {
                 const isActive = activeBlade === blade.id
 
