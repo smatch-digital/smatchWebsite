@@ -46,16 +46,36 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Data Transformation - prefix links with locale
+  // Data Transformation - properly resolve links and prefix with locale
   const items =
     navItems.length > 0
       ? navItems.map((item) => {
-        const rawLink =
-          ((item.link.type === 'reference'
-            ? item.link.reference?.value
-            : item.link.url) as string) || '#'
+        let rawLink = '#'
+
+        if (item.link.type === 'reference' && item.link.reference) {
+          // Reference links: extract slug from the related document
+          const ref = item.link.reference
+          const doc = typeof ref.value === 'object' ? ref.value : null
+
+          if (doc && 'slug' in doc && typeof doc.slug === 'string') {
+            // Build URL based on collection type
+            if (ref.relationTo === 'posts') {
+              rawLink = `/posts/${doc.slug}`
+            } else {
+              // Pages and other collections
+              rawLink = doc.slug === 'home' ? '/' : `/${doc.slug}`
+            }
+          }
+        } else if (item.link.type === 'custom' && item.link.url) {
+          // Custom URL: use as-is
+          rawLink = item.link.url
+        }
+
         // Prefix internal links with locale
-        const link = rawLink.startsWith('/') ? `/${locale}${rawLink}` : rawLink
+        const link = typeof rawLink === 'string' && rawLink.startsWith('/')
+          ? `/${locale}${rawLink}`
+          : rawLink
+
         return {
           name: item.link.label || 'Link',
           link,
