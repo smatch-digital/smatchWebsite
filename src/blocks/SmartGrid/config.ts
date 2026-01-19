@@ -8,7 +8,6 @@ export const SmartGrid: Block = {
       type: 'group',
       name: 'sectionHeader',
       label: 'Section Header',
-      localized: true,
       fields: [
         {
           name: 'title',
@@ -56,7 +55,6 @@ export const SmartGrid: Block = {
       type: 'array',
       label: 'Cards',
       minRows: 1,
-      localized: true,
       fields: [
         {
           name: 'title',
@@ -87,7 +85,7 @@ export const SmartGrid: Block = {
           relationTo: 'media',
           admin: {
             description: 'Upload an SVG icon.',
-            condition: (_, siblingData) => siblingData.iconType === 'upload'
+            condition: (_, siblingData) => siblingData?.iconType === 'upload'
           },
         },
         {
@@ -95,7 +93,7 @@ export const SmartGrid: Block = {
           type: 'text',
           admin: {
             description: 'Enter Phosphor Icon name (e.g. Factory, RocketLaunch)',
-            condition: (_, siblingData) => siblingData.iconType === 'name'
+            condition: (_, siblingData) => siblingData?.iconType === 'name'
           }
         },
         {

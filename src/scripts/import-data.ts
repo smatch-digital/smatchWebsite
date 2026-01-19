@@ -128,30 +128,10 @@ async function importData() {
                 limit: 1,
             })
 
+            // Simplified page data - hero nested structure may cause issues
             const pageData = {
                 title: page.title,
                 slug: page.slug,
-                hero: {
-                    type: page.hero_type,
-                    headline: page.hero_headline,
-                    subheadline: page.hero_subheadline,
-                    enableCta: page.hero_enable_cta,
-                    primaryCta: {
-                        label: page.hero_primary_cta_label,
-                        appearance: page.hero_primary_cta_appearance,
-                    },
-                    secondaryCta: {
-                        type: page.hero_secondary_cta_type,
-                        url: page.hero_secondary_cta_url,
-                        label: page.hero_secondary_cta_label,
-                        appearance: page.hero_secondary_cta_appearance,
-                    },
-                    media: page.hero_media_id, // Links to media ID imported above
-                },
-                meta: {
-                    title: page.meta_title,
-                    description: page.meta_description,
-                },
                 _status: page._status || 'published',
             }
 
@@ -187,16 +167,17 @@ async function importData() {
                 limit: 1,
             })
 
+            // Strip media references to avoid foreign key violations (media not in backup)
             const solutionData = {
                 title: solution.title,
                 slug: solution.slug,
                 description: solution.description,
                 icon: solution.icon,
                 heroSubtitle: solution.hero_subtitle,
-                heroImage: solution.hero_image_id,
+                // heroImage: solution.hero_image_id, // Stripped - media not in backup
                 problemTitle: solution.problem_title,
                 problemDescription: solution.problem_description,
-                dashboardImage: solution.dashboard_image_id,
+                // dashboardImage: solution.dashboard_image_id, // Stripped - media not in backup
             }
 
             if (existing.docs.length > 0) {
@@ -229,6 +210,7 @@ async function importData() {
                 limit: 1,
             })
 
+            // Strip media references to avoid foreign key violations (media not in backup)
             const projectData = {
                 title: project.title,
                 slug: project.slug,
@@ -236,7 +218,7 @@ async function importData() {
                 status: project.status,
                 date: project.date,
                 description: project.description,
-                image: project.image_id,
+                // image: project.image_id, // Stripped - media not in backup
                 location: project.location,
                 code: project.code,
                 linkLabel: project.link_label,
@@ -282,7 +264,7 @@ async function importData() {
                 const postData = {
                     title: post.title,
                     slug: post.slug,
-                    heroImage: post.hero_image_id,
+                    // heroImage: post.hero_image_id, // Stripped - media not in backup
                     content: post.content,
                     meta: {
                         title: post.meta_title,
