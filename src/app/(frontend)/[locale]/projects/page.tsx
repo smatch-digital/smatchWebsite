@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { getPayload } from '@/getPayload'
 import { ActivityTimelineBlock, TimelineItem } from '@/blocks/ActivityTimeline/Component'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
+import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
+import { notFound } from 'next/navigation'
 
 // Enable ISR (Incremental Static Regeneration) - Cache for 10 minutes
 export const revalidate = 600
@@ -11,14 +13,35 @@ export const metadata: Metadata = {
   description: 'Découvrez nos derniers projets et événements.',
 }
 
-export default async function ProjectsPage() {
+type Args = {
+  params: Promise<{
+    locale: string
+  }>
+}
+
+/**
+ * Generate static params for all locales
+ */
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }))
+}
+
+export default async function ProjectsPage({ params }: Args) {
+  const { locale } = await params
+
+  // Validate locale
+  if (!isValidLocale(locale)) {
+    notFound()
+  }
+
   const payload = await getPayload()
 
-  // Fetch all published projects/events, sorted by date descending
+  // Fetch all published projects/events WITH locale
   const { docs } = await payload.find({
     collection: 'projects',
     limit: 50,
     sort: '-date',
+    locale: locale as Locale, // CRITICAL: Pass locale to get string values
   })
 
   // Transform to TimelineItem format
@@ -50,3 +73,4 @@ export default async function ProjectsPage() {
     </main>
   )
 }
+

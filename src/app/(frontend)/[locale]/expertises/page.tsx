@@ -9,11 +9,31 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 
-export default async function ExpertisePage() {
+type Args = {
+  params: Promise<{
+    locale: string
+  }>
+}
+
+/**
+ * Generate static params for all locales
+ */
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }))
+}
+
+export default async function ExpertisePage({ params }: Args) {
+  const { locale } = await params
   const { isEnabled: draft } = await draftMode()
 
-  const page = await queryPageBySlug({ slug: 'expertises' })
+  // Validate locale
+  if (!isValidLocale(locale)) {
+    notFound()
+  }
+
+  const page = await queryPageBySlug({ slug: 'expertises', locale: locale as Locale })
 
   if (!page) {
     return notFound()
@@ -30,8 +50,14 @@ export default async function ExpertisePage() {
   )
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const page = await queryPageBySlug({ slug: 'expertises' })
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { locale } = await params
+
+  if (!isValidLocale(locale)) {
+    return {}
+  }
+
+  const page = await queryPageBySlug({ slug: 'expertises', locale: locale as Locale })
 
   if (page) {
     return generateMeta({ doc: page })
@@ -43,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryPageBySlug = cache(async ({ slug, locale }: { slug: string; locale: Locale }) => {
   const { isEnabled: draft } = await draftMode()
 
   const payload = await getPayload()
@@ -55,6 +81,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
       limit: 1,
       pagination: false,
       overrideAccess: draft,
+      locale: locale, // CRITICAL: Pass locale to get string values
       where: {
         slug: {
           equals: slug,
@@ -67,3 +94,4 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     return null
   }
 })
+

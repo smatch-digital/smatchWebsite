@@ -3,27 +3,50 @@ import { getPayload } from '@/getPayload'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
 import { SolutionsCTA } from '@/components/solutions/SolutionsCTA'
+import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
+import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Solutions | Smatch Digital',
   description: 'Discover our industrial solutions.',
 }
 
-export default async function SolutionsPage() {
+type Args = {
+  params: Promise<{
+    locale: string
+  }>
+}
+
+/**
+ * Generate static params for all locales
+ */
+export function generateStaticParams() {
+  return i18nConfig.locales.map((locale) => ({ locale }))
+}
+
+export default async function SolutionsPage({ params }: Args) {
+  const { locale } = await params
+
+  // Validate locale
+  if (!isValidLocale(locale)) {
+    notFound()
+  }
+
   // 1. Initialize Payload
   const payload = await getPayload()
 
-  // 2. Fetch all published solutions
+  // 2. Fetch all published solutions WITH locale
   const { docs: solutions } = await payload.find({
     collection: 'solutions',
-    draft: false, // Only show published
+    draft: false,
+    locale: locale as Locale, // CRITICAL: Pass locale to get string values
     select: {
       title: true,
       slug: true,
-      heroSubtitle: true, // Assuming this maps to your "subtitle"
-      description: true, // Assuming you have a short description field
-      icon: true, // We need the icon name string
-      heroImage: true, // For the card background
+      heroSubtitle: true,
+      description: true,
+      icon: true,
+      heroImage: true,
     },
   })
 
@@ -36,3 +59,4 @@ export default async function SolutionsPage() {
     </main>
   )
 }
+
