@@ -4,7 +4,9 @@
 
 /* FAB Pulse Animation Ring */
 .chatbot-fab {
-  position: relative;
+  position: fixed;
+  /* Compensate for viewport zoom scaling */
+  zoom: calc(1 / clamp(0.55, calc(100vw / 1920), 1));
 }
 
 .chatbot-fab-pulse {
@@ -17,11 +19,13 @@
 }
 
 @keyframes chatbot-pulse {
+
   0%,
   100% {
     opacity: 0;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(1.3);
@@ -30,6 +34,8 @@
 
 /* Chat Window Glow Effect */
 .chatbot-window {
+  /* Compensate for viewport zoom scaling */
+  zoom: calc(1 / clamp(0.55, calc(100vw / 1920), 1));
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
     0 0 40px rgba(255, 200, 0, 0.1);
