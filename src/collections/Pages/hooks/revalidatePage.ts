@@ -3,6 +3,7 @@ import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'paylo
 import { revalidatePath, revalidateTag } from 'next/cache'
 
 import type { Page } from '../../../payload-types'
+import { i18nConfig } from '@/utilities/i18n'
 
 export const revalidatePage: CollectionAfterChangeHook<Page> = ({
   doc,
@@ -11,33 +12,44 @@ export const revalidatePage: CollectionAfterChangeHook<Page> = ({
 }) => {
   if (!context.disableRevalidate) {
     if (doc._status === 'published') {
-      const path = doc.slug === 'home' ? '/' : `/${doc.slug}`
+      const basePath = doc.slug === 'home' ? '' : `/${doc.slug}`
 
-      payload.logger.info(`Revalidating page at path: ${path}`)
-
-      revalidatePath(path)
+      // Revalidate all locale-prefixed paths
+      for (const locale of i18nConfig.locales) {
+        const path = `/${locale}${basePath}`
+        payload.logger.info(`Revalidating page at path: ${path}`)
+        revalidatePath(path)
+      }
       revalidateTag('pages-sitemap')
     }
 
     // If the page was previously published, we need to revalidate the old path
     if (previousDoc?._status === 'published' && doc._status !== 'published') {
-      const oldPath = previousDoc.slug === 'home' ? '/' : `/${previousDoc.slug}`
+      const oldBasePath = previousDoc.slug === 'home' ? '' : `/${previousDoc.slug}`
 
-      payload.logger.info(`Revalidating old page at path: ${oldPath}`)
-
-      revalidatePath(oldPath)
+      for (const locale of i18nConfig.locales) {
+        const oldPath = `/${locale}${oldBasePath}`
+        payload.logger.info(`Revalidating old page at path: ${oldPath}`)
+        revalidatePath(oldPath)
+      }
       revalidateTag('pages-sitemap')
     }
   }
   return doc
 }
 
-export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context } }) => {
+export const revalidateDelete: CollectionAfterDeleteHook<Page> = ({ doc, req: { context, payload } }) => {
   if (!context.disableRevalidate) {
-    const path = doc?.slug === 'home' ? '/' : `/${doc?.slug}`
-    revalidatePath(path)
+    const basePath = doc?.slug === 'home' ? '' : `/${doc?.slug}`
+
+    for (const locale of i18nConfig.locales) {
+      const path = `/${locale}${basePath}`
+      payload.logger.info(`Revalidating deleted page at path: ${path}`)
+      revalidatePath(path)
+    }
     revalidateTag('pages-sitemap')
   }
 
   return doc
 }
+
