@@ -83,10 +83,10 @@ export function Domains() {
               >
                 {/* Active Indicator Line */}
                 <div
-                  className={`absolute inset-y-6 left-0 w-[2px] transition-colors duration-300 ${activeTab === tab.id ? 'bg-[#FFB800]' : 'bg-gray-800'}`}
+                  className={`absolute inset-y-6 left-0 w-[2px] transition-colors duration-300 ${activeTab === tab.id ? 'bg-[#FFAA00]' : 'bg-gray-800'}`}
                 />
 
-                <span className="mb-2 font-mono text-sm font-bold text-[#FFB800]">
+                <span className="mb-2 font-mono text-sm font-bold text-[#FFAA00]">
                   {tab.number}
                 </span>
                 <span className="max-w-[150px] font-heading text-xl font-bold leading-tight">
@@ -120,7 +120,7 @@ export function Domains() {
                             </span>
                           </div>
 
-                          <h4 className="mb-2 text-sm font-bold text-[#FFB800]">
+                          <h4 className="mb-2 text-sm font-bold text-[#FFAA00]">
                             {tab.content.subTitle}
                           </h4>
 
@@ -146,15 +146,15 @@ export function Domains() {
                         {/* Added negative margins to pull the container right, out of the card */}
                         <div className="relative flex min-h-[300px] items-center justify-center md:min-h-0">
                           {/* The "Holo-Platform" Base Effects */}
-                          <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-[#FFB800]/5 blur-2xl" />
+                          <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-[#FFAA00]/5 blur-2xl" />
                           {/* Removed the glowing yellow line here */}
 
                           {/* Tech Decorative Lines Container */}
                           <div className="pointer-events-none absolute inset-0 rounded-lg border border-white/5 opacity-50">
-                            <div className="absolute left-0 top-0 size-2 border-l border-t border-[#FFB800]" />
-                            <div className="absolute right-0 top-0 size-2 border-r border-t border-[#FFB800]" />
-                            <div className="absolute bottom-0 left-0 size-2 border-b border-l border-[#FFB800]" />
-                            <div className="absolute bottom-0 right-0 size-2 border-b border-r border-[#FFB800]" />
+                            <div className="absolute left-0 top-0 size-2 border-l border-t border-[#FFAA00]" />
+                            <div className="absolute right-0 top-0 size-2 border-r border-t border-[#FFAA00]" />
+                            <div className="absolute bottom-0 left-0 size-2 border-b border-l border-[#FFAA00]" />
+                            <div className="absolute bottom-0 right-0 size-2 border-b border-r border-[#FFAA00]" />
                           </div>
 
                           {/* ACTUAL IMAGE RENDER */}

@@ -67,7 +67,7 @@ export const BentoGrid: React.FC<BentoGridProps> = ({ items = MOCK_ITEMS }) => {
                 group relative flex flex-col justify-between overflow-hidden 
                 rounded-2xl border 
                 border-white/10 bg-smatch-surface/50
-                p-8 backdrop-blur-md transition-all duration-300 hover:border-smatch-gold hover:shadow-[0_0_30px_-10px_rgba(255,200,0,0.15)]
+                p-8 backdrop-blur-md transition-all duration-300 hover:border-smatch-gold hover:shadow-[0_0_30px_-10px_rgba(255,170,0,0.15)]
                 ${item.size === '2x2' ? 'md:col-span-2 md:row-span-2' : ''}
                 ${item.size === '2x1' ? 'md:col-span-2' : ''}
                 ${item.size === '1x1' ? 'md:col-span-1' : ''}

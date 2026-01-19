@@ -74,7 +74,7 @@ export function IntroLoader() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: [0, 0.2, 0], scale: [1, 1.5, 2] }}
               transition={{ duration: 2, times: [0, 0.5, 1], ease: "easeInOut" }}
-              className="absolute inset-0 rounded-full bg-[#FFB800] blur-[100px]"
+              className="absolute inset-0 rounded-full bg-[#FFAA00] blur-[100px]"
             />
 
             {/* Logo Text */}
@@ -98,7 +98,7 @@ export function IntroLoader() {
                 <h1 className="font-heading text-6xl font-black uppercase leading-none tracking-tighter text-white md:text-8xl">
                   Smatch
                 </h1>
-                <span className="pl-2 font-mono text-xs uppercase tracking-[0.5em] text-[#FFB800]">
+                <span className="pl-2 font-mono text-xs uppercase tracking-[0.5em] text-[#FFAA00]">
                   Digital
                 </span>
               </div>

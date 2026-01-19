@@ -84,7 +84,7 @@ const TEAM_MEMBERS = [
 
 const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-[20px] bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-all hover:border-[#FFB800]/30 md:p-8">
+    <div className="relative w-full h-full overflow-hidden rounded-[20px] bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl border border-white/10 shadow-2xl transition-all hover:border-[#FFAA00]/30 md:p-8">
       {/* Decorative Noise/Grid Overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] pointer-events-none" />
       <div className="relative z-10 flex flex-col-reverse gap-10 lg:flex-row lg:items-start lg:gap-16">
@@ -110,7 +110,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
               </div>
             )}
 
-            <div className="absolute top-0 w-full h-[2px] bg-[#FFB800]/50 shadow-[0_0_20px_#FFB800] opacity-0 group-hover:opacity-100 group-hover:animate-scan z-20" />
+            <div className="absolute top-0 w-full h-[2px] bg-[#FFAA00]/50 shadow-[0_0_20px_#FFAA00] opacity-0 group-hover:opacity-100 group-hover:animate-scan z-20" />
           </div>
 
           {/* ID Tag (Font Mono) */}
@@ -118,8 +118,8 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
         {/* Text Content */}
         <div className="flex-1">
           {/* Tag */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-4 py-1.5">
-            <span className="font-mono text-xs font-bold tracking-[0.2em] text-[#FFB800]">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-sm border border-[#FFAA00]/20 bg-[#FFAA00]/10 px-4 py-1.5">
+            <span className="font-mono text-xs font-bold tracking-[0.2em] text-[#FFAA00]">
               {member.tag}
             </span>
           </div>
@@ -133,12 +133,12 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           </h3>
 
           {/* Role (Font Mono / JetBrains) */}
-          <p className="mb-8 font-mono text-sm uppercase tracking-widest text-[#FFB800]/80">
+          <p className="mb-8 font-mono text-sm uppercase tracking-widest text-[#FFAA00]/80">
             {member.role}
           </p>
 
           {/* Description Block (Moved back inside card as per request) */}
-          <div className="relative mb-10 border-l-2 border-[#FFB800] pl-6">
+          <div className="relative mb-10 border-l-2 border-[#FFAA00] pl-6">
             {/* Gradient Quote (Font Sans / Inter) */}
             <p className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed text-transparent font-sans md:text-xl">
               "{member.description}"
@@ -147,10 +147,10 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-4">
-            <Link href={member.linkedin} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFB800] hover:border-[#FFB800] hover:text-black text-white">
+            <Link href={member.linkedin} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFAA00] hover:border-[#FFAA00] hover:text-black text-white">
               <LinkedinLogo size={32} weight="duotone" />
             </Link>
-            <Link href={member.email} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFB800] hover:border-[#FFB800] hover:text-black text-white">
+            <Link href={member.email} className="group flex h-12 w-12 items-center justify-center rounded-sm border border-white/10 bg-white/5 transition-all hover:bg-[#FFAA00] hover:border-[#FFAA00] hover:text-black text-white">
               <EnvelopeSimple size={32} weight="duotone" />
             </Link>
           </div>
@@ -159,7 +159,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
       </div>
       <div className="flex items-center justify-between border-t border-white/10 pt-4 mt-8 font-mono text-xs tracking-widest text-gray-500">
         <span>{member.footerId}</span>
-        <span className="text-[#FFB800]">ONLINE</span>
+        <span className="text-[#FFAA00]">ONLINE</span>
       </div>
     </div>
   )
@@ -167,7 +167,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
 const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
   return (
-    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFB800]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,184,0,0.1)]">
+    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFAA00]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,170,0,0.1)]">
 
       {/* Hover Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -187,7 +187,7 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
         </div>
 
         <div className="rounded border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-md">
-          <span className="font-mono text-[10px] font-bold tracking-wider text-[#FFB800]">
+          <span className="font-mono text-[10px] font-bold tracking-wider text-[#FFAA00]">
             {member.tag === '[ ARCHITECT_01 ]' ? 'LEAD' : member.tag}
           </span>
 
@@ -197,7 +197,7 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
       {/* Content */}
       <div className="relative z-10">
         {/* Name (Font Heading) */}
-        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white group-hover:text-[#FFB800] transition-colors">
+        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white group-hover:text-[#FFAA00] transition-colors">
           {member.name}
         </h3>
 
@@ -222,10 +222,10 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
 
       {/* Footer */}
       <div className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 pt-4">
-        <span className="font-mono text-[10px] text-gray-600 group-hover:text-[#FFB800] transition-colors">
+        <span className="font-mono text-[10px] text-gray-600 group-hover:text-[#FFAA00] transition-colors">
           {member.footerId}
         </span>
-        <div className="rounded-full bg-white/5 p-1.5 transition-colors group-hover:bg-[#FFB800] group-hover:text-black text-white/30">
+        <div className="rounded-full bg-white/5 p-1.5 transition-colors group-hover:bg-[#FFAA00] group-hover:text-black text-white/30">
           <ArrowUpRight size={14} weight="bold" />
         </div>
       </div>
@@ -240,13 +240,13 @@ export default function TeamSection() {
   return (
     <section className="relative w-full bg-[#050505] py-24 text-white overflow-hidden">
       {/* Background Atmosphere */}
-      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-[#FFB800]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 h-[500px] w-[500px] bg-[#FFAA00]/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container relative z-10 mx-auto px-4">
 
         {/* Section Header */}
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block font-mono text-xs text-[#FFB800] tracking-[0.3em]">
+          <span className="mb-4 inline-block font-mono text-xs text-[#FFAA00] tracking-[0.3em]">
                         // THE MINDS BEHIND
           </span>
           <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
@@ -276,8 +276,8 @@ export default function TeamSection() {
                 Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. <br /> Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance.
               </p>
               <div className="relative my-auto z-10 h-full flex flex-col justify-end">
-                <div className="mb-4 h-[1px] w-12 bg-[#FFB800]" />
-                <p className="font-mono text-xl tracking-widest text-[#FFB800]">
+                <div className="mb-4 h-[1px] w-12 bg-[#FFAA00]" />
+                <p className="font-mono text-xl tracking-widest text-[#FFAA00]">
                   - {tarik.name}
                 </p>
               </div>

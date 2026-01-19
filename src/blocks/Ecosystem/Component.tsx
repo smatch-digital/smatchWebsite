@@ -43,16 +43,16 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
   } = props
 
   return (
-    <section className="relative w-full bg-[#050505] py-20 text-white selection:bg-[#FFB800] selection:text-black md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#050505] py-20 text-white selection:bg-[#FFAA00] selection:text-black md:py-32 overflow-hidden">
 
       {/* 1. BACKGROUND NERVOUS SYSTEM (Restored SVG Lines) */}
       <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
         <svg className="h-full w-full" viewBox="0 0 1515 1200" preserveAspectRatio="none">
           <defs>
             <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FFB800" stopOpacity="0" />
-              <stop offset="50%" stopColor="#FFB800" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="#FFB800" stopOpacity="0" />
+              <stop offset="0%" stopColor="#FFAA00" stopOpacity="0" />
+              <stop offset="50%" stopColor="#FFAA00" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#FFAA00" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path d="M 750 600 L 400 300" stroke="url(#lineGrad)" strokeWidth="1" fill="none" />
@@ -79,7 +79,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 1. UNIVERSAL CONNECTIVITY (Tall Left) */}
           {/* Position: Col 1-2 / Row 1-4 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-5">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-1 md:col-end-3 md:row-start-1 md:row-end-5">
             <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
 
               {/* ORBIT ANIMATION */}
@@ -93,7 +93,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
                   {/* Top (0°) */}
                   <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
-                    <Database size={14} className="text-[#FFB800]" />
+                    <Database size={14} className="text-[#FFAA00]" />
                   </div>
                   {/* Right (90°) */}
                   <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-white/10 bg-[#0A0A0A] p-2 shadow-lg">
@@ -127,13 +127,13 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               </div>
             </div>
             {/* Hover Glow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FFB800]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FFAA00]/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </div>
 
 
           {/* 2. SUPPORT (Wide Top) */}
           {/* Position: Col 3-6 / Row 1-2 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-3 md:col-end-7 md:row-start-1 md:row-end-3 md:p-10">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-3 md:col-end-7 md:row-start-1 md:row-end-3 md:p-10">
             {/* 3D Asset - z-20 above content */}
             <div className="absolute -top-20 -right-16 z-20 pointer-events-none md:-bottom-24 md:-right-20">
               <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
@@ -162,10 +162,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 </div>
                 {/* User */}
                 <div className="flex items-center justify-end">
-                  <div className="mr-3 rounded-l-2xl rounded-br-sm rounded-tr-2xl bg-[#FFB800] px-4 py-3 shadow-lg">
+                  <div className="mr-3 rounded-l-2xl rounded-br-sm rounded-tr-2xl bg-[#FFAA00] px-4 py-3 shadow-lg">
                     <p className="text-xs font-bold text-black">Recu. Deploiment du patch correctif v2.4.1 en cours...</p>
                   </div>
-                  <div className="size-8 shrink-0 rounded-full bg-[#FFB800]" />
+                  <div className="size-8 shrink-0 rounded-full bg-[#FFAA00]" />
                 </div>
               </div>
             </div>
@@ -174,7 +174,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 3. API FIRST (Tall Right) */}
           {/* Position: Col 7-8 / Row 1-4 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-5">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-5">
             <div className="absolute top-1/4 -right-12 z-20 pointer-events-none md:bottom-20 md:right-[-40px] md:top-auto">
               <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image className="w-[140px] md:w-[250px]" alt='' src="/assets/ecosystem/api.png" width={300} height={300} />
@@ -221,7 +221,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 4. CORE INTELLIGENCE (Middle Center) */}
           {/* Position: Col 3-6 / Row 3-4 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
             <div className="absolute inset-0 left-10 z-20 pointer-events-none flex md:left-4">
               <div className="relative flex justify-center items-center">
                 <Image className="w-[160px] md:w-[250px] opacity-90 transform transition-transform duration-700 ease-out group-hover:scale-110" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
@@ -234,8 +234,8 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
               <div className="pl-0 md:pl-52 relative z-20">
                 <div className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 backdrop-blur-md">
-                  <Cpu size={14} className="text-[#FFB800]" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">Neural Engine</span>
+                  <Cpu size={14} className="text-[#FFAA00]" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">Neural Engine</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white md:text-4xl">Intelligence fondamentale</h3>
               </div>
@@ -245,7 +245,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 5. OPTIMIZATION (Bottom Left) */}
           {/* Position: Col 1-4 / Row 5-6 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-1 md:col-end-5 md:row-start-5 md:row-end-7 md:p-10">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] p-6 transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-1 md:col-end-5 md:row-start-5 md:row-end-7 md:p-10">
 
             <div className="absolute -bottom-10 -right-16 z-20 pointer-events-none md:-bottom-20 md:-right-10">
               <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
@@ -266,7 +266,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 6. CONTROL (Bottom Right) */}
           {/* Position: Col 5-8 / Row 5-6 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFB800]/30 md:col-start-5 md:col-end-9 md:row-start-5 md:row-end-7">
+          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/30 md:col-start-5 md:col-end-9 md:row-start-5 md:row-end-7">
             <div className="absolute -bottom-12 -right-12 z-20 pointer-events-none md:-bottom-20 md:-right-20">
               <div className="relative transform transition-transform duration-700 ease-out group-hover:scale-110">
                 <Image className='relative w-[220px] md:w-[380px] -rotate-12' alt='' src="/assets/ecosystem/joystick.png" width={300} height={300} />
@@ -280,7 +280,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                   {controlDesc}
                 </p>
               </div>
-              <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-[#FFB800] shadow-[0_0_20px_rgba(255,184,0,0.4)]">
+              <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-[#FFAA00] shadow-[0_0_20px_rgba(255,170,0,0.4)]">
                 <Check size={20} className="text-black" strokeWidth={3} />
               </div>
             </div>

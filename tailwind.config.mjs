@@ -65,10 +65,10 @@ const config = {
           surface: '#1A1A1A', // Card backgrounds (Lighter than charcoal)
           border: '#333333', // Subtle borders
           gold: {
-            DEFAULT: '#FFC800', // The primary accent (Vibrant Gold)
+            DEFAULT: '#FFAA00', // The primary accent (Smatch Gold)
             dim: '#B8860B', // Darker gold for gradients/shadows
-            light: '#FFE566', // Hover states or text highlights
-            glow: 'rgba(255, 200, 0, 0.5)', // For box-shadows
+            light: '#FFD966', // Hover states or text highlights
+            glow: 'rgba(255, 170, 0, 0.5)', // For box-shadows
           },
           text: {
             primary: '#FFFFFF',
@@ -95,15 +95,15 @@ const config = {
       },
       backgroundImage: {
         // Custom gradients seen in your design
-        'gold-gradient': 'linear-gradient(135deg, #FFC800 0%, #B8860B 100%)',
+        'gold-gradient': 'linear-gradient(135deg, #FFAA00 0%, #B8860B 100%)',
         'metal-sheen':
           'linear-gradient(45deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)',
         'fade-to-black': 'linear-gradient(to bottom, transparent 0%, #050505 100%)',
       },
       boxShadow: {
-        'glow-sm': '0 0 10px rgba(255, 200, 0, 0.1)',
-        'glow-md': '0 0 20px rgba(255, 200, 0, 0.2)',
-        'glow-lg': '0 0 30px rgba(255, 200, 0, 0.3)',
+        'glow-sm': '0 0 10px rgba(255, 170, 0, 0.1)',
+        'glow-md': '0 0 20px rgba(255, 170, 0, 0.2)',
+        'glow-lg': '0 0 30px rgba(255, 170, 0, 0.3)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

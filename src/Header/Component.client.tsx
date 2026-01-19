@@ -101,7 +101,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <rect width="40" height="40" rx="8" fill="#FFB800" />
+          <rect width="40" height="40" rx="8" fill="#FFAA00" />
           <path
             d="M20 28C15.5817 28 12 24.4183 12 20C12 15.5817 15.5817 12 20 12C23.0984 12 25.7873 13.7618 27.1213 16.3333"
             stroke="black"
@@ -156,7 +156,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           {/* Home Button */}
           <Link
             href={`/${locale}`}
-            className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFB800]' : 'text-white/60'}`}
+            className={`rounded-full p-2 transition-colors ${pathname === `/${locale}` ? 'text-[#FFAA00]' : 'text-white/60'}`}
           >
             <House size={24} weight={pathname === `/${locale}` ? 'fill' : 'regular'} />
           </Link>
@@ -166,7 +166,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           {/* Menu Trigger (Central Action) */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="rounded-full bg-[#FFB800] p-3 text-black shadow-[0_0_15px_rgba(255,184,0,0.3)] transition-transform active:scale-95"
+            className="rounded-full bg-[#FFAA00] p-3 text-black shadow-[0_0_15px_rgba(255,170,0,0.3)] transition-transform active:scale-95"
           >
             <SquaresFour size={24} weight="bold" />
           </button>
@@ -176,7 +176,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
           {/* Quick Contact */}
           <Link
             href={`/${locale}/contact`}
-            className="p-2 text-white/60 transition-colors hover:text-[#FFB800]"
+            className="p-2 text-white/60 transition-colors hover:text-[#FFAA00]"
           >
             <PhoneCall size={24} />
           </Link>
@@ -205,7 +205,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
-                <span className="size-2 rounded-full bg-[#FFB800] opacity-0 transition-opacity group-hover:opacity-100" />
+                <span className="size-2 rounded-full bg-[#FFAA00] opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>
             ))}
 
@@ -215,7 +215,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             <div className="grid grid-cols-2 gap-4">
               <Link
                 href={`/${locale}/contact`}
-                className="flex items-center justify-center gap-2 rounded-xl bg-[#FFB800] py-4 text-center text-sm font-bold uppercase tracking-widest text-black"
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#FFAA00] py-4 text-center text-sm font-bold uppercase tracking-widest text-black"
               >
                 Start Project
               </Link>

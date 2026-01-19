@@ -26,7 +26,7 @@ const BLADES_DATA = [
         title: 'HOSPITALITÉ',
         subtitle: 'Expérience Client 4.0',
         icon: Bed,
-        color: '#FFB800',
+        color: '#FFAA00',
         description: "Une gestion hôtelière réinventée. Check-in sans contact, confort thermique automatisé et personnalisation de l'expérience client par la donnée.",
         stats: [
             { label: 'Satisfaction', value: '9.8/10' },
@@ -214,10 +214,10 @@ export function KineticBlades() {
                                 {/* Header */}
                                 <div>
                                     <div className="mb-2 flex items-center gap-3">
-                                        <div className="rounded-full bg-[#FFB800]/10 p-2 text-[#FFB800]">
+                                        <div className="rounded-full bg-[#FFAA00]/10 p-2 text-[#FFAA00]">
                                             <blade.icon size={24} weight="duotone" />
                                         </div>
-                                        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#FFB800]">
+                                        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#FFAA00]">
                                             {blade.subtitle}
                                         </span>
                                     </div>
@@ -247,7 +247,7 @@ export function KineticBlades() {
                                     </div>
 
                                     {/* CTA */}
-                                    <button className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFB800]">
+                                    <button className="group mt-8 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-[#FFAA00]">
                                         Découvrir la solution
                                         <ArrowRight className="transition-transform group-hover:translate-x-1" />
                                     </button>

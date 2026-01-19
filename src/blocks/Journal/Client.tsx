@@ -70,10 +70,10 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
                                 <div className="hidden h-px w-8 bg-gray-700 md:block" />
                                 <div className="flex items-center gap-2">
                                     <div className="relative flex size-2.5">
-                                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
-                                        <span className="relative inline-flex size-2.5 rounded-full bg-[#FFB800]" />
+                                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFAA00] opacity-75" />
+                                        <span className="relative inline-flex size-2.5 rounded-full bg-[#FFAA00]" />
                                     </div>
-                                    <span className="font-mono text-xs font-bold tracking-wider text-[#FFB800]">
+                                    <span className="font-mono text-xs font-bold tracking-wider text-[#FFAA00]">
                                         {liveFeedText || 'LIVE FEED'}
                                     </span>
                                 </div>
@@ -82,7 +82,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
 
                         <Link
                             href="/projects"
-                            className="mt-4 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-colors hover:text-[#FFB800] md:mt-0"
+                            className="mt-4 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-colors hover:text-[#FFAA00] md:mt-0"
                         >
                             VOIR TOUT →
                         </Link>
@@ -118,16 +118,16 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
                                     </div>
 
                                     {/* Scanner Line Effect */}
-                                    <div className="absolute left-0 top-0 h-1 w-full -translate-y-full bg-[#FFB800]/50 opacity-0 shadow-[0_0_15px_#FFB800] group-hover:animate-[scan_2s_linear_infinite] group-hover:opacity-100" />
+                                    <div className="absolute left-0 top-0 h-1 w-full -translate-y-full bg-[#FFAA00]/50 opacity-0 shadow-[0_0_15px_#FFAA00] group-hover:animate-[scan_2s_linear_infinite] group-hover:opacity-100" />
                                 </div>
 
                                 {/* Text Content */}
                                 <div className="flex flex-1 flex-col">
-                                    <div className="mb-3 border-l-2 border-transparent pl-0 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-all duration-300 group-hover:border-[#FFB800] group-hover:pl-3">
+                                    <div className="mb-3 border-l-2 border-transparent pl-0 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-all duration-300 group-hover:border-[#FFAA00] group-hover:pl-3">
                                         {article.meta}
                                     </div>
 
-                                    <h3 className="mb-4 font-heading text-2xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#FFB800] md:text-3xl">
+                                    <h3 className="mb-4 font-heading text-2xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#FFAA00] md:text-3xl">
                                         {article.title}
                                     </h3>
 
@@ -136,7 +136,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
                                     </p>
 
                                     <div className="mt-auto">
-                                        <span className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">
+                                        <span className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">
                                             <span>&gt;</span>
                                             {article.linkText}
                                         </span>

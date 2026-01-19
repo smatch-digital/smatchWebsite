@@ -23,7 +23,7 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.6 }}
       onMouseMove={handleMouseMove}
-      className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0F0F0F] p-6 transition-colors duration-500 hover:border-[#FFB800]/50 md:p-8"
+      className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0F0F0F] p-6 transition-colors duration-500 hover:border-[#FFAA00]/50 md:p-8"
     >
       {/* Glow Effect */}
       <motion.div
@@ -32,7 +32,7 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
           background: useMotionTemplate`
             radial-gradient(
               650px circle at ${mouseX}px ${mouseY}px,
-              rgba(255, 184, 0, 0.15),
+              rgba(255, 170, 0, 0.15),
               transparent 80%
             )
           `,
@@ -46,9 +46,9 @@ function GlowCard({ children, delay = 0 }: { children: React.ReactNode; delay?: 
 // --- 2. Helper: Terminal Tag Component ---
 const TerminalTag = ({ text }: { text: string }) => {
   return (
-    <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#050505] px-3 py-1.5 shadow-sm transition-colors duration-300 group-hover:border-[#FFB800]/30">
+    <div className="mb-4 inline-flex items-center gap-2 rounded-md border border-white/10 bg-[#050505] px-3 py-1.5 shadow-sm transition-colors duration-300 group-hover:border-[#FFAA00]/30">
       {/* Prompt Symbol */}
-      <span className="select-none font-mono text-xs font-bold text-[#FFB800]">{'>_'}</span>
+      <span className="select-none font-mono text-xs font-bold text-[#FFAA00]">{'>_'}</span>
 
       {/* Text */}
       <span className="font-mono text-[9px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white md:text-[10px]">
@@ -56,7 +56,7 @@ const TerminalTag = ({ text }: { text: string }) => {
       </span>
 
       {/* Blinking Cursor */}
-      <span className="h-3 w-1.5 bg-[#FFB800] opacity-0 group-hover:animate-pulse group-hover:opacity-100" />
+      <span className="h-3 w-1.5 bg-[#FFAA00] opacity-0 group-hover:animate-pulse group-hover:opacity-100" />
     </div>
   )
 }
@@ -109,7 +109,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                 {/* Handle splitting if "ADN" needs color, for now standard text */}
                 {headerTitle.includes('ADN') ? (
                   <>
-                    {headerTitle.replace('ADN', '')} <span className="text-[#FFB800]">ADN</span>
+                    {headerTitle.replace('ADN', '')} <span className="text-[#FFAA00]">ADN</span>
                   </>
                 ) : (
                   headerTitle
@@ -122,11 +122,11 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
               <div className="flex flex-col items-start gap-6 sm:flex-row md:gap-8">
                 {/* Icon Box */}
                 <div className="group relative shrink-0">
-                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800] md:size-[60px]">
+                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFAA00]/50 group-hover:bg-[#FFAA00]/5 group-hover:text-[#FFAA00] md:size-[60px]">
                     <Target size={24} weight="duotone" className='text-smatch-gold md:text-[32px]' />
                   </div>
                   {/* Connector Line */}
-                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
+                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFAA00]/20 to-transparent sm:block" />
                 </div>
 
                 <div className="pt-1">
@@ -139,9 +139,9 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                   </h3>
 
                   {/* Description */}
-                  <div className="border border-white/5 bg-smatch-surface/20 group-hover:border-[#FFB800]/50">
+                  <div className="border border-white/5 bg-smatch-surface/20 group-hover:border-[#FFAA00]/50">
                     <p className="px-3 py-1.5 font-mono text-xs text-white/40 md:px-4 md:text-sm">
-                      <span className="select-none font-mono text-[10px] font-bold text-[#FFB800] md:text-xs">{'> '}</span>
+                      <span className="select-none font-mono text-[10px] font-bold text-[#FFAA00] md:text-xs">{'> '}</span>
                       {missionDesc}
                     </p>
                   </div>
@@ -154,10 +154,10 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
               <div className="flex flex-col items-start gap-6 sm:flex-row md:gap-8">
                 {/* Icon Box */}
                 <div className="group relative shrink-0">
-                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/5 group-hover:text-[#FFB800] md:size-[60px]">
+                  <div className="flex size-[50px] items-center justify-center rounded-md border border-white/10 bg-smatch-gold/5 text-white/20 shadow-2xl transition-all duration-500 group-hover:border-[#FFAA00]/50 group-hover:bg-[#FFAA00]/5 group-hover:text-[#FFAA00] md:size-[60px]">
                     <Eye size={24} weight="duotone" className='text-smatch-gold md:text-[32px]' />
                   </div>
-                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFB800]/20 to-transparent sm:block" />
+                  <div className="absolute left-1/2 top-16 -z-10 hidden h-[140%] w-px bg-gradient-to-b from-[#FFAA00]/20 to-transparent sm:block" />
 
                 </div>
 
@@ -171,7 +171,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                   </h3>
 
                   {/* Description */}
-                  <p className="max-w-lg border-l-2 border-white/5 pl-4 font-sans text-xs leading-relaxed text-gray-400 transition-colors duration-500 group-hover:border-[#FFB800] md:text-sm">
+                  <p className="max-w-lg border-l-2 border-white/5 pl-4 font-sans text-xs leading-relaxed text-gray-400 transition-colors duration-500 group-hover:border-[#FFAA00] md:text-sm">
                     {visionDesc}
                   </p>
                 </div>
@@ -191,12 +191,12 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
               className="relative z-20 flex size-32 flex-col items-center justify-center rounded-full p-4 text-center md:size-48 md:p-6"
             >
               {/* Core Glows */}
-              <div className="absolute inset-0 animate-pulse rounded-full bg-[#FFB800]/5 blur-2xl" />
-              <div className="absolute inset-0 rounded-full border border-[#FFB800]/30" />
-              <div className="absolute inset-4 animate-[spin_10s_linear_infinite] rounded-full border border-dashed border-[#FFB800]/10" />
+              <div className="absolute inset-0 animate-pulse rounded-full bg-[#FFAA00]/5 blur-2xl" />
+              <div className="absolute inset-0 rounded-full border border-[#FFAA00]/30" />
+              <div className="absolute inset-4 animate-[spin_10s_linear_infinite] rounded-full border border-dashed border-[#FFAA00]/10" />
 
               <div className="relative z-10 ">
-                <div className="mb-2 flex justify-center text-[#FFB800] drop-shadow-[0_0_10px_rgba(255,184,0,0.5)] md:mb-3">
+                <div className="mb-2 flex justify-center text-[#FFAA00] drop-shadow-[0_0_10px_rgba(255,170,0,0.5)] md:mb-3">
                   <Cube size={32} weight="fill" className="md:size-[48px]" />
                 </div>
                 <span className="font-heading text-sm font-bold uppercase leading-tight tracking-wider text-white md:text-lg">
@@ -224,16 +224,16 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
 
                 if (i === 0) {
                   positionClass = "top-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  connectionLine = <div className="absolute left-1/2 top-full z-0 h-[80px] w-px bg-gradient-to-b from-[#FFB800]/50 to-transparent md:h-[140px]" />
+                  connectionLine = <div className="absolute left-1/2 top-full z-0 h-[80px] w-px bg-gradient-to-b from-[#FFAA00]/50 to-transparent md:h-[140px]" />
                 } else if (i === 1) {
                   positionClass = "top-1/2 right-[5%] translate-x-1/2 -translate-y-1/2"
-                  connectionLine = <div className="absolute right-full top-1/2 h-px w-[60px] bg-gradient-to-r from-[#FFB800]/50 to-transparent md:w-[100px]" />
+                  connectionLine = <div className="absolute right-full top-1/2 h-px w-[60px] bg-gradient-to-r from-[#FFAA00]/50 to-transparent md:w-[100px]" />
                 } else if (i === 2) {
                   positionClass = "bottom-[5%] left-1/2 -translate-x-1/2 translate-y-1/2"
-                  connectionLine = <div className="absolute bottom-full left-1/2 h-[80px] w-px bg-gradient-to-t from-[#FFB800]/50 to-transparent md:h-[140px]" />
+                  connectionLine = <div className="absolute bottom-full left-1/2 h-[80px] w-px bg-gradient-to-t from-[#FFAA00]/50 to-transparent md:h-[140px]" />
                 } else if (i === 3) {
                   positionClass = "top-1/2 left-[5%] -translate-x-1/2 -translate-y-1/2"
-                  connectionLine = <div className="absolute left-full top-1/2 h-px w-[60px] bg-gradient-to-l from-[#FFB800]/50 to-transparent md:w-[100px]" />
+                  connectionLine = <div className="absolute left-full top-1/2 h-px w-[60px] bg-gradient-to-l from-[#FFAA00]/50 to-transparent md:w-[100px]" />
                 }
 
                 return (
@@ -241,11 +241,11 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                     <motion.div
                       animate={{ rotate: -360 }}
                       transition={{ duration: 60, ease: "linear", repeat: Infinity }}
-                      className="relative z-10 w-28 rounded-md border border-[#FFB800]/20 bg-[#0F0F0F] p-2 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] md:w-40 md:p-4"
+                      className="relative z-10 w-28 rounded-md border border-[#FFAA00]/20 bg-[#0F0F0F] p-2 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] md:w-40 md:p-4"
                     >
-                      <span className="mb-1 block font-mono text-[8px] uppercase text-[#FFB800] md:mb-2 md:text-[10px]">{node.label}</span>
+                      <span className="mb-1 block font-mono text-[8px] uppercase text-[#FFAA00] md:mb-2 md:text-[10px]">{node.label}</span>
                       <div className="flex items-center justify-center gap-1 text-[10px] font-bold uppercase text-white md:gap-2 md:text-xs">
-                        <Icon size={12} className="text-[#FFB800] md:size-[16px]" />
+                        <Icon size={12} className="text-[#FFAA00] md:size-[16px]" />
                         {node.text}
                       </div>
                     </motion.div>

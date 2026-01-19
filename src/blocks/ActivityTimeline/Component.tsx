@@ -54,12 +54,12 @@ const getMetadataIcon = (iconName: string | null | undefined) => {
 const StatusBadge = ({ status }: { status: TimelineItem['status'] }) => {
     if (status === 'upcoming') {
         return (
-            <div className="inline-flex items-center gap-2 rounded border border-[#FFB800]/50 bg-[#FFB800]/10 px-3 py-1">
+            <div className="inline-flex items-center gap-2 rounded border border-[#FFAA00]/50 bg-[#FFAA00]/10 px-3 py-1">
                 <span className="relative flex size-2">
-                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
-                    <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
+                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFAA00] opacity-75" />
+                    <span className="relative inline-flex size-2 rounded-full bg-[#FFAA00]" />
                 </span>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800]">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">
                     BIENTÔT
                 </span>
             </div>
@@ -98,7 +98,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
         >
             {/* Timeline Line & Dot */}
             <div className="relative flex flex-col items-center">
-                <div className={`z-10 flex size-4 items-center justify-center rounded-full border-2 ${item.status === 'upcoming' ? 'border-[#FFB800] bg-[#FFB800]' : 'border-white/30 bg-transparent'
+                <div className={`z-10 flex size-4 items-center justify-center rounded-full border-2 ${item.status === 'upcoming' ? 'border-[#FFAA00] bg-[#FFAA00]' : 'border-white/30 bg-transparent'
                     }`}>
                     {item.status === 'upcoming' && <span className="size-2 rounded-full bg-black" />}
                 </div>
@@ -125,7 +125,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
             </div>
 
             {/* Main Card */}
-            <Link href={href} className="mb-8 flex w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] transition-all duration-300 hover:border-[#FFB800]/50 hover:bg-[#111] md:flex-row">
+            <Link href={href} className="mb-8 flex w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-[#0A0A0A] transition-all duration-300 hover:border-[#FFAA00]/50 hover:bg-[#111] md:flex-row">
                 {/* Image */}
                 {imageUrl ? (
                     <div className="relative hidden w-1/3 min-w-[200px] md:block">
@@ -151,7 +151,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                     <div>
                         <StatusBadge status={item.status} />
 
-                        <h3 className="mb-3 mt-4 font-heading text-xl font-bold uppercase leading-tight text-white transition-colors group-hover:text-[#FFB800] md:text-2xl">
+                        <h3 className="mb-3 mt-4 font-heading text-xl font-bold uppercase leading-tight text-white transition-colors group-hover:text-[#FFAA00] md:text-2xl">
                             {item.title}
                         </h3>
 
@@ -179,7 +179,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                         )}
 
                         {/* CTA Button */}
-                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFB800] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFB800] transition-all hover:bg-[#FFB800] hover:text-black md:ml-auto md:mt-auto">
+                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFAA00] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00] transition-all hover:bg-[#FFAA00] hover:text-black md:ml-auto md:mt-auto">
                             {item.linkLabel || 'Voir les détails'}
                             <PhosphorIcons.ArrowRight size={12} weight="bold" />
                         </button>
@@ -220,10 +220,10 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
                         <div className="flex items-center gap-2">
                             <div className="hidden h-px w-8 bg-gray-700 md:block" />
                             <div className="relative flex size-2.5">
-                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
-                                <span className="relative inline-flex size-2.5 rounded-full bg-[#FFB800]" />
+                                <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFAA00] opacity-75" />
+                                <span className="relative inline-flex size-2.5 rounded-full bg-[#FFAA00]" />
                             </div>
-                            <span className="font-mono text-xs font-bold tracking-wider text-[#FFB800]">
+                            <span className="font-mono text-xs font-bold tracking-wider text-[#FFAA00]">
                                 LIVE FEED
                             </span>
                         </div>
@@ -235,7 +235,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
                             <button
                                 onClick={() => setActiveFilter('all')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'all'
-                                    ? 'border-[#FFB800] text-[#FFB800]'
+                                    ? 'border-[#FFAA00] text-[#FFAA00]'
                                     : 'border-transparent text-gray-500 hover:text-white'
                                     }`}
                             >
@@ -244,7 +244,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
                             <button
                                 onClick={() => setActiveFilter('event')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'event'
-                                    ? 'border-[#FFB800] text-[#FFB800]'
+                                    ? 'border-[#FFAA00] text-[#FFAA00]'
                                     : 'border-transparent text-gray-500 hover:text-white'
                                     }`}
                             >
@@ -253,7 +253,7 @@ export const ActivityTimelineBlock: React.FC<ActivityTimelineProps> = ({
                             <button
                                 onClick={() => setActiveFilter('project')}
                                 className={`border-b-2 pb-1 transition-colors ${activeFilter === 'project'
-                                    ? 'border-[#FFB800] text-[#FFB800]'
+                                    ? 'border-[#FFAA00] text-[#FFAA00]'
                                     : 'border-transparent text-gray-500 hover:text-white'
                                     }`}
                             >

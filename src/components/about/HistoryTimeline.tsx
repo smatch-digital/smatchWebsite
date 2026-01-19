@@ -23,7 +23,7 @@ export function HistoryTimeline({
   return (
     <section className="relative overflow-hidden bg-[#050505] py-32">
        {/* Background Radial Glow (Left Side) */}
-       <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFB800]/10 to-transparent opacity-40 blur-[120px]" />
+       <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFAA00]/10 to-transparent opacity-40 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-4">
         <motion.h2
@@ -127,7 +127,7 @@ export function HistoryTimeline({
                           <div className="absolute left-1/2 top-1/2 size-8 -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/30 blur-md" />
                       )}
 
-                      <div className={`relative z-10 size-3 rounded-full backdrop-blur-md transition-colors duration-300 ${event.isCurrent ? 'bg-smatch-gold shadow-[0_0_15px_#FFC800]' : 'border border-white/20 bg-smatch-gold/10'}`} />
+                      <div className={`relative z-10 size-3 rounded-full backdrop-blur-md transition-colors duration-300 ${event.isCurrent ? 'bg-smatch-gold shadow-[0_0_15px_#FFAA00]' : 'border border-white/20 bg-smatch-gold/10'}`} />
                   </motion.div>
 
                   {/* Version Tag Side */}

@@ -46,12 +46,12 @@ export function SolutionsHero({
         aria-label="Solutions Hero"
       >
         {/* Background Effects */}
-        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFC800" />
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFAA00" />
         <Spotlight
           className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
           fill="#FFE6A1"
         />
-        <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
+        <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFAA00" />
 
         {/* Full-bleed Background Image */}
         <div className="absolute inset-0 z-0 size-full ">
@@ -94,12 +94,12 @@ export function SolutionsHero({
       aria-label="Solutions Hero"
     >
       {/* Background Effects */}
-      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFC800" />
+      <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFAA00" />
       <Spotlight
         className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
         fill="#FFE6A1"
       />
-      <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
+      <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFAA00" />
 
       <div className="container relative z-10 flex flex-col items-center px-4 text-center">
         <motion.div

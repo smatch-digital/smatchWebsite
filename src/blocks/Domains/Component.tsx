@@ -41,7 +41,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
   if (!tabs || tabs.length === 0) return null
 
   return (
-    <section className="overflow-hidden bg-[#050505] py-20 md:py-32 text-white selection:bg-[#FFB800] selection:text-black">
+    <section className="overflow-hidden bg-[#050505] py-20 md:py-32 text-white selection:bg-[#FFAA00] selection:text-black">
       <div className="container mx-auto max-w-[1600px] px-4">
         {/* Section Header */}
         <div className="mb-16 md:mb-24 text-center">
@@ -55,7 +55,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
           {/* LEFT: Navigation Tabs */}
-          <div className="flex flex-col rounded-md border border-white/5 bg-[#0A0A0A] overflow-hidden transition-all duration-500 hover:border-[#FFB800]/30 lg:col-span-3">
+          <div className="flex flex-col rounded-md border border-white/5 bg-[#0A0A0A] overflow-hidden transition-all duration-500 hover:border-[#FFAA00]/30 lg:col-span-3">
             {tabs.map((tab, index) => {
               const tabId = tab.id || index.toString()
               const isActive = activeTabId === tabId
@@ -75,14 +75,14 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                   {isActive && (
                     <motion.div
                       layoutId="activeTabIndicator"
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-[#FFB800]"
+                      className="absolute left-0 top-0 bottom-0 w-1 bg-[#FFAA00]"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     />
                   )}
 
-                  <span className={`mb-3 font-mono text-xl font-bold ${isActive ? 'text-[#FFB800]' : 'text-[#FFB800]/70'}`}>
+                  <span className={`mb-3 font-mono text-xl font-bold ${isActive ? 'text-[#FFAA00]' : 'text-[#FFAA00]/70'}`}>
                     {String(index + 1).padStart(2, '0')}.
                   </span>
                   <span className={`max-w-[200px] font-heading text-lg font-bold leading-tight ${isActive ? 'text-white' : 'text-white/60'}`}>
@@ -95,7 +95,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
 
           {/* RIGHT: Content Card */}
           <div className="lg:col-span-9">
-            <div className="group relative flex min-h-[500px] flex-col justify-between rounded-md border border-white/5 bg-[#0A0A0A] p-8 md:p-12 transition-all duration-500 hover:border-[#FFB800]/30">
+            <div className="group relative flex min-h-[500px] flex-col justify-between rounded-md border border-white/5 bg-[#0A0A0A] p-8 md:p-12 transition-all duration-500 hover:border-[#FFAA00]/30">
               <AnimatePresence mode="wait">
                 {tabs.map((tab, index) => {
                   const tabId = tab.id || index.toString()
@@ -120,7 +120,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                           </span>
                         </div>
 
-                        <h4 className="mb-2 text-sm font-bold text-[#FFB800]">
+                        <h4 className="mb-2 text-sm font-bold text-[#FFAA00]">
                           {tab.subTitle}
                         </h4>
 
@@ -145,14 +145,14 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                       {/* Visual / Image Area */}
                       <div className="relative flex min-h-[300px] items-center justify-center md:min-h-0">
                         {/* Ambient Glow */}
-                        <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-[#FFB800] opacity-20 blur-[60px] transition-opacity duration-700 group-hover:opacity-40" />
+                        <div className="pointer-events-none absolute bottom-10 left-1/2 size-48 -translate-x-1/2 rounded-full bg-[#FFAA00] opacity-20 blur-[60px] transition-opacity duration-700 group-hover:opacity-40" />
 
                         {/* Tech Decorative Lines Container */}
                         <div className="pointer-events-none absolute inset-0 rounded-md border border-white/5 opacity-50">
-                          <div className="absolute left-0 top-0 size-2 border-l border-t border-[#FFB800]" />
-                          <div className="absolute right-0 top-0 size-2 border-r border-t border-[#FFB800]" />
-                          <div className="absolute bottom-0 left-0 size-2 border-b border-l border-[#FFB800]" />
-                          <div className="absolute bottom-0 right-0 size-2 border-b border-r border-[#FFB800]" />
+                          <div className="absolute left-0 top-0 size-2 border-l border-t border-[#FFAA00]" />
+                          <div className="absolute right-0 top-0 size-2 border-r border-t border-[#FFAA00]" />
+                          <div className="absolute bottom-0 left-0 size-2 border-b border-l border-[#FFAA00]" />
+                          <div className="absolute bottom-0 right-0 size-2 border-b border-r border-[#FFAA00]" />
                         </div>
 
                         {/* ACTUAL IMAGE RENDER */}

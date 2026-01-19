@@ -13,7 +13,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: rgba(255, 200, 0, 0.4);
+  background: rgba(255, 170, 0, 0.4);
   animation: chatbot-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   pointer-events: none;
 }
@@ -38,7 +38,7 @@
   zoom: calc(1 / clamp(0.55, calc(100vw / 1920), 1));
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(255, 200, 0, 0.1);
+    0 0 40px rgba(255, 170, 0, 0.1);
 }
 
 /* Message Area Scrollbar */
@@ -63,7 +63,7 @@
 }
 
 .chatbot-messages::-webkit-scrollbar-thumb:hover {
-  background: #ffc800;
+  background: #ffaa00;
 }
 
 @supports not selector(::-webkit-scrollbar) {
@@ -75,7 +75,7 @@
 
 /* User Message - Gold Gradient */
 .chatbot-message-user {
-  background: linear-gradient(135deg, #ffc800 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #ffaa00 0%, #b8860b 100%);
   border-bottom-right-radius: 4px;
 }
 

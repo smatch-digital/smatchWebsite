@@ -55,7 +55,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
       className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#050505] py-32"
     >
       {/* 1. Top Yellow Glow (Ambient Light) */}
-      {/* <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFB800] opacity-70 blur-[150px]" /> */}
+      {/* <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFAA00] opacity-70 blur-[150px]" /> */}
 
       {/* 2. Parallax Background Text */}
       <div className="pointer-events-none absolute top-0 bottom-0 right-5 z-0 flex select-none items-center justify-center">
@@ -94,13 +94,13 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
                 {/* The Stroke Version */}
                 <h2
                   className="relative left-1 z-10 font-heading text-6xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-7xl lg:text-[11rem]"
-                  style={{ WebkitTextStroke: '2px #FFB800' }}
+                  style={{ WebkitTextStroke: '2px #FFAA00' }}
                 >
                   {headingPart2}
                 </h2>
 
                 {/* The "Filling" Version (clip-path animation could go here, but let's do a glow) */}
-                <motion.div className="pointer-events-none absolute inset-0 bg-[#FFB800] opacity-0 blur-[80px] transition-opacity duration-700 group-hover/text:opacity-20" />
+                <motion.div className="pointer-events-none absolute inset-0 bg-[#FFAA00] opacity-0 blur-[80px] transition-opacity duration-700 group-hover/text:opacity-20" />
               </div>
             </motion.div>
           </div>
@@ -115,7 +115,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
             >
               {/* Tag */}
               <div className="mb-8 flex items-center gap-3">
-                <span className="h-4 w-1 bg-[#FFB800]" /> {/* Small accent bar */}
+                <span className="h-4 w-1 bg-[#FFAA00]" /> {/* Small accent bar */}
                 <span className="font-mono text-sm uppercase tracking-[0.2em] text-gray-500">
                   {tag}
                 </span>
@@ -130,7 +130,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
               <div>
                 <button className="group relative overflow-hidden rounded-[6px] border border-gray-800 bg-transparent px-8 py-3 transition-colors duration-300">
                   {/* Hover Background Fill */}
-                  <span className="absolute inset-0 translate-y-full bg-[#FFB800] transition-transform duration-300 ease-out group-hover:translate-y-0" />
+                  <span className="absolute inset-0 translate-y-full bg-[#FFAA00] transition-transform duration-300 ease-out group-hover:translate-y-0" />
 
                   {/* Text Content */}
                   <span className="relative flex items-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-gray-500 transition-colors duration-300 group-hover:text-black">

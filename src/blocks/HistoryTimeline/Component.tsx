@@ -26,7 +26,7 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
   return (
     <section className="relative overflow-hidden bg-[#050505] py-32">
       {/* Background Radial Glow (Left Side) */}
-      <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFB800]/10 to-transparent opacity-40 blur-[120px]" />
+      <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFAA00]/10 to-transparent opacity-40 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-4">
         <motion.h2
@@ -58,8 +58,8 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
                 className="absolute inset-y-0 left-[20px] w-px origin-top -translate-x-1/2 md:inset-x-0 md:mx-auto md:translate-x-0"
                 style={{
                   background: smatchEraStartIndex === -1
-                    ? 'linear-gradient(to bottom, rgba(255,255,255,0.05), #FFB800, rgba(255,255,255,0.05))'
-                    : `linear-gradient(to bottom, #FFB800 0%, #FFB800 ${goldPercentage}%, #374151 ${goldPercentage}%, #374151 100%)`
+                    ? 'linear-gradient(to bottom, rgba(255,255,255,0.05), #FFAA00, rgba(255,255,255,0.05))'
+                    : `linear-gradient(to bottom, #FFAA00 0%, #FFAA00 ${goldPercentage}%, #374151 ${goldPercentage}%, #374151 100%)`
                 }}
               />
             )
@@ -169,7 +169,7 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
 
                     <div className={`relative z-10 size-3 rounded-full backdrop-blur-md transition-colors duration-300 ${isGold
                       ? event.isCurrent
-                        ? 'bg-smatch-gold shadow-[0_0_15px_#FFC800]'
+                        ? 'bg-smatch-gold shadow-[0_0_15px_#FFAA00]'
                         : 'border border-smatch-gold/40 bg-smatch-gold/20'
                       : 'border border-gray-600 bg-gray-700'
                       }`} />

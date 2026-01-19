@@ -18,12 +18,12 @@ export function Hero() {
       {/* Background Effects */}
       <div className="absolute inset-x-0 bottom-0 z-10 size-full bg-gradient-to-t from-smatch-black to-transparent"></div>
       <div className="absolute inset-0 z-0 ">
-        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFC800" />
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60 " fill="#FFAA00" />
         <Spotlight
           className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
           fill="#FFE6A1"
         />
-        <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFC800" />
+        <Spotlight className="-top-40 left-0 md:-top-40 md:left-[30rem]" fill="#FFAA00" />
         <Image
           src={'/assets/hero/hero-background.jpg'}
           alt="Hero background"

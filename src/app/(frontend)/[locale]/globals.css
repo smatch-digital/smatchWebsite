@@ -135,32 +135,32 @@ nav a:hover::after {
     @apply bg-smatch-black text-foreground min-h-[100vh] flex flex-col relative;
   }
 
+  body {
+    --sb-track-color: #090909;
+    --sb-thumb-color: #ffaa00;
+    --sb-size: 8px;
+  }
+
+  body::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+
+  body::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 4px;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 4px;
+    border: 3px solid #090909;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
     body {
-      --sb-track-color: #090909;
-      --sb-thumb-color: #febe0b;
-      --sb-size: 8px;
+      scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
     }
-  
-    body::-webkit-scrollbar {
-      width: var(--sb-size)
-    }
-  
-    body::-webkit-scrollbar-track {
-      background: var(--sb-track-color);
-      border-radius: 4px;
-    }
-  
-    body::-webkit-scrollbar-thumb {
-      background: var(--sb-thumb-color);
-      border-radius: 4px;
-      border: 3px solid #090909;
-    }
-  
-    @supports not selector(::-webkit-scrollbar) {
-      body {
-        scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-      }
-    }
+  }
 
   body::before {
     content: "";
@@ -191,7 +191,7 @@ html[data-theme='light'] {
   /* SMATCH GOLD BUTTON */
   .button-gold a,
   .button-gold button {
-    @apply bg-smatch-gold text-smatch-black font-bold uppercase tracking-widest px-8 py-4 rounded-sm transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(255, 200, 0, 0.5)];
+    @apply bg-smatch-gold text-smatch-black font-bold uppercase tracking-widest px-8 py-4 rounded-sm transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(255, 170, 0, 0.5)];
   }
 
   /* OUTLINE BUTTON */

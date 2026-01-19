@@ -67,7 +67,7 @@ export const IconGallery: React.FC = () => {
                                 style={{
                                     width: '4px',
                                     height: '32px',
-                                    background: 'linear-gradient(180deg, #FFC800 0%, #FFE680 100%)',
+                                    background: 'linear-gradient(180deg, #FFAA00 0%, #FFE680 100%)',
                                     borderRadius: '2px',
                                 }}
                             />
@@ -86,8 +86,8 @@ export const IconGallery: React.FC = () => {
                                 style={{
                                     fontSize: '12px',
                                     fontWeight: '600',
-                                    color: '#FFC800',
-                                    background: 'rgba(255, 200, 0, 0.1)',
+                                    color: '#FFAA00',
+                                    background: 'rgba(255, 170, 0, 0.1)',
                                     padding: '4px 10px',
                                     borderRadius: '20px',
                                     border: '1px solid rgba(255, 200, 0, 0.2)',
@@ -151,7 +151,7 @@ export const IconGallery: React.FC = () => {
                                 >
                                     <PhosphorIcons.CircleNotch
                                         size={18}
-                                        style={{ color: '#FFC800', animation: 'spin 1s linear infinite' }}
+                                        style={{ color: '#FFAA00', animation: 'spin 1s linear infinite' }}
                                     />
                                 </div>
                             )}
@@ -169,7 +169,7 @@ export const IconGallery: React.FC = () => {
                             <span
                                 style={{
                                     background: 'rgba(255, 200, 0, 0.15)',
-                                    color: '#FFC800',
+                                    color: '#FFAA00',
                                     padding: '2px 8px',
                                     borderRadius: '4px',
                                     fontWeight: '600',
@@ -217,7 +217,7 @@ export const IconGallery: React.FC = () => {
                                         transition: 'all 0.15s ease',
                                         gap: '10px',
                                         minHeight: '90px',
-                                        color: isCopied ? '#FFC800' : 'rgba(255, 255, 255, 0.7)',
+                                        color: isCopied ? '#FFAA00' : 'rgba(255, 255, 255, 0.7)',
                                     }}
                                     onMouseEnter={(e) => {
                                         if (!isCopied) {

@@ -162,7 +162,7 @@ export const NavCTAContainer = ({
 export const CTAButton = ({ children, href }: { children: React.ReactNode; href: string }) => {
   return (
     <Link href={href}>
-      <div className="rounded-md bg-[#FFB800] px-6 py-2 text-black shadow-[0_0_20px_rgba(255,184,0,0.2)] transition-colors duration-300 hover:bg-[#E0A200]">
+      <div className="rounded-md bg-[#FFAA00] px-6 py-2 text-black shadow-[0_0_20px_rgba(255,170,0,0.2)] transition-colors duration-300 hover:bg-[#D99200]">
         <span className="font-sans text-[12px] font-bold uppercase tracking-widest">
           {children}
         </span>

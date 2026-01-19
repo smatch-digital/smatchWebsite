@@ -69,13 +69,13 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
         </div>
 
         {/* Border Glow */}
-        <div className="pointer-events-none absolute inset-0 z-20 rounded-[12px] border-2 border-transparent transition-colors duration-300 group-hover:border-[#FFB800]" />
+        <div className="pointer-events-none absolute inset-0 z-20 rounded-[12px] border-2 border-transparent transition-colors duration-300 group-hover:border-[#FFAA00]" />
 
         {/* Content */}
         <div className="absolute inset-0 z-10 flex flex-col p-8">
           <div className="flex flex-1 items-center justify-center">
-            <div className="flex size-20 items-center justify-center rounded-[16px] border border-[#FFB800]/30 bg-[#1A1A1A]/80 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover:border-[#FFB800] group-hover:bg-[#FFB800]/10">
-              <div className="text-[#FFB800]">
+            <div className="flex size-20 items-center justify-center rounded-[16px] border border-[#FFAA00]/30 bg-[#1A1A1A]/80 shadow-[0_0_30px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 group-hover:border-[#FFAA00] group-hover:bg-[#FFAA00]/10">
+              <div className="text-[#FFAA00]">
                 {icon}
               </div>
             </div>
@@ -89,7 +89,7 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
             }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
-            <span className="mb-2 font-mono text-sm font-bold uppercase tracking-widest text-[#FFB800]">
+            <span className="mb-2 font-mono text-sm font-bold uppercase tracking-widest text-[#FFAA00]">
               {data.heroSubtitle || 'Solution'}
             </span>
 
@@ -110,7 +110,7 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
                 hover: { height: 'auto', opacity: 1 },
               }}
             >
-              <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFB800] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#E5A500]">
+              <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFAA00] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#D99200]">
                 Explore Solution
                 <ArrowRight size={16} weight="bold" />
               </button>
@@ -127,8 +127,8 @@ export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
   return (
     <section className="relative overflow-hidden bg-[#050505] py-32">
       {/* Background Atmosphere */}
-      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#FFB800]/20 to-transparent" />
-      <div className="pointer-events-none absolute -left-[20%] top-[20%] size-2/5 rounded-full bg-[#FFB800]/5 blur-[120px]" />
+      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#FFAA00]/20 to-transparent" />
+      <div className="pointer-events-none absolute -left-[20%] top-[20%] size-2/5 rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="mb-20 text-center">

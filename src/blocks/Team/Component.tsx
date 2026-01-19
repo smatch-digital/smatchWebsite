@@ -30,7 +30,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
   const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
   return (
-    <div className="relative flex flex-col justify-between h-full max-h-[400px] w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFB800]/30 md:p-6">
+    <div className="relative flex flex-col justify-between h-full max-h-[400px] w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:p-6">
       {/* Decorative Noise/Grid Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
       <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
@@ -56,7 +56,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
               </div>
             )}
 
-            <div className="absolute top-0 z-20 h-[2px] w-full bg-[#FFB800]/50 opacity-0 shadow-[0_0_20px_#FFB800] group-hover:animate-pulse group-hover:opacity-100" />
+            <div className="absolute top-0 z-20 h-[2px] w-full bg-[#FFAA00]/50 opacity-0 shadow-[0_0_20px_#FFAA00] group-hover:animate-pulse group-hover:opacity-100" />
           </div>
         </div>
 
@@ -64,8 +64,8 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
         <div className="flex-1">
           {/* Tag */}
           {member.tag && (
-            <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#FFB800]/20 bg-[#FFB800]/10 px-3 py-1">
-              <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-[0.2em] text-[#FFB800]">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#FFAA00]/20 bg-[#FFAA00]/10 px-3 py-1">
+              <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-[0.2em] text-[#FFAA00]">
                 {member.tag}
               </span>
             </div>
@@ -80,13 +80,13 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           </h3>
 
           {/* Role (Font Mono / JetBrains) */}
-          <p className="mb-4 font-mono text-xs uppercase tracking-widest text-[#FFB800]/80">
+          <p className="mb-4 font-mono text-xs uppercase tracking-widest text-[#FFAA00]/80">
             {member.role}
           </p>
 
           {/* Description Block */}
           {member.description && (
-            <div className="relative mb-6 border-l-2 border-[#FFB800] pl-4">
+            <div className="relative mb-6 border-l-2 border-[#FFAA00] pl-4">
               <p className="line-clamp-3 bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed text-transparent md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
@@ -96,12 +96,12 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-3">
             {member.linkedin && (
-              <Link href={member.linkedin} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
+              <Link href={member.linkedin} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
                 <LinkedinLogo size={20} weight="duotone" />
               </Link>
             )}
             {member.email && (
-              <Link href={`mailto:${member.email}`} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFB800] hover:bg-[#FFB800] hover:text-black">
+              <Link href={`mailto:${member.email}`} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
                 <EnvelopeSimple size={20} weight="duotone" />
               </Link>
             )}
@@ -113,7 +113,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
       {member.footerId && (
         <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] tracking-widest text-gray-500">
           <span>{member.footerId}</span>
-          <span className="text-[#FFB800]">ONLINE</span>
+          <span className="text-[#FFAA00]">ONLINE</span>
         </div>
       )}
     </div>
@@ -125,7 +125,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
   const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
   return (
-    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFB800]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,184,0,0.1)]">
+    <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFAA00]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,170,0,0.1)]">
 
       {/* Hover Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -148,7 +148,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
         {member.tag && (
           <div className="rounded border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-md">
-            <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-wider text-[#FFB800]">
+            <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-wider text-[#FFAA00]">
               {member.tag}
             </span>
           </div>
@@ -158,7 +158,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
       {/* Content */}
       <div className="relative z-10">
         {/* Name (Font Heading) */}
-        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white transition-colors group-hover:text-[#FFB800]">
+        <h3 className="mb-1 font-heading text-2xl font-bold uppercase text-white transition-colors group-hover:text-[#FFAA00]">
           {member.name}
         </h3>
 
@@ -177,10 +177,10 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
       {/* Footer */}
       <div className="relative z-10 mt-auto flex items-center justify-between border-t border-white/10 pt-4">
-        <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] text-gray-600 transition-colors group-hover:text-[#FFB800]">
+        <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] text-gray-600 transition-colors group-hover:text-[#FFAA00]">
           {member.footerId}
         </span>
-        <div className="rounded-full bg-white/5 p-1.5 text-white/30 transition-colors group-hover:bg-[#FFB800] group-hover:text-black">
+        <div className="rounded-full bg-white/5 p-1.5 text-white/30 transition-colors group-hover:bg-[#FFAA00] group-hover:text-black">
           <ArrowUpRight size={14} weight="bold" />
         </div>
       </div>
@@ -209,13 +209,13 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
   return (
     <section className="relative w-full overflow-hidden bg-[#050505] py-24 text-white">
       {/* Background Atmosphere */}
-      <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFB800]/5 blur-[120px]" />
+      <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container mx-auto relative z-10">
 
         {/* Section Header */}
         <div className="mb-20 text-center">
-          <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFB800]">
+          <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFAA00]">
             {tag}
           </span>
           <h2 className="font-heading text-4xl font-black uppercase tracking-tighter text-white md:text-6xl">
@@ -252,8 +252,8 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">
-                  <div className="mb-4 h-[1px] w-12 bg-[#FFB800]" />
-                  <p className="font-mono text-xl tracking-widest text-[#FFB800]">
+                  <div className="mb-4 h-[1px] w-12 bg-[#FFAA00]" />
+                  <p className="font-mono text-xl tracking-widest text-[#FFAA00]">
                     - {quoteAuthor}
                   </p>
                 </div>

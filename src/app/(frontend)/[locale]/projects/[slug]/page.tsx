@@ -90,9 +90,9 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
             {/* Back Link */}
             <Link
               href="/projects"
-              className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-[#FFB800]"
+              className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-white/60 transition-colors hover:text-[#FFAA00]"
             >
-              <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFB800]/50 group-hover:bg-[#FFB800]/10">
+              <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFAA00]/50 group-hover:bg-[#FFAA00]/10">
                 <ArrowLeft size={14} />
               </div>
               Retour au Journal
@@ -100,12 +100,12 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
 
             {/* Status Badge (Top Right) */}
             {project.status === 'upcoming' && (
-              <div className="inline-flex items-center gap-3 rounded-full border border-[#FFB800]/50 bg-[#FFB800]/10 px-4 py-1.5 backdrop-blur-sm">
+              <div className="inline-flex items-center gap-3 rounded-full border border-[#FFAA00]/50 bg-[#FFAA00]/10 px-4 py-1.5 backdrop-blur-sm">
                 <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFB800] opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[#FFB800]" />
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFAA00] opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-[#FFAA00]" />
                 </span>
-                <span className="font-mono text-[clamp(0.6rem,0.5vw,0.75rem)] font-bold uppercase tracking-widest text-[#FFB800]">
+                <span className="font-mono text-[clamp(0.6rem,0.5vw,0.75rem)] font-bold uppercase tracking-widest text-[#FFAA00]">
                   {project.type === 'event' ? 'ÉVÉNEMENT EN COURS' : 'PROJET EN COURS'}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
           {/* Quick Summary Line */}
           {project.location && (
             <div className="mt-8 flex items-center gap-4 text-white/50">
-              <div className="h-px w-12 bg-[#FFB800]" />
+              <div className="h-px w-12 bg-[#FFAA00]" />
               <span className="font-mono text-sm uppercase tracking-widest">{project.location}</span>
             </div>
           )}
@@ -136,7 +136,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
             <div className="lg:col-span-4">
               <div className="sticky top-32 space-y-12">
                 <div>
-                  <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFB800]">
+                  <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFAA00]">
                     Spécifications
                   </h3>
                   <dl className="space-y-6 divide-y divide-white/10 border-t border-white/10 pt-6">
@@ -194,9 +194,9 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                 <div className="prose prose-lg prose-invert max-w-none 
                   prose-headings:font-heading prose-headings:uppercase prose-headings:tracking-tighter prose-headings:text-white 
                   prose-p:font-sans prose-p:text-gray-300 prose-p:leading-relaxed
-                  prose-a:text-[#FFB800] prose-a:no-underline hover:prose-a:underline
+                  prose-a:text-[#FFAA00] prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-white prose-strong:font-bold
-                  prose-blockquote:border-l-[#FFB800] prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:pl-6 prose-blockquote:italic
+                  prose-blockquote:border-l-[#FFAA00] prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:pl-6 prose-blockquote:italic
                 ">
                   <RichText data={project.fullDescription} />
                 </div>
