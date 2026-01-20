@@ -166,7 +166,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
                   <Envelope size={24} weight="regular" />
                 </div>
                 <div className="w-full pl-5">
-                  <span className="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1 group-hover:text-smatch-gold/70 transition-colors">
+                  <span className="block text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1 group-hover:text-smatch-gold/70 transition-colors">
                     Discutez avec nous
                   </span>
                   <a
@@ -187,7 +187,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
                     <Phone size={24} weight="regular" />
                   </div>
                   <div>
-                    <span className="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1 group-hover:text-smatch-gold/70 transition-colors">
+                    <span className="block text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-1 group-hover:text-smatch-gold/70 transition-colors">
                       Appelez-nous
                     </span>
                     <a
@@ -213,7 +213,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
                 <div className="space-y-6">
                   {addresses.map((addr, idx) => (
                     <div key={idx} className="pl-4 border-l border-white/10 group-hover:border-white/20 transition-colors">
-                      <span className="block text-[10px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">
+                      <span className="block text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-widest mb-2">
                         {addr.label}
                       </span>
                       <p className="text-white font-bold leading-snug">

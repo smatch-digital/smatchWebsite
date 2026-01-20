@@ -181,11 +181,11 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
                     className={`hidden w-[45%] items-center md:flex ${isEven ? 'justify-start' : 'justify-end'}`}
                   >
                     {event.isCurrent && isGold ? (
-                      <div className="rounded-[2px] border border-smatch-gold bg-smatch-gold/5 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-smatch-gold">
+                      <div className="rounded-[2px] border border-smatch-gold bg-smatch-gold/5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-smatch-gold">
                         {event.version || 'CURRENT'}
                       </div>
                     ) : (
-                      <span className={`font-mono text-[10px] uppercase tracking-widest ${isGold ? 'text-gray-600' : 'text-gray-700'
+                      <span className={`font-mono text-[11px] uppercase tracking-widest ${isGold ? 'text-gray-600' : 'text-gray-700'
                         }`}>
                         {event.version}
                       </span>

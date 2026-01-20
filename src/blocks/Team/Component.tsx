@@ -65,7 +65,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Tag */}
           {member.tag && (
             <div className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#FFAA00]/20 bg-[#FFAA00]/10 px-3 py-1">
-              <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-[0.2em] text-[#FFAA00]">
+              <span className="font-mono text-[clamp(0.6875rem,0.75vw,0.625rem)] font-bold tracking-[0.2em] text-[#FFAA00]">
                 {member.tag}
               </span>
             </div>
@@ -111,7 +111,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
       </div>
       {/* Footer ID Tag */}
       {member.footerId && (
-        <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] tracking-widest text-gray-500">
+        <div className="mt-6 flex items-center justify-between border-t border-white/10 py-3 font-mono text-[clamp(0.6875rem,0.75vw,0.625rem)] tracking-widest text-gray-500">
           <span>{member.footerId}</span>
           <span className="text-[#FFAA00]">ONLINE</span>
         </div>
@@ -148,7 +148,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
         {member.tag && (
           <div className="rounded border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-md">
-            <span className="font-mono text-[clamp(0.5rem,0.75vw,0.625rem)] font-bold tracking-wider text-[#FFAA00]">
+            <span className="font-mono text-[clamp(0.6875rem,0.75vw,0.625rem)] font-bold tracking-wider text-[#FFAA00]">
               {member.tag}
             </span>
           </div>
@@ -163,7 +163,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
         </h3>
 
         {/* Role (Font Mono) */}
-        <p className="mb-4 font-mono text-[clamp(0.6rem,0.8vw,0.7rem)] uppercase tracking-wider text-gray-500">
+        <p className="mb-4 font-mono text-[clamp(0.6875rem,0.8vw,0.7rem)] uppercase tracking-wider text-gray-500">
           {member.role}
         </p>
 

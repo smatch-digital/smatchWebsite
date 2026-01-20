@@ -12,6 +12,7 @@ import {
   House, // Home
   PhoneCall, // Contact
   X,
+  ChatCircle, // Chatbot
 } from '@phosphor-icons/react'
 import {
   NavbarLayout,
@@ -25,6 +26,7 @@ import {
   MobileMenuOverlay,
 } from '@/components/ui/resizable-navbar'
 import { NavLanguageSelector } from '@/components/ui/NavLanguageSelector'
+import { useChatbot } from '@/components/Chatbot/ChatbotContext'
 
 interface HeaderClientProps {
   data: Header | null
@@ -35,6 +37,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
+  const { isOpen: isChatOpen, toggleChat } = useChatbot()
 
   const navItems = data?.navItems || []
 
@@ -177,13 +180,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
 
           <div className="mx-2 h-6 w-px bg-white/10" />
 
-          {/* Quick Contact */}
-          <Link
-            href={`/${locale}/contact`}
-            className="p-2 text-white/60 transition-colors hover:text-[#FFAA00]"
+          {/* Chatbot Trigger */}
+          <button
+            onClick={toggleChat}
+            className={`relative rounded-full p-2 transition-colors ${isChatOpen ? 'text-[#FFAA00]' : 'text-white/60 hover:text-[#FFAA00]'}`}
+            aria-label="Ouvrir le chat"
           >
-            <PhoneCall size={24} />
-          </Link>
+            <ChatCircle size={24} weight={isChatOpen ? 'fill' : 'regular'} />
+            {/* Pulse indicator when chat is closed */}
+            {!isChatOpen && (
+              <span className="absolute right-1 top-1 h-2 w-2 animate-pulse rounded-full bg-[#FFAA00]" />
+            )}
+          </button>
         </MobileBottomDock>
 
         {/* 3. The Menu Sheet (Slides up from bottom) */}

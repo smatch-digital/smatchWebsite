@@ -51,7 +51,7 @@ const TerminalTag = ({ text }: { text: string }) => {
       <span className="select-none font-mono text-xs font-bold text-[#FFAA00]">{'>_'}</span>
 
       {/* Text */}
-      <span className="font-mono text-[9px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white md:text-[10px]">
+      <span className="font-mono text-[11px] uppercase tracking-wider text-gray-400 transition-colors group-hover:text-white md:text-[10px]">
         {text}
       </span>
 
@@ -243,7 +243,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
                       transition={{ duration: 60, ease: "linear", repeat: Infinity }}
                       className="relative z-10 w-28 rounded-md border border-[#FFAA00]/20 bg-[#0F0F0F] p-2 text-center shadow-[0_0_30px_rgba(0,0,0,0.5)] md:w-40 md:p-4"
                     >
-                      <span className="mb-1 block font-mono text-[8px] uppercase text-[#FFAA00] md:mb-2 md:text-[10px]">{node.label}</span>
+                      <span className="mb-1 block font-mono text-[10px] uppercase text-[#FFAA00] md:mb-2 md:text-[10px]">{node.label}</span>
                       <div className="flex items-center justify-center gap-1 text-[10px] font-bold uppercase text-white md:gap-2 md:text-xs">
                         <Icon size={12} className="text-[#FFAA00] md:size-[16px]" />
                         {node.text}

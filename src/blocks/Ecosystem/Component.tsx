@@ -69,7 +69,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
           <h2 className="font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
             {headline}
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg font-medium text-white/50 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-lg font-light text-white/60 md:text-xl">
             {description}
           </p>
         </div>
@@ -121,7 +121,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               {/* Text Content */}
               <div className="relative z-10 mt-auto text-center">
                 <h3 className="mb-3 text-xl font-bold leading-tight md:text-2xl">{connectivityTitle}</h3>
-                <p className="text-sm font-medium leading-relaxed text-white/50">
+                <p className="text-sm font-light leading-relaxed text-white/60">
                   {connectivityDesc}
                 </p>
               </div>
@@ -147,7 +147,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               <div className="flex flex-col justify-between">
                 <div>
                   <h3 className="mb-2 text-xl font-bold md:text-2xl">{supportTitle}</h3>
-                  <p className="max-w-xs text-sm font-medium text-white/50">{supportDesc}</p>
+                  <p className="max-w-xs text-sm font-light text-white/60">{supportDesc}</p>
                 </div>
               </div>
 
@@ -187,7 +187,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 <div className="size-2.5 rounded-full bg-[#FF5F57]" />
                 <div className="size-2.5 rounded-full bg-[#FEBC2E]" />
                 <div className="size-2.5 rounded-full bg-[#28C840]" />
-                <span className="ml-auto font-mono text-[10px] text-white/30">api.config.ts</span>
+                <span className="ml-auto font-mono text-[11px] text-white/30">api.config.ts</span>
               </div>
 
               <div className="mb-8 h-px w-full bg-white/5" />
@@ -200,10 +200,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
                 <div className="mt-4">
                   <span className="text-[#C792EA]">const</span> <span className="text-[#61AFEF]">client</span> <span className="text-white">=</span> <span className="text-[#E5C07B]">new</span> <span className="text-[#E5C07B]">WMS</span><span className="text-white">({'{'}</span>
                 </div>
-                <div className="pl-4 text-white/80">
+                <div className="pl-4 text-white/60">
                   apiKey: <span className="text-[#98C379]">'sk_live...'</span>,
                 </div>
-                <div className="pl-4 text-white/80">
+                <div className="pl-4 text-white/60">
                   region: <span className="text-[#98C379]">'ma-cas-1'</span>
                 </div>
                 <div className="text-white">{'}'});</div>
@@ -213,7 +213,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
               {/* Bottom Text */}
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A] to-transparent p-6 pt-16">
                 <h3 className="mb-2 text-xl font-bold">{apiTitle}</h3>
-                <p className="text-sm font-medium text-white/50">{apiDesc}</p>
+                <p className="text-sm font-light text-white/60">{apiDesc}</p>
               </div>
             </div>
           </div>
@@ -221,21 +221,21 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
 
           {/* 4. CORE INTELLIGENCE (Middle Center) */}
           {/* Position: Col 3-6 / Row 3-4 */}
-          <div className="group relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
-            <div className="absolute inset-0 left-10 z-20 pointer-events-none flex md:left-4">
+          <div className="group flex justify-center w-full relative overflow-hidden rounded-md border border-white/5 bg-[#0A0A0A] transition-all duration-500 hover:border-[#FFAA00]/50 md:col-start-3 md:col-end-7 md:row-start-3 md:row-end-5">
+            <div className="w-full inset-0 left-10 z-20 pointer-events-none flex md:left-4">
               <div className="relative flex justify-center items-center">
                 <Image className="w-[160px] md:w-[250px] opacity-90 transform transition-transform duration-700 ease-out group-hover:scale-110" alt='' src="/assets/ecosystem/at.png" width={250} height={250} />
                 <div className='absolute top-14 left-14 -z-10 opacity-30 bg-smatch-gold h-[80px] w-[80px] rounded-full blur-[60px] transition-opacity duration-700 group-hover:opacity-60'></div>
               </div>
             </div>
-            <div className="relative z-10 flex h-full flex-col items-center justify-center p-8 text-center bg-transparent">
+            <div className="relative w-full z-10 flex h-full flex-col items-center justify-center p-8 text-center bg-transparent">
 
 
 
-              <div className="pl-0 md:pl-52 relative z-20">
+              <div className=" relative z-20">
                 <div className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-black/40 px-4 py-1.5 backdrop-blur-md">
                   <Cpu size={14} className="text-[#FFAA00]" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">Neural Engine</span>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#FFAA00]">Neural Engine</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white md:text-4xl">Intelligence fondamentale</h3>
               </div>
@@ -256,7 +256,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
             <div className="relative z-20 flex h-full items-start justify-between">
               <div className="max-w-[340px]">
                 <h3 className="mb-2 text-xl font-bold md:text-2xl">{optimizationTitle}</h3>
-                <p className="text-sm font-medium leading-relaxed text-white/50">
+                <p className="text-sm font-light leading-relaxed text-white/60">
                   {optimizationDesc}
                 </p>
               </div>
@@ -276,7 +276,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
             <div className="absolute inset-0 flex items-end justify-between p-6 md:p-10">
               <div className="z-10 mb-2">
                 <h3 className="mb-2 text-xl font-bold md:text-2xl">{controlTitle}</h3>
-                <p className="max-w-[320px] text-sm font-medium leading-relaxed text-white/50">
+                <p className="max-w-[320px] text-sm font-light leading-relaxed text-white/60">
                   {controlDesc}
                 </p>
               </div>

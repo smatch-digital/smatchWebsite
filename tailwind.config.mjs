@@ -93,6 +93,22 @@ const config = {
         // Use 'font-mono' for JetBrains (Data)
         mono: ['var(--font-jetbrains)', 'monospace'],
       },
+      // FLUID TYPOGRAPHY - Responsiveness Architect Pattern
+      // Uses clamp() for smooth scaling between viewports
+      fontSize: {
+        'fluid-h1': 'clamp(2rem, 5vw + 1rem, 4rem)',      // 32px → 64px
+        'fluid-h2': 'clamp(1.5rem, 4vw + 0.5rem, 3rem)',  // 24px → 48px
+        'fluid-h3': 'clamp(1.25rem, 3vw + 0.5rem, 2rem)', // 20px → 32px
+        'fluid-p': 'clamp(1rem, 1vw + 0.75rem, 1.125rem)', // 16px → 18px
+        'fluid-sm': 'clamp(0.75rem, 1vw + 0.25rem, 0.875rem)', // 12px → 14px
+      },
+      // FLUID SPACING - Responsiveness Architect Pattern
+      spacing: {
+        'fluid-sm': 'clamp(0.5rem, 2vw, 1rem)',   // 8px → 16px
+        'fluid-md': 'clamp(1rem, 4vw, 2rem)',     // 16px → 32px
+        'fluid-lg': 'clamp(2rem, 6vw, 4rem)',     // 32px → 64px
+        'fluid-xl': 'clamp(3rem, 8vw, 6rem)',     // 48px → 96px
+      },
       backgroundImage: {
         // Custom gradients seen in your design
         'gold-gradient': 'linear-gradient(135deg, #FFAA00 0%, #B8860B 100%)',

@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { ChatCircle, X, PaperPlaneTilt, Robot } from '@phosphor-icons/react'
 import { cn } from '@/utilities/ui'
+import { useChatbot } from './ChatbotContext'
 import './chatbot.css'
 
 interface Message {
@@ -40,7 +41,7 @@ function formatTime(date: Date): string {
 }
 
 export function ChatbotWidget() {
-    const [isOpen, setIsOpen] = useState(false)
+    const { isOpen, openChat, closeChat } = useChatbot()
     const [messages, setMessages] = useState<Message[]>(MOCK_MESSAGES)
     const [inputValue, setInputValue] = useState('')
     const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -85,11 +86,11 @@ export function ChatbotWidget() {
 
     return (
         <>
-            {/* Floating Action Button */}
+            {/* Floating Action Button - Desktop Only */}
             <button
-                onClick={() => setIsOpen(true)}
+                onClick={openChat}
                 className={cn(
-                    'chatbot-fab fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg',
+                    'chatbot-fab fixed bottom-6 right-6 z-[10001] hidden h-16 w-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg md:flex',
                     isOpen && 'pointer-events-none opacity-0',
                 )}
                 aria-label="Ouvrir le chat"
@@ -98,12 +99,13 @@ export function ChatbotWidget() {
                 <span className="chatbot-fab-pulse" />
             </button>
 
+
             {/* Chat Window */}
             <div
                 className={cn(
-                    'chatbot-window fixed z-50 flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
-                    // Mobile: full width, shorter height | Desktop: fixed dimensions
-                    'bottom-4 right-4 left-4 h-[70vh] max-h-[600px] md:bottom-6 md:right-6 md:left-auto md:h-[600px] md:w-[400px]',
+                    'chatbot-window fixed z-[10001] flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
+                    // Mobile: positioned above the navbar dock (bottom-20 = ~80px) | Desktop: fixed dimensions
+                    'bottom-20 right-4 left-4 h-[60vh] max-h-[500px] md:bottom-6 md:right-6 md:left-auto md:h-[600px] md:w-[400px]',
                     isOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
                 )}
             >
@@ -121,7 +123,7 @@ export function ChatbotWidget() {
                         </div>
                     </div>
                     <button
-                        onClick={() => setIsOpen(false)}
+                        onClick={closeChat}
                         className="flex h-9 w-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
                         aria-label="Fermer le chat"
                     >

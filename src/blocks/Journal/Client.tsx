@@ -82,7 +82,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
 
                         <Link
                             href="/projects"
-                            className="mt-4 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-colors hover:text-[#FFAA00] md:mt-0"
+                            className="mt-4 font-mono text-[11px] uppercase tracking-widest text-gray-500 transition-colors hover:text-[#FFAA00] md:mt-0"
                         >
                             VOIR TOUT →
                         </Link>
@@ -112,8 +112,8 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
                                     />
 
                                     {/* REC Overlay */}
-                                    <div className="absolute left-3 top-3 font-mono text-[10px] text-white/70">REC</div>
-                                    <div className="absolute right-3 top-3 font-mono text-[10px] text-white/70">
+                                    <div className="absolute left-3 top-3 font-mono text-[11px] text-white/70">REC</div>
+                                    <div className="absolute right-3 top-3 font-mono text-[11px] text-white/70">
                                         {new Date().toISOString().slice(0, 10)}
                                     </div>
 
@@ -123,7 +123,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
 
                                 {/* Text Content */}
                                 <div className="flex flex-1 flex-col">
-                                    <div className="mb-3 border-l-2 border-transparent pl-0 font-mono text-[10px] uppercase tracking-widest text-gray-500 transition-all duration-300 group-hover:border-[#FFAA00] group-hover:pl-3">
+                                    <div className="mb-3 border-l-2 border-transparent pl-0 font-mono text-[11px] uppercase tracking-widest text-gray-500 transition-all duration-300 group-hover:border-[#FFAA00] group-hover:pl-3">
                                         {article.meta}
                                     </div>
 
@@ -136,7 +136,7 @@ export const JournalClientComponent: React.FC<JournalClientProps> = (props) => {
                                     </p>
 
                                     <div className="mt-auto">
-                                        <span className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">
+                                        <span className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFAA00]">
                                             <span>&gt;</span>
                                             {article.linkText}
                                         </span>

@@ -85,7 +85,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
               className='flex flex-col gap-8'
             >
               {/* Solid White Text */}
-              <h2 className="relative z-10 font-heading text-6xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-7xl lg:text-[11rem]">
+              <h2 className="relative z-10 font-heading text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-5xl md:text-7xl lg:text-[11rem]">
                 {headingPart1}
               </h2>
 
@@ -93,7 +93,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
               <div className="relative">
                 {/* The Stroke Version */}
                 <h2
-                  className="relative left-1 z-10 font-heading text-6xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-7xl lg:text-[11rem]"
+                  className="relative left-1 z-10 font-heading text-4xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 sm:text-5xl md:left-4 md:text-7xl lg:text-[11rem]"
                   style={{ WebkitTextStroke: '2px #FFAA00' }}
                 >
                   {headingPart2}

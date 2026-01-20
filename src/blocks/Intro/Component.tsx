@@ -70,7 +70,7 @@ export const IntroBlockComponent: React.FC<IntroBlockProps> = (props) => {
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                         >
                             {/* Solid White Text */}
-                            <h2 className="relative z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-white md:text-8xl lg:text-[11rem]">
+                            <h2 className="relative z-10 font-heading text-4xl font-black uppercase leading-[0.85] tracking-tighter text-white sm:text-5xl md:text-8xl lg:text-[11rem]">
                                 {header?.headingPart1}
                             </h2>
 
@@ -78,7 +78,7 @@ export const IntroBlockComponent: React.FC<IntroBlockProps> = (props) => {
                             <div className="relative">
                                 {/* The Stroke Version */}
                                 <h2
-                                    className="relative left-1 z-10 font-heading text-7xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 md:left-4 md:text-8xl lg:text-[11rem]"
+                                    className="relative left-1 z-10 font-heading text-4xl font-black uppercase leading-[0.85] tracking-tighter text-transparent transition-colors duration-500 sm:text-5xl md:left-4 md:text-8xl lg:text-[11rem]"
                                     style={{ WebkitTextStroke: '2px #FFAA00' }}
                                 >
                                     {header?.headingPart2}

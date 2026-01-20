@@ -115,7 +115,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                       {/* Text Content */}
                       <div className="relative z-10 flex h-full flex-col">
                         <div className="mb-6">
-                          <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+                          <span className="font-mono text-[11px] uppercase tracking-widest text-white/40">
                             {tab.moduleTag}
                           </span>
                         </div>
@@ -133,7 +133,7 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
                         </p>
 
                         <div className="mt-auto border-t border-white/5 pt-6">
-                          <span className="mb-1 block font-mono text-[10px] uppercase text-white/40">
+                          <span className="mb-1 block font-mono text-[11px] uppercase text-white/40">
                             Hardware
                           </span>
                           <span className="font-mono text-xs text-white/60">

@@ -25,12 +25,12 @@ export const SmartGrid: React.FC<SmartGridProps> = ({ cards, columns = '3', clas
             {sectionHeader && (sectionHeader.title || sectionHeader.description) && (
                 <div className={`mb-12 ${alignClass} md:mb-[80px]`}>
                     {sectionHeader.title && (
-                        <h2 className="mb-0 font-heading text-[28px] font-bold uppercase tracking-tight text-white md:text-[32px]">
+                        <h2 className="mb-0 font-heading text-2xl font-bold uppercase tracking-tight text-white md:text-[32px]">
                             {sectionHeader.title}
                         </h2>
                     )}
                     {sectionHeader.description && (
-                        <p className={`mt-6 max-w-[999px] font-sans text-base font-light leading-relaxed text-[#ffffff82] md:mt-[30px] md:text-[16px]  ${headerAlign === 'center' ? 'mx-auto' : ''}`}>
+                        <p className={`mt-6 max-w-[999px] font-sans text-sm font-light leading-relaxed text-[#ffffff82] md:mt-[30px] md:text-base  ${headerAlign === 'center' ? 'mx-auto' : ''}`}>
                             {sectionHeader.description}
                         </p>
                     )}

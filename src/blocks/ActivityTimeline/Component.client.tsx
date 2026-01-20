@@ -59,7 +59,7 @@ const StatusBadge = ({ status }: { status: TimelineItem['status'] }) => {
                     <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#FFAA00] opacity-75" />
                     <span className="relative inline-flex size-2 rounded-full bg-[#FFAA00]" />
                 </span>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00]">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFAA00]">
                     BIENTÔT
                 </span>
             </div>
@@ -68,7 +68,7 @@ const StatusBadge = ({ status }: { status: TimelineItem['status'] }) => {
     if (status === 'completed') {
         return (
             <div className="inline-flex items-center gap-2 rounded border border-white/10 bg-white/5 px-3 py-1">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-gray-400">
                     STATUT: TERMINÉ
                 </span>
             </div>
@@ -118,7 +118,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                     </span>
                 )}
                 {item.code && (
-                    <span className="mt-2 font-mono text-[10px] uppercase tracking-widest text-gray-600">
+                    <span className="mt-2 font-mono text-[11px] uppercase tracking-widest text-gray-600">
                         CODE: {item.code}
                     </span>
                 )}
@@ -170,7 +170,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                                 {item.metadata.map((meta, i) => (
                                     <div key={i} className="flex items-center gap-1.5 text-gray-500">
                                         {getMetadataIcon(meta.icon)}
-                                        <span className="font-mono text-[10px] uppercase tracking-wider">
+                                        <span className="font-mono text-[11px] uppercase tracking-wider">
                                             {meta.label}: <span className="text-gray-300">{meta.value}</span>
                                         </span>
                                     </div>
@@ -179,7 +179,7 @@ const TimelineCard = ({ item, index }: { item: TimelineItem; index: number }) =>
                         )}
 
                         {/* CTA Button */}
-                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFAA00] bg-transparent px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-[#FFAA00] transition-all hover:bg-[#FFAA00] hover:text-black md:ml-auto md:mt-auto">
+                        <button className="mt-2 flex items-center gap-2 rounded border border-[#FFAA00] bg-transparent px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-widest text-[#FFAA00] transition-all hover:bg-[#FFAA00] hover:text-black md:ml-auto md:mt-auto">
                             {item.linkLabel || 'Voir les détails'}
                             <PhosphorIcons.ArrowRight size={12} weight="bold" />
                         </button>
