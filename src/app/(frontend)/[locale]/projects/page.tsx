@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getPayload } from '@/getPayload'
-import { ActivityTimelineBlock, TimelineItem } from '@/blocks/ActivityTimeline/Component'
+import { ActivityTimelineClient, TimelineItem } from '@/blocks/ActivityTimeline/Component.client'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
@@ -69,7 +69,7 @@ export default async function ProjectsPage({ params }: Args) {
         subtitle="Projets. Événements. Le fil de notre transformation numérique."
         image="/assets/hero/ProjectsHero.webp"
       />
-      <ActivityTimelineBlock title="ACTIVITÉS RÉCENTES" items={items} showFilters={true} />
+      <ActivityTimelineClient title="ACTIVITÉS RÉCENTES" items={items} showFilters={true} />
     </main>
   )
 }

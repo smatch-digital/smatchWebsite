@@ -281,23 +281,7 @@ export interface Page {
         blockName?: string | null;
         blockType: 'trustedBy';
       }
-    | {
-        title?: string | null;
-        populateBy?: ('latest' | 'selection') | null;
-        /**
-         * Nombre maximum d'éléments à afficher
-         */
-        limit?: number | null;
-        filterByType?: ('all' | 'project' | 'event') | null;
-        /**
-         * Choisissez les projets/événements à afficher
-         */
-        selectedItems?: (number | Project)[] | null;
-        showFilters?: boolean | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'activityTimeline';
-      }
+    | ActivityTimelineBlock
     | IntroBlock
     | JournalBlock
     | ContactBlock
@@ -1157,6 +1141,27 @@ export interface SmartGridBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ActivityTimelineBlock".
+ */
+export interface ActivityTimelineBlock {
+  title?: string | null;
+  populateBy?: ('latest' | 'selection') | null;
+  /**
+   * Nombre maximum d'éléments à afficher
+   */
+  limit?: number | null;
+  filterByType?: ('all' | 'project' | 'event') | null;
+  /**
+   * Choisissez les projets/événements à afficher
+   */
+  selectedItems?: (number | Project)[] | null;
+  showFilters?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'activityTimeline';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IntroBlock".
  */
 export interface IntroBlock {
@@ -1727,18 +1732,7 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        activityTimeline?:
-          | T
-          | {
-              title?: T;
-              populateBy?: T;
-              limit?: T;
-              filterByType?: T;
-              selectedItems?: T;
-              showFilters?: T;
-              id?: T;
-              blockName?: T;
-            };
+        activityTimeline?: T | ActivityTimelineBlockSelect<T>;
         intro?: T | IntroBlockSelect<T>;
         journal?: T | JournalBlockSelect<T>;
         contact?: T | ContactBlockSelect<T>;
@@ -2035,6 +2029,20 @@ export interface SmartGridBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ActivityTimelineBlock_select".
+ */
+export interface ActivityTimelineBlockSelect<T extends boolean = true> {
+  title?: T;
+  populateBy?: T;
+  limit?: T;
+  filterByType?: T;
+  selectedItems?: T;
+  showFilters?: T;
   id?: T;
   blockName?: T;
 }

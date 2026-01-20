@@ -67,4 +67,5 @@ export const ActivityTimeline: Block = {
             defaultValue: true,
         },
     ],
+    interfaceName: 'ActivityTimelineBlock',
 }
