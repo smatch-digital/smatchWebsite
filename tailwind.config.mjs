@@ -109,7 +109,7 @@ const config = {
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'slide-up': 'slideUp 0.5s ease-out forwards',
         spotlight: 'spotlight 2s ease .75s 1 forwards',
-        scroll: 'scroll 40s linear infinite',
+        scroll: 'scroll 60s linear infinite',
       },
       keyframes: {
         fadeIn: {
