@@ -20,6 +20,7 @@ import { TrustedByBlock } from '@/blocks/TrustedBy/Component'
 import { ActivityTimelineBlock } from '@/blocks/ActivityTimeline/Component'
 import { ContactBlock } from '@/blocks/Contact/Component'
 import { ExpertiseDomainsBlock } from '@/blocks/ExpertiseDomains/Component'
+import { SolutionsArchiveBlock } from '@/blocks/SolutionsArchive/Component'
 
 // Type-safe block component registry
 // Each component accepts its specific block type props + optional disableInnerContainer
@@ -44,15 +45,17 @@ const blockComponents: Record<string, BlockComponent> = {
   journal: JournalBlockComponent as unknown as BlockComponent,
   contact: ContactBlock as unknown as BlockComponent,
   'expertise-domains': ExpertiseDomainsBlock as unknown as BlockComponent,
+  'solutions-archive': SolutionsArchiveBlock as unknown as BlockComponent,
 }
 
 type LayoutBlock = NonNullable<Page['layout']>[number]
 
 interface RenderBlocksProps {
   blocks: LayoutBlock[]
+  locale?: string
 }
 
-export const RenderBlocks: React.FC<RenderBlocksProps> = ({ blocks }) => {
+export const RenderBlocks: React.FC<RenderBlocksProps> = ({ blocks, locale }) => {
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
   if (!hasBlocks) {
@@ -72,7 +75,7 @@ export const RenderBlocks: React.FC<RenderBlocksProps> = ({ blocks }) => {
 
         return (
           <div key={index}>
-            <Block {...block} disableInnerContainer />
+            <Block {...block} disableInnerContainer locale={locale} />
           </div>
         )
       })}

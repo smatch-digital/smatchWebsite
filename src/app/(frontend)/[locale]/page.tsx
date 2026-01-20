@@ -49,7 +49,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <main className="mx-auto mb-20 min-h-screen w-full bg-smatch-black font-sans text-smatch-text-primary selection:bg-smatch-gold selection:text-smatch-black">
       <RenderHero {...hero} />
-      <RenderBlocks blocks={layout} />
+      <RenderBlocks blocks={layout} locale={locale} />
     </main>
   )
 }

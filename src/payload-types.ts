@@ -302,6 +302,7 @@ export interface Page {
     | JournalBlock
     | ContactBlock
     | ExpertiseDomainsBlock
+    | SolutionsArchiveBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1284,6 +1285,30 @@ export interface ExpertiseDomainsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionsArchiveBlock".
+ */
+export interface SolutionsArchiveBlock {
+  sectionTitle?: string | null;
+  sectionDescription?: string | null;
+  populateBy?: ('collection' | 'selection') | null;
+  /**
+   * Maximum number of solutions to display
+   */
+  limit?: number | null;
+  /**
+   * Manually select which solutions to display
+   */
+  selectedSolutions?: (number | Solution)[] | null;
+  /**
+   * Number of columns on desktop (responsive on mobile)
+   */
+  columns?: ('2' | '3' | '4') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'solutions-archive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "solutions".
  */
 export interface Solution {
@@ -1718,6 +1743,7 @@ export interface PagesSelect<T extends boolean = true> {
         journal?: T | JournalBlockSelect<T>;
         contact?: T | ContactBlockSelect<T>;
         'expertise-domains'?: T | ExpertiseDomainsBlockSelect<T>;
+        'solutions-archive'?: T | SolutionsArchiveBlockSelect<T>;
       };
   meta?:
     | T
@@ -2114,6 +2140,20 @@ export interface ExpertiseDomainsBlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SolutionsArchiveBlock_select".
+ */
+export interface SolutionsArchiveBlockSelect<T extends boolean = true> {
+  sectionTitle?: T;
+  sectionDescription?: T;
+  populateBy?: T;
+  limit?: T;
+  selectedSolutions?: T;
+  columns?: T;
   id?: T;
   blockName?: T;
 }
