@@ -60,11 +60,7 @@ export const ActivityTimelineBlock: React.FC<
             }
         } else {
             // Populate by latest
-            const where: any = {
-                _status: {
-                    equals: 'published',
-                },
-            }
+            const where: any = {}
 
             if (filterByType && filterByType !== 'all') {
                 where.type = {
