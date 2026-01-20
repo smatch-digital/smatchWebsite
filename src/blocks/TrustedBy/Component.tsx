@@ -39,7 +39,7 @@ export const TrustedByBlock: React.FC<Props> = ({ title, partners }) => {
                     <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-smatch-black to-transparent" />
 
                     {/* Marquee Track */}
-                    <div className="flex w-max animate-scroll gap-12 md:gap-20">
+                    <div className="flex w-max animate-scroll gap-12 md:gap-14">
                         {displayPartners.map((partner, index) => {
                             const isImage = partner.logoType === 'image' && partner.logo
                             let imageUrl = ''

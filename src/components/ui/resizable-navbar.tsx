@@ -76,7 +76,7 @@ export const NavCenterPill = ({
       <div
         className={cn(
           'relative flex flex-row items-center gap-1',
-          'bg-[#ffffff08] backdrop-blur-xl border border-white/10',
+          'bg-[#0a0a0a]/50 backdrop-blur-xl border border-white/10',
           'shadow-[0_4px_30px_rgba(0,0,0,0.1)]',
           'rounded-full px-2 py-2',
           className,

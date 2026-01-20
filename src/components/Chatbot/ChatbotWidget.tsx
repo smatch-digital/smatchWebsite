@@ -101,7 +101,9 @@ export function ChatbotWidget() {
             {/* Chat Window */}
             <div
                 className={cn(
-                    'chatbot-window fixed bottom-6 right-6 z-50 flex h-[600px] w-[400px] flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
+                    'chatbot-window fixed z-50 flex flex-col overflow-hidden rounded-2xl border border-smatch-border bg-smatch-charcoal/95 shadow-2xl backdrop-blur-xl transition-all duration-300',
+                    // Mobile: full width, shorter height | Desktop: fixed dimensions
+                    'bottom-4 right-4 left-4 h-[70vh] max-h-[600px] md:bottom-6 md:right-6 md:left-auto md:h-[600px] md:w-[400px]',
                     isOpen ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-4 opacity-0',
                 )}
             >

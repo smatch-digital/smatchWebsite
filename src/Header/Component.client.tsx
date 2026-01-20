@@ -24,6 +24,7 @@ import {
   MobileBottomDock,
   MobileMenuOverlay,
 } from '@/components/ui/resizable-navbar'
+import { NavLanguageSelector } from '@/components/ui/NavLanguageSelector'
 
 interface HeaderClientProps {
   data: Header | null
@@ -138,6 +139,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
 
         <NavCenterPill className="hidden md:flex">
           <NavLinks items={items} activePath={pathname} />
+          {/* Divider */}
+          <div className="mx-2 h-5 w-px bg-white/10" />
+          <NavLanguageSelector />
         </NavCenterPill>
 
         <NavCTAContainer isScrolled={isScrolled}>

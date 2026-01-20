@@ -53,7 +53,7 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
   return (
     <Link href={href} className="block size-full">
       <motion.div
-        className="group relative h-[600px] w-full cursor-pointer overflow-hidden rounded-[12px] border border-white/10 bg-[#050505]"
+        className="group relative h-[450px] w-full cursor-pointer overflow-hidden rounded-[12px] border border-white/10 bg-[#050505] md:h-[600px]"
         whileHover="hover"
         initial="initial"
       >
