@@ -238,6 +238,14 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
                 Journal
               </Link>
             </div>
+
+            {/* Language Selector */}
+            <div className="mt-6 flex items-center justify-between">
+              <span className="font-mono text-xs uppercase tracking-widest text-white/40">
+                Langue
+              </span>
+              <NavLanguageSelector openUp />
+            </div>
           </div>
         </MobileMenuOverlay>
       </NavbarLayout>

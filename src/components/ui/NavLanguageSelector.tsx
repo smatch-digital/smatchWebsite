@@ -17,6 +17,7 @@ import { cn } from '@/utilities/ui'
 
 interface NavLanguageSelectorProps {
     className?: string
+    openUp?: boolean // Opens dropdown upward instead of downward
 }
 
 /**
@@ -25,7 +26,7 @@ interface NavLanguageSelectorProps {
  * A glassmorphism-styled language selector designed for the navbar.
  * Matches the nav pill aesthetic with backdrop blur and subtle borders.
  */
-export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ className }) => {
+export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ className, openUp = false }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [hovered, setHovered] = useState<Locale | null>(null)
     const dropdownRef = useRef<HTMLDivElement>(null)
@@ -88,12 +89,13 @@ export const NavLanguageSelector: React.FC<NavLanguageSelectorProps> = ({ classN
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                        initial={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                        exit={{ opacity: 0, y: openUp ? 8 : -8, scale: 0.95 }}
                         transition={{ duration: 0.15, ease: 'easeOut' }}
                         className={cn(
-                            'absolute right-0 top-full z-50 mt-4',
+                            'absolute right-0 z-50',
+                            openUp ? 'bottom-full mb-4' : 'top-full mt-4',
                             'min-w-[140px] overflow-hidden rounded-xl',
                             'bg-[#111111]/90 border border-white/15',
                             'shadow-[0_10px_40px_rgba(0,0,0,0.6)]',
