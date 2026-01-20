@@ -27,7 +27,7 @@
     "@gsap/react": "^2.1.2",
     "@payloadcms/admin-bar": "3.68.5",
     "@payloadcms/db-postgres": "3.68.5",
-    "@payloadcms/email-resend": "^3.72.0",
+    "@payloadcms/email-resend": "^3.68.5",
     "@payloadcms/live-preview-react": "3.68.5",
     "@payloadcms/next": "3.68.5",
     "@payloadcms/plugin-form-builder": "3.68.5",

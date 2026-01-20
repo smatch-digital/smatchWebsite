@@ -39,6 +39,7 @@ export const hero: Field = {
     {
       name: 'headline',
       type: 'text',
+      localized: true,
       admin: {
         condition: (_, { type } = {}) => type === 'smatch',
       },
@@ -46,6 +47,7 @@ export const hero: Field = {
     {
       name: 'subheadline',
       type: 'textarea',
+      localized: true,
       admin: {
         condition: (_, { type } = {}) => type === 'smatch',
       },
@@ -82,6 +84,7 @@ export const hero: Field = {
     {
       name: 'richText',
       type: 'richText',
+      localized: true,
       admin: {
         condition: (_, { type } = {}) => type !== 'smatch',
       },
