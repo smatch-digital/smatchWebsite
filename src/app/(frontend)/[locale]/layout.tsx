@@ -16,6 +16,7 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
 import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 
 const antonio = Antonio({
@@ -88,6 +89,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
           </ChatbotProvider>
         </Providers>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string} />
     </html>
   )
 }
