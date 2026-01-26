@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     default: 'Smatch Digital | Solutions WMS & Supply Chain',
     template: '%s | Smatch Digital',
   },
-  description: 'Smatch Digital conçoit des solutions WMS, supply chain et IoT sur mesure pour l\'industrie marocaine. Expertise locale, standards internationaux. Digitalisation industrielle de pointe.',
+  description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
   keywords: ['WMS', 'Supply Chain', 'IoT', 'Maroc', 'Industrie 4.0', 'Digitalisation', 'Logistique', 'Smatch Digital'],
   authors: [{ name: 'Smatch Digital', url: 'https://smatch.ma' }],
   creator: 'Smatch Digital',
@@ -119,7 +119,7 @@ export const metadata: Metadata = {
   openGraph: {
     ...mergeOpenGraph(),
     title: 'Smatch Digital | Solutions WMS & Supply Chain',
-    description: 'Solutions WMS, supply chain et IoT sur mesure pour l\'industrie marocaine.',
+    description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
     siteName: 'Smatch Digital',
     locale: 'fr_MA',
     type: 'website',
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@smatchdigital',
     title: 'Smatch Digital',
-    description: 'Solutions WMS & Supply Chain pour l\'industrie marocaine.',
+    description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
   },
   alternates: {
     languages: {
