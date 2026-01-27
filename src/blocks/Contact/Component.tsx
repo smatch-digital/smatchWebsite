@@ -207,7 +207,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
                 <div className="mb-6 flex items-center gap-3">
                   <Buildings size={24} className="text-smatch-gold" weight="regular" />
                   <h4 className="text-smatch-gold font-mono text-xs font-bold uppercase tracking-widest">
-                    Nos Bureaux
+                    Nos Locaux
                   </h4>
                 </div>
                 <div className="space-y-6">

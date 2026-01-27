@@ -142,7 +142,7 @@ export async function Footer({ locale }: FooterProps) {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Buildings size={18} className="text-smatch-gold" />
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-smatch-gold">Nos Bureaux</span>
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-smatch-gold">Nos Locaux</span>
               </div>
 
               <div className="space-y-3 pl-1">
