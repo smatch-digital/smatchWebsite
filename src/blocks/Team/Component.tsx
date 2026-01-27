@@ -30,11 +30,10 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
   const imageAlt = isMedia(member.image) ? member.image.alt : member.name
 
   return (
-    <div className="relative flex flex-col justify-between h-auto w-full overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:max-h-[400px] md:p-6">
+    <div className="relative flex h-auto w-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-6 shadow-2xl backdrop-blur-xl transition-all hover:border-[#FFAA00]/30 md:p-6">
       {/* Decorative Noise/Grid Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.03]" />
       <div className="relative z-10 flex flex-col gap-6 md:flex-row md:items-center md:gap-8">
-
         {/* Image & ID Block */}
         <div className="mx-auto w-full max-w-[140px] shrink-0 md:mx-0 md:max-w-[190px]">
           {/* Image Container */}
@@ -87,7 +86,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Description Block */}
           {member.description && (
             <div className="relative mb-6 border-l-2 border-[#FFAA00] pl-4">
-              <p className="smatch-gradient-text line-clamp-3 bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed md:text-base">
+              <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
             </div>
@@ -96,18 +95,23 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Socials (Phosphor Icons) */}
           <div className="flex gap-3">
             {member.linkedin && (
-              <Link href={member.linkedin} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+              <Link
+                href={member.linkedin}
+                className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
+              >
                 <LinkedinLogo size={20} weight="duotone" />
               </Link>
             )}
             {member.email && (
-              <Link href={`mailto:${member.email}`} className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black">
+              <Link
+                href={`mailto:${member.email}`}
+                className="group flex size-10 items-center justify-center rounded-sm border border-white/10 bg-white/5 text-white transition-all hover:border-[#FFAA00] hover:bg-[#FFAA00] hover:text-black"
+              >
                 <EnvelopeSimple size={20} weight="duotone" />
               </Link>
             )}
           </div>
         </div>
-
       </div>
       {/* Footer ID Tag */}
       {member.footerId && (
@@ -126,7 +130,6 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
   return (
     <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#FFAA00]/50 hover:shadow-[0_10px_40px_-10px_rgba(255,170,0,0.1)]">
-
       {/* Hover Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -142,7 +145,9 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
               sizes="96px"
             />
           ) : (
-            <div className="flex size-full items-center justify-center text-[10px] text-white/20">IMG</div>
+            <div className="flex size-full items-center justify-center text-[10px] text-white/20">
+              IMG
+            </div>
           )}
         </div>
 
@@ -169,7 +174,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 
         {/* Description (Font Sans) */}
         {member.description && (
-          <p className="mb-6 line-clamp-3 font-sans text-sm font-light leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
+          <p className="mb-6 font-sans text-sm font-light leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
             {member.description}
           </p>
         )}
@@ -191,7 +196,7 @@ const TeamMemberCard = ({ member }: { member: MemberData }) => {
 export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
   const { header, leaders, members, directorsQuote } = props
 
-  const title = header?.title || "Notre Équipe."
+  const title = header?.title || 'Notre Équipe.'
   const tag = header?.tag || '// THE MINDS BEHIND'
   const description = header?.description
 
@@ -203,7 +208,9 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
   const teamGrid = [...safeLeaders.slice(1), ...safeMembers]
 
   // Get quote text and author from CMS or use defaults
-  const quoteText = directorsQuote?.text || "Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines. Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance."
+  const quoteText =
+    directorsQuote?.text ||
+    "Dans un contexte économique exigeant, Smatch Digital s'impose comme le partenaire opérationnel des PME marocaines. Notre mission : élever les standards de la Supply Chain par des solutions concrètes et immédiates. Nous privilégions le pragmatisme et la proximité pour bâtir notre notoriété sur une seule exigence : l'excellence au service de votre performance."
   const quoteAuthor = directorsQuote?.author || primaryLeader?.name || 'SMATCH'
 
   return (
@@ -212,7 +219,6 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
       <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container mx-auto relative z-10">
-
         {/* Section Header */}
         <div className="mb-20 text-center">
           <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFAA00]">
@@ -232,11 +238,9 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
         </div>
 
         <div className="flex flex-col gap-8">
-
           {/* 1. Leader Section: Leader Card + Quote Side Panel */}
           {primaryLeader && (
-            <div className="flex flex-1 flex-col gap-6 lg:flex-row lg:max-h-[400px]">
-
+            <div className="flex flex-1 flex-col gap-6 lg:flex-row">
               {/* Leader Card (Col Span 8) */}
               <div className="flex flex-1 md:col-span-1 lg:col-span-8">
                 <LeaderCard member={primaryLeader} />
@@ -246,9 +250,15 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
               <div className="relative flex flex-col flex-1 justify-between overflow-hidden p-8 md:col-span-1 lg:col-span-4 lg:p-12">
                 {/* Giant Watermark Quote */}
                 <div className="pointer-events-none absolute left-4 top-0 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
-                  <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay' src="/assets/comma-first.svg" alt="" width={200} height={150} />
+                  <Image
+                    className="pointer-events-none select-none opacity-10 mix-blend-overlay"
+                    src="/assets/comma-first.svg"
+                    alt=""
+                    width={200}
+                    height={150}
+                  />
                 </div>
-                <p className='my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed text-transparent md:text-xl'>
+                <p className="my-auto bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text pt-20 text-justify font-sans text-lg font-light leading-relaxed text-transparent md:text-xl">
                   {quoteText}
                 </p>
                 <div className="relative z-10 my-auto flex h-full flex-col justify-end">
@@ -258,10 +268,15 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
                   </p>
                 </div>
                 <div className="pointer-events-none absolute bottom-0 right-4 select-none font-sans text-[200px] font-black leading-none text-white/5 mix-blend-overlay">
-                  <Image className='pointer-events-none select-none opacity-10 mix-blend-overlay' src="/assets/comma-final.svg" alt="" width={200} height={150} />
+                  <Image
+                    className="pointer-events-none select-none opacity-10 mix-blend-overlay"
+                    src="/assets/comma-final.svg"
+                    alt=""
+                    width={200}
+                    height={150}
+                  />
                 </div>
               </div>
-
             </div>
           )}
 
@@ -273,7 +288,6 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
               ))}
             </div>
           )}
-
         </div>
       </div>
     </section>
