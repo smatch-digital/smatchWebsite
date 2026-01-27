@@ -207,7 +207,7 @@ const TeamMemberCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
         </p>
 
         {/* Description (Font Sans) */}
-        <p className="mb-6 font-sans text-sm font-light leading-relaxed text-gray-400 group-hover:text-gray-300 transition-colors line-clamp-3">
+        <p className="mb-6 whitespace-pre-line font-sans text-sm font-light leading-relaxed text-gray-400 transition-colors group-hover:text-gray-300">
           {member.description}
         </p>
       </div>
