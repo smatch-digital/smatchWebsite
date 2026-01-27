@@ -32,6 +32,7 @@ export function IntroLoader() {
     const timer = setTimeout(() => {
       setIsVisible(false)
       document.body.style.overflow = 'auto'
+      window.dispatchEvent(new Event('smatch:intro-finished'))
 
       // Optional: Fade out audio instead of hard cut
       if (audioRef.current) {

@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X, ArrowRight } from '@phosphor-icons/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Announcement, Media } from '@/payload-types'
+import type { Announcement } from '@/payload-types'
 
 interface AnnouncementPopupProps {
   announcement: Announcement | null
@@ -13,25 +13,69 @@ interface AnnouncementPopupProps {
 
 export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announcement }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const [resolvedAnnouncement, setResolvedAnnouncement] = useState<Announcement | null>(
+    announcement,
+  )
 
   useEffect(() => {
-    // Only show if active and has content
-    if (announcement?.isActive && announcement.layout) {
-      // Small delay to not overwhelm user immediately
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    setResolvedAnnouncement(announcement)
   }, [announcement])
+
+  useEffect(() => {
+    if (!isMounted) return
+    if (!announcement) {
+      const localeFromLang = document.documentElement.lang || 'en'
+      fetch(
+        `/api/globals/announcement?depth=1&locale=${encodeURIComponent(localeFromLang)}&fallback-locale=en`,
+      )
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          if (data) setResolvedAnnouncement(data as Announcement)
+        })
+        .catch(() => null)
+    }
+  }, [announcement, isMounted])
+
+  useEffect(() => {
+    if (!isMounted) return
+    if (
+      !resolvedAnnouncement?.isActive ||
+      !resolvedAnnouncement.layout ||
+      !resolvedAnnouncement.layout[0]
+    )
+      return
+
+    const open = () => setIsOpen(true)
+
+    window.addEventListener('smatch:intro-finished', open)
+    const fallbackTimer = window.setTimeout(open, 3500)
+
+    return () => {
+      window.removeEventListener('smatch:intro-finished', open)
+      window.clearTimeout(fallbackTimer)
+    }
+  }, [isMounted, resolvedAnnouncement])
 
   const handleClose = () => {
     setIsOpen(false)
   }
 
-  if (!announcement?.isActive || !announcement.layout || !announcement.layout[0]) return null
+  // Prevent hydration mismatch by not rendering anything on the server
+  if (!isMounted) return null
 
-  const block = announcement.layout[0]
+  if (
+    !resolvedAnnouncement?.isActive ||
+    !resolvedAnnouncement.layout ||
+    !resolvedAnnouncement.layout[0]
+  )
+    return null
+
+  const block = resolvedAnnouncement.layout[0]
 
   // Render specific layout based on block type
   if (block.blockType === 'seafoodEvent') {
@@ -43,7 +87,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
     return (
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[9999999] flex items-center justify-center p-4 md:p-8">
+          <div className="fixed inset-0 z-[2147483647] flex items-center justify-center p-4 md:p-8">
             {/* Backdrop with Blur */}
             <motion.div
               initial={{ opacity: 0 }}

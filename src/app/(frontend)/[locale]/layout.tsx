@@ -17,6 +17,8 @@ import { getServerSideURL } from '@/utilities/getURL'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
 import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { getCachedGlobal } from '@/utilities/getGlobals'
+import { AnnouncementPopup } from '@/components/AnnouncementPopup'
 
 
 const antonio = Antonio({
@@ -51,24 +53,6 @@ export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
 }
 
-import { AnnouncementPopup } from '@/components/AnnouncementPopup'
-import { getPayload } from '@/getPayload'
-import { unstable_cache } from 'next/cache'
-
-// Cached fetch for announcements to avoid DB hits on every navigation
-const getAnnouncement = unstable_cache(
-  async () => {
-    const payload = await getPayload()
-    const result = await payload.findGlobal({
-      slug: 'announcement',
-      depth: 1,
-    })
-    return result
-  },
-  ['global-announcement'],
-  { tags: ['global-announcement'] }
-)
-
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { isEnabled } = await draftMode()
   const { locale } = await params
@@ -79,7 +63,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   }
 
   // Fetch Announcement Data
-  const announcement = await getAnnouncement()
+  const announcement = await getCachedGlobal('announcement', 1, locale as Locale)()
 
   return (
     <html
