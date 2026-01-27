@@ -127,7 +127,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Name (Font Heading / Antonio) */}
           <h3 className="mb-4 font-heading text-5xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-[5rem]">
             {member.name.split(' ')[0]} <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+            <span className="smatch-gradient-text bg-clip-text bg-gradient-to-b from-white to-white/40">
               {member.name.split(' ').slice(1).join(' ')}
             </span>
           </h3>
@@ -140,7 +140,7 @@ const LeaderCard = ({ member }: { member: typeof TEAM_MEMBERS[0] }) => {
           {/* Description Block (Moved back inside card as per request) */}
           <div className="relative mb-10 border-l-2 border-[#FFAA00] pl-6">
             {/* Gradient Quote (Font Sans / Inter) */}
-            <p className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed text-transparent font-sans md:text-xl">
+            <p className="smatch-gradient-text bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text text-lg font-light leading-relaxed font-sans md:text-xl">
               "{member.description}"
             </p>
           </div>
@@ -250,7 +250,7 @@ export default function TeamSection() {
                         // THE MINDS BEHIND
           </span>
           <h2 className="font-heading text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
-            Notre <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-600">Équipe.</span>
+            Notre <span className="smatch-gradient-text bg-clip-text bg-gradient-to-r from-white to-gray-600">Équipe.</span>
           </h2>
         </div>
 

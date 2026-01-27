@@ -72,11 +72,11 @@ export const NavCenterPill = ({
   className?: string
 }) => {
   return (
-    <div className="pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2">
+    <div className="pointer-events-none fixed inset-x-0 top-6 flex justify-center">
       <div
         className={cn(
-          'relative flex flex-row items-center gap-1',
-          'bg-[#0a0a0a]/50 backdrop-blur-xl border border-white/10',
+          'pointer-events-auto relative flex flex-row items-center gap-1',
+          'bg-[#0a0a0a]/50 smatch-backdrop-blur-xl smatch-glass-fallback border border-white/10',
           'shadow-[0_4px_30px_rgba(0,0,0,0.1)]',
           'rounded-full px-2 py-2',
           className,
@@ -177,7 +177,7 @@ export const CTAButton = ({ children, href }: { children: React.ReactNode; href:
 export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute left-0 top-0 z-10 flex w-full justify-center p-4 md:hidden">
-      <div className="pointer-events-auto  rounded-md border border-white/10 bg-[#0F0F0F]/80 p-2 backdrop-blur-2xl ">
+      <div className="pointer-events-auto rounded-md border border-white/10 bg-[#0F0F0F]/80 p-2 smatch-backdrop-blur-2xl smatch-glass-fallback">
         {children}
       </div>
     </div>
@@ -188,7 +188,7 @@ export const MobileTopBar = ({ children }: { children: React.ReactNode }) => {
 export const MobileBottomDock = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="pointer-events-none absolute bottom-4 left-0 z-50 flex w-full justify-center md:hidden">
-      <div className="pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-2xl">
+      <div className="pointer-events-auto flex items-center gap-6 rounded-md border border-white/10 bg-[#0F0F0F]/80 px-8 py-3 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] smatch-backdrop-blur-2xl smatch-glass-fallback">
         {children}
       </div>
     </div>
@@ -215,7 +215,7 @@ export const MobileMenuOverlay = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm md:hidden"
+            className="pointer-events-auto fixed inset-0 z-[90] bg-black/60 smatch-backdrop-blur-sm md:hidden"
           />
 
           {/* Sheet - Slides up from bottom */}

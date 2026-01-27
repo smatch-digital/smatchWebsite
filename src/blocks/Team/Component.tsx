@@ -74,7 +74,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Name (Font Heading / Antonio) */}
           <h3 className="mb-2 font-heading text-3xl font-black uppercase leading-[0.9] tracking-tight text-white md:text-5xl">
             {member.name.split(' ')[0]} <br />
-            <span className="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">
+            <span className="smatch-gradient-text bg-gradient-to-b from-white to-white/40 bg-clip-text">
               {member.name.split(' ').slice(1).join(' ')}
             </span>
           </h3>
@@ -87,7 +87,7 @@ const LeaderCard = ({ member }: { member: MemberData }) => {
           {/* Description Block */}
           {member.description && (
             <div className="relative mb-6 border-l-2 border-[#FFAA00] pl-4">
-              <p className="line-clamp-3 bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed text-transparent md:text-base">
+              <p className="smatch-gradient-text line-clamp-3 bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-sm font-light leading-relaxed md:text-base">
                 &ldquo;{member.description}&rdquo;
               </p>
             </div>

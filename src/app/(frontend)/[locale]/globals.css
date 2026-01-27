@@ -18,17 +18,26 @@
   /* Ensure the body doesn't jump when the navbar gets fixed */
   html {
     scroll-behavior: smooth;
-    /* 
+    /*
       VIEWPORT-BASED SCALING
       ----------------------
       Makes the site look identical at ALL resolutions above mobile.
       At 1920px: 100% size (baseline)
       At 1280px: 66.7% size (720p looks like 1080p)
       At 1600px: 83.3% size
-      
+
       Below ~1024px effective width, mobile styles take over.
     */
     zoom: clamp(0.55, calc(100vw / 1920), 1);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @supports not (zoom: 1) {
+    @media (min-width: 1024px) {
+      html {
+        font-size: clamp(10px, calc(100vw / 1920 * 16px), 16px);
+      }
+    }
   }
 
   body {
@@ -214,5 +223,35 @@ html[data-theme='light'] {
   strong {
     @apply text-smatch-gold font-normal;
     /* Use normal weight because color provides emphasis */
+  }
+}
+
+@layer utilities {
+  .smatch-gradient-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .smatch-backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+  }
+
+  .smatch-backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+  }
+
+  .smatch-backdrop-blur-2xl {
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
+  }
+
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .smatch-glass-fallback {
+      background-color: rgba(10, 10, 10, 0.85);
+    }
   }
 }
