@@ -1,10 +1,14 @@
 import { GlobalConfig } from 'payload'
 import { link } from '@/fields/link'
+import { revalidateAnnouncement } from '@/Announcement/hooks/revalidateAnnouncement'
 
 export const Announcement: GlobalConfig = {
   slug: 'announcement',
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [revalidateAnnouncement],
   },
   fields: [
     {
