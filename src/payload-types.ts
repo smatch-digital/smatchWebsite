@@ -119,11 +119,13 @@ export interface Config {
     header: Header;
     footer: Footer;
     'solutions-order': SolutionsOrder;
+    announcement: Announcement;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'solutions-order': SolutionsOrderSelect<false> | SolutionsOrderSelect<true>;
+    announcement: AnnouncementSelect<false> | AnnouncementSelect<true>;
   };
   locale: 'en' | 'fr';
   user: User & {
@@ -2744,6 +2746,62 @@ export interface SolutionsOrder {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcement".
+ */
+export interface Announcement {
+  id: number;
+  isActive?: boolean | null;
+  layout?:
+    | {
+        image: number | Media;
+        title: string;
+        description: string;
+        /**
+         * Appears in gold/bold below description
+         */
+        highlightText?: string | null;
+        /**
+         * Content inside the bordered box
+         */
+        detailsBox?: string | null;
+        tags?:
+          | {
+              label: string;
+              value: string;
+              id?: string | null;
+            }[]
+          | null;
+        buttons?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              style?: ('solid' | 'outline') | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'seafoodEvent';
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2794,6 +2852,53 @@ export interface FooterSelect<T extends boolean = true> {
  */
 export interface SolutionsOrderSelect<T extends boolean = true> {
   orderedSolutions?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcement_select".
+ */
+export interface AnnouncementSelect<T extends boolean = true> {
+  isActive?: T;
+  layout?:
+    | T
+    | {
+        seafoodEvent?:
+          | T
+          | {
+              image?: T;
+              title?: T;
+              description?: T;
+              highlightText?: T;
+              detailsBox?: T;
+              tags?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              buttons?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                          label?: T;
+                        };
+                    style?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

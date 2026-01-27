@@ -51,6 +51,24 @@ export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
 }
 
+import { AnnouncementPopup } from '@/components/AnnouncementPopup'
+import { getPayload } from '@/getPayload'
+import { unstable_cache } from 'next/cache'
+
+// Cached fetch for announcements to avoid DB hits on every navigation
+const getAnnouncement = unstable_cache(
+  async () => {
+    const payload = await getPayload()
+    const result = await payload.findGlobal({
+      slug: 'announcement',
+      depth: 1,
+    })
+    return result
+  },
+  ['global-announcement'],
+  { tags: ['global-announcement'] }
+)
+
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { isEnabled } = await draftMode()
   const { locale } = await params
@@ -59,6 +77,9 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   if (!isValidLocale(locale)) {
     notFound()
   }
+
+  // Fetch Announcement Data
+  const announcement = await getAnnouncement()
 
   return (
     <html
@@ -85,6 +106,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             <Header locale={locale} />
             {children}
             <Footer locale={locale} />
+            <AnnouncementPopup announcement={announcement} />
             <ChatbotWidget />
           </ChatbotProvider>
         </Providers>
