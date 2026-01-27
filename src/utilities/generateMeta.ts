@@ -6,7 +6,7 @@ import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
 // Default SEO description fallback when CMS field is empty
-const DEFAULT_DESCRIPTION = 'Smatch Digital conçoit des solutions WMS, supply chain et IoT sur mesure pour l\'industrie marocaine. Expertise locale, standards internationaux.'
+const DEFAULT_DESCRIPTION = 'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
