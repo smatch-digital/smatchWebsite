@@ -30,7 +30,7 @@ const MOCK_MESSAGES: Message[] = [
     {
         id: '3',
         content:
-            'Excellent choix! Smatch propose des solutions WMS sur-mesure adaptées à vos besoins logistiques. Voulez-vous planifier une démo personnalisée?',
+            'Excellent choix! Smatch propose des solutions WMS modulaire adaptées à vos besoins logistiques. Voulez-vous planifier une démo personnalisée?',
         sender: 'bot',
         timestamp: new Date(),
     },
