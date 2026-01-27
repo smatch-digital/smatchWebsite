@@ -1,6 +1,8 @@
 import type { GlobalConfig } from 'payload'
 
 import { authenticated } from '@/access/authenticated'
+import { i18nConfig } from '@/utilities/i18n'
+import { revalidatePath } from 'next/cache'
 
 export const SolutionsOrder: GlobalConfig = {
   slug: 'solutions-order',
@@ -39,12 +41,19 @@ export const SolutionsOrder: GlobalConfig = {
         let order = 1
 
         for (const id of orderedIDs) {
-          await req.payload.update({
-            id,
-            collection: 'solutions',
-            data: { order },
-            overrideAccess: true,
-          })
+          try {
+            await req.payload.update({
+              id,
+              collection: 'solutions',
+              data: { order },
+              overrideAccess: true,
+              context: {
+                disableRevalidate: true,
+              },
+            })
+          } catch {
+            continue
+          }
           order += 1
         }
 
@@ -68,17 +77,29 @@ export const SolutionsOrder: GlobalConfig = {
           })
 
           for (const solution of remaining.docs) {
-            await req.payload.update({
-              id: solution.id,
-              collection: 'solutions',
-              data: { order },
-              overrideAccess: true,
-            })
+            try {
+              await req.payload.update({
+                id: solution.id,
+                collection: 'solutions',
+                data: { order },
+                overrideAccess: true,
+                context: {
+                  disableRevalidate: true,
+                },
+              })
+            } catch {
+              continue
+            }
             order += 1
           }
 
           hasNextPage = Boolean(remaining.hasNextPage)
           page += 1
+        }
+
+        for (const locale of i18nConfig.locales) {
+          revalidatePath(`/${locale}/solutions`)
+          revalidatePath(`/${locale}`)
         }
       },
     ],
