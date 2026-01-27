@@ -8,7 +8,8 @@ import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Solutions | Smatch Digital',
-  description: 'Discover our industrial solutions.',
+  description:
+    'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
 }
 
 type Args = {
