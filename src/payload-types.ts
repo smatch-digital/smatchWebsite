@@ -118,10 +118,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    'solutions-order': SolutionsOrder;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    'solutions-order': SolutionsOrderSelect<false> | SolutionsOrderSelect<true>;
   };
   locale: 'en' | 'fr';
   user: User & {
@@ -1319,6 +1321,7 @@ export interface SolutionsArchiveBlock {
 export interface Solution {
   id: number;
   title: string;
+  order?: number | null;
   slug: string;
   /**
    * Shown on the solution card in the grid
@@ -2319,6 +2322,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface SolutionsSelect<T extends boolean = true> {
   title?: T;
+  order?: T;
   slug?: T;
   description?: T;
   icon?: T;
@@ -2727,6 +2731,19 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "solutions-order".
+ */
+export interface SolutionsOrder {
+  id: number;
+  /**
+   * Drag to reorder Solutions. This order controls the frontend listing.
+   */
+  orderedSolutions?: (number | Solution)[] | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2767,6 +2784,16 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "solutions-order_select".
+ */
+export interface SolutionsOrderSelect<T extends boolean = true> {
+  orderedSolutions?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

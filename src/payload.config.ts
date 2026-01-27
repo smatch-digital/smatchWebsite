@@ -15,6 +15,7 @@ import { Projects } from './collections/Projects'
 import { Team } from './collections/Team'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
+import { SolutionsOrder } from './globals/SolutionsOrder'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -104,7 +105,7 @@ export default buildConfig({
   }),
   collections: [Pages, Posts, Media, Categories, Users, Solutions, Projects, Team],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  globals: [Header, Footer, SolutionsOrder],
   plugins,
   secret: process.env.PAYLOAD_SECRET,
   sharp,

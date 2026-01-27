@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-export const Solutions: CollectionConfig = {
+export const Solutions: CollectionConfig<'solutions'> = {
   slug: 'solutions',
   access: {
     read: () => true, // Allow public read access
@@ -8,12 +8,51 @@ export const Solutions: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  hooks: {
+    beforeChange: [
+      async ({ data, operation, req }) => {
+        if (operation !== 'create') return data
+        if (typeof data.order === 'number') return data
+
+        try {
+          const { docs } = await req.payload.find({
+            collection: 'solutions',
+            depth: 0,
+            limit: 1,
+            overrideAccess: true,
+            pagination: false,
+            sort: '-order',
+            where: {
+              order: {
+                exists: true,
+              },
+            },
+          })
+
+          const lastOrder = docs?.[0]?.order
+          data.order = (typeof lastOrder === 'number' ? lastOrder : 0) + 1
+        } catch {
+          return data
+        }
+
+        return data
+      },
+    ],
+  },
   fields: [
     {
       name: 'title',
       type: 'text',
       required: true,
       localized: true,
+    },
+    {
+      name: 'order',
+      type: 'number',
+      index: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'slug',

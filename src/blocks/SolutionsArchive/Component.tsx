@@ -33,6 +33,7 @@ export const SolutionsArchiveBlock: React.FC<
             depth: 1,
             limit,
             locale: locale as 'en' | 'fr',
+            sort: 'order',
             select: {
                 title: true,
                 slug: true,

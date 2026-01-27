@@ -40,6 +40,7 @@ export default async function SolutionsPage({ params }: Args) {
     collection: 'solutions',
     draft: false,
     locale: locale as Locale, // CRITICAL: Pass locale to get string values
+    sort: 'order',
     select: {
       title: true,
       slug: true,
@@ -59,4 +60,3 @@ export default async function SolutionsPage({ params }: Args) {
     </main>
   )
 }
-
