@@ -19,7 +19,7 @@ import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import { AnnouncementPopup } from '@/components/AnnouncementPopup'
-
+import { Analytics } from '@vercel/analytics/next'
 
 const antonio = Antonio({
   subsets: ['latin'],
@@ -71,13 +71,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       lang={locale}
       suppressHydrationWarning
     >
-
       <head>
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
-      <body className='bg-smatch-black'>
+      <body className="bg-smatch-black">
+        <Analytics />
         <IntroLoader />
         <Providers>
           <AdminBar
@@ -106,8 +106,18 @@ export const metadata: Metadata = {
     default: 'Smatch Digital | Solutions WMS & Supply Chain',
     template: '%s | Smatch Digital',
   },
-  description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
-  keywords: ['WMS', 'Supply Chain', 'IoT', 'Maroc', 'Industrie 4.0', 'Digitalisation', 'Logistique', 'Smatch Digital'],
+  description:
+    'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
+  keywords: [
+    'WMS',
+    'Supply Chain',
+    'IoT',
+    'Maroc',
+    'Industrie 4.0',
+    'Digitalisation',
+    'Logistique',
+    'Smatch Digital',
+  ],
   authors: [{ name: 'Smatch Digital', url: 'https://smatch.ma' }],
   creator: 'Smatch Digital',
   publisher: 'Smatch Digital',
@@ -125,7 +135,8 @@ export const metadata: Metadata = {
   openGraph: {
     ...mergeOpenGraph(),
     title: 'Smatch Digital | Solutions WMS & Supply Chain',
-    description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
+    description:
+      'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
     siteName: 'Smatch Digital',
     locale: 'fr_MA',
     type: 'website',
@@ -134,12 +145,13 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     creator: '@smatchdigital',
     title: 'Smatch Digital',
-    description: 'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
+    description:
+      'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
   },
   alternates: {
     languages: {
-      'en': '/en',
-      'fr': '/fr',
+      en: '/en',
+      fr: '/fr',
     },
   },
 }
