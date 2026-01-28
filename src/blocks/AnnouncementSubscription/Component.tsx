@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
+import RichText from '@/components/RichText'
 import { fields } from '../Form/fields'
 import { getClientSideURL } from '@/utilities/getURL'
 import { Bell, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
@@ -156,17 +157,12 @@ export const AnnouncementSubscriptionBlock: React.FC<
                 <div className="rounded-lg border border-green-500/20 bg-green-500/10 p-6 text-center">
                   <div className="mb-2 text-xl font-bold text-green-500">Succès !</div>
                   <div className="text-gray-300">
-                    {confirmationMessage && (
-                      <div
-                        dangerouslySetInnerHTML={{ __html: JSON.stringify(confirmationMessage) }}
-                      />
-                    )}
+                    {confirmationMessage && <RichText data={confirmationMessage} />}
                     {/* Note: confirmationMessage is RichText, simplistic rendering here.
                          Ideally use RichText component but it might be complex to integrate quickly.
                          For now assuming simple text or falling back.
                          Actually, let's just use a simple success message if RichText is too complex to parse right now without the component.
                      */}
-                    Merci pour votre inscription.
                   </div>
                 </div>
               )}
