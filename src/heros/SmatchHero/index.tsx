@@ -23,12 +23,12 @@ export const SmatchHero: React.FC<Page['hero']> = ({
         className="-top-40 left-0 opacity-50 mix-blend-overlay md:-top-40 md:left-10"
         fill="#FFE6A1"
       />
-      
+
       <div className="absolute inset-0 z-0 size-full ">
         {media && typeof media === 'object' && (
           <Media resource={media} fill imgClassName="object-cover object-center" priority />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" />
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" /> */}
         {/* <div className="absolute left-1/2 top-1/2 size-[800px] -translate-x-1/2 -translate-y-1/2 animate-pulse rounded-full bg-smatch-gold/10 blur-[100px]" /> */}
         {/* <div className="absolute inset-0 bg-[url('/assets/hero/hero-overlay.png')] opacity-10 bg-repeat" /> */}
       </div>
