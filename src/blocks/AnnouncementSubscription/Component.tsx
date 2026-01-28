@@ -110,7 +110,7 @@ export const AnnouncementSubscriptionBlock: React.FC<
   )
 
   return (
-    <div className="container my-20">
+    <div className="container flex justify-center items-center my-auto h-screen">
       <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-[#0F0F0F] p-8 md:p-12 lg:p-16">
         {/* Background Effects */}
         <div className="pointer-events-none absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-[#FFAA00]/5 blur-[100px]" />
