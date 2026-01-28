@@ -29,6 +29,10 @@ export const Announcement: GlobalConfig = {
       blocks: [
         {
           slug: 'seafoodEvent', // Matches the specific design requested
+          labels: {
+            singular: 'Event Subscription Announcement',
+            plural: 'Event Subscription Announcements',
+          },
           fields: [
             {
               name: 'image',
@@ -40,17 +44,20 @@ export const Announcement: GlobalConfig = {
               name: 'title',
               type: 'text',
               required: true,
+              localized: true,
               label: 'Title (e.g. CARAVANE SEAFOOD DAKHLA)',
             },
             {
               name: 'description',
               type: 'textarea',
               required: true,
+              localized: true,
               label: 'Description Text',
             },
             {
               name: 'highlightText',
               type: 'text',
+              localized: true,
               label: 'Highlight Text (e.g. Date)',
               admin: {
                 description: 'Appears in gold/bold below description',
@@ -59,6 +66,7 @@ export const Announcement: GlobalConfig = {
             {
               name: 'detailsBox',
               type: 'textarea',
+              localized: true,
               label: 'Details Box Content',
               admin: {
                 description: 'Content inside the bordered box',
@@ -76,12 +84,14 @@ export const Announcement: GlobalConfig = {
                       name: 'label',
                       type: 'text',
                       required: true,
+                      localized: true,
                       admin: { width: '50%' },
                     },
                     {
                       name: 'value',
                       type: 'text',
                       required: true,
+                      localized: true,
                       admin: { width: '50%' },
                     },
                   ],
