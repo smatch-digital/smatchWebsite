@@ -1,6 +1,7 @@
 import { cn } from '@/utilities/ui'
 import { Slot } from '@radix-ui/react-slot'
 import { type VariantProps, cva } from 'class-variance-authority'
+import { Loader2 } from 'lucide-react'
 import * as React from 'react'
 
 const buttonVariants = cva(
@@ -36,6 +37,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  isLoading?: boolean
   ref?: React.Ref<HTMLButtonElement>
 }
 
@@ -44,11 +46,30 @@ const Button: React.FC<ButtonProps> = ({
   className,
   size,
   variant,
+  isLoading = false,
+  children,
   ref,
   ...props
 }) => {
-  const Comp = asChild ? Slot : 'button'
-  return <Comp className={cn(buttonVariants({ className, size, variant }))} ref={ref} {...props} />
+  if (asChild) {
+    return (
+      <Slot className={cn(buttonVariants({ className, size, variant }))} ref={ref} {...props}>
+        {children}
+      </Slot>
+    )
+  }
+
+  return (
+    <button
+      className={cn(buttonVariants({ className, size, variant }))}
+      disabled={isLoading || props.disabled}
+      ref={ref}
+      {...props}
+    >
+      {isLoading && <Loader2 className="mr-2 size-4 animate-spin" />}
+      {children}
+    </button>
+  )
 }
 
 export { Button, buttonVariants }
