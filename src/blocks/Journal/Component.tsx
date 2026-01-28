@@ -3,75 +3,89 @@ import { getPayload } from '@/getPayload'
 import type { JournalBlock, Project } from '@/payload-types'
 import { JournalClientComponent, JournalItem } from './Client'
 
-export const JournalBlockComponent = async (props: JournalBlock) => {
-    const { populateBy, limit, filterByType, selectedItems, title, liveFeedText, manualItems } = props
+export const JournalBlockComponent = async (props: JournalBlock & { locale?: string }) => {
+  const {
+    populateBy,
+    limit,
+    filterByType,
+    selectedItems,
+    title,
+    liveFeedText,
+    manualItems,
+    locale,
+  } = props
 
-    let items: (number | Project)[] = []
+  const normalizedLocale = locale === 'fr' || locale === 'en' ? locale : 'en'
 
-    if (populateBy === 'selection') {
-        items = (selectedItems || []) as (number | Project)[]
-    } else {
-        const payload = await getPayload()
-        const where: any = {}
+  let items: (number | Project)[] = []
 
-        if (filterByType && filterByType !== 'all') {
-            where.type = { equals: filterByType }
-        }
+  if (populateBy === 'selection') {
+    items = (selectedItems || []) as (number | Project)[]
+  } else {
+    const payload = await getPayload()
+    const where: any = {}
 
-        // Only show published/completed/upcoming projects, hide archived if needed?
-        // Let's assume we want to show everything that is public.
-        // Projects access control is public read, so we are good.
-
-        const { docs } = await payload.find({
-            collection: 'projects',
-            where,
-            limit: limit || 5,
-            sort: '-date', // Most recent first
-        })
-        items = docs
+    if (filterByType && filterByType !== 'all') {
+      where.type = { equals: filterByType }
     }
 
-    // Transform items to JournalItem format - filter to Project objects first, then map
-    const displayArticles: JournalItem[] = items
-        .filter((item): item is Project => typeof item !== 'number')
-        .map((project) => {
-            // Format meta string: "YEAR | TYPE"
-            const year = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear()
-            const typeLabel = project.type === 'event' ? 'ÉVÉNEMENT' : 'PROJET'
-            const meta = `${year} | ${typeLabel}`
+    const { docs } = await payload.find({
+      collection: 'projects',
+      where,
+      limit: limit || 5,
+      sort: '-date',
+      locale: normalizedLocale as 'en' | 'fr',
+    })
+    items = docs
+  }
 
-            // Get image URL
-            const imageUrl = typeof project.image === 'object' && project.image?.url
-                ? project.image.url
-                : '/assets/journal/placeholder.jpg'
+  const displayArticles: JournalItem[] = items
+    .filter((item): item is Project => typeof item !== 'number')
+    .map((project) => {
+      const year = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear()
+      const typeLabel = project.type === 'event' ? 'ÉVÉNEMENT' : 'PROJET'
+      const meta = `${year} | ${typeLabel}`
 
-            return {
-                id: project.id,
-                meta,
-                title: project.title,
-                description: project.description || '',
-                linkText: 'VOIR PLUS', // Or customize based on type
-                linkUrl: `/projects/${project.slug}`,
-                image: imageUrl || ''
-            }
-        })
+      const imageUrl =
+        typeof project.image === 'object' && project.image?.url
+          ? project.image.url
+          : '/assets/journal/placeholder.jpg'
 
-    // Fallback to manual items if no dynamic items found (optional, for backward compatibility)
-    if (displayArticles.length === 0 && manualItems && manualItems.length > 0) {
-        const manualArticles = manualItems.map((item, index) => {
-            const imageUrl = typeof item.image === 'object' && item.image?.url ? item.image.url : '/assets/journal/placeholder.jpg'
-            return {
-                id: item.id || index,
-                meta: item.meta || '',
-                title: item.title,
-                description: item.description || '',
-                linkText: item.linkText || 'VOIR PLUS',
-                linkUrl: item.linkUrl || '#',
-                image: imageUrl
-            }
-        })
-        return <JournalClientComponent title={title} liveFeedText={liveFeedText} articles={manualArticles} />
-    }
+      const prefix = normalizedLocale ? `/${normalizedLocale}` : ''
 
-    return <JournalClientComponent title={title} liveFeedText={liveFeedText} articles={displayArticles} />
+      return {
+        id: project.id,
+        meta,
+        title: project.title,
+        description: project.description || '',
+        linkText: 'VOIR PLUS',
+        linkUrl: `${prefix}/projects/${project.slug}`,
+        image: imageUrl || '',
+      }
+    })
+
+  if (displayArticles.length === 0 && manualItems && manualItems.length > 0) {
+    const manualArticles = manualItems.map((item, index) => {
+      const imageUrl =
+        typeof item.image === 'object' && item.image?.url
+          ? item.image.url
+          : '/assets/journal/placeholder.jpg'
+      return {
+        id: item.id || index,
+        meta: item.meta || '',
+        title: item.title,
+        description: item.description || '',
+        linkText: item.linkText || 'VOIR PLUS',
+        linkUrl: item.linkUrl || '#',
+        image: imageUrl,
+      }
+    })
+    return (
+      <JournalClientComponent title={title} liveFeedText={liveFeedText} articles={manualArticles} />
+    )
+  }
+
+  return (
+    <JournalClientComponent title={title} liveFeedText={liveFeedText} articles={displayArticles} />
+  )
 }
