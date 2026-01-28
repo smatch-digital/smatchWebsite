@@ -21,6 +21,7 @@ import { ActivityTimelineBlock } from '@/blocks/ActivityTimeline/Component'
 import { ContactBlock } from '@/blocks/Contact/Component'
 import { ExpertiseDomainsBlock } from '@/blocks/ExpertiseDomains/Component'
 import { SolutionsArchiveBlock } from '@/blocks/SolutionsArchive/Component'
+import { AnnouncementSubscriptionBlock } from '@/blocks/AnnouncementSubscription/Component'
 
 // Type-safe block component registry
 // Each component accepts its specific block type props + optional disableInnerContainer
@@ -46,6 +47,7 @@ const blockComponents: Record<string, BlockComponent> = {
   contact: ContactBlock as unknown as BlockComponent,
   'expertise-domains': ExpertiseDomainsBlock as unknown as BlockComponent,
   'solutions-archive': SolutionsArchiveBlock as unknown as BlockComponent,
+  announcementSubscription: AnnouncementSubscriptionBlock as unknown as BlockComponent,
 }
 
 type LayoutBlock = NonNullable<Page['layout']>[number]

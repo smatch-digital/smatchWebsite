@@ -291,6 +291,7 @@ export interface Page {
     | ContactBlock
     | ExpertiseDomainsBlock
     | SolutionsArchiveBlock
+    | AnnouncementSubscriptionBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1361,6 +1362,18 @@ export interface Solution {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnnouncementSubscriptionBlock".
+ */
+export interface AnnouncementSubscriptionBlock {
+  headline?: string | null;
+  description?: string | null;
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'announcementSubscription';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "team".
  */
 export interface Team {
@@ -1743,6 +1756,7 @@ export interface PagesSelect<T extends boolean = true> {
         contact?: T | ContactBlockSelect<T>;
         'expertise-domains'?: T | ExpertiseDomainsBlockSelect<T>;
         'solutions-archive'?: T | SolutionsArchiveBlockSelect<T>;
+        announcementSubscription?: T | AnnouncementSubscriptionBlockSelect<T>;
       };
   meta?:
     | T
@@ -2167,6 +2181,17 @@ export interface SolutionsArchiveBlockSelect<T extends boolean = true> {
   limit?: T;
   selectedSolutions?: T;
   columns?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnnouncementSubscriptionBlock_select".
+ */
+export interface AnnouncementSubscriptionBlockSelect<T extends boolean = true> {
+  headline?: T;
+  description?: T;
+  form?: T;
   id?: T;
   blockName?: T;
 }

@@ -21,6 +21,7 @@ import { Journal } from '@/blocks/Journal/config'
 import { ContactBlock } from '@/blocks/Contact/config'
 import { ExpertiseDomains } from '@/blocks/ExpertiseDomains/config'
 import { SolutionsArchive } from '@/blocks/SolutionsArchive/config'
+import { AnnouncementSubscription } from '@/blocks/AnnouncementSubscription/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -108,6 +109,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ContactBlock,
                 ExpertiseDomains,
                 SolutionsArchive,
+                AnnouncementSubscription,
               ],
               required: true,
               admin: {
