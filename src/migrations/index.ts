@@ -2,6 +2,7 @@ import * as migration_20260120_003432_add_hero_localization from './20260120_003
 import * as migration_20260120_033000_add_solutions_archive_block from './20260120_033000_add_solutions_archive_block';
 import * as migration_20260127_120000_add_solutions_ordering from './20260127_120000_add_solutions_ordering';
 import * as migration_20260127_224639_add_announcement_global from './20260127_224639_add_announcement_global';
+import * as migration_20260128_013000_add_announcement_subscription_block from './20260128_013000_add_announcement_subscription_block';
 
 export const migrations = [
   {
@@ -23,5 +24,10 @@ export const migrations = [
     up: migration_20260127_224639_add_announcement_global.up,
     down: migration_20260127_224639_add_announcement_global.down,
     name: '20260127_224639_add_announcement_global'
+  },
+  {
+    up: migration_20260128_013000_add_announcement_subscription_block.up,
+    down: migration_20260128_013000_add_announcement_subscription_block.down,
+    name: '20260128_013000_add_announcement_subscription_block',
   },
 ];
