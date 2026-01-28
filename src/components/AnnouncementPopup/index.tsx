@@ -83,6 +83,10 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
 
     const imageUrl = typeof image === 'object' && image?.url ? image.url : null
     const imageAlt = typeof image === 'object' && image?.alt ? image.alt : 'Announcement Image'
+    const imageAspectRatio =
+      typeof image === 'object' && image?.width && image?.height
+        ? `${image.width} / ${image.height}`
+        : '2 / 3'
 
     return (
       <AnimatePresence>
@@ -103,7 +107,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-              className="relative w-full max-w-[1200px] overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
+              className="relative w-full max-w-[1200px] max-h-[calc(100vh-2rem)] overflow-y-auto rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
             >
               {/* Noise Overlay */}
               <div
@@ -125,7 +129,10 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 {/* Left Side: Image */}
                 <div className="relative flex min-h-[300px] w-full items-center justify-center bg-white/[0.02] p-8 lg:w-1/2 lg:p-12">
                   {/* Inner Border/Container for Image */}
-                  <div className="relative flex aspect-square w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-8 shadow-inner">
+                  <div
+                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-8 shadow-inner"
+                    style={{ aspectRatio: imageAspectRatio }}
+                  >
                     {imageUrl && (
                       <div className="relative h-full w-full">
                         <Image src={imageUrl} alt={imageAlt} fill className="object-contain" />
