@@ -50,6 +50,13 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
     )
       return
 
+    const path = window.location.pathname
+    const isHome =
+      path === '/' ||
+      /^\/(en|fr)\/?$/.test(path)
+
+    if (!isHome) return
+
     const open = () => setIsOpen(true)
 
     window.addEventListener('smatch:intro-finished', open)
@@ -107,7 +114,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-              className="relative w-full max-w-[1200px] max-h-[calc(100vh-2rem)] overflow-y-auto rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
+              className="relative flex w-full max-w-[1100px] max-h-[85vh] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
             >
               {/* Noise Overlay */}
               <div
@@ -125,12 +132,12 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 <X size={20} weight="bold" />
               </button>
 
-              <div className="relative z-10 flex flex-col lg:flex-row">
+              <div className="relative z-10 flex flex-1 min-h-0 flex-col lg:flex-row">
                 {/* Left Side: Image */}
-                <div className="relative flex min-h-[300px] w-full items-center justify-center bg-white/[0.02] p-8 lg:w-1/2 lg:p-12">
+                <div className="relative flex shrink-0 min-h-[200px] sm:min-h-[240px] lg:min-h-0 lg:h-auto w-full items-center justify-center bg-white/[0.02] p-6 sm:p-8 lg:w-1/2 lg:p-10">
                   {/* Inner Border/Container for Image */}
                   <div
-                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-8 shadow-inner"
+                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-6 sm:p-8 shadow-inner"
                     style={{ aspectRatio: imageAspectRatio }}
                   >
                     {imageUrl && (
@@ -142,9 +149,9 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 </div>
 
                 {/* Right Side: Content */}
-                <div className="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:p-12">
+                <div className="flex w-full flex-col justify-between p-6 sm:p-8 lg:w-1/2 lg:p-10 overflow-hidden">
                   {/* Title */}
-                  <h2 className="mb-2 font-heading text-4xl font-black uppercase tracking-tighter text-white lg:text-6xl">
+                  <h2 className="mb-2 font-heading text-3xl font-black uppercase tracking-tighter text-white sm:text-4xl lg:text-5xl">
                     {title}
                   </h2>
 
@@ -155,41 +162,40 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                     </div>
                   )}
 
-                  {/* Description */}
-                  <div className="mb-8 font-sans text-base font-light leading-relaxed text-gray-400 lg:text-lg">
-                    <div
-                      dangerouslySetInnerHTML={{ __html: description }}
-                      className="[&>p]:mb-4 [&>p:last-child]:mb-0"
-                    />
-                  </div>
-
-                  {/* Details Box */}
-                  {detailsBox && (
-                    <div className="mb-8 rounded-sm border-l-2 border-[#FFAA00] bg-white/5 p-6 backdrop-blur-md">
-                      <div className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-base font-light italic leading-relaxed text-transparent smatch-gradient-text lg:text-lg">
-                        <div dangerouslySetInnerHTML={{ __html: detailsBox }} />
-                      </div>
+                  <div className="mb-6 flex flex-1 flex-col gap-6 overflow-y-auto pr-2 min-h-0">
+                    <div className="font-sans text-base font-light leading-relaxed text-gray-400 lg:text-lg">
+                      <div
+                        dangerouslySetInnerHTML={{ __html: description }}
+                        className="[&>p]:mb-4 [&>p:last-child]:mb-0"
+                      />
                     </div>
-                  )}
 
-                  {/* Tags Grid */}
-                  {tags && tags.length > 0 && (
-                    <div className="mb-10 flex flex-wrap gap-3">
-                      {tags.map((tag, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center overflow-hidden rounded-sm border border-white/10 bg-white/[0.02]"
-                        >
-                          <div className="bg-white/5 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-500">
-                            {tag.label}
-                          </div>
-                          <div className="px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FFAA00]">
-                            {tag.value}
-                          </div>
+                    {detailsBox && (
+                      <div className="rounded-sm border-l-2 border-[#FFAA00] bg-white/5 p-6 backdrop-blur-md">
+                        <div className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-base font-light italic leading-relaxed text-transparent smatch-gradient-text lg:text-lg">
+                          <div dangerouslySetInnerHTML={{ __html: detailsBox }} />
                         </div>
-                      ))}
-                    </div>
-                  )}
+                      </div>
+                    )}
+
+                    {tags && tags.length > 0 && (
+                      <div className="flex flex-wrap gap-3">
+                        {tags.map((tag, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center overflow-hidden rounded-sm border border-white/10 bg-white/[0.02]"
+                          >
+                            <div className="bg-white/5 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                              {tag.label}
+                            </div>
+                            <div className="px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FFAA00]">
+                              {tag.value}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
                   {/* Buttons */}
                   {buttons && buttons.length > 0 && (
@@ -197,7 +203,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                       {buttons.map((btn, idx) => {
                         const href =
                           btn.link.type === 'reference' &&
-                          typeof btn.link.reference?.value === 'object'
+                            typeof btn.link.reference?.value === 'object'
                             ? `/${btn.link.reference.value.slug === 'home' ? '' : btn.link.reference.value.slug}`
                             : btn.link.url || '#'
 
@@ -209,11 +215,10 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                             href={href}
                             onClick={handleClose}
                             target={btn.link.newTab ? '_blank' : undefined}
-                            className={`flex flex-1 items-center justify-center rounded-sm px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${
-                              isSolid
+                            className={`flex flex-1 items-center justify-center rounded-sm px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isSolid
                                 ? 'bg-[#FFAA00] text-black shadow-[0_0_20px_rgba(255,170,0,0.3)] hover:bg-white hover:shadow-[0_0_30px_rgba(255,170,0,0.6)]'
                                 : 'border border-white/20 text-white hover:border-[#FFAA00] hover:bg-white/5'
-                            }`}
+                              }`}
                           >
                             {/* Force text color and ensure valid React node */}
                             <span className={isSolid ? 'text-black' : 'text-white'}>
