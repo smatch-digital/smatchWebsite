@@ -36,6 +36,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'weekly',
             priority: 0.7,
         },
+        {
+            url: `${baseUrl}/posts`,
+            lastModified: new Date(),
+            changeFrequency: 'daily',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/search`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.5,
+        },
     ]
 
     // Dynamic pages from CMS
@@ -77,7 +89,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 priority: 0.6,
             }))
 
-        return [...staticPages, ...dynamicPages, ...projectPages]
+        // Posts
+        const posts = await payload.find({
+            collection: 'posts',
+            draft: false,
+            limit: 1000,
+            pagination: false,
+            select: { slug: true, updatedAt: true },
+        })
+
+        const postPages: MetadataRoute.Sitemap = posts.docs
+            .filter((post) => post.slug)
+            .map((post) => ({
+                url: `${baseUrl}/posts/${post.slug}`,
+                lastModified: new Date(post.updatedAt),
+                changeFrequency: 'weekly' as const,
+                priority: 0.6,
+            }))
+
+        return [...staticPages, ...dynamicPages, ...projectPages, ...postPages]
     } catch (error) {
         // Return static pages if CMS query fails
         console.error('Sitemap generation error:', error)
