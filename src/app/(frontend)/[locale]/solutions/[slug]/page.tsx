@@ -35,19 +35,20 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    locale: string
   }>
 }
 
 export default async function SolutionPage({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug } = await paramsPromise
+  const { slug, locale } = await paramsPromise
 
   if (!slug) return notFound()
 
   const decodedSlug = decodeURIComponent(slug)
   const url = '/solutions/' + decodedSlug
 
-  const solution = await querySolutionBySlug({ slug: decodedSlug })
+  const solution = await querySolutionBySlug({ slug: decodedSlug, locale })
 
   if (!solution) {
     return <PayloadRedirects url={url} />
@@ -122,16 +123,16 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug } = await paramsPromise
+  const { slug, locale } = await paramsPromise
   if (!slug) return {}
 
   const decodedSlug = decodeURIComponent(slug)
-  const solution = await querySolutionBySlug({ slug: decodedSlug })
+  const solution = await querySolutionBySlug({ slug: decodedSlug, locale })
 
   return generateMeta({ doc: solution })
 }
 
-const querySolutionBySlug = cache(async ({ slug }: { slug: string }) => {
+const querySolutionBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
   const payload = await getPayload()
 
@@ -142,6 +143,7 @@ const querySolutionBySlug = cache(async ({ slug }: { slug: string }) => {
       limit: 1,
       pagination: false,
       overrideAccess: draft,
+      locale: locale as any,
       where: {
         slug: {
           equals: slug,

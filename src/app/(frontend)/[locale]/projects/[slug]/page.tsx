@@ -34,19 +34,20 @@ export async function generateStaticParams() {
 type Args = {
   params: Promise<{
     slug?: string
+    locale: string
   }>
 }
 
 export default async function ProjectDetailPage({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
-  const { slug } = await paramsPromise
+  const { slug, locale } = await paramsPromise
 
   if (!slug) return notFound()
 
   const decodedSlug = decodeURIComponent(slug)
   const url = '/projects/' + decodedSlug
 
-  const project = await queryProjectBySlug({ slug: decodedSlug })
+  const project = await queryProjectBySlug({ slug: decodedSlug, locale })
 
   if (!project) {
     return <PayloadRedirects url={url} />
@@ -55,7 +56,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
   const imageUrl =
     typeof project.image === 'object' && project.image?.url ? project.image.url : null
   const formattedDate = project.date
-    ? new Date(project.date).toLocaleDateString('fr-FR', {
+    ? new Date(project.date).toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
       day: '2-digit',
       month: 'long',
       year: 'numeric',
@@ -95,7 +96,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
               <div className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all group-hover:border-[#FFAA00]/50 group-hover:bg-[#FFAA00]/10">
                 <ArrowLeft size={14} />
               </div>
-              Retour au Journal
+              {locale === 'fr' ? 'Retour au Journal' : 'Back to Journal'}
             </Link>
 
             {/* Status Badge (Top Right) */}
@@ -106,7 +107,9 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                   <span className="relative inline-flex size-2 rounded-full bg-[#FFAA00]" />
                 </span>
                 <span className="font-mono text-[clamp(0.6rem,0.5vw,0.75rem)] font-bold uppercase tracking-widest text-[#FFAA00]">
-                  {project.type === 'event' ? 'ÉVÉNEMENT EN COURS' : 'PROJET EN COURS'}
+                  {project.type === 'event'
+                    ? (locale === 'fr' ? 'ÉVÉNEMENT EN COURS' : 'LIVE EVENT')
+                    : (locale === 'fr' ? 'PROJET EN COURS' : 'LIVE PROJECT')}
                 </span>
               </div>
             )}
@@ -137,7 +140,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
               <div className="sticky top-32 space-y-12">
                 <div>
                   <h3 className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-[#FFAA00]">
-                    Spécifications
+                    {locale === 'fr' ? 'Spécifications' : 'Specifications'}
                   </h3>
                   <dl className="space-y-6 divide-y divide-white/10 border-t border-white/10 pt-6">
                     {formattedDate && (
@@ -148,13 +151,13 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
                     )}
                     {project.location && (
                       <div className="flex justify-between py-2">
-                        <dt className="font-heading text-sm uppercase text-gray-500">Lieu</dt>
+                        <dt className="font-heading text-sm uppercase text-gray-500">{locale === 'fr' ? 'Lieu' : 'Location'}</dt>
                         <dd className="font-mono text-sm font-medium text-white">{project.location}</dd>
                       </div>
                     )}
                     {project.code && (
                       <div className="flex justify-between py-2">
-                        <dt className="font-heading text-sm uppercase text-gray-500">Code Projet</dt>
+                        <dt className="font-heading text-sm uppercase text-gray-500">{locale === 'fr' ? 'Code Projet' : 'Project Code'}</dt>
                         <dd className="font-mono text-sm font-medium text-white">{project.code}</dd>
                       </div>
                     )}
@@ -206,7 +209,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
               {project.gallery && project.gallery.length > 0 && (
                 <div className="mt-24 space-y-8">
                   <div className="flex items-end justify-between border-b border-white/10 pb-4">
-                    <h2 className="font-heading text-2xl uppercase tracking-wide text-white">Galerie Visuelle</h2>
+                    <h2 className="font-heading text-2xl uppercase tracking-wide text-white">{locale === 'fr' ? 'Galerie Visuelle' : 'Visual Gallery'}</h2>
                     <span className="font-mono text-xs text-gray-500">IMAGE_COUNT: {project.gallery.length}</span>
                   </div>
 
@@ -252,7 +255,7 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
       {/* Next/Prev Navigation (Optional/Placeholder) */}
       <div className="border-t border-white/10 bg-[#050505] py-12">
         <div className="container mx-auto text-center">
-          <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">Back to Index</Link>
+          <Link href="/projects" className="inline-block font-mono text-xs uppercase tracking-widest text-gray-500 hover:text-white">{locale === 'fr' ? 'Retour à l\'Index' : 'Back to Index'}</Link>
         </div>
       </div>
     </article>
@@ -260,16 +263,16 @@ export default async function ProjectDetailPage({ params: paramsPromise }: Args)
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
-  const { slug } = await paramsPromise
+  const { slug, locale } = await paramsPromise
   if (!slug) return {}
 
   const decodedSlug = decodeURIComponent(slug)
-  const project = await queryProjectBySlug({ slug: decodedSlug })
+  const project = await queryProjectBySlug({ slug: decodedSlug, locale })
 
   return generateMeta({ doc: project })
 }
 
-const queryProjectBySlug = cache(async ({ slug }: { slug: string }) => {
+const queryProjectBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
   const { isEnabled: draft } = await draftMode()
   const payload = await getPayload()
 
@@ -280,6 +283,7 @@ const queryProjectBySlug = cache(async ({ slug }: { slug: string }) => {
       limit: 1,
       pagination: false,
       overrideAccess: draft,
+      locale: locale as any,
       where: {
         slug: {
           equals: slug,
