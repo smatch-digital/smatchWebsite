@@ -172,8 +172,11 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
 
                     {detailsBox && (
                       <div className="rounded-sm border-l-2 border-[#FFAA00] bg-white/5 p-4 backdrop-blur-md">
-                        <div className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-base font-light italic leading-relaxed text-transparent smatch-gradient-text lg:text-lg">
-                          <div dangerouslySetInnerHTML={{ __html: detailsBox }} />
+                        <div className="font-sans text-base font-light italic leading-relaxed lg:text-lg">
+                          <div
+                            dangerouslySetInnerHTML={{ __html: detailsBox }}
+                            className="[&>*]:bg-gradient-to-r [&>*]:from-white [&>*]:via-white/90 [&>*]:to-gray-400 [&>*]:bg-clip-text [&>*]:text-transparent [&>*]:smatch-gradient-text"
+                          />
                         </div>
                       </div>
                     )}
