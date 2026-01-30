@@ -57,6 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const pages = await payload.find({
             collection: 'pages',
             draft: false,
+            depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },
@@ -75,6 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const projects = await payload.find({
             collection: 'projects',
             draft: false,
+            depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },
@@ -93,6 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const posts = await payload.find({
             collection: 'posts',
             draft: false,
+            depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },

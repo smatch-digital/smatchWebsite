@@ -114,7 +114,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', duration: 0.5, bounce: 0.3 }}
-              className="relative flex w-full max-w-[1100px] max-h-[85vh] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
+              className="relative flex w-full max-w-[1000px] max-h-[85vh] flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0A0A0A] shadow-2xl"
             >
               {/* Noise Overlay */}
               <div
@@ -134,10 +134,10 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
 
               <div className="relative z-10 flex flex-1 min-h-0 flex-col lg:flex-row">
                 {/* Left Side: Image */}
-                <div className="relative flex shrink-0 min-h-[200px] sm:min-h-[240px] lg:min-h-0 lg:h-auto w-full items-center justify-center bg-white/[0.02] p-6 sm:p-8 lg:w-1/2 lg:p-10">
+                <div className="relative flex shrink-0 min-h-[180px] sm:min-h-[200px] lg:min-h-0 lg:h-auto w-full items-center justify-center bg-white/[0.02] p-5 sm:p-6 lg:w-1/2 lg:p-8">
                   {/* Inner Border/Container for Image */}
                   <div
-                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-6 sm:p-8 shadow-inner"
+                    className="relative flex w-full max-w-[500px] items-center justify-center rounded-xl border border-white/10 bg-[#0F0F0F] p-4 sm:p-6 shadow-inner"
                     style={{ aspectRatio: imageAspectRatio }}
                   >
                     {imageUrl && (
@@ -149,20 +149,20 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                 </div>
 
                 {/* Right Side: Content */}
-                <div className="flex w-full flex-col justify-between p-6 sm:p-8 lg:w-1/2 lg:p-10 overflow-hidden">
+                <div className="flex w-full flex-col justify-between p-5 sm:p-6 lg:w-1/2 lg:p-8 overflow-hidden">
                   {/* Title */}
-                  <h2 className="mb-2 font-heading text-3xl font-black uppercase tracking-tighter text-white sm:text-4xl lg:text-5xl">
+                  <h2 className="mb-2 font-heading text-2xl font-black uppercase tracking-tighter text-white sm:text-3xl lg:text-4xl">
                     {title}
                   </h2>
 
                   {/* Highlight Text (Date) */}
                   {highlightText && (
-                    <div className="mb-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-[#FFAA00]">
+                    <div className="mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#FFAA00]">
                       {highlightText}
                     </div>
                   )}
 
-                  <div className="mb-6 flex flex-1 flex-col gap-6 overflow-y-auto pr-2 min-h-0">
+                  <div className="mb-4 flex flex-1 flex-col gap-4 overflow-y-auto pr-2 min-h-0">
                     <div className="font-sans text-base font-light leading-relaxed text-gray-400 lg:text-lg">
                       <div
                         dangerouslySetInnerHTML={{ __html: description }}
@@ -171,7 +171,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                     </div>
 
                     {detailsBox && (
-                      <div className="rounded-sm border-l-2 border-[#FFAA00] bg-white/5 p-6 backdrop-blur-md">
+                      <div className="rounded-sm border-l-2 border-[#FFAA00] bg-white/5 p-4 backdrop-blur-md">
                         <div className="bg-gradient-to-r from-white via-white/90 to-gray-400 bg-clip-text font-sans text-base font-light italic leading-relaxed text-transparent smatch-gradient-text lg:text-lg">
                           <div dangerouslySetInnerHTML={{ __html: detailsBox }} />
                         </div>
@@ -185,7 +185,7 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                             key={idx}
                             className="flex items-center overflow-hidden rounded-sm border border-white/10 bg-white/[0.02]"
                           >
-                            <div className="bg-white/5 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                            <div className="bg-white/5 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-gray-300">
                               {tag.label}
                             </div>
                             <div className="px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-wider text-[#FFAA00]">
@@ -215,13 +215,13 @@ export const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ announceme
                             href={href}
                             onClick={handleClose}
                             target={btn.link.newTab ? '_blank' : undefined}
-                            className={`flex flex-1 items-center justify-center rounded-sm px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isSolid
-                                ? 'bg-[#FFAA00] text-black shadow-[0_0_20px_rgba(255,170,0,0.3)] hover:bg-white hover:shadow-[0_0_30px_rgba(255,170,0,0.6)]'
-                                : 'border border-white/20 text-white hover:border-[#FFAA00] hover:bg-white/5'
+                            className={`flex  items-center justify-center rounded-sm px-8 py-4 font-sans text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 ${isSolid
+                              ? 'bg-[#FFAA00] text-black shadow-[0_0_20px_rgba(255,170,0,0.3)] hover:bg-white hover:shadow-[0_0_30px_rgba(255,170,0,0.6)]'
+                              : 'border border-white/20 text-white hover:border-[#FFAA00] hover:bg-white/5'
                               }`}
                           >
                             {/* Force text color and ensure valid React node */}
-                            <span className={isSolid ? 'text-black' : 'text-white'}>
+                            <span className={`${isSolid ? 'text-black' : 'text-white'} w-full`} >
                               {btn.link.label || 'Voir Plus'}
                             </span>
                             {isSolid && <ArrowRight weight="bold" className="ml-2 text-black" />}
