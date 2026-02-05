@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 
 export const Solutions: CollectionConfig<'solutions'> = {
   slug: 'solutions',
@@ -38,6 +39,8 @@ export const Solutions: CollectionConfig<'solutions'> = {
         return data
       },
     ],
+    afterChange: [createRAGAfterChangeHook('solutions')],
+    afterDelete: [createRAGAfterDeleteHook('solutions')],
   },
   fields: [
     {

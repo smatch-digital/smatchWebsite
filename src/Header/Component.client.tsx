@@ -148,7 +148,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
         </NavCenterPill>
 
         <NavCTAContainer isScrolled={isScrolled}>
-          <CTAButton href={`/${locale}/contact`}>Contact Us</CTAButton>
+          <CTAButton href={`/${locale}/contact`}>{locale === 'fr' ? 'Nous Contacter' : 'Contact Us'}</CTAButton>
         </NavCTAContainer>
 
         {/* --- MOBILE --- */}
@@ -198,7 +198,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
         <MobileMenuOverlay isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)}>
           <div className="mb-8 flex items-center justify-between">
             <span className="font-mono text-xs uppercase tracking-widest text-white/40">
-              Navigation
+              {locale === 'fr' ? 'Navigation' : 'Navigation'}
             </span>
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -229,7 +229,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
                 href={`/${locale}/contact`}
                 className="flex items-center justify-center gap-2 rounded-xl bg-[#FFAA00] py-4 text-center text-sm font-bold uppercase tracking-widest text-black"
               >
-                Start Project
+                {locale === 'fr' ? 'Démarrer un Projet' : 'Start Project'}
               </Link>
               <Link
                 href={`/${locale}/journal`}
@@ -242,7 +242,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data, locale }) => {
             {/* Language Selector */}
             <div className="mt-6 flex items-center justify-between">
               <span className="font-mono text-xs uppercase tracking-widest text-white/40">
-                Langue
+                {locale === 'fr' ? 'Langue' : 'Language'}
               </span>
               <NavLanguageSelector openUp />
             </div>

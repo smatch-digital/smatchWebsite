@@ -28,7 +28,7 @@ export const NavbarLayout = ({
           className,
         )}
       >
-        <div className="relative mx-auto flex w-[95%] max-w-[1600px] items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between">
           {children}
         </div>
       </div>

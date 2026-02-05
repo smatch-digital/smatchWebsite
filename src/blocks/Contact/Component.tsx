@@ -130,14 +130,14 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
   const bgColor = theme === 'charcoal' ? 'bg-smatch-charcoal' : 'bg-smatch-black'
 
   return (
-    <section className={cn('relative w-full py-24 lg:py-32 overflow-hidden', bgColor)}>
+    <section className={cn('relative w-full py-16 lg:py-20 overflow-hidden', bgColor)}>
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[50vw] h-[50vw] max-w-[500px] max-h-[500px] bg-smatch-gold/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[30vw] h-[30vw] max-w-[300px] max-h-[300px] bg-white/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
         {/* 1. Header Section */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-yellow-500/10  border-yellow-500/20 mb-6 backdrop-blur-sm">
             <div className="w-2 h-2 rounded-md bg-yellow-500 animate-pulse" />
             <span className="text-yellow-500 text-xs font-mono font-bold tracking-widest uppercase">
@@ -156,7 +156,7 @@ export const ContactBlock: React.FC<ContactBlockProps> = (props) => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-12">
           {/* 2. Left Column: Contact Info */}
           <div className="flex flex-col gap-6">
             {/* Email Card */}

@@ -41,10 +41,10 @@ export const DomainsBlock: React.FC<DomainsBlockProps> = (props) => {
   if (!tabs || tabs.length === 0) return null
 
   return (
-    <section className="overflow-hidden bg-[#050505] py-20 md:py-32 text-white selection:bg-[#FFAA00] selection:text-black">
-      <div className="container mx-auto max-w-[1600px] px-4">
+    <section className="overflow-hidden bg-[#050505] py-12 md:py-20 text-white selection:bg-[#FFAA00] selection:text-black">
+      <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="mb-16 md:mb-24 text-center">
+        <div className="mb-12 md:mb-16 text-center">
           <h2 className="mb-4 font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
             {title}
           </h2>

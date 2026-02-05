@@ -52,7 +52,7 @@ export const AboutBlock: React.FC<AboutBlockProps> = (props) => {
     <section
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#050505] py-32"
+      className="relative flex min-h-[90vh] items-center overflow-hidden bg-[#050505] py-20"
     >
       {/* 1. Top Yellow Glow (Ambient Light) */}
       {/* <div className="pointer-events-none absolute left-1/2 top-[-100px] z-0 h-[200px] w-[60vw] -translate-x-1/2 bg-[#FFAA00] opacity-70 blur-[150px]" /> */}

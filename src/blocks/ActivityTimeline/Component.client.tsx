@@ -209,10 +209,10 @@ export const ActivityTimelineClient: React.FC<ActivityTimelineClientProps> = ({
     }, [filteredItems])
 
     return (
-        <section className="relative w-full overflow-hidden bg-[#050505] py-16 md:py-24">
+        <section className="relative w-full overflow-hidden bg-[#050505] py-12 md:py-16">
             <div className="container mx-auto px-4 md:px-6">
                 {/* Header with Filters */}
-                <div className="mb-12 flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-6 md:mb-16 md:flex-row md:items-center">
+                <div className="mb-8 flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-6 md:mb-12 md:flex-row md:items-center">
                     <div className="flex w-full items-center gap-4">
                         {title && (
                             <h2 className="font-heading text-lg font-bold uppercase tracking-widest text-white md:text-xl">

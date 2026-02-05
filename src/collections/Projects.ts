@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
@@ -12,6 +13,10 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'type', 'status', 'date'],
+  },
+  hooks: {
+    afterChange: [createRAGAfterChangeHook('projects')],
+    afterDelete: [createRAGAfterDeleteHook('projects')],
   },
   fields: [
     {

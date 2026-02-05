@@ -1,9 +1,10 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { ChatCircle, X, PaperPlaneTilt, Robot } from '@phosphor-icons/react'
+import { ChatCircle, X, PaperPlaneTilt, Robot, CircleNotch } from '@phosphor-icons/react'
 import { cn } from '@/utilities/ui'
 import { useChatbot } from './ChatbotContext'
+import type { Locale } from '@/utilities/i18n'
 import './chatbot.css'
 
 interface Message {
@@ -13,68 +14,114 @@ interface Message {
     timestamp: Date
 }
 
-// Mock messages for UI demonstration
-const MOCK_MESSAGES: Message[] = [
-    {
-        id: '1',
-        content: "Bonjour! 👋 Je suis l'assistant Smatch. Comment puis-je vous aider aujourd'hui?",
-        sender: 'bot',
-        timestamp: new Date(Date.now() - 120000),
-    },
-    {
-        id: '2',
-        content: 'Je cherche une solution WMS pour mon entrepôt',
-        sender: 'user',
-        timestamp: new Date(Date.now() - 60000),
-    },
-    {
-        id: '3',
-        content:
-            'Excellent choix! Smatch propose des solutions WMS modulaire adaptées à vos besoins logistiques. Voulez-vous planifier une démo personnalisée?',
+// Welcome messages by locale
+const WELCOME_MESSAGES: Record<string, string> = {
+    fr: "Bonjour! 👋 Je suis l'assistant Smatch. Comment puis-je vous aider aujourd'hui?",
+    en: "Hello! 👋 I'm the Smatch assistant. How can I help you today?",
+}
+
+function getWelcomeMessage(locale: string): Message {
+    return {
+        id: 'welcome',
+        content: WELCOME_MESSAGES[locale] || WELCOME_MESSAGES.fr,
         sender: 'bot',
         timestamp: new Date(),
+    }
+}
+
+// Localized UI strings
+const CHATBOT_STRINGS: Record<string, {
+    assistantName: string
+    online: string
+    responding: string
+    thinking: string
+    placeholder: string
+    send: string
+    openChat: string
+    closeChat: string
+    fallbackMessage: string
+}> = {
+    fr: {
+        assistantName: 'Assistant Smatch',
+        online: 'En ligne',
+        responding: 'En train de répondre...',
+        thinking: 'En train de réfléchir...',
+        placeholder: 'Écrivez votre message...',
+        send: 'Envoyer',
+        openChat: 'Ouvrir le chat',
+        closeChat: 'Fermer le chat',
+        fallbackMessage: 'Merci pour votre message! Un expert Smatch vous contactera bientôt.',
     },
-]
+    en: {
+        assistantName: 'Smatch Assistant',
+        online: 'Online',
+        responding: 'Responding...',
+        thinking: 'Thinking...',
+        placeholder: 'Type your message...',
+        send: 'Send',
+        openChat: 'Open chat',
+        closeChat: 'Close chat',
+        fallbackMessage: 'Thank you for your message! A Smatch expert will contact you soon.',
+    },
+}
 
 function formatTime(date: Date): string {
     return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
 }
 
-export function ChatbotWidget() {
-    const { isOpen, openChat, closeChat } = useChatbot()
-    const [messages, setMessages] = useState<Message[]>(MOCK_MESSAGES)
+export function ChatbotWidget({ locale }: { locale: Locale }) {
+    const { isOpen, openChat, closeChat, sendMessage, isLoading, sessionId } = useChatbot()
+    const [messages, setMessages] = useState<Message[]>([getWelcomeMessage(locale)])
+    const strings = CHATBOT_STRINGS[locale] || CHATBOT_STRINGS.fr
     const [inputValue, setInputValue] = useState('')
     const messagesEndRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
+
+    // Auto-focus input when chat opens
+    useEffect(() => {
+        if (isOpen) {
+            // Small delay to ensure the element is visible
+            setTimeout(() => inputRef.current?.focus(), 100)
+        }
+    }, [isOpen])
 
     // Auto-scroll to bottom when messages change
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
-    const handleSend = () => {
-        if (!inputValue.trim()) return
+    const handleSend = async () => {
+        if (!inputValue.trim() || isLoading) return
 
-        // Add user message (mock only - no backend)
+        const userMessageContent = inputValue.trim()
+
+        // Add user message immediately for responsive UI
         const userMessage: Message = {
             id: Date.now().toString(),
-            content: inputValue,
+            content: userMessageContent,
             sender: 'user',
             timestamp: new Date(),
         }
         setMessages((prev) => [...prev, userMessage])
         setInputValue('')
 
-        // Simulate bot response after a short delay
-        setTimeout(() => {
-            const botResponse: Message = {
-                id: (Date.now() + 1).toString(),
-                content:
-                    "Merci pour votre message! Un expert Smatch vous contactera bientôt. En attendant, n'hésitez pas à explorer nos solutions sur le site.",
-                sender: 'bot',
-                timestamp: new Date(),
-            }
-            setMessages((prev) => [...prev, botResponse])
-        }, 1000)
+        // Focus immediately after clearing input to maintain focus
+        setTimeout(() => inputRef.current?.focus(), 0)
+
+        // Send to webhook via API route
+        const botReply = await sendMessage(userMessageContent, locale)
+
+        // Add bot response
+        const botMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            content: botReply || strings.fallbackMessage,
+            sender: 'bot',
+            timestamp: new Date(),
+        }
+        setMessages((prev) => [...prev, botMessage])
+
+        // Re-focus input after sending
+        setTimeout(() => inputRef.current?.focus(), 0)
     }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -93,7 +140,7 @@ export function ChatbotWidget() {
                     'chatbot-fab fixed bottom-6 right-6 z-[10001] hidden h-16 w-16 items-center justify-center rounded-full bg-smatch-gold text-smatch-black shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-glow-lg md:flex',
                     isOpen && 'pointer-events-none opacity-0',
                 )}
-                aria-label="Ouvrir le chat"
+                aria-label={strings.openChat}
             >
                 <ChatCircle className="h-7 w-7" weight="fill" />
                 <span className="chatbot-fab-pulse" />
@@ -117,15 +164,17 @@ export function ChatbotWidget() {
                         </div>
                         <div>
                             <h3 className="font-heading text-lg font-semibold tracking-wide text-white">
-                                Assistant Smatch
+                                {strings.assistantName}
                             </h3>
-                            <p className="text-xs text-smatch-text-secondary">En ligne</p>
+                            <p className="text-xs text-smatch-text-secondary">
+                                {isLoading ? strings.responding : strings.online}
+                            </p>
                         </div>
                     </div>
                     <button
                         onClick={closeChat}
                         className="flex h-9 w-9 items-center justify-center rounded-full text-smatch-text-secondary transition-colors hover:bg-white/10 hover:text-white"
-                        aria-label="Fermer le chat"
+                        aria-label={strings.closeChat}
                     >
                         <X className="h-5 w-5" />
                     </button>
@@ -154,6 +203,17 @@ export function ChatbotWidget() {
                                 </span>
                             </div>
                         ))}
+
+                        {/* Loading indicator */}
+                        {isLoading && (
+                            <div className="flex items-start">
+                                <div className="flex items-center gap-2 rounded-2xl bg-smatch-surface px-4 py-3 text-sm text-white">
+                                    <CircleNotch className="h-4 w-4 animate-spin" />
+                                    <span>{strings.thinking}</span>
+                                </div>
+                            </div>
+                        )}
+
                         <div ref={messagesEndRef} />
                     </div>
                 </div>
@@ -162,22 +222,35 @@ export function ChatbotWidget() {
                 <div className="border-t border-smatch-border bg-smatch-black/50 p-4">
                     <div className="flex items-center gap-3">
                         <input
+                            ref={inputRef}
                             type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Écrivez votre message..."
-                            className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold"
+                            placeholder={strings.placeholder}
+                            disabled={isLoading}
+                            className="flex-1 rounded-xl border border-white/10 bg-smatch-surface px-4 py-3 text-sm text-white placeholder:text-smatch-text-muted focus:border-smatch-gold focus:outline-none focus:ring-1 focus:ring-smatch-gold disabled:opacity-50"
                         />
                         <button
                             onClick={handleSend}
-                            disabled={!inputValue.trim()}
+                            disabled={!inputValue.trim() || isLoading}
                             className="flex h-12 w-12 items-center justify-center rounded-xl bg-smatch-gold text-smatch-black transition-all hover:bg-smatch-gold-light disabled:cursor-not-allowed disabled:opacity-50"
-                            aria-label="Envoyer"
+                            aria-label={strings.send}
                         >
-                            <PaperPlaneTilt className="h-5 w-5" weight="fill" />
+                            {isLoading ? (
+                                <CircleNotch className="h-5 w-5 animate-spin" />
+                            ) : (
+                                <PaperPlaneTilt className="h-5 w-5" weight="fill" />
+                            )}
                         </button>
                     </div>
+
+                    {/* Session ID indicator (dev only) */}
+                    {process.env.NODE_ENV === 'development' && sessionId && (
+                        <p className="mt-2 text-center font-mono text-[9px] text-smatch-text-muted/50">
+                            Session: {sessionId.slice(0, 20)}...
+                        </p>
+                    )}
                 </div>
             </div>
         </>

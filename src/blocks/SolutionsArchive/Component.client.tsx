@@ -118,13 +118,13 @@ export const SolutionsGridClient: React.FC<SolutionsGridClientProps> = ({
     columnClass,
 }) => {
     return (
-        <section id={`block-${id}`} className="relative overflow-hidden bg-[#050505] py-32">
+        <section id={`block-${id}`} className="relative overflow-hidden bg-[#050505] py-20">
             {/* Background Atmosphere */}
             <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#FFAA00]/20 to-transparent" />
             <div className="pointer-events-none absolute -left-[20%] top-[20%] size-2/5 rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
             <div className="container relative z-10 mx-auto px-4">
-                <div className="mb-20 text-center">
+                <div className="mb-12 text-center">
                     <span className="mb-2 block text-lg font-bold text-white">
                         {sectionTitle || 'Nos Solutions'}
                     </span>

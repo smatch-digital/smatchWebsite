@@ -75,6 +75,8 @@ export const RenderBlocks: React.FC<RenderBlocksProps> = ({ blocks, locale }) =>
 
         const Block = blockComponents[blockType]
 
+        // Blocks manage their own container internally via "container mx-auto px-4"
+        // This allows full-bleed sections (backgrounds, etc.) while keeping content centered
         return (
           <div key={index}>
             <Block {...block} disableInnerContainer locale={locale} />

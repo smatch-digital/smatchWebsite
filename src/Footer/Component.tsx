@@ -21,7 +21,7 @@ export async function Footer({ locale }: FooterProps) {
         <Image className='object-contain' src={'/assets/footer/bg.png'} alt='bg' width={1600} height={500} />
       </div>
 
-      <div className="container pb-12 relative z-10 mx-auto w-[95%] max-w-[1600px] px-4">
+      <div className="container pb-12 relative z-10 mx-auto px-4">
         {/* Main Grid: 4 Columns */}
         <div className="grid grid-cols-1 py-4 gap-16 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
 

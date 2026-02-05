@@ -15,14 +15,19 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.supabase.co',
       },
-      // Local development
+      // Production domain
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'smatch.ma',
       },
       {
+        protocol: 'https',
+        hostname: 'www.smatch.ma',
+      },
+      // Local development
+      {
         protocol: 'http',
-        hostname: '**',
+        hostname: 'localhost',
       },
     ],
   },

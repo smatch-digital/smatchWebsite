@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
@@ -158,9 +159,9 @@ export const Pages: CollectionConfig<'pages'> = {
     slugField(),
   ],
   hooks: {
-    afterChange: [revalidatePage],
+    afterChange: [revalidatePage, createRAGAfterChangeHook('pages')],
     beforeChange: [populatePublishedAt],
-    afterDelete: [revalidateDelete],
+    afterDelete: [revalidateDelete, createRAGAfterDeleteHook('pages')],
   },
   versions: {
     drafts: {

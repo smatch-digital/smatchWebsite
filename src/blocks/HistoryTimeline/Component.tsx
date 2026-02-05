@@ -24,7 +24,7 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-32">
+    <section className="relative overflow-hidden bg-[#050505] py-20">
       {/* Background Radial Glow (Left Side) */}
       <div className="pointer-events-none absolute left-0 top-1/2 size-[600px] -translate-y-1/2 bg-gradient-to-r from-[#FFAA00]/10 to-transparent opacity-40 blur-[120px]" />
 
@@ -34,7 +34,7 @@ export const HistoryTimelineBlockComponent: React.FC<HistoryTimelineBlock> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-24 text-center font-heading text-3xl font-bold uppercase tracking-wide text-white md:text-4xl"
+          className="mb-16 text-center font-heading text-3xl font-bold uppercase tracking-wide text-white md:text-4xl"
         >
           {title}
         </motion.h2>

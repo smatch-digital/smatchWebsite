@@ -43,7 +43,7 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
   } = props
 
   return (
-    <section className="relative w-full bg-[#050505] py-20 text-white selection:bg-[#FFAA00] selection:text-black md:py-32 overflow-hidden">
+    <section className="relative w-full bg-[#050505] py-12 text-white selection:bg-[#FFAA00] selection:text-black md:py-20 overflow-hidden">
 
       {/* 1. BACKGROUND NERVOUS SYSTEM (Restored SVG Lines) */}
       <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
@@ -62,10 +62,10 @@ export const EcosystemBlock: React.FC<EcosystemBlockProps> = (props) => {
         </svg>
       </div>
 
-      <div className="container relative z-10 mx-auto max-w-[1600px] px-4">
+      <div className="container relative z-10 mx-auto px-4">
 
         {/* HEADER */}
-        <div className="mb-16 text-center md:mb-24">
+        <div className="mb-12 text-center md:mb-16">
           <h2 className="font-heading text-3xl font-bold tracking-tight md:text-[40px] leading-tight">
             {headline}
           </h2>

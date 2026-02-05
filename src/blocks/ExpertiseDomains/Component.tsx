@@ -73,12 +73,12 @@ export const ExpertiseDomainsBlock: React.FC<Props> = ({ sections, className }) 
 
     return (
         <div className={cn('relative z-10 bg-black', className)}>
-            <div className="container mx-auto px-4 py-12 md:py-32">
+            <div className="container mx-auto px-4 py-8 md:py-20">
                 {/* Loop through Main Sections */}
                 {sections.map((section, index) => (
                     <div
                         key={section.sectionId || index}
-                        className="relative grid gap-8 border-t border-white/10 py-12 first:border-0 md:grid-cols-12 md:gap-16 md:py-32 lg:gap-24"
+                        className="relative grid gap-8 border-t border-white/10 py-8 first:border-0 md:grid-cols-12 md:gap-16 md:py-20 lg:gap-24"
                     >
                         {/* LEFT COLUMN: Sticky Header */}
                         <div className="md:col-span-4 lg:col-span-3">

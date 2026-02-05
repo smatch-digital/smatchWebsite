@@ -214,13 +214,13 @@ export const TeamBlockComponent: React.FC<TeamBlock> = (props) => {
   const quoteAuthor = directorsQuote?.author || primaryLeader?.name || 'SMATCH'
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#050505] py-24 text-white">
+    <section className="relative w-full overflow-hidden bg-[#050505] py-16 text-white">
       {/* Background Atmosphere */}
       <div className="pointer-events-none absolute left-0 top-0 size-[500px] rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="mb-20 text-center">
+        <div className="mb-12 text-center">
           <span className="mb-4 inline-block font-mono text-xs tracking-[0.3em] text-[#FFAA00]">
             {tag}
           </span>

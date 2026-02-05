@@ -91,7 +91,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             {children}
             <Footer locale={locale} />
             <AnnouncementPopup announcement={announcement} />
-            <ChatbotWidget />
+            <ChatbotWidget locale={locale} />
           </ChatbotProvider>
         </Providers>
       </body>

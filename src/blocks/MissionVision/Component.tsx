@@ -84,7 +84,7 @@ export const MissionVisionBlockComponent: React.FC<MissionVisionBlock> = (props)
   const safeNodes = nodes || []
 
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-20 md:py-32">
+    <section className="relative overflow-hidden bg-[#050505] py-12 md:py-20">
 
       {/* Background Tech Grid */}
       <div className="pointer-events-none absolute inset-0 opacity-10"
