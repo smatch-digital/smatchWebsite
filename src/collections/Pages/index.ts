@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 
-import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '../../access/roles'
+import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '../../access/roles'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { About } from '../../blocks/About/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
@@ -40,7 +40,7 @@ import {
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    admin: adminPanelAnyAuthenticated, // All roles can see Pages in admin
+    admin: adminPanelEditorOrHigher, // Editor+ can see Pages in admin
     create: editorOrHigher,       // Editor+ can create
     delete: adminOrHigher,        // Admin+ can delete
     read: authenticatedOrPublished,

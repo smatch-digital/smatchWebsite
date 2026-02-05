@@ -1,11 +1,11 @@
 import type { CollectionConfig } from 'payload'
 
-import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '../access/roles'
+import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '../access/roles'
 
 export const Team: CollectionConfig = {
   slug: 'team',
   access: {
-    admin: adminPanelAnyAuthenticated, // All roles can see Team in admin
+    admin: adminPanelEditorOrHigher, // Editor+ can see Team in admin
     create: editorOrHigher,            // Editor+ can create
     delete: adminOrHigher,             // Admin+ can delete
     read: () => true,                  // Public read for frontend

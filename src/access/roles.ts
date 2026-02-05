@@ -88,6 +88,14 @@ export const adminPanelAdminOrHigher = ({ req }: { req: { user?: User | null } }
 }
 
 /**
+ * Admin panel access for Editor+ users (excludes viewers from admin)
+ * This is the default for content collections
+ */
+export const adminPanelEditorOrHigher = ({ req }: { req: { user?: User | null } }): boolean => {
+    return isEditor(req.user)
+}
+
+/**
  * Admin panel access for any authenticated user (returns boolean only)
  */
 export const adminPanelAnyAuthenticated = ({ req }: { req: { user?: User | null } }): boolean => {

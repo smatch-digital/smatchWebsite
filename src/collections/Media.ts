@@ -9,7 +9,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { anyone } from '../access/anyone'
-import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '../access/roles'
+import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '../access/roles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -18,7 +18,7 @@ export const Media: CollectionConfig = {
   slug: 'media',
   folders: true,
   access: {
-    admin: adminPanelAnyAuthenticated, // All roles can see Media in admin
+    admin: adminPanelEditorOrHigher, // Editor+ can see Media in admin
     create: editorOrHigher,            // Editor+ can upload
     delete: adminOrHigher,             // Admin+ can delete
     read: anyone,                      // Public read for frontend
