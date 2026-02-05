@@ -3,6 +3,7 @@ import * as migration_20260120_033000_add_solutions_archive_block from './202601
 import * as migration_20260127_120000_add_solutions_ordering from './20260127_120000_add_solutions_ordering';
 import * as migration_20260127_224639_add_announcement_global from './20260127_224639_add_announcement_global';
 import * as migration_20260128_013000_add_announcement_subscription_block from './20260128_013000_add_announcement_subscription_block';
+import * as migration_20260206_001500_add_rbac_roles from './20260206_001500_add_rbac_roles';
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20260128_013000_add_announcement_subscription_block.up,
     down: migration_20260128_013000_add_announcement_subscription_block.down,
     name: '20260128_013000_add_announcement_subscription_block',
+  },
+  {
+    up: migration_20260206_001500_add_rbac_roles.up,
+    down: migration_20260206_001500_add_rbac_roles.down,
+    name: '20260206_001500_add_rbac_roles',
   },
 ];

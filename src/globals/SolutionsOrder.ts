@@ -1,14 +1,16 @@
 import type { GlobalConfig } from 'payload'
 
-import { authenticated } from '@/access/authenticated'
+import { isAdmin } from '@/access/roles'
 import { i18nConfig } from '@/utilities/i18n'
 import { revalidatePath } from 'next/cache'
+import type { User } from '@/payload-types'
 
 export const SolutionsOrder: GlobalConfig = {
   slug: 'solutions-order',
   access: {
-    read: authenticated,
-    update: authenticated,
+    // Only Admin+ can view and update solutions order
+    read: ({ req }) => isAdmin(req.user as User),
+    update: ({ req }) => isAdmin(req.user as User),
   },
   fields: [
     {
@@ -69,10 +71,10 @@ export const SolutionsOrder: GlobalConfig = {
             sort: 'createdAt',
             where: orderedIDs.length
               ? {
-                  id: {
-                    not_in: orderedIDs,
-                  },
-                }
+                id: {
+                  not_in: orderedIDs,
+                },
+              }
               : undefined,
           })
 

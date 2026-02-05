@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
 
-import { authenticated } from '../../access/authenticated'
+import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '../../access/roles'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { About } from '../../blocks/About/config'
 import { Archive } from '../../blocks/ArchiveBlock/config'
@@ -40,10 +40,11 @@ import {
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
-    create: authenticated,
-    delete: authenticated,
+    admin: adminPanelAnyAuthenticated, // All roles can see Pages in admin
+    create: editorOrHigher,       // Editor+ can create
+    delete: adminOrHigher,        // Admin+ can delete
     read: authenticatedOrPublished,
-    update: authenticated,
+    update: editorOrHigher,       // Editor+ can update
   },
   // This config controls what's populated by default when a page is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property

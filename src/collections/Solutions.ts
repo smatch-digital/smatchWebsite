@@ -1,10 +1,15 @@
 import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
+import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '@/access/roles'
 
 export const Solutions: CollectionConfig<'solutions'> = {
   slug: 'solutions',
   access: {
-    read: () => true, // Allow public read access
+    admin: adminPanelAnyAuthenticated, // All roles can see Solutions in admin
+    create: editorOrHigher,       // Editor+ can create
+    delete: adminOrHigher,        // Admin+ can delete
+    read: () => true,             // Public read access for frontend
+    update: editorOrHigher,       // Editor+ can update
   },
   admin: {
     useAsTitle: 'title',

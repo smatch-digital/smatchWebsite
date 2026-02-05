@@ -1,11 +1,15 @@
 import { GlobalConfig } from 'payload'
 import { link } from '@/fields/link'
 import { revalidateAnnouncement } from '@/Announcement/hooks/revalidateAnnouncement'
+import { isEditor } from '@/access/roles'
+import type { User } from '@/payload-types'
 
 export const Announcement: GlobalConfig = {
   slug: 'announcement',
   access: {
     read: () => true,
+    // Editors can manage announcements
+    update: ({ req }) => isEditor(req.user as User),
   },
   hooks: {
     afterChange: [revalidateAnnouncement],

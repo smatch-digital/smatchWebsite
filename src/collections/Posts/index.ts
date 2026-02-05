@@ -9,7 +9,7 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { authenticated } from '../../access/authenticated'
+import { adminOrHigher, adminPanelAnyAuthenticated, editorOrHigher } from '../../access/roles'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
@@ -30,10 +30,11 @@ import { slugField } from 'payload'
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
-    create: authenticated,
-    delete: authenticated,
+    admin: adminPanelAnyAuthenticated, // All roles can see Posts in admin
+    create: editorOrHigher,            // Editor+ can create
+    delete: adminOrHigher,             // Admin+ can delete
     read: authenticatedOrPublished,
-    update: authenticated,
+    update: editorOrHigher,            // Editor+ can update
   },
   // This config controls what's populated by default when a post is referenced
   // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
