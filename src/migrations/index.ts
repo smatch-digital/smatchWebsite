@@ -8,6 +8,7 @@ import * as migration_20260206_001500_add_rbac_roles from './20260206_001500_add
 import * as migration_20260209_184716_add_solution_blocks from './20260209_184716_add_solution_blocks';
 import * as migration_20260210_131133_update_solutions_schema from './20260210_131133_update_solutions_schema';
 import * as migration_20260210_131208_update_solutions_schema from './20260210_131208_update_solutions_schema';
+import * as migration_20260211_220000_add_functionality_benefits_icon from './20260211_220000_add_functionality_benefits_icon';
 
 export const migrations = [
   {
@@ -58,6 +59,11 @@ export const migrations = [
   {
     up: migration_20260210_131208_update_solutions_schema.up,
     down: migration_20260210_131208_update_solutions_schema.down,
-    name: '20260210_131208_update_solutions_schema'
+    name: '20260210_131208_update_solutions_schema',
+  },
+  {
+    up: migration_20260211_220000_add_functionality_benefits_icon.up,
+    down: migration_20260211_220000_add_functionality_benefits_icon.down,
+    name: '20260211_220000_add_functionality_benefits_icon',
   },
 ];
