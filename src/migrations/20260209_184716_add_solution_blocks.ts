@@ -6,7 +6,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_quick_presentation_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_blocks_quick_presentation_layout" AS ENUM('mediaRight', 'mediaLeft');
   CREATE TYPE "public"."enum__pages_v_blocks_quick_presentation_link_type" AS ENUM('reference', 'custom');
-  CREATE TYPE "public"."enum_users_role" AS ENUM('owner', 'admin', 'editor', 'viewer');
+  
   CREATE TABLE "pages_blocks_quick_presentation" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -133,7 +133,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   ALTER TABLE "users" ALTER COLUMN "name" SET NOT NULL;
-  ALTER TABLE "users" ADD COLUMN "role" "enum_users_role" DEFAULT 'editor' NOT NULL;
   ALTER TABLE "pages_blocks_quick_presentation" ADD CONSTRAINT "pages_blocks_quick_presentation_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_quick_presentation" ADD CONSTRAINT "pages_blocks_quick_presentation_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_functionality_benefits_benefits" ADD CONSTRAINT "pages_blocks_functionality_benefits_benefits_icon_id_media_id_fk" FOREIGN KEY ("icon_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
@@ -217,10 +216,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_pages_v_blocks_use_case_cases" CASCADE;
   DROP TABLE "_pages_v_blocks_use_case" CASCADE;
   ALTER TABLE "users" ALTER COLUMN "name" DROP NOT NULL;
-  ALTER TABLE "users" DROP COLUMN "role";
   DROP TYPE "public"."enum_pages_blocks_quick_presentation_layout";
   DROP TYPE "public"."enum_pages_blocks_quick_presentation_link_type";
   DROP TYPE "public"."enum__pages_v_blocks_quick_presentation_layout";
-  DROP TYPE "public"."enum__pages_v_blocks_quick_presentation_link_type";
-  DROP TYPE "public"."enum_users_role";`)
+  DROP TYPE "public"."enum__pages_v_blocks_quick_presentation_link_type";`)
 }
