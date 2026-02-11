@@ -3,7 +3,11 @@ import * as migration_20260120_033000_add_solutions_archive_block from './202601
 import * as migration_20260127_120000_add_solutions_ordering from './20260127_120000_add_solutions_ordering';
 import * as migration_20260127_224639_add_announcement_global from './20260127_224639_add_announcement_global';
 import * as migration_20260128_013000_add_announcement_subscription_block from './20260128_013000_add_announcement_subscription_block';
+import * as migration_20260128_093618 from './20260128_093618';
 import * as migration_20260206_001500_add_rbac_roles from './20260206_001500_add_rbac_roles';
+import * as migration_20260209_184716_add_solution_blocks from './20260209_184716_add_solution_blocks';
+import * as migration_20260210_131133_update_solutions_schema from './20260210_131133_update_solutions_schema';
+import * as migration_20260210_131208_update_solutions_schema from './20260210_131208_update_solutions_schema';
 
 export const migrations = [
   {
@@ -24,7 +28,7 @@ export const migrations = [
   {
     up: migration_20260127_224639_add_announcement_global.up,
     down: migration_20260127_224639_add_announcement_global.down,
-    name: '20260127_224639_add_announcement_global'
+    name: '20260127_224639_add_announcement_global',
   },
   {
     up: migration_20260128_013000_add_announcement_subscription_block.up,
@@ -32,8 +36,28 @@ export const migrations = [
     name: '20260128_013000_add_announcement_subscription_block',
   },
   {
+    up: migration_20260128_093618.up,
+    down: migration_20260128_093618.down,
+    name: '20260128_093618',
+  },
+  {
     up: migration_20260206_001500_add_rbac_roles.up,
     down: migration_20260206_001500_add_rbac_roles.down,
     name: '20260206_001500_add_rbac_roles',
+  },
+  {
+    up: migration_20260209_184716_add_solution_blocks.up,
+    down: migration_20260209_184716_add_solution_blocks.down,
+    name: '20260209_184716_add_solution_blocks',
+  },
+  {
+    up: migration_20260210_131133_update_solutions_schema.up,
+    down: migration_20260210_131133_update_solutions_schema.down,
+    name: '20260210_131133_update_solutions_schema',
+  },
+  {
+    up: migration_20260210_131208_update_solutions_schema.up,
+    down: migration_20260210_131208_update_solutions_schema.down,
+    name: '20260210_131208_update_solutions_schema'
   },
 ];

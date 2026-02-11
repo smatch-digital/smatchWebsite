@@ -6,9 +6,7 @@ import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
 
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
-import { ProblemStatement } from '@/components/solutions/ProblemStatement'
-import { UIReveal } from '@/components/solutions/UIReveal'
-import { SystemModules } from '@/components/solutions/SystemModules'
+import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
@@ -59,11 +57,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     title,
     heroSubtitle,
     heroImage,
-    problemTitle,
-    problemDescription,
-    terminalContent,
-    dashboardImage,
-    modules,
+    layout,
   } = solution
 
   // Helper to get image URL
@@ -76,24 +70,6 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
   }
 
   const heroImgUrl = getImageUrl(heroImage)
-  const dashboardImgUrl = getImageUrl(dashboardImage)
-
-  // Format terminal lines
-  const terminalLines = Array.isArray(terminalContent)
-    ? terminalContent
-      .map((item) => item.line)
-      .filter((line): line is string => typeof line === 'string')
-    : []
-
-  // Format modules
-  const formattedModules = Array.isArray(modules)
-    ? modules.map((mod) => ({
-      title: mod.title || '',
-      description: mod.description || '',
-      icon: mod.icon || '',
-      badge: mod.badge || '',
-    }))
-    : []
 
   return (
     <article className="min-h-screen bg-smatch-black">
@@ -107,17 +83,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         fullBleed={!!heroImgUrl}
       />
 
-      {(problemTitle || problemDescription || terminalLines.length > 0) && (
-        <ProblemStatement
-          title={problemTitle || ''}
-          description={problemDescription || ''}
-          terminalLines={terminalLines}
-        />
-      )}
-
-      {dashboardImgUrl && <UIReveal image={dashboardImgUrl} />}
-
-      {formattedModules.length > 0 && <SystemModules modules={formattedModules} />}
+      {layout && <RenderBlocks blocks={layout} locale={locale} />}
     </article>
   )
 }

@@ -86,3 +86,4 @@ lint_report_new.json
 lint_results.txt
 *.pdf
 /backup
+pnpm.exe

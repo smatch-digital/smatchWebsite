@@ -23,6 +23,9 @@ import { ContactBlock } from '@/blocks/Contact/config'
 import { ExpertiseDomains } from '@/blocks/ExpertiseDomains/config'
 import { SolutionsArchive } from '@/blocks/SolutionsArchive/config'
 import { AnnouncementSubscription } from '@/blocks/AnnouncementSubscription/config'
+import { QuickPresentation } from '@/blocks/QuickPresentation/config'
+import { FunctionalityBenefits } from '@/blocks/FunctionalityBenefits/config'
+import { UseCase } from '@/blocks/UseCase/config'
 import { hero } from '@/heros/config'
 import { slugField } from 'payload'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -112,6 +115,9 @@ export const Pages: CollectionConfig<'pages'> = {
                 ExpertiseDomains,
                 SolutionsArchive,
                 AnnouncementSubscription,
+                QuickPresentation,
+                FunctionalityBenefits,
+                UseCase,
               ],
               required: true,
               admin: {

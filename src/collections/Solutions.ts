@@ -1,5 +1,8 @@
 import type { CollectionConfig } from 'payload'
 import { createRAGAfterChangeHook, createRAGAfterDeleteHook } from '@/hooks/ragSync'
+import { QuickPresentation } from '@/blocks/QuickPresentation/config'
+import { FunctionalityBenefits } from '@/blocks/FunctionalityBenefits/config'
+import { UseCase } from '@/blocks/UseCase/config'
 import { adminOrHigher, adminPanelEditorOrHigher, editorOrHigher } from '@/access/roles'
 
 export const Solutions: CollectionConfig<'solutions'> = {
@@ -112,68 +115,13 @@ export const Solutions: CollectionConfig<'solutions'> = {
           ],
         },
         {
-          label: 'Problem Statement',
+          label: 'Content',
           fields: [
             {
-              name: 'problemTitle',
-              type: 'text',
+              name: 'layout',
+              type: 'blocks',
               localized: true,
-            },
-            {
-              name: 'problemDescription',
-              type: 'textarea',
-              localized: true,
-            },
-            {
-              name: 'terminalContent',
-              type: 'array',
-              fields: [
-                {
-                  name: 'line',
-                  type: 'text',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'UI Reveal',
-          fields: [
-            {
-              name: 'dashboardImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
-          ],
-        },
-        {
-          label: 'Specifications / Modules',
-          fields: [
-            {
-              name: 'modules',
-              type: 'array',
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                },
-                {
-                  name: 'description',
-                  type: 'textarea',
-                },
-                {
-                  name: 'icon',
-                  type: 'text',
-                  label: 'Icon Name',
-                  admin: {
-                    description: 'Copy from Icon Library (/admin/icons)',
-                  },
-                },
-                {
-                  name: 'badge',
-                  type: 'text',
-                },
-              ],
+              blocks: [QuickPresentation, FunctionalityBenefits, UseCase],
             },
           ],
         },

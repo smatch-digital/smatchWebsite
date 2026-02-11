@@ -292,6 +292,9 @@ export interface Page {
     | ExpertiseDomainsBlock
     | SolutionsArchiveBlock
     | AnnouncementSubscriptionBlock
+    | QuickPresentationBlock
+    | FunctionalityBenefitsBlock
+    | UseCaseBlock
   )[];
   meta?: {
     title?: string | null;
@@ -1340,29 +1343,94 @@ export interface Solution {
   icon?: string | null;
   heroSubtitle?: string | null;
   heroImage?: (number | null) | Media;
-  problemTitle?: string | null;
-  problemDescription?: string | null;
-  terminalContent?:
-    | {
-        line?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  dashboardImage?: (number | null) | Media;
-  modules?:
-    | {
-        title?: string | null;
-        description?: string | null;
-        /**
-         * Copy from Icon Library (/admin/icons)
-         */
-        icon?: string | null;
-        badge?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  layout?: (QuickPresentationBlock | FunctionalityBenefitsBlock | UseCaseBlock)[] | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuickPresentationBlock".
+ */
+export interface QuickPresentationBlock {
+  headline: string;
+  subheadline?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media: number | Media;
+  layout?: ('mediaRight' | 'mediaLeft') | null;
+  link: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'quickPresentation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FunctionalityBenefitsBlock".
+ */
+export interface FunctionalityBenefitsBlock {
+  sectionHeader: {
+    title: string;
+    description?: string | null;
+  };
+  benefits?:
+    | {
+        icon?: (number | null) | Media;
+        title: string;
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'functionalityBenefits';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UseCaseBlock".
+ */
+export interface UseCaseBlock {
+  sectionHeader: {
+    title: string;
+    description?: string | null;
+  };
+  cases?:
+    | {
+        title: string;
+        description: string;
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'useCase';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1761,6 +1829,9 @@ export interface PagesSelect<T extends boolean = true> {
         'expertise-domains'?: T | ExpertiseDomainsBlockSelect<T>;
         'solutions-archive'?: T | SolutionsArchiveBlockSelect<T>;
         announcementSubscription?: T | AnnouncementSubscriptionBlockSelect<T>;
+        quickPresentation?: T | QuickPresentationBlockSelect<T>;
+        functionalityBenefits?: T | FunctionalityBenefitsBlockSelect<T>;
+        useCase?: T | UseCaseBlockSelect<T>;
       };
   meta?:
     | T
@@ -2201,6 +2272,72 @@ export interface AnnouncementSubscriptionBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuickPresentationBlock_select".
+ */
+export interface QuickPresentationBlockSelect<T extends boolean = true> {
+  headline?: T;
+  subheadline?: T;
+  description?: T;
+  media?: T;
+  layout?: T;
+  link?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FunctionalityBenefitsBlock_select".
+ */
+export interface FunctionalityBenefitsBlockSelect<T extends boolean = true> {
+  sectionHeader?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  benefits?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "UseCaseBlock_select".
+ */
+export interface UseCaseBlockSelect<T extends boolean = true> {
+  sectionHeader?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  cases?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -2360,23 +2497,12 @@ export interface SolutionsSelect<T extends boolean = true> {
   icon?: T;
   heroSubtitle?: T;
   heroImage?: T;
-  problemTitle?: T;
-  problemDescription?: T;
-  terminalContent?:
+  layout?:
     | T
     | {
-        line?: T;
-        id?: T;
-      };
-  dashboardImage?: T;
-  modules?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        badge?: T;
-        id?: T;
+        quickPresentation?: T | QuickPresentationBlockSelect<T>;
+        functionalityBenefits?: T | FunctionalityBenefitsBlockSelect<T>;
+        useCase?: T | UseCaseBlockSelect<T>;
       };
   updatedAt?: T;
   createdAt?: T;

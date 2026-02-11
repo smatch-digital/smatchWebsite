@@ -22,6 +22,9 @@ import { ContactBlock } from '@/blocks/Contact/Component'
 import { ExpertiseDomainsBlock } from '@/blocks/ExpertiseDomains/Component'
 import { SolutionsArchiveBlock } from '@/blocks/SolutionsArchive/Component'
 import { AnnouncementSubscriptionBlock } from '@/blocks/AnnouncementSubscription/Component'
+import { QuickPresentationBlock } from '@/blocks/QuickPresentation/Component'
+import { FunctionalityBenefitsBlock } from '@/blocks/FunctionalityBenefits/Component'
+import { UseCaseBlock } from '@/blocks/UseCase/Component'
 
 // Type-safe block component registry
 // Each component accepts its specific block type props + optional disableInnerContainer
@@ -48,6 +51,9 @@ const blockComponents: Record<string, BlockComponent> = {
   'expertise-domains': ExpertiseDomainsBlock as unknown as BlockComponent,
   'solutions-archive': SolutionsArchiveBlock as unknown as BlockComponent,
   announcementSubscription: AnnouncementSubscriptionBlock as unknown as BlockComponent,
+  quickPresentation: QuickPresentationBlock as unknown as BlockComponent,
+  functionalityBenefits: FunctionalityBenefitsBlock as unknown as BlockComponent,
+  useCase: UseCaseBlock as unknown as BlockComponent,
 }
 
 type LayoutBlock = NonNullable<Page['layout']>[number]
