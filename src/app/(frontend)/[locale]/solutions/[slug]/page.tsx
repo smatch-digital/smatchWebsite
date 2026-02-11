@@ -60,6 +60,16 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     layout,
   } = solution
 
+  // DEBUG: Log the solution data to server console
+  console.log(`[SolutionPage] Fetching slug: ${decodedSlug}, Locale: ${locale}`)
+  console.log(`[SolutionPage] Title: ${title}`)
+  console.log(`[SolutionPage] Layout blocks found: ${layout?.length || 0}`)
+  if (layout && layout.length > 0) {
+    console.log(`[SolutionPage] First block type: ${layout[0].blockType}`)
+  } else {
+    console.warn(`[SolutionPage] WARNING: No layout blocks found for ${decodedSlug} in ${locale}`)
+  }
+
   // Helper to get image URL
   const getImageUrl = (media: unknown) => {
     if (!media) return null
@@ -107,6 +117,7 @@ const querySolutionBySlug = cache(async ({ slug, locale }: { slug: string; local
       collection: 'solutions',
       draft,
       limit: 1,
+      depth: 2, // Ensure blocks and media are fully populated
       pagination: false,
       overrideAccess: draft,
       locale: locale as any,
