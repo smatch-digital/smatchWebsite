@@ -30,9 +30,11 @@ export const FunctionalityBenefits: Block = {
       fields: [
         {
           name: 'icon',
-          type: 'upload',
-          relationTo: 'media',
-          label: 'Icon',
+          type: 'text',
+          label: 'Icon Name',
+          admin: {
+            description: 'Copy from Icon Library (/admin/icons) e.g., Barcode, Truck, Warehouse',
+          },
         },
         {
           name: 'title',

@@ -38,8 +38,8 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
             <h2 className="mb-8 font-heading text-4xl font-black uppercase leading-tight tracking-tighter text-white md:text-5xl lg:text-6xl lg:leading-[1.1]">
               {headline}
             </h2>
-            <div className="prose prose-invert mb-10 max-w-none text-lg font-light leading-relaxed text-gray-400 lg:text-xl">
-              <RichText data={description} enableGutter={false} />
+            <div className="prose prose-invert mb-10 max-w-none text-lg font-light leading-relaxed text-white lg:text-xl">
+              <RichText className='text-gray-200' data={description} enableGutter={false} />
             </div>
             {link && (
               <div className="flex flex-wrap gap-4">
@@ -50,15 +50,12 @@ export const QuickPresentationBlock: React.FC<QuickPresentationBlockProps> = ({
 
           {/* Media Side */}
           <div className="flex-1">
-            <div className="group relative aspect-video overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 hover:border-[#FFAA00]/30 hover:shadow-[#FFAA00]/10">
+            <div className="group relative aspect-video overflow-hidden rounded-md border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 hover:border-[#FFAA00]/30 hover:shadow-[#FFAA00]/10">
               {media && typeof media !== 'string' && (
-                <Media resource={media} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Media resource={media} fill className="object-cover transform-gpu transition-transform duration-700 group-hover:scale-105" />
               )}
               {/* Overlay sheen */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-30" />
-              
-              {/* Tech overlay pattern */}
-              <div className="pointer-events-none absolute inset-0 opacity-20 bg-[url('/assets/grid-pattern.svg')] bg-[length:20px_20px]" />
+              <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-tr from-white/5 to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-30" />
             </div>
           </div>
         </div>

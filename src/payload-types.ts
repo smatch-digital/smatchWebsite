@@ -1401,7 +1401,10 @@ export interface FunctionalityBenefitsBlock {
   };
   benefits?:
     | {
-        icon?: (number | null) | Media;
+        /**
+         * Copy from Icon Library (/admin/icons) e.g., Barcode, Truck, Warehouse
+         */
+        icon?: string | null;
         title: string;
         description: string;
         id?: string | null;

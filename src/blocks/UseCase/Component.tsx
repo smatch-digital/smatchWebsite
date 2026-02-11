@@ -29,16 +29,16 @@ export const UseCaseBlock: React.FC<UseCaseBlockProps> = ({ sectionHeader, cases
             >
               {/* Image Side */}
               <div className="w-full lg:w-1/2">
-                <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 hover:border-[#FFAA00]/30 hover:shadow-[#FFAA00]/10">
+                <div className="group relative aspect-[16/9] overflow-hidden rounded-md border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 hover:border-[#FFAA00]/30 hover:shadow-[#FFAA00]/10">
                   {item.image && typeof item.image !== 'string' && (
                     <Media
                       resource={item.image}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transform-gpu transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                   {/* Glassmorphism Overlay Card */}
-                  <div className="absolute bottom-6 left-6 right-6 overflow-hidden rounded-xl border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 group-hover:bg-black/80 lg:bottom-8 lg:left-8 lg:right-8">
+                  <div className="absolute bottom-6 left-6 right-6 z-10 overflow-hidden rounded-md border border-white/10 bg-black/60 p-6 backdrop-blur-md transition-all duration-500 group-hover:bg-black/80 lg:bottom-8 lg:left-8 lg:right-8">
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#FFAA00] text-lg font-black text-black">
                         {i + 1}
@@ -66,7 +66,7 @@ export const UseCaseBlock: React.FC<UseCaseBlockProps> = ({ sectionHeader, cases
                   </h3>
                   
                   <div className="relative border-l-2 border-white/10 pl-6">
-                    <p className="font-sans text-lg font-light leading-relaxed text-gray-400 lg:text-xl">
+                    <p className="font-sans text-lg font-light leading-relaxed text-gray-200 lg:text-xl">
                       {item.description}
                     </p>
                   </div>

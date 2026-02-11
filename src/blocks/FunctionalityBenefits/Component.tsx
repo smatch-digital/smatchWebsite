@@ -1,6 +1,23 @@
 import React from 'react'
 import type { FunctionalityBenefitsBlock as FunctionalityBenefitsBlockProps } from '@/payload-types'
 import { Media } from '@/components/Media'
+import * as PhosphorIcons from '@phosphor-icons/react/dist/ssr'
+
+// Dynamic icon renderer
+const DynamicIcon = ({ name, className }: { name: string | null | undefined; className?: string }) => {
+  if (!name) return null
+  
+  // Safe cast to access icon by string key
+  const IconComponent = (PhosphorIcons as unknown as Record<string, React.ElementType>)[name]
+
+  if (!IconComponent) {
+    // Fallback or null if not found
+    return null
+  }
+
+  // Phosphor icons accept size and weight props
+  return <IconComponent className={className} size={32} weight="duotone" />
+}
 
 export const FunctionalityBenefitsBlock: React.FC<FunctionalityBenefitsBlockProps> = ({
   sectionHeader,
@@ -29,19 +46,19 @@ export const FunctionalityBenefitsBlock: React.FC<FunctionalityBenefitsBlockProp
           {benefits?.map((benefit, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.02] p-10 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#FFAA00]/30 hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-[#FFAA00]/5"
+              className="group relative overflow-hidden rounded-md border border-white/5 bg-white/[0.02] p-10 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-[#FFAA00]/30 hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-[#FFAA00]/5"
             >
               {/* Icon */}
               <div className="mb-8 inline-flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-[#FFAA00] transition-all duration-500 group-hover:scale-110 group-hover:border-[#FFAA00]/50 group-hover:bg-[#FFAA00] group-hover:text-black shadow-lg shadow-black/50">
-                {benefit.icon && typeof benefit.icon !== 'string' && (
-                  <Media resource={benefit.icon} className="h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110" />
+                {benefit.icon && (
+                  <DynamicIcon name={benefit.icon} className="h-10 w-10 transition-transform duration-500 group-hover:scale-110" />
                 )}
               </div>
 
               <h3 className="mb-4 font-heading text-xl font-bold uppercase tracking-tight text-white transition-colors duration-300 group-hover:text-[#FFAA00]">
                 {benefit.title}
               </h3>
-              <p className="font-sans text-base leading-relaxed text-gray-400 transition-colors duration-300 group-hover:text-gray-300">
+              <p className="font-sans text-base leading-relaxed text-gray-300 transition-colors duration-300 group-hover:text-white">
                 {benefit.description}
               </p>
 
