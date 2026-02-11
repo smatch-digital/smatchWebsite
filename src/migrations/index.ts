@@ -9,6 +9,7 @@ import * as migration_20260209_184716_add_solution_blocks from './20260209_18471
 import * as migration_20260210_131133_update_solutions_schema from './20260210_131133_update_solutions_schema';
 import * as migration_20260210_131208_update_solutions_schema from './20260210_131208_update_solutions_schema';
 import * as migration_20260211_220000_add_functionality_benefits_icon from './20260211_220000_add_functionality_benefits_icon';
+import * as migration_20260211_222800_fix_solutions_icon_column from './20260211_222800_fix_solutions_icon_column';
 
 export const migrations = [
   {
@@ -65,5 +66,10 @@ export const migrations = [
     up: migration_20260211_220000_add_functionality_benefits_icon.up,
     down: migration_20260211_220000_add_functionality_benefits_icon.down,
     name: '20260211_220000_add_functionality_benefits_icon',
+  },
+  {
+    up: migration_20260211_222800_fix_solutions_icon_column.up,
+    down: migration_20260211_222800_fix_solutions_icon_column.down,
+    name: '20260211_222800_fix_solutions_icon_column',
   },
 ];
