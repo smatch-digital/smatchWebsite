@@ -21,8 +21,8 @@ const getIconComponent = (iconName: string | null | undefined): React.ReactEleme
 }
 
 // --- Individual Card Component ---
-const InteractiveCard = ({ data }: { data: Solution }) => {
-    const href = `/solutions/${data.slug}`
+const InteractiveCard = ({ data, locale = 'en' }: { data: Solution; locale?: string }) => {
+    const href = `/${locale}/solutions/${data.slug}`
 
     const heroImage = data.heroImage as Media | null | undefined
     const imageUrl = heroImage?.url || '/assets/placeholders/default-grid.jpg'
@@ -89,7 +89,7 @@ const InteractiveCard = ({ data }: { data: Solution }) => {
                             }}
                         >
                             <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFAA00] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#D99200]">
-                                Explore Solution
+                                {locale === 'fr' ? 'Explorer la Solution' : 'Explore Solution'}
                                 <ArrowRight size={16} weight="bold" />
                             </button>
                         </motion.div>
@@ -107,6 +107,7 @@ interface SolutionsGridClientProps {
     sectionDescription?: string | null
     solutions: Solution[]
     columnClass: string
+    locale?: string
 }
 
 // --- Main Grid Component ---
@@ -116,6 +117,7 @@ export const SolutionsGridClient: React.FC<SolutionsGridClientProps> = ({
     sectionDescription,
     solutions,
     columnClass,
+    locale = 'en',
 }) => {
     return (
         <section id={`block-${id}`} className="relative overflow-hidden bg-[#050505] py-20">
@@ -137,7 +139,7 @@ export const SolutionsGridClient: React.FC<SolutionsGridClientProps> = ({
                 <div className={`grid grid-cols-1 gap-8 md:grid-cols-2 ${columnClass}`}>
                     {solutions.length > 0 ? (
                         solutions.map((solution) => (
-                            <InteractiveCard key={solution.id} data={solution} />
+                            <InteractiveCard key={solution.id} data={solution} locale={locale} />
                         ))
                     ) : (
                         <div className="col-span-full py-12 text-center text-gray-500">

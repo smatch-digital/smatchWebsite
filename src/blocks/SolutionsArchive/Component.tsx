@@ -69,6 +69,7 @@ export const SolutionsArchiveBlock: React.FC<
             sectionDescription={sectionDescription}
             solutions={solutions}
             columnClass={columnClasses[columns || '4'] || 'lg:grid-cols-4'}
+            locale={locale}
         />
     )
 }

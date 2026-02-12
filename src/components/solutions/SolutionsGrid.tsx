@@ -21,6 +21,21 @@ interface SolutionDoc {
 
 interface SolutionsGridProps {
   solutions?: SolutionDoc[]
+  locale?: string
+}
+
+// --- Static text by locale ---
+const gridText: Record<string, { sectionTitle: string; sectionDescription: string; cardCta: string }> = {
+  fr: {
+    sectionTitle: 'Nos Solutions',
+    sectionDescription: 'Trois piliers technologiques pour transformer vos opérations industrielles.',
+    cardCta: 'Explorer la Solution',
+  },
+  en: {
+    sectionTitle: 'Our Solutions',
+    sectionDescription: 'Three technological pillars to transform your industrial operations.',
+    cardCta: 'Explore Solution',
+  },
 }
 
 // --- Icon Mapping Strategy ---
@@ -37,10 +52,10 @@ const getIconComponent = (iconName: string | null | undefined): React.ReactEleme
   return icons[iconName || 'default'] || icons['default']
 }
 
-// --- Individual Card Component (Unchanged logic, just props usage) ---
-const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
-  // 1. Construct the Dynamic URL
-  const href = `/solutions/${data.slug}`
+// --- Individual Card Component ---
+const InteractiveCard = ({ data, locale = 'en' }: { data: SolutionDoc; locale?: string }) => {
+  // 1. Construct the Dynamic URL WITH locale prefix
+  const href = `/${locale}/solutions/${data.slug}`
 
   // 2. Handle Image URL (Payload returns objects for media)
   const imageUrl = typeof data.heroImage === 'object' && data.heroImage?.url
@@ -49,6 +64,8 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
 
   // 3. Get the correct icon
   const icon = getIconComponent(data.icon)
+
+  const t = gridText[locale] || gridText.en
 
   return (
     <Link href={href} className="block size-full">
@@ -111,7 +128,7 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
               }}
             >
               <button className="mt-4 flex w-full items-center justify-between rounded-[4px] bg-[#FFAA00] px-6 py-4 text-xs font-bold uppercase tracking-widest text-black transition-colors hover:bg-[#D99200]">
-                Explore Solution
+                {t.cardCta}
                 <ArrowRight size={16} weight="bold" />
               </button>
             </motion.div>
@@ -123,7 +140,9 @@ const InteractiveCard = ({ data }: { data: SolutionDoc }) => {
 }
 
 // --- Main Grid Section ---
-export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
+export const SolutionsGrid = ({ solutions = [], locale = 'en' }: SolutionsGridProps) => {
+  const t = gridText[locale] || gridText.en
+
   return (
     <section className="relative overflow-hidden bg-[#050505] py-32">
       {/* Background Atmosphere */}
@@ -132,9 +151,9 @@ export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="mb-20 text-center">
-          <span className="mb-2 block text-lg font-bold text-white">Nos Solutions</span>
+          <span className="mb-2 block text-lg font-bold text-white">{t.sectionTitle}</span>
           <p className="mx-auto max-w-2xl text-sm text-gray-500">
-            Trois piliers technologiques pour transformer vos opérations industrielles.
+            {t.sectionDescription}
           </p>
         </div>
 
@@ -145,6 +164,7 @@ export const SolutionsGrid = ({ solutions = [] }: SolutionsGridProps) => {
               <InteractiveCard
                 key={solution.id}
                 data={solution}
+                locale={locale}
               />
             ))
           ) : (

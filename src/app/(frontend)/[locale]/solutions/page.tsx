@@ -6,12 +6,6 @@ import { SolutionsCTA } from '@/components/solutions/SolutionsCTA'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
 
-export const metadata: Metadata = {
-  title: 'Solutions | Smatch Digital',
-  description:
-    'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
-}
-
 type Args = {
   params: Promise<{
     locale: string
@@ -23,6 +17,29 @@ type Args = {
  */
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
+}
+
+/**
+ * Dynamic metadata — locale-aware title and description
+ */
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { locale } = await params
+
+  const meta: Record<string, { title: string; description: string }> = {
+    fr: {
+      title: 'Solutions | Smatch Digital',
+      description:
+        'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
+    },
+    en: {
+      title: 'Solutions | Smatch Digital',
+      description:
+        'Logistics, traceability, Concept 4.0, Data processing… the engine of your digital transformation starts here.',
+    },
+  }
+
+  const m = meta[locale] || meta.en
+  return { title: m.title, description: m.description }
 }
 
 export default async function SolutionsPage({ params }: Args) {
@@ -54,10 +71,10 @@ export default async function SolutionsPage({ params }: Args) {
 
   return (
     <main className="flex w-full flex-col">
-      <SolutionsHero image={'/assets/hero/SolutionHero.webp'} />
-      {/* 3. Pass the fetched data to the Grid */}
-      <SolutionsGrid solutions={solutions} />
-      <SolutionsCTA />
+      <SolutionsHero image={'/assets/hero/SolutionHero.webp'} locale={locale} />
+      {/* 3. Pass the fetched data + locale to the Grid */}
+      <SolutionsGrid solutions={solutions} locale={locale} />
+      <SolutionsCTA locale={locale} />
     </main>
   )
 }

@@ -6,15 +6,25 @@ import Image from 'next/image'
 import { Spotlight } from '@/components/ui/spotlight'
 import { cn } from '@/utilities/ui'
 
+// --- Static text by locale ---
+const heroDefaults: Record<string, { title: string; subtitle: string }> = {
+  fr: {
+    title: "L'ARSENAL DIGITAL.",
+    subtitle: 'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
+  },
+  en: {
+    title: 'THE DIGITAL ARSENAL.',
+    subtitle: 'Logistics, traceability, Concept 4.0, Data processing… the engine of your digital transformation starts here.',
+  },
+}
+
 interface SolutionsHeroProps {
   /**
    * Optional override for the main headline.
-   * Defaults to "L'ARSENAL DIGITAL."
    */
   title?: string
   /**
    * Optional override for the subtitle.
-   * Defaults to "Logistique. Mobilité. Industrie X.0. Le moteur de votre transformation commence ici."
    */
   subtitle?: string
   /**
@@ -25,16 +35,25 @@ interface SolutionsHeroProps {
    * If true, the image will be used as a full-bleed background.
    */
   fullBleed?: boolean
+  /**
+   * Current locale for default text selection.
+   */
+  locale?: string
   className?: string
 }
 
 export function SolutionsHero({
-  title = "L'ARSENAL DIGITAL.",
-  subtitle = 'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
+  title,
+  subtitle,
   image,
   fullBleed = true,
+  locale = 'en',
   className,
 }: SolutionsHeroProps) {
+  const defaults = heroDefaults[locale] || heroDefaults.en
+  const resolvedTitle = title || defaults.title
+  const resolvedSubtitle = subtitle || defaults.subtitle
+
   // Full-bleed mode for detail pages (Project Page usually uses this)
   if (fullBleed || image) {
     return (
@@ -58,13 +77,12 @@ export function SolutionsHero({
           {image && (
             <Image
               src={image}
-              alt={title}
+              alt={resolvedTitle}
               fill
               className="object-cover "
               priority
             />
           )}
-          {/* <div className="absolute inset-0 bg-gradient-to-t from-smatch-black via-transparent to-smatch-black opacity-90" /> */}
         </div>
 
         <div className="container relative z-10 flex flex-col items-center px-4 text-center">
@@ -75,9 +93,9 @@ export function SolutionsHero({
             className="flex flex-col items-center"
           >
             <h1 className="mb-6 max-w-5xl font-heading text-6xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
-              {title}
+              {resolvedTitle}
             </h1>
-            <p className="mb-10 max-w-2xl text-sm font-light text-white md:text-xl">{subtitle}</p>
+            <p className="mb-10 max-w-2xl text-sm font-light text-white md:text-xl">{resolvedSubtitle}</p>
           </motion.div>
         </div>
       </section>
@@ -114,10 +132,10 @@ export function SolutionsHero({
         >
           {/* Typography */}
           <h1 className="mb-6 max-w-5xl font-heading text-8xl font-bold uppercase leading-none tracking-tight text-white drop-shadow-md md:text-7xl lg:text-8xl">
-            {title}
+            {resolvedTitle}
           </h1>
 
-          <p className="mb-10 max-w-2xl text-lg font-light text-white md:text-xl">{subtitle}</p>
+          <p className="mb-10 max-w-2xl text-lg font-light text-white md:text-xl">{resolvedSubtitle}</p>
         </motion.div>
       </div>
     </section>

@@ -9,6 +9,7 @@ import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { i18nConfig } from '@/utilities/i18n'
 
 export async function generateStaticParams() {
   try {
@@ -24,7 +25,16 @@ export async function generateStaticParams() {
       },
     })
 
-    return solutions.docs.map(({ slug }) => ({ slug }))
+    // Generate { locale, slug } pairs for every locale × slug combination
+    const params: { locale: string; slug: string }[] = []
+    for (const locale of i18nConfig.locales) {
+      for (const doc of solutions.docs) {
+        if (doc.slug) {
+          params.push({ locale, slug: doc.slug })
+        }
+      }
+    }
+    return params
   } catch (_error) {
     return []
   }
@@ -60,16 +70,6 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     layout,
   } = solution
 
-  // DEBUG: Log the solution data to server console
-  console.log(`[SolutionPage] Fetching slug: ${decodedSlug}, Locale: ${locale}`)
-  console.log(`[SolutionPage] Title: ${title}`)
-  console.log(`[SolutionPage] Layout blocks found: ${layout?.length || 0}`)
-  if (layout && layout.length > 0) {
-    console.log(`[SolutionPage] First block type: ${layout[0].blockType}`)
-  } else {
-    console.warn(`[SolutionPage] WARNING: No layout blocks found for ${decodedSlug} in ${locale}`)
-  }
-
   // Helper to get image URL
   const getImageUrl = (media: unknown) => {
     if (!media) return null
@@ -91,6 +91,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         subtitle={heroSubtitle || undefined}
         image={heroImgUrl}
         fullBleed={!!heroImgUrl}
+        locale={locale}
       />
 
       {layout && <RenderBlocks blocks={layout} locale={locale} />}
