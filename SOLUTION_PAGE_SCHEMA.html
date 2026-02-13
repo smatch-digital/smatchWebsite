@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Solution Page — Content Schema & Guidelines</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: #1a1a2e;
+    line-height: 1.6;
+    padding: 40px 50px;
+    font-size: 11px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f0f23;
+    margin-bottom: 6px;
+    border-bottom: 3px solid #c8a951;
+    padding-bottom: 8px;
+  }
+  h1 + blockquote {
+    background: #f8f6f0;
+    border-left: 4px solid #c8a951;
+    padding: 10px 14px;
+    margin: 10px 0 16px 0;
+    font-size: 10.5px;
+    color: #444;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f0f23;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e0dcd4;
+    padding-bottom: 4px;
+  }
+  h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-top: 16px;
+    margin-bottom: 6px;
+  }
+  hr { border: none; border-top: 1px solid #e0dcd4; margin: 20px 0; }
+  p { margin: 6px 0; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 10.5px;
+  }
+  th {
+    background: #1a1a2e;
+    color: #fff;
+    text-align: left;
+    padding: 6px 8px;
+    font-weight: 600;
+    font-size: 10px;
+  }
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid #e8e5de;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #faf9f6; }
+  strong { font-weight: 600; }
+  code {
+    background: #f0ede6;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-family: 'Consolas', monospace;
+  }
+  pre {
+    background: #1a1a2e;
+    color: #e0dcd4;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 10px;
+    margin: 8px 0;
+    overflow-x: auto;
+    font-family: 'Consolas', monospace;
+    line-height: 1.5;
+  }
+  .tip, .important {
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+    font-size: 10.5px;
+  }
+  .tip {
+    background: #f0f7f0;
+    border-left: 4px solid #2ea043;
+  }
+  .tip::before {
+    content: '💡 TIP: ';
+    font-weight: 700;
+    color: #2ea043;
+  }
+  .important {
+    background: #fff8e6;
+    border-left: 4px solid #c8a951;
+  }
+  .important::before {
+    content: '⚠️ IMPORTANT: ';
+    font-weight: 700;
+    color: #c8a951;
+  }
+  em { font-style: italic; color: #555; }
+  @media print {
+    body { padding: 20px 30px; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Solution Page — Content Schema & Guidelines</h1>
+<blockquote>
+  <strong>Audience:</strong> Content writers managing Solution pages via the CMS admin panel.<br>
+  <strong>Important:</strong> This site is bilingual (<strong>English</strong> + <strong>French</strong>). Every field marked 🌐 must be filled in <strong>both languages</strong> using the locale switcher at the top of the admin panel.
+</blockquote>
+
+<hr>
+
+<h2>How a Solution Page is Structured</h2>
+<p>A solution page is composed of <strong>three sections</strong>, filled through tabs in the admin panel:</p>
+<pre>
+┌─────────────────────────────────────────┐
+│  GLOBAL SETTINGS  (Title, Slug, Order)  │  ← Sidebar + top fields
+├─────────────────────────────────────────┤
+│  TAB 1: Card Settings                   │  ← Controls the card in the Solutions listing grid
+│  TAB 2: Hero Section                    │  ← The banner at the top of the page
+│  TAB 3: Content (Layout Blocks)         │  ← The main body, built from reusable blocks
+└─────────────────────────────────────────┘
+</pre>
+
+<hr>
+
+<h2>1. Global Settings</h2>
+<p>These fields define the page identity. They appear at the top and sidebar of the editor.</p>
+<table>
+  <tr><th>Field</th><th>Where</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Example</th></tr>
+  <tr><td><strong>Title</strong></td><td>Top</td><td>✅</td><td>✅</td><td>The official product/solution name.</td><td><code>Prolog WMS</code></td></tr>
+  <tr><td><strong>Slug</strong></td><td>Sidebar</td><td>✅</td><td>—</td><td>URL-safe identifier. Lowercase, hyphens only. Must be <strong>unique</strong>.</td><td><code>prolog-wms</code></td></tr>
+  <tr><td><strong>Order</strong></td><td>Sidebar</td><td>—</td><td>—</td><td>Number controlling position in navigation. Auto-assigned if left empty.</td><td><code>1</code></td></tr>
+</table>
+
+<hr>
+
+<h2>2. Tab: Card Settings</h2>
+<p>Controls how the solution appears as a <strong>card</strong> on the Solutions listing/grid page.</p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Description</strong></td><td>—</td><td>✅</td><td>A concise "elevator pitch" of the solution. Focus on the main value proposition.</td><td>120–160 characters. One short paragraph.</td></tr>
+  <tr><td><strong>Icon</strong></td><td>—</td><td>—</td><td>The <strong>name</strong> of an icon from the Icon Library. Go to <code>/admin/icons</code> in the admin panel to browse available icons and copy the exact name.</td><td>e.g., <code>Barcode</code>, <code>Truck</code>, <code>Warehouse</code></td></tr>
+</table>
+<div class="tip">To find the right icon: navigate to <strong><code>/admin/icons</code></strong> in the admin panel → browse or search → copy the icon name exactly as shown.</div>
+
+<hr>
+
+<h2>3. Tab: Hero Section</h2>
+<p>The <strong>banner</strong> at the very top of the solution page.</p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Hero Subtitle</strong></td><td>—</td><td>✅</td><td>A punchy tagline that supports the title.</td><td>40–60 chars. e.g., <em>"The Future of Warehouse Logistics"</em></td></tr>
+  <tr><td><strong>Hero Image</strong></td><td>—</td><td>—</td><td>Upload a high-quality background image.</td><td>Recommended: <strong>1920×1080px</strong>, WebP format. Dark/cinematic style preferred.</td></tr>
+</table>
+
+<hr>
+
+<h2>4. Tab: Content (Layout Blocks)</h2>
+<p>The main body of the page. You build it by <strong>adding blocks</strong> from the list below. You can add as many blocks as needed, in any order.</p>
+<div class="important">The Content tab is <strong>localized</strong>. You must add and fill blocks for <strong>each language separately</strong> using the locale switcher.</div>
+
+<h3>Block A — Quick Presentation</h3>
+<p><strong>Purpose:</strong> Primary introduction section. Displays a headline, description, image, and an optional call-to-action button in a side-by-side layout.</p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Headline</strong></td><td>✅</td><td>✅</td><td>The main impactful statement.</td><td>30–50 chars. e.g., <em>"Optimize Your Supply Chain"</em></td></tr>
+  <tr><td><strong>Subheadline</strong></td><td>—</td><td>✅</td><td>Small badge text displayed above the headline.</td><td>15–25 chars. e.g., <em>"Intelligent Logistics"</em></td></tr>
+  <tr><td><strong>Description</strong></td><td>—</td><td>✅</td><td>Detailed overview. This is a <strong>Rich Text editor</strong> — you can use bold, italic, lists.</td><td>2–3 short paragraphs. Avoid walls of text.</td></tr>
+  <tr><td><strong>Media</strong></td><td>✅</td><td>—</td><td>Feature image or UI screenshot of the product.</td><td>16:9 aspect ratio recommended.</td></tr>
+  <tr><td><strong>Layout</strong></td><td>—</td><td>—</td><td>Choose the image position: <code>Media Right</code> (default) or <code>Media Left</code>.</td><td>Use <code>Media Left</code> for visual variation when stacking multiple blocks.</td></tr>
+</table>
+
+<p><strong>CTA Button (optional link group):</strong></p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Type</strong></td><td>—</td><td>—</td><td><code>Internal link</code> → select a Page/Post. <code>Custom URL</code> → type a full URL.</td><td>Default: Internal link.</td></tr>
+  <tr><td><strong>Label</strong></td><td>✅</td><td>✅</td><td>The button text.</td><td>10–20 chars. e.g., <em>"Book a Demo"</em>, <em>"En savoir plus"</em></td></tr>
+  <tr><td><strong>URL</strong></td><td>✅*</td><td>✅</td><td>Only if Type = <code>Custom URL</code>. Paste the full URL.</td><td>e.g., <code>https://calendly.com/smatch/demo</code></td></tr>
+  <tr><td><strong>Reference</strong></td><td>✅*</td><td>—</td><td>Only if Type = <code>Internal link</code>. Select from dropdown.</td><td>—</td></tr>
+  <tr><td><strong>Open in new tab</strong></td><td>—</td><td>—</td><td>Check this box if the link should open in a new browser tab.</td><td>Recommended for external URLs.</td></tr>
+</table>
+<p><em>* Required only when the corresponding Type is selected.</em></p>
+
+<h3>Block B — Functionality & Benefits</h3>
+<p><strong>Purpose:</strong> A grid of feature cards, each with an icon, title, and description.</p>
+
+<p><strong>Section Header:</strong></p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Title</strong></td><td>✅</td><td>✅</td><td>Section heading.</td><td>30–50 chars. e.g., <em>"Why Choose Prolog WMS?"</em></td></tr>
+  <tr><td><strong>Description</strong></td><td>—</td><td>✅</td><td>Brief intro sentence before the feature grid.</td><td>100–150 chars.</td></tr>
+</table>
+
+<p><strong>Benefits List</strong> (repeater — add one row per feature):</p>
+<div class="tip">Add <strong>3, 6, or 9 items</strong> for a balanced grid layout.</div>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Icon</strong></td><td>—</td><td>—</td><td>The <strong>name</strong> of an icon from the Icon Library (<code>/admin/icons</code>).</td><td>e.g., <code>ScanBarcode</code>, <code>Route</code>, <code>ShieldCheck</code></td></tr>
+  <tr><td><strong>Title</strong></td><td>✅</td><td>✅</td><td>Short feature name.</td><td>20–30 chars. e.g., <em>"Real-time Tracking"</em></td></tr>
+  <tr><td><strong>Description</strong></td><td>✅</td><td>✅</td><td>Short explanation of the benefit.</td><td>80–120 chars. Clear and value-focused.</td></tr>
+</table>
+
+<h3>Block C — Use Case</h3>
+<p><strong>Purpose:</strong> Showcase real-world scenarios. Displays as alternating image/text cards.</p>
+
+<p><strong>Section Header:</strong></p>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Title</strong></td><td>✅</td><td>✅</td><td>Section heading.</td><td>30–50 chars. e.g., <em>"Built for Your Industry"</em></td></tr>
+  <tr><td><strong>Description</strong></td><td>—</td><td>✅</td><td>Contextual intro sentence.</td><td>100–150 chars.</td></tr>
+</table>
+
+<p><strong>Cases List</strong> (repeater — add one row per use case):</p>
+<div class="tip">Add <strong>2–4 items</strong> for the best visual balance.</div>
+<table>
+  <tr><th>Field</th><th>Required</th><th>🌐</th><th>What to Write</th><th>Guidelines</th></tr>
+  <tr><td><strong>Title</strong></td><td>✅</td><td>✅</td><td>Industry or scenario name.</td><td>25–40 chars. e.g., <em>"Pharmaceutical Logistics"</em></td></tr>
+  <tr><td><strong>Description</strong></td><td>✅</td><td>✅</td><td>How the solution applies to this specific scenario.</td><td>200–300 chars.</td></tr>
+  <tr><td><strong>Image</strong></td><td>✅</td><td>—</td><td>High-quality photo representing the scenario.</td><td>16:9 aspect ratio. e.g., warehouse worker, pharma lab.</td></tr>
+</table>
+
+<hr>
+
+<h2>5. Content Writing Best Practices</h2>
+<table>
+  <tr><th>Topic</th><th>Guideline</th></tr>
+  <tr><td><strong>Text Case</strong></td><td>Write in <strong>Sentence case</strong> or <strong>Title Case</strong>. Some headlines are auto-uppercased by design.</td></tr>
+  <tr><td><strong>Tone</strong></td><td>Professional, confident, benefit-driven. "You" language — speak to the customer.</td></tr>
+  <tr><td><strong>Imagery</strong></td><td>All images should share similar color grading (dark, high-contrast, blue/gold accents).</td></tr>
+  <tr><td><strong>Icons</strong></td><td>Always copy the exact name from <code>/admin/icons</code>. If unsure, search in the Icon Library first.</td></tr>
+  <tr><td><strong>Bilingual</strong></td><td>Fill both EN and FR for every 🌐 field. Switch locale at the top of the editor.</td></tr>
+  <tr><td><strong>Slug</strong></td><td>Never change a slug after the page is published — it will break existing links.</td></tr>
+</table>
+
+<hr>
+
+<h2>Quick Reference: Block Order Recommendation</h2>
+<p>For a standard solution page, use this block sequence:</p>
+<pre>
+1. Quick Presentation       → Introduce the product
+2. Functionality & Benefits  → Show key features (grid)
+3. Use Case                  → Prove real-world value (alternating cards)
+</pre>
+<p>You can repeat or reorder blocks as needed, but this is the proven default structure.</p>
+
+</body>
+</html>

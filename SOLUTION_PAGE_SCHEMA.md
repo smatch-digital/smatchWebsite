@@ -1,90 +1,167 @@
-# Solution Page Content Schema & Guidelines
+# Solution Page — Content Schema & Guidelines
 
-This document outlines the content structure for creating high-impact Solution pages. Follow these guidelines to ensure design consistency and optimal presentation.
+> **Audience:** Content writers managing Solution pages via the CMS admin panel.
+> **Important:** This site is bilingual (**English** + **French**). Every field marked 🌐 must be filled in **both languages** using the locale switcher at the top of the admin panel.
+
+---
+
+## How a Solution Page is Structured
+
+A solution page is composed of **three sections**, filled through tabs in the admin panel:
+
+```
+┌─────────────────────────────────────────┐
+│  GLOBAL SETTINGS  (Title, Slug, Order)  │  ← Sidebar + top fields
+├─────────────────────────────────────────┤
+│  TAB 1: Card Settings                   │  ← Controls the card in the Solutions listing grid
+│  TAB 2: Hero Section                    │  ← The banner at the top of the page
+│  TAB 3: Content (Layout Blocks)         │  ← The main body, built from reusable blocks
+└─────────────────────────────────────────┘
+```
 
 ---
 
 ## 1. Global Settings
-These fields define the page identity and meta-information.
 
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Title** | Text | The official product name (e.g., "Prolog WMS", "Smatch IMS"). | 20-40 chars |
-| **Slug** | Text | URL-safe identifier (e.g., `prolog-wms`). Auto-generated usually. | N/A |
-| **Order** | Number | Determines the position in the navigation menu. | N/A |
+These fields define the page identity. They appear at the top and sidebar of the editor.
 
-### Tab: Card Settings
-Used for the solution card display on the main Solutions listing page.
-
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Description** | Textarea | A concise "elevator pitch" summary of the solution. Focus on the main value proposition. | 120-160 chars |
-| **Icon** | Text | The name of the icon to display (e.g., `Barcode`, `Truck`, `Warehouse`). Must match an icon in the Icon Library. | N/A |
-
-### Tab: Hero Section
-The top-most section of the page.
-
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Hero Subtitle** | Text | A punchy tagline supporting the main title. (e.g., "The Future of Warehouse Logistics"). | 40-60 chars |
-| **Hero Image** | Upload | High-quality, cinematic background image. Abstract tech or realistic warehouse environment. | 1920x1080px (WebP) |
+| Field | Where | Required | 🌐 | What to Write | Example |
+|:---|:---|:---:|:---:|:---|:---|
+| **Title** | Top | ✅ | ✅ | The official product/solution name. | `Prolog WMS` |
+| **Slug** | Sidebar | ✅ | — | URL-safe identifier. Lowercase, hyphens only. Must be **unique**. | `prolog-wms` |
+| **Order** | Sidebar | — | — | Number controlling position in navigation. Auto-assigned if left empty. | `1` |
 
 ---
 
-## 2. Content Blocks (Layout)
-The main body of the page is built using these flexible blocks.
+## 2. Tab: Card Settings
 
-### Block A: Quick Presentation
-The primary introduction to the product.
+Controls how the solution appears as a **card** on the Solutions listing/grid page.
 
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Headline** | Text | Impactful statement. (e.g., "OPTIMIZE YOUR SUPPLY CHAIN"). | 30-50 chars |
-| **Subheadline** | Text | Small badge text above headline. (e.g., "INTELLIGENT LOGISTICS"). | 15-25 chars |
-| **Description** | Rich Text | Detailed overview of the solution. Use standard sentence case. Avoid massive walls of text; break into 2-3 paragraphs. | 300-500 chars |
-| **Media** | Upload | Feature image or UI screenshot showing the dashboard/interface. | 16:9 Aspect Ratio |
-| **Layout** | Select | `Media Right` is standard; use `Media Left` for variation. | N/A |
-| **CTA Button** | Link | Call to action (e.g., "Book a Demo"). | 10-20 chars |
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Description** | — | ✅ | A concise "elevator pitch" of the solution. Focus on the main value proposition. | 120–160 characters. One short paragraph. |
+| **Icon** | — | — | The **name** of an icon from the Icon Library. Go to `/admin/icons` in the admin panel to browse available icons and copy the exact name. | e.g., `Barcode`, `Truck`, `Warehouse` |
 
-### Block B: Functionality & Benefits
-Grid layout showcasing key features.
-
-**Section Header**
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Title** | Text | Section title (e.g., "WHY CHOOSE PROLOG WMS?"). | 30-50 chars |
-| **Description** | Textarea | Brief intro to the features. | 100-150 chars |
-
-**Benefits List (Repeater)**
-*Recommended Count: 3, 6, or 9 items for balanced grid.*
-
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Icon** | Upload | SVG or PNG icon representing the feature. Transparent background. | 64x64px |
-| **Title** | Text | Feature name (e.g., "Real-time Tracking"). | 20-30 chars |
-| **Description** | Textarea | Short explanation of the benefit. | 80-120 chars |
-
-### Block C: Use Case
-Alternating "Zig-Zag" layout for real-world scenarios.
-
-**Section Header**
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Title** | Text | Section title (e.g., "BUILT FOR YOUR INDUSTRY"). | 30-50 chars |
-| **Description** | Textarea | Context for the use cases. | 100-150 chars |
-
-**Cases List (Repeater)**
-*Recommended Count: 2-4 items.*
-
-| Field Name | Type | Recommended Content | Character Limit |
-| :--- | :--- | :--- | :--- |
-| **Title** | Text | Industry or Scenario Name (e.g., "Pharmaceutical Logistics"). | 25-40 chars |
-| **Description** | Textarea | How the solution applies to this specific scenario. | 200-300 chars |
-| **Image** | Upload | High-quality photo representing the scenario (e.g., warehouse worker, pharma lab). | 16:9 Aspect Ratio |
+> [!TIP]
+> To find the right icon: navigate to **`/admin/icons`** in the admin panel → browse or search → copy the icon name exactly as shown.
 
 ---
 
-## 3. General Design Tips
-*   **Text Case:** Headlines are often auto-uppercased by design, but input them in **Title Case** or **Sentence case** for flexibility.
-*   **Imagery:** Ensure all images share a similar color grading or style (e.g., dark, high-contrast, blue/orange accents) to match the brand.
-*   **Icons:** Use consistent stroke weights and styles for icons in the Benefits block.
+## 3. Tab: Hero Section
+
+The **banner** at the very top of the solution page.
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Hero Subtitle** | — | ✅ | A punchy tagline that supports the title. | 40–60 characters. e.g., `"The Future of Warehouse Logistics"` |
+| **Hero Image** | — | — | Upload a high-quality background image. | Recommended: **1920×1080px**, WebP format. Dark/cinematic style preferred. |
+
+---
+
+## 4. Tab: Content (Layout Blocks)
+
+The main body of the page. You build it by **adding blocks** from the list below. You can add as many blocks as needed, in any order.
+
+> [!IMPORTANT]
+> The Content tab is **localized**. You must add and fill blocks for **each language separately** using the locale switcher.
+
+---
+
+### Block A — Quick Presentation
+
+**Purpose:** Primary introduction section. Displays a headline, description, image, and an optional call-to-action button in a side-by-side layout.
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Headline** | ✅ | ✅ | The main impactful statement. | 30–50 chars. e.g., `"Optimize Your Supply Chain"` |
+| **Subheadline** | — | ✅ | Small badge text displayed above the headline. | 15–25 chars. e.g., `"Intelligent Logistics"` |
+| **Description** | — | ✅ | Detailed overview of the solution. This is a **Rich Text editor** — you can use bold, italic, lists, etc. | 2–3 short paragraphs. Avoid walls of text. |
+| **Media** | ✅ | — | Feature image or UI screenshot of the product. | 16:9 aspect ratio recommended. |
+| **Layout** | — | — | Choose the image position: `Media Right` (default) or `Media Left`. | Use `Media Left` for visual variation when stacking multiple blocks. |
+
+**CTA Button (optional link group):**
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Type** | — | — | `Internal link` → select an existing Page/Post. `Custom URL` → type a full URL. | Default: Internal link. |
+| **Label** | ✅ | ✅ | The button text. | 10–20 chars. e.g., `"Book a Demo"`, `"En savoir plus"` |
+| **URL** | ✅* | ✅ | Only if Type = `Custom URL`. Paste the full URL. | e.g., `https://calendly.com/smatch/demo` |
+| **Reference** | ✅* | — | Only if Type = `Internal link`. Select a Page or Post from the dropdown. | — |
+| **Open in new tab** | — | — | Check this box if the link should open in a new browser tab. | Recommended for external URLs. |
+
+> *\* Required only when the corresponding Type is selected.*
+
+---
+
+### Block B — Functionality & Benefits
+
+**Purpose:** A grid of feature cards, each with an icon, title, and description.
+
+**Section Header:**
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Title** | ✅ | ✅ | Section heading. | 30–50 chars. e.g., `"Why Choose Prolog WMS?"` |
+| **Description** | — | ✅ | Brief intro sentence before the feature grid. | 100–150 chars. |
+
+**Benefits List (repeater — add one row per feature):**
+
+> [!TIP]
+> Add **3, 6, or 9 items** for a balanced grid layout.
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Icon** | — | — | The **name** of an icon from the Icon Library (`/admin/icons`). | e.g., `ScanBarcode`, `Route`, `ShieldCheck` |
+| **Title** | ✅ | ✅ | Short feature name. | 20–30 chars. e.g., `"Real-time Tracking"` |
+| **Description** | ✅ | ✅ | Short explanation of the benefit. | 80–120 chars. Clear and value-focused. |
+
+---
+
+### Block C — Use Case
+
+**Purpose:** Showcase real-world scenarios where the solution applies. Displays as alternating image/text cards.
+
+**Section Header:**
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Title** | ✅ | ✅ | Section heading. | 30–50 chars. e.g., `"Built for Your Industry"` |
+| **Description** | — | ✅ | Contextual intro sentence. | 100–150 chars. |
+
+**Cases List (repeater — add one row per use case):**
+
+> [!TIP]
+> Add **2–4 items** for the best visual balance.
+
+| Field | Required | 🌐 | What to Write | Guidelines |
+|:---|:---:|:---:|:---|:---|
+| **Title** | ✅ | ✅ | Industry or scenario name. | 25–40 chars. e.g., `"Pharmaceutical Logistics"` |
+| **Description** | ✅ | ✅ | How the solution applies to this specific scenario. | 200–300 chars. |
+| **Image** | ✅ | — | High-quality photo representing the scenario. | 16:9 aspect ratio. e.g., warehouse worker, pharma lab. |
+
+---
+
+## 5. Content Writing Best Practices
+
+| Topic | Guideline |
+|:---|:---|
+| **Text Case** | Write in **Sentence case** or **Title Case**. Some headlines are auto-uppercased by design. |
+| **Tone** | Professional, confident, benefit-driven. "You" language — speak to the customer. |
+| **Imagery** | All images should share similar color grading (dark, high-contrast, blue/gold accents). |
+| **Icons** | Always copy the exact name from `/admin/icons`. If unsure, search in the Icon Library first. |
+| **Bilingual** | Fill both EN and FR for every 🌐 field. Switch locale at the top of the editor. |
+| **Slug** | Never change a slug after the page is published — it will break existing links. |
+
+---
+
+## Quick Reference: Block Order Recommendation
+
+For a standard solution page, use this block sequence:
+
+```
+1. Quick Presentation    → Introduce the product
+2. Functionality & Benefits → Show key features (grid)
+3. Use Case              → Prove real-world value (alternating cards)
+```
+
+You can repeat or reorder blocks as needed, but this is the proven default structure.

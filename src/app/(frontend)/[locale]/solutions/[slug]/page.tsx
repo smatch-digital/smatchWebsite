@@ -88,7 +88,6 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
         title={title}
         subtitle={heroSubtitle || undefined}
         image={heroImgUrl}
-        fullBleed={!!heroImgUrl}
         locale={locale}
       />
 

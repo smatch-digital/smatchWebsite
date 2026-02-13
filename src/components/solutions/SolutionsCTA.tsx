@@ -87,7 +87,7 @@ export function SolutionsCTA({ locale = 'en' }: SolutionsCTAProps) {
           <Button
             variant="gold"
             size="lg"
-            className="min-w-[200px] font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,215,0,0.2)] transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(255,215,0,0.4)]"
+            className="min-w-[200px] bg-[#FFAA00] font-bold uppercase tracking-wider text-black shadow-[0_0_20px_rgba(255,215,0,0.2)] transition-shadow duration-300 hover:bg-[#D99200] hover:shadow-[0_0_30px_rgba(255,215,0,0.4)]"
           >
             {t.button}
           </Button>
