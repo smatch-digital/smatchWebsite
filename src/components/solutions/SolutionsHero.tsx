@@ -60,6 +60,7 @@ export function SolutionsHero({
             fill
             className="object-cover object-center"
             priority
+            unoptimized
           />
         )}
       </div>
