@@ -70,7 +70,7 @@ const InteractiveCard = ({ data, locale = 'en' }: { data: SolutionDoc; locale?: 
   return (
     <Link href={href} className="block size-full">
       <motion.div
-        className="group relative h-[450px] w-full cursor-pointer overflow-hidden rounded-[12px] bg-[#050505] md:h-[600px]"
+        className="group relative h-[450px] w-full cursor-pointer overflow-hidden rounded-[12px] border border-white/10 bg-[#050505] md:h-[600px]"
         whileHover="hover"
         initial="initial"
       >
