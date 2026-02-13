@@ -16,9 +16,7 @@ export async function generateStaticParams() {
     const payload = await getPayload()
     const solutions = await payload.find({
       collection: 'solutions',
-      draft: false,
       limit: 1000,
-      overrideAccess: false,
       pagination: false,
       select: {
         slug: true,
@@ -110,17 +108,14 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 const querySolutionBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {
-  const { isEnabled: draft } = await draftMode()
   const payload = await getPayload()
 
   try {
     const result = await payload.find({
       collection: 'solutions',
-      draft,
       limit: 1,
-      depth: 2, // Ensure blocks and media are fully populated
+      depth: 2,
       pagination: false,
-      overrideAccess: draft,
       locale: locale as any,
       where: {
         slug: {

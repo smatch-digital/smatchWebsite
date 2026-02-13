@@ -56,8 +56,7 @@ export default async function SolutionsPage({ params }: Args) {
   // 2. Fetch all published solutions WITH locale
   const { docs: solutions } = await payload.find({
     collection: 'solutions',
-    draft: false,
-    locale: locale as Locale, // CRITICAL: Pass locale to get string values
+    locale: locale as Locale,
     sort: 'order',
     select: {
       title: true,
