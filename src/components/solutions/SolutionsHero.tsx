@@ -39,7 +39,7 @@ export function SolutionsHero({
   return (
     <section
       className={cn(
-        'relative mx-auto flex h-[80vh] min-h-[80vh] items-center justify-center overflow-hidden bg-smatch-black',
+        'relative flex h-[80vh] min-h-[80vh] items-center justify-center overflow-hidden bg-smatch-black',
         className,
       )}
       aria-label="Solutions Hero"
