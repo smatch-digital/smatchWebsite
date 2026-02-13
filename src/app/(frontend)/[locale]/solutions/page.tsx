@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getPayload } from '@/getPayload'
 import { SolutionsHero } from '@/components/solutions/SolutionsHero'
 import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
-import { SolutionsCTA } from '@/components/solutions/SolutionsCTA'
+import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
 
@@ -73,7 +73,12 @@ export default async function SolutionsPage({ params }: Args) {
       <SolutionsHero image={'/assets/hero/SolutionHero.webp'} locale={locale} />
       {/* 3. Pass the fetched data + locale to the Grid */}
       <SolutionsGrid solutions={solutions} locale={locale} />
-      <SolutionsCTA locale={locale} />
+      <CallToActionBlock
+        headline={locale === 'fr' ? 'Une architecture sur mesure ?' : 'Need a custom architecture?'}
+        subheadline={locale === 'fr' ? 'Découvrez nos solutions ou contactez notre équipe pour échanger sur vos besoins.' : 'Explore our solutions or contact our team to discuss your needs.'}
+        link={{ type: 'custom', url: `/${locale}/contact`, label: locale === 'fr' ? 'CONTACTEZ-NOUS' : 'CONTACT US' }}
+        blockType="cta"
+      />
     </main>
   )
 }
