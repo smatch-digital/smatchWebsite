@@ -146,7 +146,7 @@ export const SolutionsGrid = ({ solutions = [], locale = 'en' }: SolutionsGridPr
   return (
     <section className="relative overflow-hidden bg-[#050505] py-32">
       {/* Background Atmosphere */}
-      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#FFAA00]/20 to-transparent" />
+      
       <div className="pointer-events-none absolute -left-[20%] top-[20%] size-2/5 rounded-full bg-[#FFAA00]/5 blur-[120px]" />
 
       <div className="container relative z-10 mx-auto px-4">
