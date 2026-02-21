@@ -1,4 +1,4 @@
-# Smatch Website ⚡️
+# Smatch Website 
 
 > **Industrial Luxury** meets **Engineering Authority**.
 > Built with Next.js 15, PayloadCMS 3.6, and React 19.
