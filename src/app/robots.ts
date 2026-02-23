@@ -15,7 +15,17 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: ['/admin/', '/api/', '/_next/'],
+                // Block private Payload API endpoints, but NOT /api/media/file/* (publicly served uploads)
+                disallow: [
+                    '/admin/',
+                    '/_next/',
+                    '/api/users',
+                    '/api/payload-preferences',
+                    '/api/payload-locked-documents',
+                    '/api/payload-jobs',
+                    '/api/graphql',
+                    '/api/graphql-playground',
+                ],
             },
         ],
         sitemap: `${baseUrl}/sitemap.xml`,
