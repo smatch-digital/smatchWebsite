@@ -14,6 +14,7 @@ import { Antonio, Inter, JetBrains_Mono } from 'next/font/google'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { getOrganizationJsonLd, getWebSiteJsonLd } from '@/utilities/jsonLd'
 import { IntroLoader } from '@/components/Loader/IntroLoader'
 import { i18nConfig, type Locale, isValidLocale } from '@/utilities/i18n'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -75,6 +76,18 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <InitTheme />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getOrganizationJsonLd()),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getWebSiteJsonLd()),
+          }}
+        />
       </head>
       <body className="bg-smatch-black">
         <Analytics />
@@ -139,6 +152,7 @@ export const metadata: Metadata = {
       'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.',
     siteName: 'Smatch Digital',
     locale: 'fr_MA',
+    alternateLocale: ['en_US'],
     type: 'website',
   },
   twitter: {
@@ -152,6 +166,7 @@ export const metadata: Metadata = {
     languages: {
       en: '/en',
       fr: '/fr',
+      'x-default': '/fr',
     },
   },
 }

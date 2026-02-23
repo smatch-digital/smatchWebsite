@@ -5,6 +5,8 @@ import { SolutionsGrid } from '@/components/solutions/SolutionsGrid'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { i18nConfig, isValidLocale, type Locale } from '@/utilities/i18n'
 import { notFound } from 'next/navigation'
+import { getServerSideURL } from '@/utilities/getURL'
+import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 type Args = {
   params: Promise<{
@@ -20,26 +22,47 @@ export function generateStaticParams() {
 }
 
 /**
- * Dynamic metadata — locale-aware title and description
+ * Dynamic metadata — locale-aware title, description, OG, canonical, hreflang
  */
 export async function generateMetadata({ params }: Args): Promise<Metadata> {
   const { locale } = await params
+  const serverUrl = getServerSideURL()
 
   const meta: Record<string, { title: string; description: string }> = {
     fr: {
-      title: 'Solutions | Smatch Digital',
+      title: 'Solutions WMS & Supply Chain',
       description:
         'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.',
     },
     en: {
-      title: 'Solutions | Smatch Digital',
+      title: 'WMS & Supply Chain Solutions',
       description:
         'Logistics, traceability, Concept 4.0, Data processing… the engine of your digital transformation starts here.',
     },
   }
 
   const m = meta[locale] || meta.en
-  return { title: m.title, description: m.description }
+  const canonicalUrl = `${serverUrl}/${locale}/solutions`
+
+  return {
+    title: m.title,
+    description: m.description,
+    openGraph: mergeOpenGraph({
+      title: `${m.title} | Smatch Digital`,
+      description: m.description,
+      url: canonicalUrl,
+      locale: locale === 'fr' ? 'fr_MA' : 'en_US',
+      alternateLocale: locale === 'fr' ? ['en_US'] : ['fr_MA'],
+    }),
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${serverUrl}/en/solutions`,
+        fr: `${serverUrl}/fr/solutions`,
+        'x-default': `${serverUrl}/fr/solutions`,
+      },
+    },
+  }
 }
 
 export default async function SolutionsPage({ params }: Args) {

@@ -10,6 +10,8 @@ import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { generateMeta } from '@/utilities/generateMeta'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { i18nConfig } from '@/utilities/i18n'
+import { getServerSideURL } from '@/utilities/getURL'
+import { getBreadcrumbJsonLd, getServiceJsonLd } from '@/utilities/jsonLd'
 
 export async function generateStaticParams() {
   try {
@@ -65,13 +67,41 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     title,
     heroSubtitle,
     heroImage,
+    description,
     layout,
   } = solution
+
+  const serverUrl = getServerSideURL()
+  const pageUrl = `${serverUrl}/${locale}/solutions/${decodedSlug}`
+
+  // JSON-LD structured data for this solution
+  const breadcrumbJsonLd = getBreadcrumbJsonLd([
+    { name: locale === 'fr' ? 'Accueil' : 'Home', url: `${serverUrl}/${locale}` },
+    { name: 'Solutions', url: `${serverUrl}/${locale}/solutions` },
+    { name: title, url: pageUrl },
+  ])
+  const serviceJsonLd = getServiceJsonLd({
+    name: title,
+    description: description || heroSubtitle || title,
+    url: pageUrl,
+    image: heroImage && typeof heroImage === 'object' && 'url' in heroImage
+      ? (heroImage.url?.startsWith('http') ? heroImage.url : `${serverUrl}${heroImage.url}`)
+      : null,
+  })
 
   return (
     <article className="min-h-screen bg-smatch-black">
       <PayloadRedirects disableNotFound url={url} />
       {draft && <LivePreviewListener />}
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
 
       <SolutionsHero
         title={title}

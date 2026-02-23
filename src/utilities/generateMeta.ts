@@ -6,27 +6,36 @@ import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
 // Default SEO description fallback when CMS field is empty
-const DEFAULT_DESCRIPTION = 'Logistique, traçabilité, Concept 4.0, Traitement des données… le moteur de votre transformation digital commence ici.'
+const DEFAULT_DESCRIPTION =
+  'SMATCH conçoit et déploie des solutions innovantes pour numériser et automatiser les processus métier des acteurs industriels, des prestataires logistiques et des institutions.'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
 
-  let url = serverUrl + '/website-template-OG.webp'
+  // Default fallback OG image
+  let url = `${serverUrl}/smatch-og.webp`
 
   if (image && typeof image === 'object' && 'url' in image) {
     const ogUrl = image.sizes?.og?.url
+    const rawUrl = ogUrl || image.url
 
-    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
+    if (rawUrl) {
+      // If the URL is already absolute (e.g., S3/Supabase), use it as-is
+      url = rawUrl.startsWith('http://') || rawUrl.startsWith('https://')
+        ? rawUrl
+        : `${serverUrl}${rawUrl}`
+    }
   }
 
   return url
 }
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post> | any | null // Added any for solutions/projects
+  doc: Partial<Page> | Partial<Post> | any | null
   locale?: string
 }): Promise<Metadata> => {
   const { doc, locale } = args
+  const serverUrl = getServerSideURL()
 
   const ogImage = getImageURL(doc?.meta?.image)
 
@@ -38,15 +47,17 @@ export const generateMeta = async (args: {
   const description = doc?.meta?.description || DEFAULT_DESCRIPTION
 
   // Calculate the raw slug path (e.g. 'solutions/ims-maroc')
-  // For the homepage, slug is usually 'home' in Payload, so we filter it out
   let rawSlug = ''
   if (doc?.slug && doc.slug !== 'home') {
     rawSlug = Array.isArray(doc.slug) ? doc.slug.join('/') : doc.slug
   }
 
-  // Ensure leading slash for URL composition
+  // Build paths
   const pathWithSlash = rawSlug ? `/${rawSlug}` : ''
-  const canonicalPath = locale ? `/${locale}${pathWithSlash}` : pathWithSlash || '/'
+
+  // Absolute canonical URL for unambiguous canonicalization
+  const resolvedLocale = locale || 'fr'
+  const canonicalUrl = `${serverUrl}/${resolvedLocale}${pathWithSlash}`
 
   return {
     description,
@@ -56,20 +67,25 @@ export const generateMeta = async (args: {
         ? [
           {
             url: ogImage,
+            width: 1200,
+            height: 630,
+            alt: title,
           },
         ]
         : undefined,
       title,
-      url: canonicalPath,
+      url: canonicalUrl,
+      locale: resolvedLocale === 'fr' ? 'fr_MA' : 'en_US',
+      alternateLocale: resolvedLocale === 'fr' ? ['en_US'] : ['fr_MA'],
     }),
     alternates: {
-      canonical: canonicalPath,
+      canonical: canonicalUrl,
       languages: {
-        en: `/en${pathWithSlash}`,
-        fr: `/fr${pathWithSlash}`,
+        en: `${serverUrl}/en${pathWithSlash}`,
+        fr: `${serverUrl}/fr${pathWithSlash}`,
+        'x-default': `${serverUrl}/fr${pathWithSlash}`,
       },
     },
     title,
   }
 }
-

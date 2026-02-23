@@ -57,6 +57,7 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Payload Website Template Posts`,
+    title: 'Blog | Smatch Digital',
+    description: 'Articles, actualités et insights sur la transformation digitale, la supply chain et l\'industrie 4.0.',
   }
 }

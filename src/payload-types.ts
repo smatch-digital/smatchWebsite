@@ -298,10 +298,6 @@ export interface Page {
   )[];
   meta?: {
     title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -341,10 +337,6 @@ export interface Post {
   categories?: (number | Category)[] | null;
   meta?: {
     title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Media;
     description?: string | null;
   };
   publishedAt?: string | null;
@@ -737,6 +729,10 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1344,6 +1340,10 @@ export interface Solution {
   heroSubtitle?: string | null;
   heroImage?: (number | null) | Media;
   layout?: (QuickPresentationBlock | FunctionalityBenefitsBlock | UseCaseBlock)[] | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1840,7 +1840,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        image?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -2353,7 +2352,6 @@ export interface PostsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        image?: T;
         description?: T;
       };
   publishedAt?: T;
@@ -2507,6 +2505,12 @@ export interface SolutionsSelect<T extends boolean = true> {
         functionalityBenefits?: T | FunctionalityBenefitsBlockSelect<T>;
         useCase?: T | UseCaseBlockSelect<T>;
       };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2542,6 +2546,12 @@ export interface ProjectsSelect<T extends boolean = true> {
         image?: T;
         caption?: T;
         id?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
       };
   updatedAt?: T;
   createdAt?: T;
