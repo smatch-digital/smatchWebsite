@@ -10,6 +10,7 @@ import * as migration_20260210_131133_update_solutions_schema from './20260210_1
 import * as migration_20260210_131208_update_solutions_schema from './20260210_131208_update_solutions_schema';
 import * as migration_20260211_220000_add_functionality_benefits_icon from './20260211_220000_add_functionality_benefits_icon';
 import * as migration_20260211_222800_fix_solutions_icon_column from './20260211_222800_fix_solutions_icon_column';
+import * as migration_20260223_120000_add_seo_meta_to_projects_solutions from './20260223_120000_add_seo_meta_to_projects_solutions';
 
 export const migrations = [
   {
@@ -71,5 +72,10 @@ export const migrations = [
     up: migration_20260211_222800_fix_solutions_icon_column.up,
     down: migration_20260211_222800_fix_solutions_icon_column.down,
     name: '20260211_222800_fix_solutions_icon_column',
+  },
+  {
+    up: migration_20260223_120000_add_seo_meta_to_projects_solutions.up,
+    down: migration_20260223_120000_add_seo_meta_to_projects_solutions.down,
+    name: '20260223_120000_add_seo_meta_to_projects_solutions',
   },
 ];
