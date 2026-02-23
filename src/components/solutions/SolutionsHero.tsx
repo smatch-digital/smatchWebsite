@@ -3,7 +3,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { Spotlight } from '@/components/ui/spotlight'
+import { Media } from '@/components/Media'
 import { cn } from '@/utilities/ui'
+import type { Media as MediaType } from '@/payload-types'
 
 // --- Static text by locale ---
 const heroDefaults: Record<string, { title: string; subtitle: string }> = {
@@ -20,7 +22,10 @@ const heroDefaults: Record<string, { title: string; subtitle: string }> = {
 interface SolutionsHeroProps {
   title?: string
   subtitle?: string
+  /** Static path (e.g. '/assets/hero/...') for listing page */
   image?: string | null
+  /** Payload media resource object for CMS-uploaded hero images */
+  mediaResource?: MediaType | number | null
   locale?: string
   className?: string
 }
@@ -29,6 +34,7 @@ export function SolutionsHero({
   title,
   subtitle,
   image,
+  mediaResource,
   locale = 'en',
   className,
 }: SolutionsHeroProps) {
@@ -53,7 +59,14 @@ export function SolutionsHero({
 
       {/* Background Image */}
       <div className="absolute inset-0 z-0 size-full">
-        {image && (
+        {mediaResource && typeof mediaResource === 'object' ? (
+          <Media
+            resource={mediaResource}
+            fill
+            priority
+            imgClassName="object-cover object-center"
+          />
+        ) : image ? (
           <Image
             src={image}
             alt={resolvedTitle}
@@ -62,7 +75,7 @@ export function SolutionsHero({
             priority
             unoptimized
           />
-        )}
+        ) : null}
       </div>
 
       {/* Content — same structure as SmatchHero */}

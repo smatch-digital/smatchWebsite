@@ -23,9 +23,10 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 }
 
 export const generateMeta = async (args: {
-  doc: Partial<Page> | Partial<Post> | null
+  doc: Partial<Page> | Partial<Post> | any | null // Added any for solutions/projects
+  locale?: string
 }): Promise<Metadata> => {
-  const { doc } = args
+  const { doc, locale } = args
 
   const ogImage = getImageURL(doc?.meta?.image)
 
@@ -35,6 +36,17 @@ export const generateMeta = async (args: {
 
   // Use CMS description if available, otherwise fall back to default
   const description = doc?.meta?.description || DEFAULT_DESCRIPTION
+
+  // Calculate the raw slug path (e.g. 'solutions/ims-maroc')
+  // For the homepage, slug is usually 'home' in Payload, so we filter it out
+  let rawSlug = ''
+  if (doc?.slug && doc.slug !== 'home') {
+    rawSlug = Array.isArray(doc.slug) ? doc.slug.join('/') : doc.slug
+  }
+
+  // Ensure leading slash for URL composition
+  const pathWithSlash = rawSlug ? `/${rawSlug}` : ''
+  const canonicalPath = locale ? `/${locale}${pathWithSlash}` : pathWithSlash || '/'
 
   return {
     description,
@@ -48,10 +60,14 @@ export const generateMeta = async (args: {
         ]
         : undefined,
       title,
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      url: canonicalPath,
     }),
     alternates: {
-      canonical: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      canonical: canonicalPath,
+      languages: {
+        en: `/en${pathWithSlash}`,
+        fr: `/fr${pathWithSlash}`,
+      },
     },
     title,
   }

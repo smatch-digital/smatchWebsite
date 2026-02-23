@@ -68,17 +68,6 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
     layout,
   } = solution
 
-  // Helper to get image URL
-  const getImageUrl = (media: unknown) => {
-    if (!media) return null
-    if (typeof media === 'string') return media
-    if (typeof media === 'object' && media !== null && 'url' in media)
-      return (media as { url: string }).url
-    return null
-  }
-
-  const heroImgUrl = getImageUrl(heroImage)
-
   return (
     <article className="min-h-screen bg-smatch-black">
       <PayloadRedirects disableNotFound url={url} />
@@ -87,7 +76,7 @@ export default async function SolutionPage({ params: paramsPromise }: Args) {
       <SolutionsHero
         title={title}
         subtitle={heroSubtitle || undefined}
-        image={heroImgUrl}
+        mediaResource={heroImage}
         locale={locale}
       />
 
@@ -103,7 +92,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const decodedSlug = decodeURIComponent(slug)
   const solution = await querySolutionBySlug({ slug: decodedSlug, locale })
 
-  return generateMeta({ doc: solution })
+  return generateMeta({ doc: solution, locale })
 }
 
 const querySolutionBySlug = cache(async ({ slug, locale }: { slug: string; locale?: string }) => {

@@ -9,51 +9,32 @@ import { getPayload } from '@/getPayload'
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'https://smatch.ma'
+    const locales = ['en', 'fr']
 
-    // Static pages
+    // Helper to generate localized paths for a given route segment
+    const generateLocalizedUrls = (path: string, priority: number, changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never', lastModified: Date) => {
+        return locales.map((locale) => ({
+            url: `${baseUrl}/${locale}${path === '/' ? '' : path}`,
+            lastModified,
+            changeFrequency,
+            priority,
+        }))
+    }
+
+    // Static core routes
     const staticPages: MetadataRoute.Sitemap = [
-        {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 1.0,
-        },
-        {
-            url: `${baseUrl}/solutions`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/projects`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/contact`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}/posts`,
-            lastModified: new Date(),
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/search`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.5,
-        },
+        ...generateLocalizedUrls('/', 1.0, 'daily', new Date()),
+        ...generateLocalizedUrls('/solutions', 0.8, 'daily', new Date()),
+        ...generateLocalizedUrls('/projects', 0.8, 'daily', new Date()),
+        ...generateLocalizedUrls('/contact', 0.7, 'weekly', new Date()),
+        ...generateLocalizedUrls('/posts', 0.8, 'daily', new Date()),
+        ...generateLocalizedUrls('/search', 0.5, 'monthly', new Date()),
     ]
 
-    // Dynamic pages from CMS
     try {
         const payload = await getPayload()
 
+        // 1. Pages
         const pages = await payload.find({
             collection: 'pages',
             draft: false,
@@ -62,57 +43,48 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             pagination: false,
             select: { slug: true, updatedAt: true },
         })
-
-        const dynamicPages: MetadataRoute.Sitemap = pages.docs
+        const dynamicPages = pages.docs
             .filter((page) => page.slug && page.slug !== 'home')
-            .map((page) => ({
-                url: `${baseUrl}/${page.slug}`,
-                lastModified: new Date(page.updatedAt),
-                changeFrequency: 'weekly' as const,
-                priority: 0.7,
-            }))
+            .flatMap((page) => generateLocalizedUrls(`/${page.slug}`, 0.7, 'weekly', new Date(page.updatedAt)))
 
-        // Projects
+        // 2. Solutions (Previously Missing!)
+        const solutions = await payload.find({
+            collection: 'solutions',
+            depth: 0,
+            limit: 1000,
+            pagination: false,
+            select: { slug: true, updatedAt: true },
+        })
+        const solutionPages = solutions.docs
+            .filter((sol) => sol.slug)
+            .flatMap((sol) => generateLocalizedUrls(`/solutions/${sol.slug}`, 0.9, 'weekly', new Date(sol.updatedAt)))
+
+        // 3. Projects
         const projects = await payload.find({
             collection: 'projects',
-            draft: false,
             depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },
         })
-
-        const projectPages: MetadataRoute.Sitemap = projects.docs
+        const projectPages = projects.docs
             .filter((project) => project.slug)
-            .map((project) => ({
-                url: `${baseUrl}/projects/${project.slug}`,
-                lastModified: new Date(project.updatedAt),
-                changeFrequency: 'weekly' as const,
-                priority: 0.6,
-            }))
+            .flatMap((project) => generateLocalizedUrls(`/projects/${project.slug}`, 0.6, 'weekly', new Date(project.updatedAt)))
 
-        // Posts
+        // 4. Posts
         const posts = await payload.find({
             collection: 'posts',
-            draft: false,
             depth: 0,
             limit: 1000,
             pagination: false,
             select: { slug: true, updatedAt: true },
         })
-
-        const postPages: MetadataRoute.Sitemap = posts.docs
+        const postPages = posts.docs
             .filter((post) => post.slug)
-            .map((post) => ({
-                url: `${baseUrl}/posts/${post.slug}`,
-                lastModified: new Date(post.updatedAt),
-                changeFrequency: 'weekly' as const,
-                priority: 0.6,
-            }))
+            .flatMap((post) => generateLocalizedUrls(`/posts/${post.slug}`, 0.6, 'weekly', new Date(post.updatedAt)))
 
-        return [...staticPages, ...dynamicPages, ...projectPages, ...postPages]
+        return [...staticPages, ...dynamicPages, ...solutionPages, ...projectPages, ...postPages]
     } catch (error) {
-        // Return static pages if CMS query fails
         console.error('Sitemap generation error:', error)
         return staticPages
     }
